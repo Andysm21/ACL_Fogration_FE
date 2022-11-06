@@ -3,7 +3,7 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 
-const carSystem: NextPage = () => {
+const dashboard: NextPage = () => {
   const headers = ["Song", "Artist", "Year"];
 
   return (
@@ -21,4 +21,4 @@ const carSystem: NextPage = () => {
   );
 };
 
-export default carSystem;
+export default dashboard;
