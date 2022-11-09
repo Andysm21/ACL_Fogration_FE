@@ -19,5 +19,8 @@ module.exports = {
       },
     },
     plugins: [],
+    background:{
+      'booksbg': '/images/booksbg.jpeg5466',
+    }
   },
 };

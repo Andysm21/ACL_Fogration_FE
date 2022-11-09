@@ -14,7 +14,10 @@ const home: NextPage<Props> = ({ data }) => {
   return (
     <div className={""}>
       <Layout>
-        <div>hello</div>
+        <div>
+          
+
+        </div>
       </Layout>
     </div>
   );
