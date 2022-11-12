@@ -15,14 +15,11 @@ const dashboard: NextPage = () => {
       </Head>
 
       <Layout>
-<<<<<<< HEAD
         <div>
           
 
         </div>
-=======
         <div></div>
->>>>>>> main
       </Layout>
     </div>
   );

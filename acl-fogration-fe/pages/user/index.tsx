@@ -1,19 +1,11 @@
-<<<<<<< HEAD
-import React from "react";
 import CourseCard from "../../components/molecules/CourseCard";
-import Layout from "../../components/templates/Layout";
-
-const index = () => {
-  return (
-    <div>
-      <Layout>
-        <div></div>
-        
-=======
-import React, { useEffect, useState } from "react";
+]import React, { useEffect, useState } from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
+
+
+        
 
 const dashboard: NextPage = () => {
   const headers = ["Song", "Artist", "Year"];
@@ -28,14 +20,9 @@ const dashboard: NextPage = () => {
 
       <Layout>
         <div></div>
->>>>>>> main
       </Layout>
     </div>
   );
 };
 
-<<<<<<< HEAD
-export default index;
-=======
 export default dashboard;
->>>>>>> main
