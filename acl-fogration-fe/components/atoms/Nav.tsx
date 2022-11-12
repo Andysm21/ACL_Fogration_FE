@@ -9,7 +9,7 @@ const Nav = () => {
   return (
     <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-matisse px-5 shadow-lg">
       <div className="flex gap-8">
-        {/* <img className="w-16 " src="/Images/logo-white.png" alt="siteLogo" /> */}
+        {/* <img className="w-16 " src="/Images/fogration-blue.png " alt="siteLogo" /> */}
         <div className="flex items-center gap-4 px-28">
           <Link href="/user">
             <h1 className="cursor-pointer border-b-lightgrey  text-lg font-light  text-white hover:border-b hover:text-gray-300">

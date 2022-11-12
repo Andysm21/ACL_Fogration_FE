@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react'
+import CourseCard from '../../components/molecules/CourseCard'
+import Layout from '../../components/templates/Layout'
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import Layout from "../../components/templates/Layout";
 // interface Props {
 //   data: {
 //     song: string;
@@ -12,6 +13,7 @@ import Layout from "../../components/templates/Layout";
 
 const courses: NextPage = () => {
   return (
+
     <div className={""}>
       <Head>
         <title>Courses</title>

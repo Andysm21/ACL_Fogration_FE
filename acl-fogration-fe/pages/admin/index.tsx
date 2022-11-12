@@ -15,6 +15,10 @@ const dashboard: NextPage = () => {
       </Head>
 
       <Layout>
+        <div>
+          
+
+        </div>
         <div></div>
       </Layout>
     </div>

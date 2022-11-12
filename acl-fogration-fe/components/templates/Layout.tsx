@@ -17,7 +17,7 @@ const userlinks = [
   { href: "/user", label: "Dashboard" },
   { href: "/user/courses", label: "Courses" },
   { href: "/user/mycourses", label: "My Courses" },
-  
+
   // { href: '/meetings/facilities', label: 'Facilities' },
 ];
 
@@ -30,12 +30,12 @@ const instructorlinks = [
 ];
 const adminlinks = [
   // { href: '/car-system', label: 'Dashboard' },
+  { href: "/admin/users", label: "Users" },
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/accounts", label: "Accounts" },
   { href: "/admin/courses", label: "Courses" },
   // { href: "admin/requests", label: "Requests" },
 ];
-
 
 const tabs:
   | {
@@ -52,35 +52,20 @@ const Layout: React.FC<Props> = ({ children }) => {
   const [links, setLinks] = useState([] as any);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const x = router.pathname.split('/');
-  //   const y = x[1];
-  //   console.log(y);
-  //   if (router.pathname === "/user") {
-  //     setLinks(userlinks);
-  //   } else if (router.pathname === "/instructor") {
-  //     setLinks(instructorlinks);
-  //   }
-  //   else{
-  //     setLinks(adminlinks);
-  //   }
-  // }, [router.pathname]);
   return (
     <div className="relative top-0 left-0 right-0">
       <Nav />
       <div className="flex pt-16">
         <Sidebar
-          links=
-          {
+          links={
             tabs.find((tab) => router.pathname.includes(tab.key))?.links || []
           }
         />
-        
+
         <div className={"ml-[15%] w-[85%]"}>{children}</div>
       </div>
     </div>
   );
-
 };
 
 export default Layout;
