@@ -9,12 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "mui": "0.0.1",
-    "next": "13.0.0",
-    "react": "^18.2.0",
-    "react-dom": "18.2.0"
-=======
+
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.9",
@@ -26,7 +21,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0"
->>>>>>> f0cdfc01d27f5c13b82d1702a552bf7d2a19467d
   },
   "devDependencies": {
     "@types/node": "18.11.8",
