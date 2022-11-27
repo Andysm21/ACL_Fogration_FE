@@ -2,6 +2,7 @@ import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
+import CourseCard from "../../components/molecules/CourseCard";
 // interface Props {
 //   data: {
 //     song: string;
@@ -20,7 +21,9 @@ const courses: NextPage = () => {
       </Head>
 
       <Layout>
-        <div></div>
+        <div>
+          <CourseCard />
+        </div>
       </Layout>
     </div>
   );

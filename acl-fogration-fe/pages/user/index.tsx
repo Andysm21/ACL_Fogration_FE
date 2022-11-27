@@ -1,11 +1,8 @@
 import CourseCard from "../../components/molecules/CourseCard";
-]import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
-
-
-        
 
 const dashboard: NextPage = () => {
   const headers = ["Song", "Artist", "Year"];
