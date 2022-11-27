@@ -44,7 +44,7 @@ const CourseCard = () => {
           key={course.id}
           className=" border-1 flex h-52 w-2/3 flex-col items-start gap-3 justify-start  border-gray-300 p-2 text-center text-darkgrey shadow-lg"
         >
-          <div className=" font-bold text-2xl">
+          <div className=" font-bold text-2xl" key={course.id}>
             {course.name}
             <div className="flex flex-row">{stars(course.rating)}</div>
           </div>
