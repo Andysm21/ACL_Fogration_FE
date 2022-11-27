@@ -49,8 +49,13 @@ const CourseCard = () => {
             <div className="flex flex-row">{stars(course.rating)}</div>
           </div>
 
-          <div className="text-l">{course.price} $$</div>
-          <div className="text-l"> {course.totalHours} Credit Hours</div>
+          <div className="text-l" key={course.id}>
+            {course.price} $$
+          </div>
+          <div className="text-l" key={course.id}>
+            {" "}
+            {course.totalHours} Credit Hours
+          </div>
           <Button variant="contained">Book Course</Button>
         </div>
       ))}
