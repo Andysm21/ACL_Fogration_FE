@@ -50,7 +50,7 @@ const CourseCard = () => {
           </div>
 
           <div className="text-l" key={course.id}>
-            {course.price} $$
+            {course.price}
           </div>
           <div className="text-l" key={course.id}>
             {" "}
