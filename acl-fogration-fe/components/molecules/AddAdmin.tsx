@@ -42,7 +42,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const AddCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
+const AddAdmin: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -102,10 +102,10 @@ const AddCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title">{"New course"}</DialogTitle>
+        <DialogTitle id="responsive-dialog-title">{"New Admin"}</DialogTitle>
         <DialogContent className="">
           <DialogContentText className="grid gap-y-8 gap-x-3">
-            <div className="items flex w-full items-end justify-center m-2 ">
+            <div className="flex flex-column">
               <FormControl
                 variant="standard"
                 sx={{ width: "100%" }}
@@ -115,31 +115,17 @@ const AddCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
                 <TextField
                   required
                   id="outlined-basic"
-                  label="Title"
+                  label="Username"
                   variant="outlined"
                 />
 
                 <TextField
                   required
                   id="outlined-basic"
-                  label="Subtitles"
+                  label="Password"
                   variant="outlined"
                 />
-
-                <TextField
-                  required
-                  id="outlined-basic"
-                  label="Price"
-                  variant="outlined"
-                />
-                
-                  <TextField
-                    required
-                    id="outlined-basic"
-                    label="Description"
-                    variant="outlined"
-                  />
-                                  </div>
+                </div>
                 
               </FormControl>
             </div>
@@ -165,4 +151,4 @@ const AddCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
   );
 };
 
-export default AddCourse;
+export default AddAdmin;
