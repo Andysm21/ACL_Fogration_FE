@@ -1,0 +1,205 @@
+import React from "react";
+import type { GetServerSideProps, NextPage } from "next";
+import Head from "next/head";
+import Layout from "../../components/templates/Layout";
+import CourseCard from "../../components/molecules/CourseCard";
+const courses = [
+  {
+    _id: {
+      $oid: "636820e12887948f062b493e",
+    },
+    Course_ID: 4,
+    Course_Title: "asda",
+    Course_Subject: "Computer Science",
+    Course_Description: "Data Structures and Algorithms",
+    Course_Price: 0,
+    Course_Rating: 5,
+    Course_Instructor: "Malak",
+    Course_Hours: 5,
+    Course_Country: "Egypt",
+    Course_Discount: 10,
+    Course_Discount_Duration: 5,
+    Course_Subtitle: ["S1", "S2"],
+    Course_Trainee: ["Ahmed"],
+    Course_Review: ["Very Good Course"],
+    Course_Rate: ["null"],
+    Course_Exam: ["null"],
+  },
+  {
+    _id: {
+      $oid: "636820e12887948f062b493e",
+    },
+    Course_ID: 4,
+    Course_Title: "asda",
+    Course_Subject: "Computer Science",
+    Course_Description: "Data Structures and Algorithms",
+    Course_Price: 0,
+    Course_Rating: 5,
+    Course_Instructor: "Malak",
+    Course_Hours: 5,
+    Course_Country: "Egypt",
+    Course_Discount: 10,
+    Course_Discount_Duration: 5,
+    Course_Subtitle: ["S1", "S2"],
+    Course_Trainee: ["Ahmed"],
+    Course_Review: ["Very Good Course"],
+    Course_Rate: ["null"],
+    Course_Exam: ["null"],
+  },
+
+  {
+    _id: {
+      $oid: "636820e12887948f062b493e",
+    },
+    Course_ID: 4,
+    Course_Title: "asda",
+    Course_Subject: "Computer Science",
+    Course_Description: "Data Structures and Algorithms",
+    Course_Price: 0,
+    Course_Rating: 5,
+    Course_Instructor: "Malak",
+    Course_Hours: 5,
+    Course_Country: "Egypt",
+    Course_Discount: 10,
+    Course_Discount_Duration: 5,
+    Course_Subtitle: ["S1", "S2"],
+    Course_Trainee: ["Ahmed"],
+    Course_Review: ["Very Good Course"],
+    Course_Rate: ["null"],
+    Course_Exam: ["null"],
+  },
+];
+interface subtitle {
+  Subtitle_ID: number; // string 3lshan 23rad a5do mn om el url
+  Subtitle_Name: string;
+  Subtitle_Course_ID: string;
+  Subtitle_Video: video[];
+  Subtitle_Hours: string;
+}
+interface video {
+  Video_ID: number;
+  Video_Link: string;
+  Video_Subtitle: string;
+  Video_Description: string;
+  Video_Length: number;
+}
+
+interface trainee {
+  Trainee_ID: number;
+  Trainee_Name: string;
+}
+interface exam {
+  Exam_ID: string;
+  Exam_Question_ID: questions[];
+  Exam_Grade: string;
+  Exam_Instructor_ID: string;
+  Exam_Course_ID: string;
+}
+interface questions {
+  Question_ID: string;
+  Question_Name: string;
+  Question_choices: string[];
+  Question_Correct_Answers: string;
+  Question_Garde: string;
+}
+
+interface Props {
+  course: {
+    _id: {
+      $oid: string;
+    };
+    Course_ID: number; //course id m7tag yetzabat string
+    Course_Title: string;
+    Course_Subject: string;
+    Course_Description: string;
+    Course_Price: number;
+    Course_Rating: number;
+    Course_Instructor: string;
+    Course_Hours: number;
+    Course_Country: string;
+    Course_Discount: number;
+    Course_Discountduration: number;
+    Course_Subtitle: subtitle[];
+    Course_Trainee: trainee[];
+    Course_Review: string[];
+    Course_Rate: string[];
+    Course_Exam: exam[];
+  };
+}
+[];
+const course = {
+  _id: {
+    $oid: "636820e12887948f062b493e",
+  },
+  Course_ID: 4,
+  Course_Title: "asda",
+  Course_Subject: "Computer Science",
+  Course_Description: "Data Structures and Algorithms",
+  Course_Price: 0,
+  Course_Rating: 5,
+  Course_Instructor: "Malak",
+  Course_Hours: 5,
+  Course_Country: "Egypt",
+  Course_Discount: 10,
+  Course_Discount_Duration: 5,
+  Course_Subtitle: [
+    {
+      Subtitle_ID: 1,
+      Subtitle_Name: "S1",
+      Subtitle_Course_ID: "1",
+      Subtitle_Video: [
+        {
+          Video_ID: 1,
+          Video_Link:
+            "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
+          Video_Subtitle: "S1",
+          Video_Description: "Introduction",
+          Video_Length: 10,
+        },
+      ],
+      Subtitle_Hours: "10",
+    },
+    {
+      Subtitle_ID: 2,
+      Subtitle_Name: "S2",
+      Subtitle_Course_ID: "1",
+      Subtitle_Video: [
+        {
+          Video_ID: 1,
+          Video_Link:
+            "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
+          Video_Subtitle: "S1",
+          Video_Description: "Introduction",
+          Video_Length: 10,
+        },
+      ],
+      Subtitle_Hours: "10",
+    },
+  ],
+  Course_Trainee: [{ Trainee_ID: 1, Trainee_Name: "Ahmed" }],
+  Course_Review: ["Very Good Course"],
+  Course_Rate: ["zeft"],
+  Course_Exam: [
+    { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
+  ],
+};
+
+const viewcourse: NextPage = () => {
+  return (
+    <div className={""}>
+      <Head>
+        <title>My Courses</title>
+        <meta name="description" content="Generated by create next app" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <Layout>
+        <h1 className="text-3xl font-bold text-gray-900">My Courses</h1>
+        <div className="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3">
+          <CourseCard course={course} />
+        </div>
+      </Layout>
+    </div>
+  );
+};
+export default viewcourse;

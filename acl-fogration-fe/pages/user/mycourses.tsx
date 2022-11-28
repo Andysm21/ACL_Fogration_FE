@@ -2,13 +2,48 @@ import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
-// interface Props {
-//   data: {
-//     song: string;
-//     artist: string;
-//     year: string;
-//   }[];
-// }
+
+const courses = [
+  {
+    id: "1",
+    name: "CSEN702",
+    description: "This is a course",
+    instructor: "Ahmed",
+    totalHours: 6,
+    price: 40,
+    rating: 5,
+    image:
+      "https://i.pinimg.com/originals/0c/0d/0d/0c0d0d8b1b0b1b0b1b0b1b0b1b0b1b0b.jpg",
+    category: "CS",
+    type: "Lecture",
+  },
+  {
+    id: '2',
+    name: "CSEN704",
+    description: "This is a course",
+    instructor: "Ahmed",
+    totalHours: 8,
+    price: 40,
+    rating: 4,
+    image:
+      "https://i.pinimg.com/originals/0c/0d/0d/0c0d0d8b1b0b1b0b1b0b1b0b1b0b1b0b.jpg",
+    category: "CS",
+    type: "Lecture",
+  },
+  {
+    id: '3',
+    name: "CSEN703",
+    description: "This is a course",
+    instructor: "Ahmed",
+    totalHours: 4,
+    price: 40,
+    rating: 1,
+    image:
+      "https://i.pinimg.com/originals/0c/0d/0d/0c0d0d8b1b0b1b0b1b0b1b0b1b0b1b0b.jpg",
+    category: "CS",
+    type: "Lecture",
+  },
+];
 
 const mycourses: NextPage = () => {
   return (
@@ -25,26 +60,5 @@ const mycourses: NextPage = () => {
     </div>
   );
 };
-
-// export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
-//   const data = [
-//     {
-//       song: 'The Sliding',
-//       artist: 'The Beatles',
-//       year: '1967',
-//     },
-//     {
-//       song: 'Witchy Woman',
-//       artist: 'The Beatles',
-//       year: '1967',
-//     },
-//   ];
-
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// };
 
 export default mycourses;
