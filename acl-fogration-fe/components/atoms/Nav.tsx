@@ -12,7 +12,7 @@ const Nav = () => {
   // Default this to a country's code to preselect it
   const [country, setCountry] = useState('DE');
   return (
-    <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-matisse px-5 shadow-lg">
+    <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-bc px-5 shadow-lg">
       <div className="flex gap-8">
         {/* <img className="w-16 " src="/Images/fogration-blue.png " alt="siteLogo" /> */}
         <div>

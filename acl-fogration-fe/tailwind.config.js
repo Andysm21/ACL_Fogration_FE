@@ -13,7 +13,13 @@ module.exports = {
         darkgrey: '#404143',
         tradewind: '#61B0B7',
         lachmara:'#0583D2',
-        matisse: '#16558F'
+        matisse: '#16558F',
+        bc:'#1E2028',
+        black1:'#252728',
+        black2:'#252731',
+        black3:'#313340',
+        purple:'#60c',
+        babyblue:'#61b6fe'
       },
       backgroundImage: {
       },
