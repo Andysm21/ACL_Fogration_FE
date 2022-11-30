@@ -4,13 +4,8 @@ import { HiVideoCamera } from "react-icons/hi";
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 
-// let iconMap = new Map<string, any>([
-//   ["camera", <HiVideoCamera className="h-32 w-32" key={1} />],
-//   ["projector", <RiProjector2Line className="h-32 w-32" key={2} />],
-//   ["microphone", <GiOldMicrophone className="h-32 w-32" key={3} />],
-// ]);
 
-const CourseCard = () => {
+const CoursesCard = () => {
   const courses = [
     { id: 1, name: "CSEN702", totalHours: 6, rating: 5, price: 40 },
     { id: 2, name: "CSEN704", totalHours: 8, rating: 4, price: 40 },
@@ -67,4 +62,4 @@ const CourseCard = () => {
   );
 };
 
-export default CourseCard;
+export default CoursesCard;

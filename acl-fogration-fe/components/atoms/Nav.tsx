@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 const Nav = () => {
   const router = useRouter();
   return (
-    <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-matisse px-5 shadow-lg">
+    <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-bc px-5 shadow-lg">
       <div className="flex gap-8">
         {/* <img className="w-16 " src="/Images/fogration-blue.png " alt="siteLogo" /> */}
         <div className="flex items-center gap-4 px-28">

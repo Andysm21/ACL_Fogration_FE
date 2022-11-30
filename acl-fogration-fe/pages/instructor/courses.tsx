@@ -16,7 +16,7 @@ const courses: NextPage = () => {
 
       <Layout>
         <div>
-          <CoursesCard />
+          <CoursesCard/>
         </div>
       </Layout>
     </div>
