@@ -2,6 +2,7 @@ import Sidebar from "./../../components/molecules/Sidebar";
 import React, { useEffect, useState } from "react";
 import Nav from "../atoms/Nav";
 import { NextRouter, useRouter } from "next/router";
+import { CountrySelector } from "../molecules/Selector";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -54,6 +55,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   return (
     <div className="relative top-0 left-0 right-0">
+      
       <Nav />
       <div className="flex pt-16">
         <Sidebar
