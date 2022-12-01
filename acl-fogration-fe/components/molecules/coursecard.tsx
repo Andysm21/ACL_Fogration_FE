@@ -141,10 +141,9 @@ const CourseCard: React.FC<{ course }> = ({ course }) => {
   return (
     <div
       key={course.Course_ID}
-      className=" flex flex-col bg-bc w-75% shadow-lg text-white"
-    >
+      className=" flex flex-col bg-bc w-75% shadow-lg text-white">
       {/* //div el eswd */}
-      <div className="flex flex-row bg-bc justify-between mx-4 my-4">
+      <div className="flex flex-row bg-bc justify-between mx-6 my-4">
         {/* //div el title bel kalam */}
         <div className="flex flex-col">
           {/* //div el title bel rating */}
