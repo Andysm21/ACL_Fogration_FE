@@ -1,10 +1,9 @@
 import React from "react";
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
-import CourseCard from "../../components/molecules/CourseCard";
-import Link from "next/link";
-import { BsGlobe2 } from "react-icons/bs";
+import CourseCard from "../../components/molecules/coursecard";
+
 const courses = [
   {
     _id: {
@@ -199,7 +198,7 @@ const viewcourse: NextPage = () => {
       </Head>
 
       <Layout>
-        <div>
+        <div className="">
           <CourseCard course={course} />
         </div>
       </Layout>
