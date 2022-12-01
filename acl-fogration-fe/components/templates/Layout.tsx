@@ -2,7 +2,7 @@ import Sidebar from "./../../components/molecules/Sidebar";
 import React, { useEffect, useState } from "react";
 import Nav from "../atoms/Nav";
 import { NextRouter, useRouter } from "next/router";
-import CountrySelect from "../molecules/CountrySelect";
+import { CountrySelector } from "../molecules/Selector";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
