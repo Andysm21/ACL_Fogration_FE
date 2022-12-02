@@ -16,6 +16,7 @@ interface Props {
 const userlinks = [
   // { href: '/meetings', label: 'Dashboard' },
   { href: "/user", label: "Dashboard" },
+  { href: "/user/profile", label: "Profile" },
   { href: "/user/courses", label: "Courses" },
   { href: "/user/mycourses", label: "My Courses" },
 
@@ -31,7 +32,6 @@ const instructorlinks = [
 ];
 const adminlinks = [
   // { href: '/car-system', label: 'Dashboard' },
-  { href: "/admin/users", label: "Users" },
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/accounts", label: "Accounts" },
   { href: "/admin/courses", label: "Courses" },

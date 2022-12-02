@@ -2,10 +2,10 @@ import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
-import CoursesCard from "../../components/molecules/CoursesCard";
+import CoursesCard from "../../components/molecules/GuestCourses";
 
 
-const courses: NextPage = () => {
+const guestcourses: NextPage = () => {
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -16,11 +16,13 @@ const courses: NextPage = () => {
 
       <Layout>
         <div>
-          <CoursesCard/>
+          <GuestCourses/>
         </div>
       </Layout>
+
+      
     </div>
   );
 };
 
-export default courses;
+export default guestcourses;
