@@ -9,6 +9,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import NavGuestLogin from "../components/atoms/NavGuestLogin";
+import GuestCourses from "../components/molecules/GuestCourses";
 import {
   FormControl,
   FormControlLabel,
@@ -42,6 +43,7 @@ function Login() {
                 Login
               </button>
             </Link>
+          
           </div>
         </div>
       </div>

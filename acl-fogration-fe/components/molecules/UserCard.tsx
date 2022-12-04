@@ -93,7 +93,7 @@ const CourseCard: React.FC<{ user }> = ({ user }) => {
   return (
     <div
       key={person.User_ID}
-      className=" border-2 border-bc flex flex-col rounded-lg bg-black2 w-75% shadow-lg text-white"
+      className=" border-2 border-bc flex flex-col p-4 bg-black2 w-75% shadow-lg text-white"
     >
       <div className="flex flex-col gap-5">
         <div className="flex flex-row gap-2">

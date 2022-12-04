@@ -14,7 +14,7 @@ const people = [
     User_Role: "Student",
     User_Country: "Egypt",
     User_City: "Berlin",
-    User_Address: "ALexanderplatz",
+    User_Address: "Alexanderplatz",
     User_Courses: [
       {
         _id: {
@@ -85,7 +85,7 @@ const people = [
     User_Role: "Student",
     User_Country: "Egypt",
     User_City: "Berlin",
-    User_Address: "ALexanderplatz",
+    User_Address: "Alexanderplatz",
     User_Courses: [
       {
         _id: {
@@ -148,7 +148,7 @@ const people = [
 ];
 const users: React.FC<{ users }> = ({ users }) => {
   return (
-    <div>
+    <div className="bg-bc h-screen">
       <Layout>
         <UsersCard users={people} />
       </Layout>

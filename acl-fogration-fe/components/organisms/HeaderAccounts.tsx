@@ -5,7 +5,7 @@ import AddTrainee from "../molecules/AddTrainee";
 
 
 
-const HeaderUser = ({
+const HeaderAccounts = ({
   page,
   total,
   next,
@@ -44,7 +44,7 @@ const HeaderUser = ({
   };
 
   return (
-    <div className="flex w-full items-center justify-between bg-black2 py-2  px-4">
+    <div className="flex w-full items-center justify-between bg-black2 py-2 px-4">
       <div className="flex items-center">
         <div className="">
           <input
@@ -64,7 +64,7 @@ const HeaderUser = ({
         <AddAdmin isOpen={open} handleClose={handleClose} />
 
         <button
-          className=" rounded-md border border-black px-4 py-2 text-black  hover:bg-white hover:text-darkgrey"
+          className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey"
           onClick={handleClickOpen2}
         >
           Add Instructor
@@ -72,7 +72,7 @@ const HeaderUser = ({
         <AddInstructor isOpen={open2} handleClose={handleClose2} />
 
         <button
-          className=" rounded-md border border-black px-4 py-2 text-black  hover:bg-white hover:text-darkgrey"
+          className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey"
           onClick={handleClickOpen3}
         >
           Add Trainee
@@ -85,4 +85,4 @@ const HeaderUser = ({
   );
 };
 
-export default HeaderUser;
+export default HeaderAccounts;

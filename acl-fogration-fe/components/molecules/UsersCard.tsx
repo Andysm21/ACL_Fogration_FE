@@ -1,17 +1,17 @@
 import { Button, Link } from "@mui/material";
 import { CgProfile } from "react-icons/cg";
 
-const UsersCard: React.FC<{ users }> = ({ users }) => {
-  if (users.length === 0) {
+const UsersCard: React.FC<{ accounts }> = ({ accounts }) => {
+  if (accounts.length === 0) {
     return <div className="text-center text-xl text-black1 "> No users</div>;
   }
 
   return (
-    <div className="m-2 grid grid-cols-1 place-items-center  bg-bc">
-      {users.map((person) => (
+    <div className="grid grid-cols-2 place-items-center bg-bc gap-4">
+      {accounts.map((person) => (
         <div
           key={person.User_Name}
-          className=" border-2 m-2 border-bc flex  w-1/2 flex-col rounded-lg bg-black2 items-start gap-4 justify-start p-2 text-center text-white shadow-lg"
+          className=" border-2 m-2 border-bc flex  w-full flex-col rounded-lg bg-black2 items-start gap-8 justify-start p-4 text-center text-white shadow-lg"
         >
           <div className="flex flex-row gap-2">
             <CgProfile size={80} />
