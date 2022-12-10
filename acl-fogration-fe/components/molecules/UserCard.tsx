@@ -14,7 +14,7 @@ const person = {
   User_Name: "Pasha",
   User_Email: "Pasha@gmail.com",
   User_Password: "1234",
-  User_Role: "Student",
+  User_Role: "Instructor",
   User_Country: "Egypt",
   User_City: "Berlin",
   User_Address: "ALexanderplatz",
@@ -96,16 +96,26 @@ const CourseCard: React.FC<{ user }> = ({ user }) => {
       className=" border-2 border-bc flex flex-col p-4 bg-black2 w-75% shadow-lg text-white"
     >
       <div className="flex flex-col gap-5">
-        <div className="flex flex-row gap-2">
-          <CgProfile size={80} />
-          <div className="flex flex-col items-center justify-center ">
+        
+         <div className="flex flex-col items-center">
+          <CgProfile size={90} />
             <div className="font-bold text-2xl">{person.User_Name} </div>
             <div className="font-light text-md">{person.User_Role} </div>
+            </div>
+       
+     
+       <div className="">
+        {/* //what you will learn */}
+        <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
+          <div className="text-white font-bold text-l">What you will learn</div>
+          <div className="flex flex-col gap-1">
+            <div className="text-l"> Address: {person.User_Address}</div>
+         <div className="text-l"> City: {person.User_City}</div>
+        <div className="text-l">Country: {person.User_Country}</div>
           </div>
         </div>
-        <div className="text-l"> Address: {person.User_Address}</div>
-        <div className="text-l"> City: {person.User_City}</div>
-        <div className="text-l">Country: {person.User_Country}</div>
+      </div>
+
 
         {person.User_Role == "Instructor" && (
           <div>
@@ -115,27 +125,10 @@ const CourseCard: React.FC<{ user }> = ({ user }) => {
               className="hover:cursor-pointer hover:undeline"
             >
               <div>{person.User_Courses[0].Course_Title} </div>
-              <div>{person.User_Courses[0].Course_Rating}</div>
             </Link>
           </div>
         )}
 
-        {person.User_Role != "Instructor" && (
-          <div>
-            <div>Enrolled in </div>
-            <Link
-              href="/[{course.Course_id}]"
-              className="hover:cursor-pointer hover:undeline text-l"
-            >
-              <div className="flex flex-col justify-start">
-                {person.User_Courses[0].Course_Title}
-                <div className="flex flex-row  ">
-                  {stars(person.User_Courses[0].Course_Rating)}
-                </div>
-              </div>
-            </Link>
-          </div>
-        )}
       </div>
     </div>
   );
