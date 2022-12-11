@@ -79,8 +79,8 @@ const profile = () => {
     <div>
         <Layout>
         <div>
-            {/* <InstructorProfile user={person} /> */}
-            <IndividualUserProfile user={person}/>
+            <InstructorProfile user={person} />
+            {/* <IndividualUserProfile user={person}/> */}
         </div>
       </Layout>
     </div>
