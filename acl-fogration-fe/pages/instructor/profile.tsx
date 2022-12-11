@@ -80,9 +80,9 @@ const profile = () => {
     <div>
         <Layout>
         <div>
-            {/* <InstructorProfile user={person} /> */}
+            <InstructorProfile user={person} />
             {/* <IndividualUserProfile user={person}/> */}
-            <CorporateUserProfile user={person}/>
+            {/* <CorporateUserProfile user={person}/> */}
 
         </div>
       </Layout>
