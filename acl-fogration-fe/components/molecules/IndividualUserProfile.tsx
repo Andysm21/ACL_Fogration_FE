@@ -214,7 +214,7 @@ const IndividualUserProfile: React.FC<{ user }> = ({ user }) => {
 
         </div>
 
-        {/* law ha add ay 7aga odamn do it here t7t hateb2a in flex-col m3 kol eli fo2 da */}
+       {/* hena 7oty ay 7aga 3aiza tezawediha odam heya m3 kol eli fo2 zy el reviews fel instructor */}
 
       </div>
     </div>
