@@ -59,8 +59,8 @@ const courses = [
     Course_Review: ["Very Good Course"],
     Course_Rate: ["zeft"],
     Course_Exam: [
-      { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
-      { Exam_ID: "2", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
+      { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: 50 },
+      { Exam_ID: "2", Exam_Question_ID: ["1", "2"], Exam_Grade: 90 },
     ],
   },
   {
@@ -278,22 +278,24 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
         })}
       </div>
         {/* exams of course */}
-
-        <div className="bg-black3 rounded-md m-6 flex flex-row p-2">
+        <div className="flex flex-col bg-black3 rounded-md m-6">
+          <div className=" text-white font-bold text-l mx-2">
+          Course Material
+        </div>
+        <div className="flex flex-row p-2">
             {course.Course_Exam.map((item) => {
               return(
               <div key={course.Course_Exam.Exam_ID}  className="flex flex-col items-start ">
                       <AiFillFilePdf size={100}/>
                       <div className="items-center justify-center flex flex-col">
-                      <div className="text-l">{item.Exam_Question_ID.length} Questions</div>
-                      <div className="text-l">{item.Exam_Grade}</div>
+                        <div className="text-l">Exam {item.Exam_ID}</div>
+                      <div className="text-l">{item.Exam_Grade} %</div>
+                       <div className="text-l">{item.Exam_Question_ID.length} Questions</div>
                       </div>
                     </div>
-
               )
             })}
-            
-
+        </div>
         </div>
 
 

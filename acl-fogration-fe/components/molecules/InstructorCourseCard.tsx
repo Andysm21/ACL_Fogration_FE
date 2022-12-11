@@ -1,4 +1,4 @@
-import { AiFillStar } from "react-icons/ai";
+import { AiFillFilePdf, AiFillStar,AiOutlineFileAdd } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
@@ -268,6 +268,37 @@ const InstructorCourseCard: React.FC<{ course }> = ({ course }) => {
           );
         })}
       </div>
+        {/* exams of course */}
+        <div className="flex flex-col bg-black3 rounded-md m-6">
+
+          
+          <div className=" text-white font-bold text-l mx-2">
+          Course Material
+        </div>
+        <div className= "flex flex-row">
+        <div className="flex flex-row p-2">
+            {course.Course_Exam.map((item) => {
+              return(
+              <div key={course.Course_Exam.Exam_ID}  className="flex flex-col items-start ">
+                      <AiFillFilePdf size={100}/>
+                      <div className="items-center justify-center flex flex-col">
+                        <div className="text-l">Exam {item.Exam_ID}</div>
+                      <div className="text-l">{item.Exam_Grade} %</div>
+                       <div className="text-l">{item.Exam_Question_ID.length} Questions</div>
+                      </div>
+                    </div>
+              )
+            })}
+        </div>
+       
+        <div className="flex flex-col p-2">
+        <AiOutlineFileAdd size={100}/>
+            <div className="items-center justify-center flex ">
+                        Add Exam
+            </div>
+        </div>
+         </div>
+        </div>
     </div>
   );
 };
