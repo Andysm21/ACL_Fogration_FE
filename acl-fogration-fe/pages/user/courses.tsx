@@ -3,6 +3,7 @@ import Layout from "../../components/templates/Layout";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import UserCoursesCard from "../../components/molecules/UserCoursesCard";
+import HeaderUserCourses from "../../components/organisms/HeaderUserCourses";
 // interface Props {
 //   data: {
 //     song: string;
@@ -22,6 +23,7 @@ const courses: NextPage = () => {
 
       <Layout>
         <div>
+          <HeaderUserCourses/>
           <UserCoursesCard/>
         </div>
       </Layout>
