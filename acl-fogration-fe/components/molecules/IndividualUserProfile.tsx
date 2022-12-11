@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import { SelectMenuOption } from "../atoms/types";
 import {COUNTRIES} from '../atoms/countries';
 
-
+const array = [];
 const person = {
   _id: {
     $oid: "636880e12886948f062b493e",
@@ -113,6 +113,7 @@ const IndividualUserProfile: React.FC<{ user }> = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
   // Default this to a country's code to preselect it
   const [country, setCountry] = useState('DE');
+
   return (
     <div
 
@@ -123,7 +124,11 @@ const IndividualUserProfile: React.FC<{ user }> = ({ user }) => {
         <div className="flex flex-col items-center justify-center">
           <CgProfile size={100} />
             <div className="font-bold text-2xl">{person.User_FirstName} {person.User_LastName} </div>
-            <div className="font-light text-md">Trainee</div>
+            <div>Trainee</div>
+           {/* <div> {array.push(1)}</div>
+            <div className="font-light text-md">
+              {array}
+            </div> */}
         </div>
         <div className="flex flex-row ">
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
