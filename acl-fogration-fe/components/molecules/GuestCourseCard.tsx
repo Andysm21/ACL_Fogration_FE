@@ -253,7 +253,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-row gap-2 overflow-x-scroll flex-nowrap w-[100%] ">
+              <div className="flex flex-row gap-2 w-[100%] ">
                 {subtitle.Subtitle_Video.map((video) => {
                   return (
                     <div>

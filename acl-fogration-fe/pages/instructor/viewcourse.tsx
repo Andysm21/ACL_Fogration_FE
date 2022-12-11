@@ -2,7 +2,7 @@ import React from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
-import CourseCard from "../../components/molecules/coursecard";
+import InstructorCourseCard from "../../components/molecules/InstructorCourseCard";
 
 const courses = [
   {
@@ -199,7 +199,7 @@ const viewcourse: NextPage = () => {
 
       <Layout>
         <div className="">
-          <CourseCard course={course} />
+          <InstructorCourseCard course={course} />
         </div>
       </Layout>
     </div>

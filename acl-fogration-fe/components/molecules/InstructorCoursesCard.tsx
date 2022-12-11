@@ -262,16 +262,11 @@ const InstructorCoursesCard = () => {
             <div className="flex flex-row justify-between my-2">
               <Link href="viewcourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36">
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80">
                   View Course
                 </button>
               </Link>
-              <Link href="/">
-                {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36">
-                  Add a discount
-                </button>
-              </Link>
+
             </div>
           </div>
         </div>
