@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../../components/templates/Layout'
 import InstructorProfile from '../../components/molecules/InstructorProfile';
+import IndividualUserProfile from '../../components/molecules/IndividualUserProfile';
 
 const person = {
   _id: {
@@ -79,6 +80,7 @@ const profile = () => {
         <Layout>
         <div>
             <InstructorProfile user={person} />
+            {/* <IndividualUserProfile user={person}/> */}
         </div>
       </Layout>
     </div>

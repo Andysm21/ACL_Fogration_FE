@@ -15,14 +15,14 @@ const person = {
   _id: {
     $oid: "636880e12886948f062b493e",
   },
- Instructor_ID: 4,
-  Instructor_username: "Pasha",
-  Instructor_Email: "Pasha@gmail.com",
-  Instructor_Password: "1234",
-  Instructor_FirstName:"Hana",
-  Instructor_LastName:"Pasha",
-  Instructor_Gender:"Female",
-  Instructor_Country: "Egypt",
+ User_ID: 4,
+  User_username: "Pasha",
+  User_Email: "Pasha@gmail.com",
+  User_Password: "1234",
+  User_FirstName:"Hana",
+  User_LastName:"Pasha",
+  User_Gender:"Female",
+  User_Country: "Egypt",
   
 
   Instructor_Courses: [
@@ -84,12 +84,12 @@ const person = {
       ],
     },
   ],
-  Instructor_Biography: "Hating Uni",
-  Instructor_Ratings:[5,2],
-  Instructor_Reviews:["I Loved your materials,It helped alot.Keep the great work!","Would have been better if you did more examples but other than that GREAT JOB!!"]
+  User_Biography: "Hating Uni",
+  User_Ratings:[5,2],
+  User_Reviews:["I Loved your materials,It helped alot.Keep the great work!","Would have been better if you did more examples but other than that GREAT JOB!!"]
 };
 
-const InstructorProfile: React.FC<{ user }> = ({ user }) => {
+const IndividualUserProfile: React.FC<{ user }> = ({ user }) => {
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -103,10 +103,10 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
   };
   const average = ([]) =>{
     let avg = 0;
-    for(let i = 0;i< person.Instructor_Ratings.length ;i++){
-      avg += person.Instructor_Ratings[i];
+    for(let i = 0;i< person.User_Ratings.length ;i++){
+      avg += person.User_Ratings[i];
     }
-    avg = avg/(person.Instructor_Ratings.length);
+    avg = avg/(person.User_Ratings.length);
     return avg;
   };
   const myRef = React.createRef<HTMLDivElement>();
@@ -116,40 +116,38 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
   return (
     <div
 
-      key={person.Instructor_ID}
+      key={person.User_ID}
       className=" border-2 border-bc flex flex-col bg-black2 w-75% shadow-lg text-white "
     >
       <div className="flex flex-col gap-2">
         <div className="flex flex-col items-center justify-center">
           <CgProfile size={100} />
-            <div className="font-bold text-2xl">{person.Instructor_FirstName} {person.Instructor_LastName} </div>
-            <div className="font-light text-md">Instructor</div>
-            <div className="flex flex-row  ">{stars(average(person.Instructor_Ratings))}</div>
+            <div className="font-bold text-2xl">{person.User_FirstName} {person.User_LastName} </div>
+            <div className="font-light text-md">Trainee</div>
         </div>
         <div className="flex flex-row ">
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
           <div className="text-white font-bold text-l">Personal Information</div>
-          <div className="flex flex-row justify-between">
             <div className="bg-black3 rounded-md flex flex-col gap-2 " >
            <div className="text-white text-l">Username</div>
           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-52  border-white rounded-md "
-          defaultValue= {person.Instructor_username}   
+          defaultValue= {person.User_username}   
          /> 
            <div className="text-l"> First Name </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_FirstName} 
+          defaultValue= {person.User_FirstName} 
          /> 
           <div className="text-l">Last Name </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_LastName} 
+          defaultValue= {person.User_LastName} 
          /> 
            <div className="text-l">Email </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_Email}
+          defaultValue= {person.User_Email}
          /> 
           <div className="text-l">Gender </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_Gender}
+          defaultValue= {person.User_Gender}
          /> 
         <div className="text-l">Country of birth </div>
         <div className="text-black w-52">
@@ -163,24 +161,6 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
         /> </div>
 
           </div>
-          {/* biography */}
-          <div className="flex flex-col gap-2">
-           <div>Biography</div>
-           <input type="text"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52 h-72  border-white rounded-md"
-          defaultValue= {person.Instructor_Biography}
-         /> 
-          {/* <TextField
-                    required
-                    id="outlined-basic"
-                   
-                    variant="outlined"
-                    defaultValue={person.Instructor_Biography}
-                  /> */}
-         
-          </div>
-          
-          
-          </div>
            <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
                   Update
                 </button>
@@ -193,11 +173,11 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
         
           <div className="text-l">Username</div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_username}  
+          defaultValue= {person.User_username}  
          /> 
          <div className="text-l">Email</div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_Email }  
+          defaultValue= {person.User_Email }  
          /> 
           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
                   Update
@@ -212,7 +192,7 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
         
           <div className="text-l">Old password </div>
            <input readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-          value= {person.Instructor_Password}  
+          value= {person.User_Password}  
          /> 
          <div className="text-l">New password </div>
            <input type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
@@ -234,21 +214,11 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
 
         </div>
 
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-          <div className="text-white font-bold text-l">Reviews</div>
-
-          <div className="flex flex-row gap-2">
-            {person.Instructor_Reviews.map((review) => (
-                <div key={person.Instructor_ID} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
-                  {review}</div>    
-            ))}
-          </div>
-          
-        </div>     
+       {/* hena 7oty ay 7aga 3aiza tezawediha odam heya m3 kol eli fo2 zy el reviews fel instructor */}
 
       </div>
     </div>
   );
 };
 
-export default InstructorProfile;
+export default IndividualUserProfile;
