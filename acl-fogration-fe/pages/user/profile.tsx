@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../../components/templates/Layout'
-import UserProfile from '../../components/molecules/IndividualUserProfile';
+import TraineeProfile from '../../components/molecules/TraineeProfile';
 
 const person = {
   _id: {
@@ -14,6 +14,7 @@ const person = {
   User_Country: "Egypt",
   User_City: "Berlin",
   User_Address: "ALexanderplatz",
+  User_isCorporate:true,
   User_Courses: [
     {
       _id: {
@@ -78,7 +79,7 @@ const profile = () => {
     <div>
         <Layout>
         <div>
-            <UserProfile user={person} />
+            <TraineeProfile user={person} />
         </div>
       </Layout>
     </div>

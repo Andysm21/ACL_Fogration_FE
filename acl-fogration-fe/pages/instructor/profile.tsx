@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '../../components/templates/Layout'
 import InstructorProfile from '../../components/molecules/InstructorProfile';
 import IndividualUserProfile from '../../components/molecules/IndividualUserProfile';
-import CorporateUserProfile from '../../components/molecules/CorporateUserProfile';
+import CorporateUserProfile from '../../components/molecules/TraineeProfile';
 
 const person = {
   _id: {
