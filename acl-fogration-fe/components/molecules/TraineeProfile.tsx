@@ -24,6 +24,7 @@ const person = {
   User_Gender:"Female",
   User_Country: "Egypt",
   User_Corporate:"Benya",
+  User_isCorporate :false,
   
 
   Instructor_Courses: [
@@ -90,7 +91,7 @@ const person = {
   User_Reviews:["I Loved your materials,It helped alot.Keep the great work!","Would have been better if you did more examples but other than that GREAT JOB!!"]
 };
 
-const IndividualUserProfile: React.FC<{ user }> = ({ user }) => {
+const TraineeProfile: React.FC<{ user }> = ({ user }) => {
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -125,7 +126,7 @@ const IndividualUserProfile: React.FC<{ user }> = ({ user }) => {
           <CgProfile size={100} />
             <div className="font-bold text-2xl">{person.User_FirstName} {person.User_LastName} </div>
             <div className="font-light text-md">Trainee</div>
-            <div className="font-light text-md">{person.User_Corporate}</div>
+            {person.User_isCorporate && <div className="font-light text-md"> {person.User_Corporate}</div> }
         </div>
         <div className="flex flex-row ">
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
@@ -223,4 +224,4 @@ const IndividualUserProfile: React.FC<{ user }> = ({ user }) => {
   );
 };
 
-export default IndividualUserProfile;
+export default TraineeProfile;

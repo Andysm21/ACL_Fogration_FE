@@ -3,6 +3,7 @@ import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
+const isCorporate = true;
 const courses = [
   {
     _id: {
@@ -182,10 +183,11 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
             </Link>
           </div>
           {/* //h1 el se3r */}
-          <div className="flex flex-row justify-between my-2">
-            <h1 className=" text-violet-400 text-4xl font-bold ">
+          <div className="flex flex-row justify-between my-2 ">
+            {!isCorporate && <h1 className=" text-violet-400 text-4xl font-bold ">
               $${course.Course_Price}
-            </h1>
+            </h1> }
+            
             <Link href="/">
               {/* //link button to enroll */}
               <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-48">

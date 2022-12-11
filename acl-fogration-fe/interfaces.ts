@@ -1,5 +1,5 @@
-export interface trainee{
-    Trainee_ID: number;
+export interface trainee {
+  Trainee_ID: number;
   Trainee_Name: string;
 }
 export interface subtitle {
@@ -34,43 +34,43 @@ export interface questions {
 }
 
 export interface course {
-    _id: {
-      $oid: string;
-    };
-    Course_ID: number; //course id m7tag yetzabat string
-    Course_Title: string;
-    Course_Subject: string;
-    Course_Description: string;
-    Course_Price: number;
-    Course_Rating: number;
-    Course_Instructor: string;
-    Course_Hours: number;
-    Course_Country: string;
-    Course_Discount: number;
-    Course_Discount_Duration: number;
-    Course_Subtitle: subtitle[];
-    Course_Trainee: trainee[];
-    Course_Review: string[];
-    Course_Rate: string[];
-    Course_Exam: exam[];
-    Course_What_You_Will_Learn: string[];
+  _id: {
+    $oid: string;
   };
-export interface user {
-    _id: {
-        $oid: string;
-    },
-    User_ID: number;
-    User_Name: string;
-    User_Email: string;
-    User_Password: string;
-    User_Role: string;
-    User_Country: string;
-    User_City: string;
-    User_Address: string;
-    User_Phone: string;
-    User_Courses: course[];
-    
+  Course_ID: number; //course id m7tag yetzabat string
+  Course_Title: string;
+  Course_Subject: string;
+  Course_Description: string;
+  Course_Price: number;
+  Course_Rating: number;
+  Course_Instructor: string;
+  Course_Hours: number;
+  Course_Country: string;
+  Course_Discount: number;
+  Course_Discount_Duration: number;
+  Course_Subtitle: subtitle[];
+  Course_Trainee: trainee[];
+  Course_Review: string[];
+  Course_Rate: string[];
+  Course_Exam: exam[];
+  Course_What_You_Will_Learn: string[];
 };
-export interface users{
-    users: user[];
+export interface user {
+  _id: {
+    $oid: string;
+  },
+  User_ID: number;
+  User_Name: string;
+  User_Email: string;
+  User_Password: string;
+  User_Role: string;
+  User_Country: string;
+  User_City: string;
+  User_Address: string;
+  User_Phone: string;
+  User_Courses: course[];
+  User_isCorporate: boolean;
+};
+export interface users {
+  users: user[];
 }
