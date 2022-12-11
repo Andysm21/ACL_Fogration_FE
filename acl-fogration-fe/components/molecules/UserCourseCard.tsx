@@ -1,7 +1,8 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
-import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
+import { BsGlobe2, BsPlayBtnFill ,} from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
+import {AiFillFilePdf} from "react-icons/ai"
 import { TbCertificate } from "react-icons/tb";
 const isCorporate = true;
 const courses = [
@@ -59,6 +60,7 @@ const courses = [
     Course_Rate: ["zeft"],
     Course_Exam: [
       { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
+      { Exam_ID: "2", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
     ],
   },
   {
@@ -275,6 +277,30 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
           );
         })}
       </div>
+        {/* exams of course */}
+
+        <div className="bg-black3 rounded-md m-6 flex flex-row p-2">
+            {course.Course_Exam.map((item) => {
+              return(
+              <div key={course.Course_Exam.Exam_ID}  className="flex flex-col items-start ">
+                      <AiFillFilePdf size={100}/>
+                      <div className="items-center justify-center flex flex-col">
+                      <div className="text-l">{item.Exam_Question_ID.length} Questions</div>
+                      <div className="text-l">{item.Exam_Grade}</div>
+                      </div>
+                    </div>
+
+              )
+            })}
+            
+
+        </div>
+
+
+
+
+
+
     </div>
   );
 };
