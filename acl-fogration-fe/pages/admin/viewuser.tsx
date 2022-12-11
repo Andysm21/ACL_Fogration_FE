@@ -1,5 +1,5 @@
 import React from "react";
-import UserCard from "../../components/molecules/UserCard";
+import UserCard from "../../components/molecules/InstructorProfile";
 import Layout from "../../components/templates/Layout";
 import {  course } from "../../interfaces";
 const person = {

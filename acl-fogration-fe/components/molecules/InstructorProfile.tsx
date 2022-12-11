@@ -89,7 +89,7 @@ const person = {
   Instructor_Reviews:["I Loved your materials,It helped alot.Keep the great work!","Would have been better if you did more examples but other than that GREAT JOB!!"]
 };
 
-const CourseCard: React.FC<{ user }> = ({ user }) => {
+const InstructorProfile: React.FC<{ user }> = ({ user }) => {
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -251,4 +251,4 @@ const CourseCard: React.FC<{ user }> = ({ user }) => {
   );
 };
 
-export default CourseCard;
+export default InstructorProfile;
