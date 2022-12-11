@@ -4,12 +4,12 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useRouter } from "next/router";
 import TextField from "@mui/material/TextField";
 import Link from "next/link";
-import InputField from "../components/atoms/InputField";
+import InputField from "../../components/atoms/InputField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import NavGuestLogin from "../components/atoms/NavGuestLogin";
-import GuestCourses from "../components/molecules/GuestCourses";
+import NavGuestLogin from "../../components/atoms/NavGuestLogin";
+import GuestCourses from "../../components/molecules/GuestCourses";
 import {
   FormControl,
   FormControlLabel,

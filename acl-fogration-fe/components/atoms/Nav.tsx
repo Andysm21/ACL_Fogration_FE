@@ -48,7 +48,7 @@ const Nav = () => {
           Hello, Yahya{" "}
         </h1>
 
-        <Link href="/login">
+        <Link href="/guest/login">
           <button className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey">
             Logout
           </button>

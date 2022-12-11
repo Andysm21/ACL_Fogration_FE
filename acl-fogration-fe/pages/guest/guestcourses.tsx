@@ -1,10 +1,9 @@
 import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import LayoutGuest from "../components/templates/LayoutGuest";
-import GuestCourses from "../components/molecules/GuestCourses";
-import Link from "next/link";
-import NavGuest from "../components/atoms/NavGuest";
+import LayoutGuest from "../../components/templates/LayoutGuest";
+import GuestCourses from "../../components/molecules/GuestCourses";
+
 
 
 const guestcourses: NextPage = () => {
