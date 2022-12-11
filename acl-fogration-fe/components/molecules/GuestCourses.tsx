@@ -184,7 +184,7 @@ const course = {
     "Learn how to use the most popular data structures",
   ],
 };
-const CoursesCard = () => {
+const GuestCourses = () => {
   // const courses = [
   //   { id: 1, name: "CSEN702", totalHours: 6, rating: 5, price: 40 },
   //   { id: 2, name: "CSEN704", totalHours: 8, rating: 4, price: 40 },
@@ -260,18 +260,13 @@ const CoursesCard = () => {
             </div>
             {/* //h1 el se3r */}
             <div className="flex flex-row justify-between my-2">
-              <Link href="viewcourse">
+              <Link href="guestviewcourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36">
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80">
                   View Course
                 </button>
               </Link>
-              <Link href="/">
-                {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36">
-                  Enroll Now
-                </button>
-              </Link>
+
             </div>
           </div>
         </div>
@@ -280,7 +275,7 @@ const CoursesCard = () => {
   );
 };
 
-export default CoursesCard;
+export default GuestCourses;
 //<div
 //   key={course.id}
 //   className=" border-2 border-bc flex h-52 w-1/2 flex-col rounded-lg bg-black2 items-start gap-4 justify-start p-2 text-center text-white shadow-lg"

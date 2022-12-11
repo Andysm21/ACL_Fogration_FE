@@ -123,7 +123,7 @@ const courses = [
   },
 ];
 
-const CourseCard: React.FC<{ course }> = ({ course }) => {
+const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
   }
@@ -186,12 +186,7 @@ const CourseCard: React.FC<{ course }> = ({ course }) => {
             <h1 className=" text-violet-400 text-4xl font-bold ">
               $${course.Course_Price}
             </h1>
-            <Link href="/">
-              {/* //link button to enroll */}
-              <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-48">
-                Enroll Now
-              </button>
-            </Link>
+
 
           </div>
         </div>
@@ -257,13 +252,11 @@ const CourseCard: React.FC<{ course }> = ({ course }) => {
                 {subtitle.Subtitle_Video.map((video) => {
                   return (
                     <div>
-                      <Link href={video.Video_Link}>
                       <img
-                        className="flex-shrink-0"
+                        className="flex-shrink-0  "
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
-                      </Link>
 
                       <div className="text-l">{video.Video_Description}</div>
                       <div className="text-l">{video.Video_Length} mins</div>
@@ -279,4 +272,4 @@ const CourseCard: React.FC<{ course }> = ({ course }) => {
   );
 };
 
-export default CourseCard;
+export default InstructorMyCourseCard;

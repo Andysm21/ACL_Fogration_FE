@@ -26,6 +26,7 @@ const person = {
   
 
   Instructor_Courses: [
+
     {
       _id: {
         $oid: "666820e1288794o098062b493e",
@@ -114,6 +115,7 @@ const CourseCard: React.FC<{ user }> = ({ user }) => {
   const [country, setCountry] = useState('DE');
   return (
     <div
+
       key={person.Instructor_ID}
       className=" border-2 border-bc flex flex-col bg-black2 w-75% shadow-lg text-white "
     >
@@ -159,6 +161,7 @@ const CourseCard: React.FC<{ user }> = ({ user }) => {
           onChange={val => setCountry(val)}
           selectedValue={COUNTRIES.find(option => option.value === country) as SelectMenuOption} 
         /> </div>
+
           </div>
           {/* biography */}
           <div className="flex flex-col gap-2">
@@ -242,6 +245,7 @@ const CourseCard: React.FC<{ user }> = ({ user }) => {
           </div>
           
         </div>     
+
       </div>
     </div>
   );

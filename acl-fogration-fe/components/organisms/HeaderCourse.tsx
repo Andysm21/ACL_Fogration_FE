@@ -21,7 +21,7 @@ const HeaderCourse = ({
   };
 
   return (
-    <div className="flex w-full items-center justify-between bg-gray-200 py-2  px-4">
+    <div className="flex w-full items-center justify-between bg-black2 py-2  px-4">
       <div className="flex items-center">
         <div className="">
           <input
@@ -33,7 +33,7 @@ const HeaderCourse = ({
       </div>
       <div>
         <button
-          className=" rounded-md border border-black px-4 py-2 text-black  hover:bg-white hover:text-darkgrey"
+          className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey"
           onClick={handleClickOpen}
         >
           Create a course

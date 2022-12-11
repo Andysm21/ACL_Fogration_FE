@@ -123,7 +123,7 @@ const courses = [
   },
 ];
 
-const CourseCard: React.FC<{ course }> = ({ course }) => {
+const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
   }
@@ -257,13 +257,11 @@ const CourseCard: React.FC<{ course }> = ({ course }) => {
                 {subtitle.Subtitle_Video.map((video) => {
                   return (
                     <div>
-                      <Link href={video.Video_Link}>
                       <img
-                        className="flex-shrink-0"
+                        className="flex-shrink-0  "
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
-                      </Link>
 
                       <div className="text-l">{video.Video_Description}</div>
                       <div className="text-l">{video.Video_Length} mins</div>
@@ -279,4 +277,4 @@ const CourseCard: React.FC<{ course }> = ({ course }) => {
   );
 };
 
-export default CourseCard;
+export default UserCourseCard;

@@ -28,7 +28,13 @@ const NavGuest = () => {
             }
           />
         </div>
-        <div className="flex flex-row gap-4">
+         {/* <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-bc px-5 shadow-lg"> */}
+        <div className="grid grid-cols-3 gap-12">
+          <Link href="/guestcourses">
+            <h1 className="cursor-pointer border-b-lightgrey  text-lg font-light  text-white hover:border-b hover:text-gray-300">
+              Courses
+            </h1>
+          </Link>
           <Link href="/about-us">
             <h1 className="cursor-pointer border-b-lightgrey  text-lg font-light  text-white hover:border-b hover:text-gray-300">
               About us
@@ -39,6 +45,9 @@ const NavGuest = () => {
               Pricing
             </h1>
           </Link>
+          
+
+          
 
           
         </div>
