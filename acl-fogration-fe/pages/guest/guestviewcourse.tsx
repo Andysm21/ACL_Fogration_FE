@@ -1,8 +1,8 @@
 import React from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import LayoutGuest from "../components/templates/LayoutGuest";
-import GuestCourseCard from "../components/molecules/GuestCourseCard";
+import LayoutGuest from "../../components/templates/LayoutGuest";
+import GuestCourseCard from "../../components/molecules/GuestCourseCard";
 
 const courses = [
   {

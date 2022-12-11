@@ -3,10 +3,10 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useRouter } from "next/router";
 import TextField from "@mui/material/TextField";
 import Link from "next/link";
-import InputField from "../components/atoms/InputField";
+import InputField from "../../components/atoms/InputField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import NavGuest from "../components/atoms/NavGuest";
+import NavGuest from "../../components/atoms/NavGuest";
 import {
   FormControl,
   FormControlLabel,
@@ -73,7 +73,7 @@ function Login() {
             {/* adding password input */}
             {/* <InputField id="password" placeholder="Password" type="password" /> */}
             {/* adding login button */}
-            <Link href="/login">
+            <Link href="/guest/login">
               <button className="w-72 rounded-lg bg-lachmara p-2 text-white hover:bg-matisse hover:text-white">
                 Sign up
               </button>

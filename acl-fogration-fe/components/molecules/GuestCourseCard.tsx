@@ -187,7 +187,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
               $${course.Course_Price}
             </h1>
 
-            <Link href="/signup">
+            <Link href="/guest/signup">
               {/* //link button to enroll */}
               <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-48">
                 Enroll Now
