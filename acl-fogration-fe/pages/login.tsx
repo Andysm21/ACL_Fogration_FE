@@ -30,7 +30,7 @@ function Login() {
       <div className="flex items-center justify-center bg-[url('/images/bgacl.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
         {/* div for the form */}
 
-        <div className="  flex flex-col items-center  justify-start rounded-lg bg-white py-6 px-4">
+        <div className="  flex flex-col items-center justify-start rounded-lg bg-white py-6 px-4">
           <div className="flex flex-col items-start justify-start">
             <InputField id="username" placeholder="Username" type="text" />
             <InputField id="password" placeholder="Password" type="password" />

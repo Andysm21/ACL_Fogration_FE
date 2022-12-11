@@ -2,7 +2,7 @@ import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
-import CoursesCard from "../../components/molecules/CoursesCard";
+import InstructorCoursesCard from "../../components/molecules/InstructorCoursesCard";
 
 
 const courses: NextPage = () => {
@@ -16,7 +16,7 @@ const courses: NextPage = () => {
 
       <Layout>
         <div>
-          <CoursesCard/>
+          <InstructorCoursesCard/>
         </div>
       </Layout>
     </div>

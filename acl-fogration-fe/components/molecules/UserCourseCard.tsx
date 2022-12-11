@@ -123,7 +123,7 @@ const courses = [
   },
 ];
 
-const CourseCard: React.FC<{ course }> = ({ course }) => {
+const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
   }
@@ -277,4 +277,4 @@ const CourseCard: React.FC<{ course }> = ({ course }) => {
   );
 };
 
-export default CourseCard;
+export default UserCourseCard;

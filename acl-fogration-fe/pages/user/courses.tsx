@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/templates/Layout";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import CoursesCard from "../../components/molecules/CoursesCard";
+import UserCoursesCard from "../../components/molecules/UserCoursesCard";
 // interface Props {
 //   data: {
 //     song: string;
@@ -22,7 +22,7 @@ const courses: NextPage = () => {
 
       <Layout>
         <div>
-          <CoursesCard/>
+          <UserCoursesCard/>
         </div>
       </Layout>
     </div>
