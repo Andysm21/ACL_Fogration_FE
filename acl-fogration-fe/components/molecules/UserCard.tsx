@@ -2,23 +2,31 @@ import { RiProjector2Line } from "react-icons/ri";
 import { GiOldMicrophone } from "react-icons/gi";
 import { HiVideoCamera } from "react-icons/hi";
 import { AiFillStar } from "react-icons/ai";
-import { Button, Link } from "@mui/material";
+import { Button, Link, ratingClasses, TextField } from "@mui/material";
 import { user } from "../../interfaces";
 import { CgProfile } from "react-icons/cg";
+import { CountrySelector } from "./Selector";
+import React, { useState } from "react";
+import { SelectMenuOption } from "../atoms/types";
+import {COUNTRIES} from '../atoms/countries';
+
 
 const person = {
   _id: {
     $oid: "636880e12886948f062b493e",
   },
-  User_ID: 4,
-  User_Name: "Pasha",
-  User_Email: "Pasha@gmail.com",
-  User_Password: "1234",
-  User_Role: "Instructor",
-  User_Country: "Egypt",
-  User_City: "Berlin",
-  User_Address: "ALexanderplatz",
-  User_Courses: [
+ Instructor_ID: 4,
+  Instructor_username: "Pasha",
+  Instructor_Email: "Pasha@gmail.com",
+  Instructor_Password: "1234",
+  Instructor_FirstName:"Hana",
+  Instructor_LastName:"Pasha",
+  Instructor_Gender:"Female",
+  Instructor_Country: "Egypt",
+  
+
+  Instructor_Courses: [
+
     {
       _id: {
         $oid: "666820e1288794o098062b493e",
@@ -76,6 +84,9 @@ const person = {
       ],
     },
   ],
+  Instructor_Biography: "Hating Uni",
+  Instructor_Ratings:[5,2],
+  Instructor_Reviews:["I Loved your materials,It helped alot.Keep the great work!","Would have been better if you did more examples but other than that GREAT JOB!!"]
 };
 
 const CourseCard: React.FC<{ user }> = ({ user }) => {
@@ -90,44 +101,150 @@ const CourseCard: React.FC<{ user }> = ({ user }) => {
     }
     return stars;
   };
+  const average = ([]) =>{
+    let avg = 0;
+    for(let i = 0;i< person.Instructor_Ratings.length ;i++){
+      avg += person.Instructor_Ratings[i];
+    }
+    avg = avg/(person.Instructor_Ratings.length);
+    return avg;
+  };
+  const myRef = React.createRef<HTMLDivElement>();
+  const [isOpen, setIsOpen] = useState(false);
+  // Default this to a country's code to preselect it
+  const [country, setCountry] = useState('DE');
   return (
     <div
-      key={person.User_ID}
-      className=" border-2 border-bc flex flex-col p-4 bg-black2 w-75% shadow-lg text-white"
+
+      key={person.Instructor_ID}
+      className=" border-2 border-bc flex flex-col bg-black2 w-75% shadow-lg text-white "
     >
-      <div className="flex flex-col gap-5">
-        
-         <div className="flex flex-col items-center">
-          <CgProfile size={90} />
-            <div className="font-bold text-2xl">{person.User_Name} </div>
-            <div className="font-light text-md">{person.User_Role} </div>
-            </div>
-       
-     
-       <div className="">
-        {/* //what you will learn */}
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-          <div className="text-white font-bold text-l">What you will learn</div>
-          <div className="flex flex-col gap-1">
-            <div className="text-l"> Address: {person.User_Address}</div>
-         <div className="text-l"> City: {person.User_City}</div>
-        <div className="text-l">Country: {person.User_Country}</div>
-          </div>
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-col items-center justify-center">
+          <CgProfile size={100} />
+            <div className="font-bold text-2xl">{person.Instructor_FirstName} {person.Instructor_LastName} </div>
+            <div className="font-light text-md">Instructor</div>
+            <div className="flex flex-row  ">{stars(average(person.Instructor_Ratings))}</div>
         </div>
-      </div>
+        <div className="flex flex-row ">
+          <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
+          <div className="text-white font-bold text-l">Personal Information</div>
+          <div className="flex flex-row justify-between">
+            <div className="bg-black3 rounded-md flex flex-col gap-2 " >
+           <div className="text-white text-l">Username</div>
+          <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-52  border-white rounded-md "
+          defaultValue= {person.Instructor_username}   
+         /> 
+           <div className="text-l"> First Name </div>
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+          defaultValue= {person.Instructor_FirstName} 
+         /> 
+          <div className="text-l">Last Name </div>
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+          defaultValue= {person.Instructor_LastName} 
+         /> 
+           <div className="text-l">Email </div>
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+          defaultValue= {person.Instructor_Email}
+         /> 
+          <div className="text-l">Gender </div>
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+          defaultValue= {person.Instructor_Gender}
+         /> 
+        <div className="text-l">Country of birth </div>
+        <div className="text-black w-52">
+          <CountrySelector
+          id={'countries'}
+          ref={myRef}
+          open={isOpen}
+          onToggle={() => setIsOpen(!isOpen)}
+          onChange={val => setCountry(val)}
+          selectedValue={COUNTRIES.find(option => option.value === country) as SelectMenuOption} 
+        /> </div>
 
-
-        {person.User_Role == "Instructor" && (
-          <div>
-            <div>Teaches</div>
-            <Link
-              href="/[{course.Course_id}]"
-              className="hover:cursor-pointer hover:undeline"
-            >
-              <div>{person.User_Courses[0].Course_Title} </div>
-            </Link>
           </div>
-        )}
+          {/* biography */}
+          <div className="flex flex-col gap-2">
+           <div>Biography</div>
+           <input type="text"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52 h-72  border-white rounded-md"
+          defaultValue= {person.Instructor_Biography}
+         /> 
+          {/* <TextField
+                    required
+                    id="outlined-basic"
+                   
+                    variant="outlined"
+                    defaultValue={person.Instructor_Biography}
+                  /> */}
+         
+          </div>
+          
+          
+          </div>
+           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
+                  Update
+                </button>
+          
+          </div>
+          
+          <div className="w-1/2">
+            <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 ">
+          <div className="text-white font-bold text-l">Account Information</div>
+        
+          <div className="text-l">Username</div>
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+          defaultValue= {person.Instructor_username}  
+         /> 
+         <div className="text-l">Email</div>
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+          defaultValue= {person.Instructor_Email }  
+         /> 
+          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
+                  Update
+                </button>
+
+        </div>
+
+
+          
+         <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2">
+          <div className="text-white font-bold text-l">Update password</div>
+        
+          <div className="text-l">Old password </div>
+           <input readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
+          value= {person.Instructor_Password}  
+         /> 
+         <div className="text-l">New password </div>
+           <input type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+          defaultValue= ' '  
+         /> 
+         <div className="text-l">Re-enter new password </div>
+           <input  type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+          defaultValue= ''
+         /> 
+
+
+          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
+                  Update
+                </button>
+
+        </div>
+        
+        </div>
+
+        </div>
+
+        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+          <div className="text-white font-bold text-l">Reviews</div>
+
+          <div className="flex flex-row gap-2">
+            {person.Instructor_Reviews.map((review) => (
+                <div className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
+                  {review}</div>    
+            ))}
+          </div>
+          
+        </div>     
 
       </div>
     </div>

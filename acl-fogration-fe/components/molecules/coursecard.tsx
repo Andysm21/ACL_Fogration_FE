@@ -257,11 +257,13 @@ const CourseCard: React.FC<{ course }> = ({ course }) => {
                 {subtitle.Subtitle_Video.map((video) => {
                   return (
                     <div>
+                      <Link href={video.Video_Link}>
                       <img
-                        className="flex-shrink-0  "
+                        className="flex-shrink-0"
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
+                      </Link>
 
                       <div className="text-l">{video.Video_Description}</div>
                       <div className="text-l">{video.Video_Length} mins</div>
