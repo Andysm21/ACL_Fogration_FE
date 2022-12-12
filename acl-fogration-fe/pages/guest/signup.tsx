@@ -77,19 +77,21 @@ function signUp(){
       <div className="flex items-center justify-center bg-[url('/images/bgacl.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
         {/* div for the form */}
 
-        <div className="  flex flex-col items-center  justify-start rounded-lg bg-white py-6 px-4">
-          <div className="flex flex-col items-start justify-start">
-            <input id="username" placeholder="Username" type="text" onChange={handleChangeU}/>
-            <input id="password" placeholder="Password" type="password" onChange={handleChangeP}/>
-            <input id="firstName" placeholder="First Name" type="text" onChange={handleChangeFN}/>
-            <input id="lastName" placeholder="Last Name" type="text" onChange={handleChangeLN}/>
-            <input id="email" placeholder="Email" type="email" onChange={handleChangeEM}/>
-            <input id="country" placeholder="Country" type="text" onChange={handleChangeC}/>
+        <div className="flex flex-col items-center justify-start rounded-lg bg-bc py-6 px-4">
+          <div className="flex flex-col items-center justify-center gap-2">
+            <input className="bg-black3 rounded-md p-3 w-72" id="username" placeholder="Username" type="text" onChange={handleChangeU}/>
+            <input className="bg-black3 rounded-md p-3 w-72" id="password" placeholder="Password" type="password" onChange={handleChangeP}/>
+            <input className="bg-black3 rounded-md p-3 w-72" id="firstName" placeholder="First Name" type="text" onChange={handleChangeFN}/>
+            <input className="bg-black3 rounded-md p-3 w-72" id="lastName" placeholder="Last Name" type="text" onChange={handleChangeLN}/>
+            <input className="bg-black3 rounded-md p-3 w-72" id="email" placeholder="Email" type="email" onChange={handleChangeEM}/>
+            <input className="bg-black3 rounded-md p-3 w-72" id="country" placeholder="Country" type="text" onChange={handleChangeC}/>
 
-            <div className="flex flex-col py-2 px-2">
+            <div className="flex flex-col py-2 px-2 justify-start items-start">
               {/* adding gender radiobuttons */}
-              <FormControl className="flex flex-col items-start justify-start">
-                <FormLabel id="demo-radio-buttons-group-label">
+              <FormControl className="flex flex-col items-start justify-start text-white">
+                <FormLabel
+                 
+                id="demo-radio-buttons-group-label">
                   Gender
                 </FormLabel>
                 <RadioGroup
@@ -97,12 +99,14 @@ function signUp(){
                   defaultValue="female"
                   name="radio-buttons-group"
                   onChange={handleChangeG}
+                 
                 >
                   <div>
                     <FormControlLabel
                       value="female"
                       control={<Radio />}
                       label="Female"
+                      
                     />
                     <FormControlLabel
                       value="male"
@@ -118,7 +122,7 @@ function signUp(){
             {/* <InputField id="password" placeholder="Password" type="password" /> */}
             {/* adding login button */}
             <Link href="/guest/login">
-              <button className="w-72 rounded-lg bg-lachmara p-2 text-white hover:bg-matisse hover:text-white" onClick={signUp}>
+              <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white" onClick={signUp}>
                 Sign up
               </button>
             </Link>
