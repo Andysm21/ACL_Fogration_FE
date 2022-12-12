@@ -22,13 +22,6 @@ interface Props {
   isOpen: boolean;
 }
 
-const facilities = [
-  { label: "Camera", id: 1 },
-  { label: "Projector", id: 2 },
-  { label: "Microphone", id: 3 },
-  { label: "TV", id: 4 },
-];
-
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<any, any>;
