@@ -1,7 +1,7 @@
 import { RiProjector2Line } from "react-icons/ri";
 import { GiOldMicrophone } from "react-icons/gi";
 import { HiVideoCamera } from "react-icons/hi";
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar ,AiOutlineStar} from "react-icons/ai";
 import { Button, Link, ratingClasses, TextField } from "@mui/material";
 import { user } from "../../interfaces";
 import { CgProfile } from "react-icons/cg";
@@ -225,6 +225,11 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
   // Default this to a country's code to preselect it
   const [country, setCountry] = useState('DE');
+  const [isStar1, setIsStar1] = useState(false);
+  const [isStar2, setIsStar2] = useState(false);
+  const [isStar3, setIsStar3] = useState(false);
+  const [isStar4, setIsStar4] = useState(false);
+  const [isStar5, setIsStar5] = useState(false);
   return (
     <div
 
@@ -238,6 +243,20 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
             <div className="font-light text-md">Instructor</div>
             <div className="flex flex-row  ">{stars(average(person.Instructor_Ratings))}</div>
         </div>
+         <div className="flex flex-row px-2 justify-end items-end gap-2 ">
+                <div className="text-xl text-violet-400">Rate  </div> 
+              <div className="flex flex-row gap-2 justify-end items-end">
+                 {isStar1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30} onClick={() => {setIsStar1(!isStar1);}}/>}
+                 {isStar2 ? <div className="flex flex-row"> <AiFillStar size={30}/> <AiFillStar size={30}/> </div>: <AiOutlineStar size={30} onClick={() => {setIsStar1(!isStar1);}}/>}
+
+                <AiOutlineStar size={30} onClick={() => {setIsStar1(!isStar1);}}/>
+                <AiOutlineStar size={30} onClick={() => {setIsStar1(!isStar1);setIsStar2(!isStar2);}}/> 
+                <AiOutlineStar size={30} onClick={() => {setIsStar1(!isStar1);setIsStar2(!isStar2);setIsStar3(!isStar3);}}/>
+                <AiOutlineStar size={30} onClick={() => {setIsStar1(!isStar1);setIsStar2(!isStar2);setIsStar3(!isStar3);setIsStar4(!isStar4)}}/>
+                <AiOutlineStar size={30} onClick={() => {setIsStar1(!isStar1);setIsStar2(!isStar2);setIsStar3(!isStar3);setIsStar4(!isStar4);setIsStar5(!isStar5)}}/>
+          </div>
+        </div> 
+
         <div className="flex flex-row ">
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
           <div className="text-white font-bold text-l">Personal Information</div>
@@ -300,16 +319,32 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
         </div>
 
         <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-          <div className="text-white font-bold text-l">Reviews</div>
 
+         <div className="text-white font-bold text-l">Reviews</div>
           <div className="flex flex-row gap-2">
             {person.Instructor_Reviews.map((review) => (
                 <div key={person.Instructor_ID} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52 shadow-lg">
                   {review}</div>    
             ))}
           </div>
+
+              <div className="flex flex-col">
+              <div className ="text-white font-bold text-l">Rate Instructor</div>
+              <div className="flex flex-row gap-2">
+              
+                <AiOutlineStar size={40}/>
+                <AiOutlineStar size={40}/>
+                <AiOutlineStar size={40}/>
+                <AiOutlineStar size={40}/>
+                <AiOutlineStar size={40}/>
+          </div>
+        </div> 
+        </div>
+
           
-        </div>     
+       
+
+
 
       </div>
     </div>

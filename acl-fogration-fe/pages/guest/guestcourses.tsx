@@ -17,7 +17,7 @@ const guestcourses: NextPage = () => {
       <LayoutGuest>
         <div>
             
-          <GuestCourses/>
+          <GuestCourses courses={{}}/>
         
         </div>
       </LayoutGuest>
