@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 import HeaderInstructorMyCourses from "../../components/organisms/HeaderInstructorMyCourses";
 import InstructorCoursesCard from "../../components/molecules/InstructorCoursesCard";
 import InstructorMyCoursesCard from "../../components/molecules/InstructorMyCoursesCard";
+import axios from 'axios'
+
 // interface Props {
 //   data: {
 //     song: string;
@@ -14,6 +16,23 @@ import InstructorMyCoursesCard from "../../components/molecules/InstructorMyCour
 // }
 
 const mycourses: NextPage = () => {
+
+  var [courseArray,setCourseArray]=useState([]);
+  function getCourses(){
+     axios.post("http://localhost:8000/viewMyCoursesInstructor",{
+      Instructor_ID: Number(localStorage.getItem("InstID"))
+     }
+    ).then((response) => {
+      console.log(Number(localStorage.getItem("InstID")))
+
+      setCourseArray(response.data)
+    }).catch((error) => console.log(error))
+  }
+  useEffect(() =>{getCourses()
+    localStorage.setItem("InstID","2")
+  },[])
+
+  var x =useEffect(() =>{getCourses()},[])
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -26,7 +45,7 @@ const mycourses: NextPage = () => {
         <div>
           <HeaderInstructorMyCourses/>
 
-          <InstructorMyCoursesCard/>
+          <InstructorMyCoursesCard courses={courseArray}/>
         </div>
       </Layout>
     </div>
