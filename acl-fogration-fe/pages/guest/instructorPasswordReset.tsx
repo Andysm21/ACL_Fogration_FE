@@ -1,9 +1,23 @@
 import React from "react";
+import Image from "next/image";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useRouter } from "next/router";
+import TextField from "@mui/material/TextField";
 import Link from "next/link";
+import InputField from "../../components/atoms/InputField";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs, { Dayjs } from "dayjs";
+import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import NavGuest from "../../components/atoms/NavGuest";
-
-function enterEmail() {
+import GuestCourses from "../../components/molecules/GuestCourses";
+import {
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
+function instructorPasswordReset() {
   const router = useRouter();
   const [value, setValue] = React.useState<Date | null>();
 
@@ -12,7 +26,7 @@ function enterEmail() {
   };
   return (
     <div>
-      <NavGuest />
+      <NavGuest/>
       <div className="flex items-center justify-center bg-[url('/images/bgacl.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
         {/* div for the form */}
 
@@ -20,18 +34,24 @@ function enterEmail() {
           <div className="flex flex-col items-center justify-center gap-2">
             <input
               className="bg-black3 rounded-md p-3 w-72 text-white"
-              id="email"
-              placeholder="Enter your email"
-              type="text"
-            />
+              id="password"
+              placeholder="New Password"
+              type="password"
 
+            />
+            <input
+              className="bg-black3 rounded-md p-3 w-72 text-white"
+              id="password2"
+              placeholder="Verify Password"
+              type="password"
+            />
 
             {/* adding password input */}
             {/* <InputField id="password" placeholder="Password" type="password" /> */}
             {/* adding login button */}
-            <Link href="/guest/userPasswordReset">
+            <Link href="/guest/login">
               <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white">
-                Send email
+                Submit
               </button>
             </Link>
           </div>
@@ -41,4 +61,4 @@ function enterEmail() {
   );
 }
 
-export default enterEmail;
+export default instructorPasswordReset;
