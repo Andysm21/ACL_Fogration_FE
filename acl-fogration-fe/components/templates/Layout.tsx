@@ -26,6 +26,7 @@ const userlinks = [
 const instructorlinks = [
   // { href: '/car-system', label: 'Dashboard' },
   { href: "/instructor", label: "Dashboard" },
+  { href: "/instructor/profile", label: "Profile" },
   { href: "/instructor/courses", label: "Courses" },
   { href: "/instructor/mycourses", label: "My Courses" },
   { href: "/instructor/contracts", label: "Contracts" },
