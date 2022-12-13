@@ -14,6 +14,23 @@ const CourseCard:React.FC<{course}>= ({course}) => {
     }
     return stars;
   };
+
+  
+  const discount =(discount:number,price:number) =>{
+      if(discount == 0){
+    return <div className="text-l">{price} $$</div>
+
+  }
+  else{ 
+    <div className="">
+    <div className="text-l line-through">{price} $$</div>
+     <div className="text-l">{(price) * (1-discount)} $$</div>
+     </div>
+
+  
+  }
+  }
+ 
   return (
     <div className="m-2 grid grid-cols-1 place-items-center ">
       
@@ -23,10 +40,12 @@ const CourseCard:React.FC<{course}>= ({course}) => {
         >
           <div className=" font-bold text-2xl" key={course.id}>
             {course.name}
-            <div className="flex flex-row">{stars(course.rating)}</div>
+            <div className="flex flex-row">{stars(course.Course_Rating)}</div>
           </div>
-          <div className="text-l">{course.price} $$</div>
-          <div className="text-l"> {course.totalHours} Credit Hours</div>
+          
+          {/* <div className="text-l">{course.Course_Price} $$</div> */}
+          {discount(course.Course_Discount,course.Course_Price)}
+          <div className="text-l"> {course.Course_Hours} Credit Hours</div>
           <Button variant="contained">Book Course</Button>
 
           {/* //Course content  */}

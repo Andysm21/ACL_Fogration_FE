@@ -32,16 +32,7 @@ export interface questions {
   Question_Correct_Answers: string;
   Question_Grade: string;
 }
-export interface instructor{
-  Instructor_ID: string;
-  Instructor_username: string;
-  Instructor_FirstName: string;
-  Instructor_LastName: string;
-  Instructor_Email: string;
-  Instructor_Password: string;
 
-
-}
 
 export interface course {
 
@@ -57,7 +48,7 @@ export interface course {
   Course_Discount: number;
   Course_Discount_Duration: number;
   Course_Subtitle: subtitle[];
-  Course_Trainee: trainee[];
+  Course_Users: user[];
   Course_Review: string[];
   Course_Rate: string[];
   Course_Exam: exam[];
