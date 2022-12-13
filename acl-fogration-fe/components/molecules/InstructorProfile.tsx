@@ -9,6 +9,7 @@ import { CountrySelector } from "./Selector";
 import React, { useState } from "react";
 import { SelectMenuOption } from "../atoms/types";
 import {COUNTRIES} from '../atoms/countries';
+import axios from "axios";
 
 
 // const instructor = {
@@ -90,6 +91,29 @@ import {COUNTRIES} from '../atoms/countries';
 // };
 
 const InstructorProfile: React.FC<{ instructor }> = ({ instructor }) => {
+
+const [password1,setPassword1]=useState('')
+const [password,setPassword]=useState('')
+
+
+const handleChangeP1 = event => {
+  setPassword1(event.target.value);
+    };
+const handleChangeP = event => {
+   setPassword(event.target.value);
+    };
+  function changePassword(){
+    if(password1===password){ 
+    axios.post("http://localhost:8000/changePassword",{
+      ID:instructor.Instructor_ID,
+      Password: password,
+      type: 1
+    }
+   ).then((response) => {
+     console.log(response)
+   }).catch((error) => console.log(error))
+  }
+}
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -216,16 +240,17 @@ const InstructorProfile: React.FC<{ instructor }> = ({ instructor }) => {
          /> 
          <div className="text-l">New password </div>
            <input type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= ''  
+          defaultValue= ''  onChange={handleChangeP} 
          /> 
          <div className="text-l">Re-enter new password </div>
            <input  type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= ''
+          defaultValue= '' onChange={handleChangeP1}
          /> 
 
 
-          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
+          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={changePassword}>
                   Update
+                  
                 </button>
 
         </div>
