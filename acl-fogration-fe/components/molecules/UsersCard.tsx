@@ -1,8 +1,23 @@
 import { Button, Link } from "@mui/material";
+import { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 
 
 const UsersCard: React.FC<{ users }> = ({ users }) => {
+  const [type,setType] = useState("");
+  useEffect(()=>{
+    // localStorage.setItem("Type","CorporateUser")
+    setType(localStorage.getItem("Type"));
+  })
+  const detailsLink = ()=>{
+    if(type=="Instructor"){
+      return "Instructor"
+      }
+  else{
+      return "User"
+  }
+  }
+  
   if (users.length === 0) {
     return <div className="text-center text-xl text-black1 "> No users</div>;
   }
@@ -25,7 +40,7 @@ const UsersCard: React.FC<{ users }> = ({ users }) => {
           <div className="text-l"> City: {person.User_City}</div>
           <div className="text-l">Country: {person.User_Country}</div>
           <div className="flex flex-row gap-2">
-            <Link href={localStorage.getItem("Type") == "Instrcutor" ? "Instructor"  : "User"}>
+            <Link href={detailsLink()}>
               <button className="bg-gradient-to-r px-4 py-2 rounded-md from-purple to-babyblue text-white hover:font-bold">
                 More Details
               </button>
