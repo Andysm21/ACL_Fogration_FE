@@ -184,7 +184,6 @@ const course = {
   Course_What_You_Will_Learn: [
     "Learn how to use the most popular data structures",
     "Learn how to use the most popular algorithms",
-    "Learn how to use the most popular data structures",
   ],
 };
 

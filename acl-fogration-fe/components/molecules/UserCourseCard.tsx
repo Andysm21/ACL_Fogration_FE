@@ -1,9 +1,10 @@
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill ,} from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import {AiFillFilePdf} from "react-icons/ai"
 import { TbCertificate } from "react-icons/tb";
+import { useState } from "react";
 const isCorporate = true;
 const courses = [
   {
@@ -141,6 +142,8 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
     }
     return stars;
   };
+    const [starsnum, setStarsnum] = useState(0);
+
   return (
     <div
       key={course.Course_ID}
@@ -174,6 +177,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
               <BsGlobe2 />
               {course.Course_Country}
             </div>
+ 
           </div>
         </div>
         {/* //div el video bel se3r wel button */}
@@ -196,6 +200,8 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
                 Enroll Now
               </button>
             </Link>
+
+            
 
           </div>
         </div>

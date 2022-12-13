@@ -6,26 +6,26 @@ import { Button, Link, ratingClasses, TextField } from "@mui/material";
 import { user } from "../../interfaces";
 import { CgProfile } from "react-icons/cg";
 import { CountrySelector } from "./Selector";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SelectMenuOption } from "../atoms/types";
 import {COUNTRIES} from '../atoms/countries';
-
 
 const person = {
   _id: {
     $oid: "636880e12886948f062b493e",
   },
- Instructor_ID: 4,
-  Instructor_username: "Pasha",
-  Instructor_Email: "Pasha@gmail.com",
-  Instructor_Password: "1234",
-  Instructor_FirstName:"Hana",
-  Instructor_LastName:"Pasha",
-  Instructor_Gender:"Female",
-  Instructor_Country: "Egypt",
+ User_ID: 4,
+  User_username: "Pasha",
+  User_Email: "Pasha@gmail.com",
+  User_Password: "1234",
+  User_FirstName:"Hana",
+  User_LastName:"Pasha",
+  User_Gender:"Female",
+  User_Country: "Egypt",
+  User_Corporate:"Benya",
   
 
-  Instructor_Courses: [
+ User_Courses: [
 
     {
       _id: {
@@ -78,7 +78,7 @@ const person = {
       ],
       Course_Trainee: [{ Trainee_ID: 1, Trainee_Name: "Ahmed" }],
       Course_Review: ["Very Good Course"],
-      Course_Rate: ["zeft"],
+      Course_Rate: [1,2,3],
       Course_Exam: [
         { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
       ],
@@ -196,61 +196,62 @@ const person = {
       ],
     },
   ],
-  Instructor_Biography: "Hating Uni",
-  Instructor_Ratings:[5,2],
-  Instructor_Reviews:["I Loved your materials,It helped alot.Keep the great work!","Would have been better if you did more examples but other than that GREAT JOB!!"]
+
 };
 
-const ViewInstructor: React.FC<{ user }> = ({ user }) => {
+const ViewUser: React.FC<{ user }> = ({ user }) => {
+    var type="";
+    const average = (x) =>{
+    let avg = 0;
+    for(let i = 0;i< x.length ;i++){
+      avg += x[i];
+    }
+    avg = avg/(x.length);
+    return avg;
+  };
   const stars = (rating: number) => {
     let stars = [];
+    if(stars.length === 0){
+        return ""
+    }
+    else{
     for (let i = 0; i < rating; i++) {
       stars.push(
         <div>
           <AiFillStar />
         </div>
       );
-    }
+    
     return stars;
   };
-  const average = ([]) =>{
-    let avg = 0;
-    for(let i = 0;i< person.Instructor_Ratings.length ;i++){
-      avg += person.Instructor_Ratings[i];
-    }
-    avg = avg/(person.Instructor_Ratings.length);
-    return avg;
-  };
+};
+};
   const myRef = React.createRef<HTMLDivElement>();
   const [isOpen, setIsOpen] = useState(false);
   // Default this to a country's code to preselect it
   const [country, setCountry] = useState('DE');
   const [starsnum, setStarsnum] = useState(0);
+  useEffect(()=>{
+    //localStorage.removeItem("Type")
+    localStorage.setItem("Type","IndividualUser")
+    type = localStorage.getItem("Type")
+    console.log(type)
+  })
 
   return (
     <div
 
-      key={person.Instructor_ID}
-      className=" border-2 border-bc flex flex-col bg-black2 w-75% shadow-lg text-white "
+      key={person.User_ID}
+      className=" border-2 border-bc flex flex-col h-screen bg-black2 w-75% shadow-lg text-white "
     >
       <div className="flex flex-col gap-2">
         <div className="flex flex-col items-center justify-center">
           <CgProfile size={100} />
-            <div className="font-bold text-2xl">{person.Instructor_FirstName} {person.Instructor_LastName} </div>
-            <div className="font-light text-md">Instructor</div>
-            <div className="flex flex-row  ">{stars(average(person.Instructor_Ratings))}</div>
-        </div>
-         <div className="flex flex-row px-2 justify-end items-end gap-2  text-violet-400">
-                <div className="text-xl text-white">Rate  </div> 
-                <div onClick={() => {setStarsnum(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                 <div onClick={() => {setStarsnum(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  {/*  save the rating in the user  */}
+            <div className="font-bold text-2xl">{person.User_FirstName} {person.User_LastName} </div>
+            <div className="font-light text-md">{type == "IndividualUser" ? "Trainee"  : "Trainee in " +person.User_Corporate}</div>
 
-                
-        </div> 
+        </div>
+
 
         <div className="flex flex-row ">
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
@@ -260,31 +261,23 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
          
            <div className="text-l">Name </div>
            <div  className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-         >           {person.Instructor_FirstName + " " + person.Instructor_LastName}</div>
+         >           {person.User_FirstName + " " + person.User_LastName}</div>
          
            <div className="text-l">Email </div>
             <div  className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-         >           {person.Instructor_Email}
+         >           {person.User_Email}
         </div>
           <div className="text-l">Gender </div>
             <div  className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-         >           {person.Instructor_Gender}
+         >           {person.User_Gender}
         </div>
         <div className="text-l">Country of birth </div>
          <div  className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-         >           {person.Instructor_Country}
+         >           {person.User_Country}
         </div>
 
           </div>
-          {/* biography */}
-          <div className="flex flex-col gap-2">
-           <div>Biography</div>
-          <div  className = " bg-black3 h-52 text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-         >           {person.Instructor_Biography}
-        </div>
 
-         
-          </div>
           
           
           </div>
@@ -294,11 +287,11 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
           
           <div className="w-1/2">
             <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 ">
-          <div className="text-white font-bold text-l">Assigned to courses</div>
+          <div className="text-white font-bold text-l">Enrolled in</div>
               <div className="grid grid-cols-2 gap-2">
-            {person.Instructor_Courses.map((course) => (
-              <Link href="/[course._id]">
-                <div key={course.Course_ID} className="flex flex-col bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md shadow-lg">
+            {person.User_Courses.map((course,index) => (
+              <Link href="/[course._id]" key={index}>
+                <div  className="flex flex-col bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md shadow-lg">
                      
                   <div className="text-xl font-bold"> {course.Course_Title}</div>
                   <div className="flex flex-row">{stars(average(course.Course_Rate))}</div>
@@ -313,26 +306,9 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
 
         </div>
 
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-
-         <div className="text-white font-bold text-l">Reviews</div>
-          <div className="flex flex-row gap-2">
-            {person.Instructor_Reviews.map((review) => (
-                <div key={person.Instructor_ID} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52 shadow-lg">
-                  {review}</div>    
-            ))}
-          </div>
-  
-        </div>
-
-          
-       
-
-
-
       </div>
     </div>
   );
 };
 
-export default ViewInstructor;
+export default ViewUser;
