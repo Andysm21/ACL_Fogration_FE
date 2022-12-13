@@ -74,9 +74,9 @@ const CourseCard:React.FC<{course}>= ({course}) => {
               <div className="text-white font-bold text-l">Reviews</div>
 
               <div className="flex flex-row gap-2">
-                {course.Course_Review.map((review) => (
+                {course.Course_Review.map((review,index) => (
                   <div
-                    key={course.Course_Review}
+                    key={index}
                     className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52"
                   >
                     {review}
