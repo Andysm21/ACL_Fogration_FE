@@ -10,6 +10,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import NavGuest from "../../components/atoms/NavGuest";
 import GuestCourses from "../../components/molecules/GuestCourses";
+import axios from 'axios'
 import {
   FormControl,
   FormControlLabel,
@@ -24,6 +25,16 @@ function instructorPasswordReset() {
   const handleChange1 = (newValue: Date | null) => {
     setValue(newValue);
   };
+  const[password,setPassword]= React.useState("")
+  const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value)
+  }
+
+  function handleSubmit (){
+    localStorage.setItem("ID","2")
+    axios.put("http://localhost:8000/changePassword",{Password:password, ID:Number(localStorage.getItem("ID")), type:1}).then((response)=>{
+      console.log(response.data)
+    })}
   return (
     <div>
       <NavGuest/>
@@ -37,6 +48,7 @@ function instructorPasswordReset() {
               id="password"
               placeholder="New Password"
               type="password"
+              onChange ={handlePassword}
 
             />
             <input
@@ -50,7 +62,7 @@ function instructorPasswordReset() {
             {/* <InputField id="password" placeholder="Password" type="password" /> */}
             {/* adding login button */}
             <Link href="/guest/login">
-              <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white">
+              <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white" onClick= {handleSubmit}>
                 Submit
               </button>
             </Link>
