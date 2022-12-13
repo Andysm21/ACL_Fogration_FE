@@ -1,7 +1,8 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import NavGuest from "../../components/atoms/NavGuest";
+import axios from 'axios'
 
 function enterEmail() {
   const router = useRouter();
@@ -10,6 +11,20 @@ function enterEmail() {
   const handleChange1 = (newValue: Date | null) => {
     setValue(newValue);
   };
+
+  const[email,setEmail]= React.useState("")
+  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value)
+    setEmail(event.target.value);
+  };
+
+  
+  function handleSubmit (){
+    axios.post("http://localhost:8000/forgotPassword",{Email:email}).then((response)=>{
+      console.log(response.data)
+    })
+
+  }
   return (
     <div>
       <NavGuest />
@@ -23,6 +38,7 @@ function enterEmail() {
               id="email"
               placeholder="Enter your email"
               type="text"
+              onChange ={handleEmail}
             />
 
 
@@ -30,7 +46,7 @@ function enterEmail() {
             {/* <InputField id="password" placeholder="Password" type="password" /> */}
             {/* adding login button */}
             <Link href="/guest/login">
-              <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white">
+              <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white" onClick ={handleSubmit}>
                 Send email
               </button>
             </Link>
