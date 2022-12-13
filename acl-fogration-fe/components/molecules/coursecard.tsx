@@ -48,12 +48,61 @@ const CourseCard = () => {
             {course.name}
             <div className="flex flex-row">{stars(course.rating)}</div>
           </div>
-
           <div className="text-l">{course.price} $$</div>
           <div className="text-l"> {course.totalHours} Credit Hours</div>
           <Button variant="contained">Book Course</Button>
         </div>
-      ))}
+
+      </div>
+      {/* //Course content  */}
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
+        <h1 className="text-white font-bold text-3xl ">Course Content</h1>
+        {course.Course_Subtitle.map((subtitle) => {
+          return (
+            <div>
+              <div className="flex flex-col gap-2 ">
+                <div className="flex flex-row gap-2 justify-between">
+                  <div className="text-xl font-bold">
+                    {subtitle.Subtitle_Name}
+                  </div>
+                  <div className="text-l flex items-end ">
+                    Total Time: {subtitle.Subtitle_Hours} mins
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-row gap-2 w-[100%] ">
+                {subtitle.Subtitle_Video.map((video) => {
+                  return (
+                    <div>
+                      <Link href={video.Video_Link}>
+                      <img
+                        className="flex-shrink-0"
+                        src="/images/pausedvideo.png"
+                        alt="No image yet 😅"
+                      />
+                      </Link>
+
+                      <div className="text-l">{video.Video_Description}</div>
+                      <div className="text-l">{video.Video_Length} mins</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+          <div className="text-white font-bold text-l">Reviews</div>
+
+          <div className="flex flex-row gap-2">
+            {course.Course_Review.map((review) => (
+                <div key={course.Course_Review} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
+                  {review}</div>    
+            ))}
+          </div>
+          
+        </div> 
     </div>
   );
 };

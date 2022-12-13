@@ -3,6 +3,7 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 import UserMyCoursesCard from "../../components/molecules/UserMyCoursesCard";
+import HeaderUserMyCourses from "../../components/organisms/HeaderUserMyCourses";
 
 const courses = [
   {
@@ -57,6 +58,8 @@ const mycourses: NextPage = () => {
 
       <Layout>
         <div>
+          <HeaderUserMyCourses/>
+
           <UserMyCoursesCard/>
         </div>
       </Layout>

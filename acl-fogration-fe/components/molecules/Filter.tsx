@@ -1,15 +1,11 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import { useTheme, Theme } from "@mui/material";
-import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Autocomplete from "@mui/material/Autocomplete";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
 
 import {
   useMediaQuery,
@@ -26,13 +22,6 @@ interface Props {
   isOpen: boolean;
 }
 
-const facilities = [
-  { label: "Camera", id: 1 },
-  { label: "Projector", id: 2 },
-  { label: "Microphone", id: 3 },
-  { label: "TV", id: 4 },
-];
-
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<any, any>;
@@ -42,37 +31,41 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const AddCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
+const Filter: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const [title, setTitle] = React.useState("");
-  const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
+  const [subject, setSubject] = React.useState("");
+  const handleSubject = (event: React.ChangeEvent<HTMLInputElement>) => 
+  { 
+    setSubject(event.target.value);
   };
 
-  const [subtitles, setSubtitles] = React.useState("");
-  const handleSubtitles = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSubtitles(event.target.value);
+  const [rating, setRating] = React.useState("");
+  const handleRating = (event: React.ChangeEvent<HTMLInputElement>) =>
+  {
+    setRating(event.target.value);
   };
 
-  const [price, setPrice] = React.useState("");
-  const handlePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(event.target.value);
+  const [minPrice, setMinPrice] = React.useState("");
+  const handleMinPrice = (event: React.ChangeEvent<HTMLInputElement>) =>
+  {
+    setMinPrice(event.target.value);
   };
 
-  const [description, setDescription] = React.useState("");
-  const handleDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDescription(event.target.value);
+  const [maxPrice, setMaxPrice] = React.useState("");
+  const handleMaxPrice = (event: React.ChangeEvent<HTMLInputElement>) =>
+  {
+    setMaxPrice(event.target.value);
   };
 
   const handleSubmit = () => {
     console.log("submit");
     const data = {
-      title,
-      subtitles,
-      price,
-      description,
+      subject,
+      rating,
+      maxPrice,
+      minPrice
     };
     console.log(data);
   };
@@ -87,7 +80,7 @@ const AddCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title">{"New course"}</DialogTitle>
+        <DialogTitle id="responsive-dialog-title">{"Filter"}</DialogTitle>
         <DialogContent className="">
           <DialogContentText className="grid gap-y-8 gap-x-3">
             <div className="items flex w-full items-end justify-center m-2 ">
@@ -97,39 +90,40 @@ const AddCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
                 className="m-2 gap-4 w-full"
               >
                 <div className="grid grid-column gap-y-4 w-96 m-2 ">
-                <TextField
-                  required
-                  id="outlined-basic"
-                  label="Title"
-                  variant="outlined"
-                  onChange={handleTitle}
-                />
-
-                <TextField
-                  required
-                  id="outlined-basic"
-                  label="Subtitles"
-                    variant="outlined"
-                    onChange={handleSubtitles}
-                />
-
-                <TextField
-                  required
-                  id="outlined-basic"
-                  label="Price"
-                    variant="outlined"
-                    onChange={handlePrice}
-                />
-                
                   <TextField
-                    required
                     id="outlined-basic"
-                    label="Description"
+                    label="Subject"
                     variant="outlined"
-                    onChange={handleDescription}
+                    onChange={handleSubject}
                   />
-                                  </div>
-                
+
+                  <TextField
+                    id="outlined-basic"
+                    label="Rating (1 - 5)"
+                    variant="outlined"
+                    onChange={handleRating}
+                  />
+                  <div className="flex flex-row gap-2">
+
+                                        <TextField
+                      id="outlined-basic"
+                      label="Min Price"
+                      variant="outlined"
+                      onChange={handleMinPrice}
+                    />
+
+                    <TextField
+                      id="outlined-basic"
+                      label="Max Price"
+                      variant="outlined"
+                      onChange={handleMaxPrice}
+                    />
+
+                    
+
+                  </div>
+
+                </div>
               </FormControl>
             </div>
             {/* <div className="items flex w-full items-end justify-center m-2 "></div> */}
@@ -146,7 +140,7 @@ const AddCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
             }}
             autoFocus
           >
-            Create
+            Filter
           </Button>
         </DialogActions>
       </Dialog>
@@ -154,4 +148,4 @@ const AddCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
   );
 };
 
-export default AddCourse;
+export default Filter;

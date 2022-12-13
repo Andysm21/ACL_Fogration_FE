@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/templates/Layout";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import UserCoursesCard from "../../components/molecules/UserCoursesCard";
+import HeaderUserCourses from "../../components/organisms/HeaderUserCourses";
+import axios from "axios";
 // interface Props {
 //   data: {
 //     song: string;
@@ -12,6 +14,23 @@ import UserCoursesCard from "../../components/molecules/UserCoursesCard";
 // }
 
 const courses: NextPage = () => {
+  var [CourseArray,setCourseArray]=useState([]);
+  localStorage.setItem("isCorp","1")
+
+  
+  function getCourses(){
+     axios.get("http://localhost:8000/viewCoursesCorporate"
+    ).then((response) => {
+      console.log("Hello")
+      console.log(response.data)
+      setCourseArray(response.data)
+    }).catch((error) => console.log(error))
+  }
+  
+  var x =useEffect(() =>{getCourses()},[])
+
+
+
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -22,7 +41,8 @@ const courses: NextPage = () => {
 
       <Layout>
         <div>
-          <UserCoursesCard/>
+          <HeaderUserCourses/>
+          <UserCoursesCard courses={CourseArray}/>
         </div>
       </Layout>
     </div>
