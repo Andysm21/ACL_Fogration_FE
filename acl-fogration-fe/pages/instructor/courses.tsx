@@ -94,7 +94,7 @@ else{
         <div>
 
           <HeaderInstructorCourses/>
-          <InstructorCoursesCard courses={coursesArray}/>
+          <InstructorCoursesCard courses={courseArray}/>
 
         </div>
       </Layout>
