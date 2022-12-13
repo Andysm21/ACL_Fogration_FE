@@ -48,6 +48,7 @@ const HeaderUserCourses = ({
     const data = {
       search
     };
+    localStorage.setItem("Search",data.search)
     console.log(data);
   };
 
