@@ -15,6 +15,22 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
   // if (courses.length === 0) {
   //   return <div className="text-center ">No courses</div>;
   // }
+     const discount =(discount:number,price:number) =>{
+      if(discount == 0){
+    return <h1 className=" text-violet-400 text-4xl font-bold ">
+                $${price}
+              </h1>
+
+  }
+  else{ 
+    <div className="flex flex-row">
+    <div className=" text-violet-400 text-4xl font-bold line-through">{price} $$</div>
+     <h1 className=" text-violet-400 text-4xl font-bold ">
+                $${price * (1-discount)}
+              </h1>
+     </div>
+  }
+  }
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -68,9 +84,11 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
           </div>
           {/* //h1 el se3r */}
           <div className="flex flex-row justify-between my-2">
-            <h1 className=" text-violet-400 text-4xl font-bold ">
+            {/* <h1 className=" text-violet-400 text-4xl font-bold ">
               $${course.Course_Price}
-            </h1>
+            </h1> */}
+            {discount(course.Course_Discount, course.Course_Price)}
+
 
             <Link href="/guest/signup">
               {/* //link button to enroll */}

@@ -33,6 +33,7 @@ export interface questions {
   Question_Grade: string;
 }
 
+
 export interface course {
 
   Course_ID: number; //course id m7tag yetzabat string
@@ -47,7 +48,7 @@ export interface course {
   Course_Discount: number;
   Course_Discount_Duration: number;
   Course_Subtitle: subtitle[];
-  Course_Trainee: trainee[];
+  Course_Users: user[];
   Course_Review: string[];
   Course_Rate: string[];
   Course_Exam: exam[];

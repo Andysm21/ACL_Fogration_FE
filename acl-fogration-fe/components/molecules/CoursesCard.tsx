@@ -197,6 +197,23 @@ const CoursesCard = () => {
   //   },
   // ];
 
+    const discount =(discount:number,price:number) =>{
+      if(discount == 0){
+    return <h1 className=" text-violet-400 text-4xl font-bold ">
+                $${price}
+              </h1>
+
+  }
+  else{ 
+    <div className="flex flex-row">
+    <div className=" text-violet-400 text-4xl font-bold line-through">{price} $$</div>
+     <h1 className=" text-violet-400 text-4xl font-bold ">
+                $${price * (1-discount)}
+              </h1>
+     </div>
+  }
+  }
+
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
   }
@@ -242,9 +259,10 @@ const CoursesCard = () => {
                 <BsGlobe2 />
                 {course.Course_Country}
               </div>
-              <h1 className=" text-violet-400 text-4xl font-bold ">
+              {/* <h1 className=" text-violet-400 text-4xl font-bold ">
                 $${course.Course_Price}
-              </h1>
+              </h1> */}
+              {discount(course.Course_Discount, course.Course_Price)}
             </div>
           </div>
           {/* //div el video bel se3r wel button */}
