@@ -6,7 +6,7 @@ import {courses} from '../../interfaces'
 const GuestCourses:React.FC<{ courses }> = ({courses }) => {
 
   const handleButtonClick = ()=>{
-    localStorage.setItem("Course",course.Course_ID+"")
+    localStorage.setItem("Course",courses.Course_ID+"")
   }
   useEffect(() => {handleButtonClick})
 
