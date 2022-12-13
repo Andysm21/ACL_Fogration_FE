@@ -1,6 +1,8 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
+const isCorporate = true;
+
 const courses = [
   {
     _id: {
@@ -242,9 +244,11 @@ const UserMyCoursesCard = () => {
                 <BsGlobe2 />
                 {course.Course_Country}
               </div>
-              <h1 className=" text-violet-400 text-4xl font-bold ">
-                $${course.Course_Price}
-              </h1>
+              {!isCorporate && (
+                <h1 className=" text-violet-400 text-4xl font-bold ">
+                  $${course.Course_Price}
+                </h1>
+              )}
             </div>
           </div>
           {/* //div el video bel se3r wel button */}
@@ -266,7 +270,6 @@ const UserMyCoursesCard = () => {
                   View Course
                 </button>
               </Link>
-
             </div>
           </div>
         </div>
