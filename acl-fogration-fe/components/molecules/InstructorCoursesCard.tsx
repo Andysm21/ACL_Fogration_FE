@@ -2,6 +2,7 @@ import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 
+
 const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
   
   if (courses.length === 0) {
@@ -40,7 +41,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
                 <Link href="/[{course.Course_Instructor}]">
                   {/* // 23deli el link */}
                   <div className="text-violet-400">
-                    {course.Course_Instructor}
+                    {course.Course_Instructor.Instructor_FirstName}
                   </div>
                 </Link>
               </div>

@@ -3,93 +3,106 @@ import { GiOldMicrophone } from "react-icons/gi";
 import { HiVideoCamera } from "react-icons/hi";
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link, ratingClasses, TextField } from "@mui/material";
-import { user } from "../../interfaces";
+import { instructor } from "../../interfaces";
 import { CgProfile } from "react-icons/cg";
 import { CountrySelector } from "./Selector";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SelectMenuOption } from "../atoms/types";
 import {COUNTRIES} from '../atoms/countries';
+import axios from 'axios';
 
 
-const person = {
-  _id: {
-    $oid: "636880e12886948f062b493e",
-  },
- Instructor_ID: 4,
-  Instructor_username: "Pasha",
-  Instructor_Email: "Pasha@gmail.com",
-  Instructor_Password: "1234",
-  Instructor_FirstName:"Hana",
-  Instructor_LastName:"Pasha",
-  Instructor_Gender:"Female",
-  Instructor_Country: "Egypt",
+
+
+const InstructorProfile: React.FC<{ instructor }> = ({ instructor }) => {
+  const [username, setUsername] = React.useState(instructor.Instructor_username);
   
+const [password1,setPassword1]=useState('')
+const [password,setPassword]=useState('')
+const handleChangeP1 = event => {
+  setPassword1(event.target.value);
+    };
+const handleChangeP = event => {
+   setPassword(event.target.value);
+    };
 
-  Instructor_Courses: [
-
-    {
-      _id: {
-        $oid: "666820e1288794o098062b493e",
-      },
-      Course_ID: 4,
-      Course_Title: "asda",
-      Course_Subject: "Computer Science",
-      Course_Description: "Data Structures and Algorithms",
-      Course_Price: 0,
-      Course_Rating: 5,
-      Course_Instructor: "Malak",
-      Course_Hours: 5,
-      Course_Country: "Egypt",
-      Course_Discount: 10,
-      Course_Discount_Duration: 5,
-      Course_Subtitle: [
-        {
-          Subtitle_ID: 1,
-          Subtitle_Name: "S1",
-          Subtitle_Course_ID: "1",
-          Subtitle_Video: [
-            {
-              Video_ID: 1,
-              Video_Link:
-                "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-              Video_Subtitle: "S1",
-              Video_Description: "Introduction",
-              Video_Length: 10,
-            },
-          ],
-          Subtitle_Hours: "10",
-        },
-        {
-          Subtitle_ID: 2,
-          Subtitle_Name: "S2",
-          Subtitle_Course_ID: "1",
-          Subtitle_Video: [
-            {
-              Video_ID: 1,
-              Video_Link:
-                "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-              Video_Subtitle: "S1",
-              Video_Description: "Introduction",
-              Video_Length: 10,
-            },
-          ],
-          Subtitle_Hours: "10",
-        },
-      ],
-      Course_Trainee: [{ Trainee_ID: 1, Trainee_Name: "Ahmed" }],
-      Course_Review: ["Very Good Course"],
-      Course_Rate: ["zeft"],
-      Course_Exam: [
-        { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
-      ],
-    },
-  ],
-  Instructor_Biography: "Hating Uni",
-  Instructor_Ratings:[5,2],
-  Instructor_Reviews:["I Loved your materials,It helped alot.Keep the great work!","Would have been better if you did more examples but other than that GREAT JOB!!"]
+  const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+  setUsername(event.target.value);
 };
 
-const InstructorProfile: React.FC<{ user }> = ({ user }) => {
+  const [email, setEmail] = React.useState(instructor.Instructor_Email);
+  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+  setEmail(event.target.value);
+};
+
+  const [biography, setbiography] = React.useState(instructor.Instructor_Biography);
+  const handlebiography = (event: React.ChangeEvent<HTMLInputElement>) => {
+  setbiography(event.target.value);
+};
+
+  const [FirstName, setFirstName] = React.useState(instructor.Instructor_FirstName);
+  const handleFirstName = (event: React.ChangeEvent<HTMLInputElement>) => {
+  setFirstName(event.target.value);
+};
+
+  const [LastName, setLastName] = React.useState(instructor.Instructor_LastName);
+  const handleLastName = (event: React.ChangeEvent<HTMLInputElement>) => {
+  setLastName(event.target.value);
+};
+
+  const [Gender, setGender] = React.useState(instructor.Instructor_Gender);
+  const handleGender = (event: React.ChangeEvent<HTMLInputElement>) => {
+  setGender(event.target.value);
+};
+
+const [ID, setId ]= useState("");
+
+  function changePassword(){
+    if(password1===password){ 
+    axios.post("http://localhost:8000/changePassword",{
+      ID:instructor.Instructor_ID,
+      Password: password,
+      type: 1
+    }
+   ).then((response) => {
+     console.log(response)
+   }).catch((error) => console.log(error))
+  }
+}
+useEffect(()=>{
+  //localStorage.removeItem("Type")
+    localStorage.setItem("ID","1")
+  setId(localStorage.getItem("ID"));
+});
+console.log(ID);
+  const [country, setCountry] = useState('DE');
+
+  var status = '';
+
+  //SALMA WILL CONTINUE THIS LATER
+  // const handleSubmit = () => {
+  //   axios.put('http://localhost:8000/editProfile', {Instructor_ID: Number(ID), Instructor_username: username, Instructor_Email: email,
+  //   Instructor_Biography: biography,Instructor_FirstName: FirstName, 
+  //   Instructor_LastName: LastName, Instructor_Gender: Gender, Instructor_Country: country})
+
+  //   .then((response) => {
+  //     if(response.data == "1"){
+  //       status = "Username field should not be empty";
+  //     }
+  //     else if(response.data == "2"){
+  //       status = "Choose another username.";
+  //     }
+  //     else if(response.data == "3"){
+  //       status = "email already in use";
+  //     }
+  //     else if(response.data == "4"){
+  //       status = "Instructor got updated.";
+  //     }
+  //   }).catch((error) => console.log(error))
+  //   //console.log(data);
+  // };
+
+
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -103,51 +116,51 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
   };
   const average = ([]) =>{
     let avg = 0;
-    for(let i = 0;i< person.Instructor_Ratings.length ;i++){
-      avg += person.Instructor_Ratings[i];
+    for(let i = 0;i< instructor.Instructor_Ratings.length ;i++){
+      avg += instructor.Instructor_Ratings[i];
     }
-    avg = avg/(person.Instructor_Ratings.length);
+    avg = avg/(instructor.Instructor_Ratings.length);
     return avg;
   };
   const myRef = React.createRef<HTMLDivElement>();
   const [isOpen, setIsOpen] = useState(false);
   // Default this to a country's code to preselect it
-  const [country, setCountry] = useState('DE');
+  
   return (
     <div
 
-      key={person.Instructor_ID}
+      key={instructor.Instructor_ID}
       className=" border-2 border-bc flex flex-col bg-black2 w-75% shadow-lg text-white "
     >
       <div className="flex flex-col gap-2">
         <div className="flex flex-col items-center justify-center">
           <CgProfile size={100} />
-            <div className="font-bold text-2xl">{person.Instructor_FirstName} {person.Instructor_LastName} </div>
+            <div className="font-bold text-2xl">{instructor.Instructor_FirstName} {instructor.Instructor_LastName} </div>
             <div className="font-light text-md">Instructor</div>
-            <div className="flex flex-row  ">{stars(average(person.Instructor_Ratings))}</div>
+              {/* <div className="flex flex-row  ">{stars(average(instructor.Instructor_Ratings))}</div> */}
         </div>
         <div className="flex flex-row ">
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
-          <div className="text-white font-bold text-l">Personal Information</div>
+          <div className="text-white font-bold text-l">instructoral Information</div>
           <div className="flex flex-row justify-between">
             <div className="bg-black3 rounded-md flex flex-col gap-4 " >
            <div className="text-white text-l">Username</div>
           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-52  border-white rounded-md "
-          defaultValue= {person.Instructor_username}   
-         /> 
+          defaultValue= {instructor.Instructor_username} onChange = {handleUsername}/> 
            <div className="text-l"> First Name </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_FirstName} 
-         /> 
+          defaultValue= {instructor.Instructor_FirstName} onChange = {handleFirstName}/> 
           <div className="text-l">Last Name </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_LastName} 
-         /> 
-        
+          defaultValue= {instructor.Instructor_LastName} onChange = {handleLastName}/> 
+           <div className="text-l">Email </div>
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+          defaultValue= {instructor.Instructor_Email} onChange = {handleEmail}/> 
+
           <div className="text-l">Gender </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_Gender}
-         /> 
+          defaultValue= {instructor.Instructor_Gender} onChange = {handleGender}/> 
+
         <div className="text-l">Country of birth </div>
         <div className="text-black w-52">
           <CountrySelector
@@ -164,15 +177,24 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
           <div className="flex flex-col gap-2">
            <div>Biography</div>
            <input type="text"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52 h-72  border-white rounded-md"
-          defaultValue= {person.Instructor_Biography}
+          defaultValue= {instructor.Instructor_Biography}
          /> 
+          {/* <TextField
+                    required
+                    id="outlined-basic"
+                   
+                    variant="outlined"
+                    defaultValue={instructor.Instructor_Biography}
+                  /> */}
+
          
           </div>
           
           
           </div>
-           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
-                  Update
+          {/* onClick = {handleSubmit} */}
+           <button  className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
+                  Update 
                 </button>
           
           </div>
@@ -183,11 +205,11 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
         
           <div className="text-l">Username</div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_username}  
+          defaultValue= {instructor.Instructor_username}  
          /> 
          <div className="text-l">Email</div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_Email }  
+          defaultValue= {instructor.Instructor_Email }  
          /> 
           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
                   Update
@@ -202,20 +224,21 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
         
           <div className="text-l">Old password </div>
            <input readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-          value= {person.Instructor_Password}  
+          value= {instructor.Instructor_Password}  
          /> 
          <div className="text-l">New password </div>
            <input type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= ''  
+          defaultValue= ''  onChange={handleChangeP} 
          /> 
          <div className="text-l">Re-enter new password </div>
            <input  type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= ''
+          defaultValue= '' onChange={handleChangeP1}
          /> 
 
 
-          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
+          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={changePassword}>
                   Update
+                  
                 </button>
 
         </div>
@@ -228,7 +251,8 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
           <div className="text-white font-bold text-l">Reviews</div>
 
           <div className="flex flex-row gap-2">
-            {person.Instructor_Reviews.map((review,index) => (
+            {instructor.Instructor_Reviews?.map((review,index) => (
+
                 <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
                   {review}</div>    
             ))}
