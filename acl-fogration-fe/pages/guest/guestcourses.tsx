@@ -32,9 +32,7 @@ const guestcourses: NextPage = () => {
       <LayoutGuest>
         <div>
             <HeaderGuest/>
-          <GuestCourses/>
           <GuestCourses courses={CourseArray}/>
-        
         </div>
       </LayoutGuest>
       

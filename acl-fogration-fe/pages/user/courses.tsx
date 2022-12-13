@@ -5,17 +5,10 @@ import Head from "next/head";
 import UserCoursesCard from "../../components/molecules/UserCoursesCard";
 import HeaderUserCourses from "../../components/organisms/HeaderUserCourses";
 import axios from "axios";
-// interface Props {
-//   data: {
-//     song: string;
-//     artist: string;
-//     year: string;
-//   }[];
-// }
+
 
 const courses: NextPage = () => {
   var [CourseArray,setCourseArray]=useState([]);
-  localStorage.setItem("isCorp","1")
 
   
   function getCourses(){
@@ -49,25 +42,6 @@ const courses: NextPage = () => {
   );
 };
 
-// export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
-//   const data = [
-//     {
-//       song: 'The Sliding',
-//       artist: 'The Beatles',
-//       year: '1967',
-//     },
-//     {
-//       song: 'Witchy Woman',
-//       artist: 'The Beatles',
-//       year: '1967',
-//     },
-//   ];
 
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// };
 
 export default courses;
