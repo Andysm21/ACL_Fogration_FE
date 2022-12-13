@@ -3,130 +3,18 @@ import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
-const courses = [
-  {
-    _id: {
-      $oid: "636820e12887948f062b493e",
-    },
-    Course_ID: 4,
-    Course_Title: "Data structures & Algorithms",
-    Course_Subject: "Computer Science",
-    Course_Description: "Data Structures and Algorithms",
-    Course_Price: 0,
-    Course_Rating: 5,
-    Course_Instructor: "Malak",
-    Course_Hours: 5,
-    Course_Country: "Egypt",
-    Course_Discount: 10,
-    Course_Discount_Duration: 5,
-    Course_Subtitle: [
-      {
-        Subtitle_ID: 1,
-        Subtitle_Name: "S1",
-        Subtitle_Course_ID: "1",
-        Subtitle_Video: [
-          {
-            Video_ID: 1,
-            Video_Link:
-              "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-            Video_Subtitle: "S1",
-            Video_Description: "Introduction",
-            Video_Length: 10,
-          },
-        ],
-        Subtitle_Hours: "10",
-      },
-      {
-        Subtitle_ID: 2,
-        Subtitle_Name: "S2",
-        Subtitle_Course_ID: "1",
-        Subtitle_Video: [
-          {
-            Video_ID: 1,
-            Video_Link:
-              "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-            Video_Subtitle: "S1",
-            Video_Description: "Introduction",
-            Video_Length: 10,
-          },
-        ],
-        Subtitle_Hours: "10",
-      },
-    ],
-    Course_Trainee: [{ Trainee_ID: 1, Trainee_Name: "Ahmed" }],
-    Course_Review: ["Very Good Course"],
-    Course_Rate: ["zeft"],
-    Course_Exam: [
-      { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
-    ],
-  },
-  {
-    _id: {
-      $oid: "636820e12887948f062b493e",
-    },
-    Course_ID: 4,
-    Course_Title: "asda",
-    Course_Subject: "Computer Science",
-    Course_Description: "Data Structures and Algorithms",
-    Course_Price: 0,
-    Course_Rating: 5,
-    Course_Instructor: "Malak",
-    Course_Hours: 5,
-    Course_Country: "Egypt",
-    Course_Discount: 10,
-    Course_Discount_Duration: 5,
-    Course_Subtitle: [
-      {
-        Subtitle_ID: 1,
-        Subtitle_Name: "S1",
-        Subtitle_Course_ID: "1",
-        Subtitle_Video: [
-          {
-            Video_ID: 1,
-            Video_Link:
-              "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-            Video_Subtitle: "S1",
-            Video_Description: "Introduction",
-            Video_Length: 10,
-          },
-        ],
-        Subtitle_Hours: "10",
-      },
-      {
-        Subtitle_ID: 2,
-        Subtitle_Name: "S2",
-        Subtitle_Course_ID: "1",
-        Subtitle_Video: [
-          {
-            Video_ID: 1,
-            Video_Link:
-              "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-            Video_Subtitle: "S1",
-            Video_Description: "Introduction",
-            Video_Length: 10,
-          },
-        ],
-        Subtitle_Hours: "10",
-      },
-    ],
-    Course_Trainee: [{ Trainee_ID: 1, Trainee_Name: "Ahmed" }],
-    Course_Review: ["Very Good Course"],
-    Course_Rate: ["zeft"],
-    Course_Exam: [
-      { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
-    ],
-    Course_What_You_Will_Learn: [
-      "How to use React",
-      "How to use Redux",
-      "How to use Material UI",
-    ],
-  },
-];
+
+
+const Course_What_You_Will_Learn =[
+  "Learn how to use the most popular data structures",
+  "Learn how to use the most popular algorithms",
+  "Learn about new algorithms"]
 
 const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
-  if (courses.length === 0) {
-    return <div className="text-center "> No courses</div>;
-  }
+  console.log(course);
+  // if (courses.length === 0) {
+  //   return <div className="text-center ">No courses</div>;
+  // }
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -139,10 +27,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
     return stars;
   };
   return (
-    <div
-      key={course.Course_ID}
-      className=" flex flex-col bg-bc w-75% shadow-lg text-white"
-    >
+    <div key={course.Course_ID} className=" flex flex-col bg-bc w-75% shadow-lg text-white">
       {/* //div el eswd */}
       <div className="flex flex-row bg-bc justify-between mx-6 my-4">
         {/* //div el title bel kalam */}
@@ -156,12 +41,12 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
           <div className="bg-bc flex flex-col  gap-3 my-2">
             <div>{course.Course_Description}</div>
             <div className="flex flex-row">
-              {course.Course_Trainee.length} enrolled students, taught by{" "}
+              {course.Course_Trainee} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
-              <Link href="/[{course.Course_Instructor}]">
+              <Link href="/{course.Course_Instructor.Instructor_FirstName}">
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
-                  {course.Course_Instructor}
+                  {course.Course_Instructor.Instructor_FirstName}
                 </div>
               </Link>
             </div>
@@ -203,8 +88,8 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
           <div className="text-white font-bold text-l">What you will learn</div>
           <div className="flex flex-col gap-1">
             {/* //m7taga 23melha grid */}
-            {course.Course_What_You_Will_Learn.map((item) => (
-              <div className="flex flex-row gap-1 text-white items-center">
+            {Course_What_You_Will_Learn?.map((item,index) => (
+              <div className="flex flex-row gap-1 text-white items-center" key={index}>
                 <TiTick />
                 <div className="text-white">{item}</div>
               </div>
@@ -240,7 +125,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
         <h1 className="text-white font-bold text-3xl ">Course Content</h1>
-        {course.Course_Subtitle.map((subtitle) => {
+        {course.Course_Subtitle?.map((subtitle) => {
           return (
             <div>
               <div className="flex flex-col gap-2 ">

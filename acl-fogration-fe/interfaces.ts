@@ -19,7 +19,7 @@ export interface video {
 
 
 export interface exam {
-  Exam_ID: string;
+  Exam_ID: number;
   Exam_Question_ID: questions[];
   Exam_Grade: string;
   Exam_Instructor_ID: string;
