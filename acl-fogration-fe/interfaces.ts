@@ -19,9 +19,9 @@ export interface video {
 
 
 export interface exam {
-  Exam_ID: string;
+  Exam_ID: number;
   Exam_Question_ID: questions[];
-  Exam_Grade: string;
+  Exam_Grade: number;
   Exam_Instructor_ID: string;
   Exam_Course_ID: string;
 }
@@ -31,6 +31,16 @@ export interface questions {
   Question_choices: string[];
   Question_Correct_Answers: string;
   Question_Grade: string;
+}
+export interface instructor{
+  Instructor_ID: string;
+  Instructor_username: string;
+  Instructor_FirstName: string;
+  Instructor_LastName: string;
+  Instructor_Email: string;
+  Instructor_Password: string;
+
+
 }
 
 export interface course {

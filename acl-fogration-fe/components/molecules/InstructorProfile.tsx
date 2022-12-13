@@ -130,7 +130,7 @@ const InstructorProfile: React.FC<{ instructor }> = ({ instructor }) => {
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
           <div className="text-white font-bold text-l">instructoral Information</div>
           <div className="flex flex-row justify-between">
-            <div className="bg-black3 rounded-md flex flex-col gap-2 " >
+            <div className="bg-black3 rounded-md flex flex-col gap-4 " >
            <div className="text-white text-l">Username</div>
           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-52  border-white rounded-md "
           defaultValue= {instructor.Instructor_username}   
@@ -147,6 +147,7 @@ const InstructorProfile: React.FC<{ instructor }> = ({ instructor }) => {
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {instructor.Instructor_Email}
          /> 
+
           <div className="text-l">Gender </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {instructor.Instructor_Gender}
@@ -176,6 +177,7 @@ const InstructorProfile: React.FC<{ instructor }> = ({ instructor }) => {
                     variant="outlined"
                     defaultValue={instructor.Instructor_Biography}
                   /> */}
+
          
           </div>
           
@@ -239,6 +241,7 @@ const InstructorProfile: React.FC<{ instructor }> = ({ instructor }) => {
 
           <div className="flex flex-row gap-2">
             {instructor.Instructor_Reviews?.map((review,index) => (
+
                 <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
                   {review}</div>    
             ))}

@@ -1,5 +1,5 @@
 import React from "react";
-import UserCard from "../../components/molecules/InstructorProfile";
+import ViewInstructor from "../../components/molecules/ViewInstructor";
 import Layout from "../../components/templates/Layout";
 import {  course } from "../../interfaces";
 const person = {
@@ -70,14 +70,14 @@ const person = {
       Course_Exam: [
         { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
       ],
-    },
+    },  
   ],
 };
 const viewuser: React.FC<{ user }> = ({ user }) => {
   return (
     <div className="bg-bc h-screen">
       <Layout>
-        <UserCard user={person} />
+        <ViewInstructor user={person} />
       </Layout>
     </div>
   );

@@ -1,8 +1,10 @@
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
-import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
+import { BsGlobe2, BsPlayBtnFill ,} from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
+import {AiFillFilePdf} from "react-icons/ai"
 import { TbCertificate } from "react-icons/tb";
+import { useState } from "react";
 const isCorporate = true;
 const courses = [
   {
@@ -58,7 +60,8 @@ const courses = [
     Course_Review: ["Very Good Course"],
     Course_Rate: ["zeft"],
     Course_Exam: [
-      { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
+      { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: 50 },
+      { Exam_ID: "2", Exam_Question_ID: ["1", "2"], Exam_Grade: 90 },
     ],
   },
   {
@@ -139,6 +142,8 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
     }
     return stars;
   };
+    const [starsnum, setStarsnum] = useState(0);
+
   return (
     <div
       key={course.Course_ID}
@@ -172,6 +177,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
               <BsGlobe2 />
               {course.Course_Country}
             </div>
+ 
           </div>
         </div>
         {/* //div el video bel se3r wel button */}
@@ -194,6 +200,8 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
                 Enroll Now
               </button>
             </Link>
+
+            
 
           </div>
         </div>
@@ -275,6 +283,26 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
           );
         })}
       </div>
+        {/* exams of course */}
+        <div className="flex flex-col bg-black3 rounded-md m-6">
+          <div className=" text-white font-bold text-l mx-2">
+          Course Material
+        </div>
+        <div className="flex flex-row p-2">
+            {course.Course_Exam.map((item) => {
+              return(
+              <div key={course.Course_Exam.Exam_ID}  className="flex flex-col items-start ">
+                      <AiFillFilePdf size={100}/>
+                      <div className="items-center justify-center flex flex-col">
+                        <div className="text-l">Exam {item.Exam_ID}</div>
+                      <div className="text-l">{item.Exam_Grade} %</div>
+                       <div className="text-l">{item.Exam_Question_ID.length} Questions</div>
+                      </div>
+                    </div>
+              )
+            })}
+        </div>
+        </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
           <div className="text-white font-bold text-l">Reviews</div>
 

@@ -2,8 +2,9 @@ import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 
-const InstructorCoursesCard : React.FC<{courses}> = ({courses}) => {
 
+const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
+  
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
   }

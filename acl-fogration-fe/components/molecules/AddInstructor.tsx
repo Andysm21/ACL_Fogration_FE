@@ -26,13 +26,6 @@ interface Props {
   isOpen: boolean;
 }
 
-const facilities = [
-  { label: "Camera", id: 1 },
-  { label: "Projector", id: 2 },
-  { label: "Microphone", id: 3 },
-  { label: "TV", id: 4 },
-];
-
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<any, any>;
@@ -46,51 +39,24 @@ const AddInstructor: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const [location, setLocation] = React.useState("");
-  const handleChange = (event: SelectChangeEvent) => {
-    setLocation(event.target.value);
-  };
-
-  const [type, setType] = React.useState("");
-  const handleChange1 = (event: SelectChangeEvent) => {
-    setType(event.target.value);
-  };
-
-  const [status, setStatus] = React.useState("");
-  const handleChange2 = (event: SelectChangeEvent) => {
-    setStatus(event.target.value);
-  };
-
-  const [facility, setFacility] = React.useState("");
-  const facilityChange = (
-    event: React.SyntheticEvent,
-    value: any | Array<any>
-  ) => {
-    setFacility(value.map((val: any) => val.label));
-  };
-
-  const [floor, setFloor] = React.useState("");
-  const floorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFloor(event.target.value);
-  };
-
-  const [capacity, setCapacity] = React.useState("");
-  const capacityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCapacity(event.target.value);
-  };
-
-  const handleSubmit = () => {
-    console.log("submit");
-    const data = {
-      facility,
-      type,
-      status,
-      floor,
-      location,
-      capacity,
+    const [username, setUsername] = React.useState("");
+    const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setUsername(event.target.value);
     };
-    console.log(data);
-  };
+
+    const [password, setPassword] = React.useState("");
+    const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setPassword(event.target.value);
+    };
+
+    const handleSubmit = () => {
+      console.log("submit");
+      const data = {
+        username,
+        password,
+      };
+      console.log(data);
+    };
 
   return (
     <div>
@@ -116,14 +82,16 @@ const AddInstructor: React.FC<Props> = ({ handleClose, isOpen }) => {
                   required
                   id="outlined-basic"
                   label="Username"
-                  variant="outlined"
+                    variant="outlined"
+                    onChange={handleUsername}
                 />
 
                 <TextField
                   required
                   id="outlined-basic"
                   label="Password"
-                  variant="outlined"
+                    variant="outlined"
+                    onChange={handlePassword}
                 />
                 </div>
                 
