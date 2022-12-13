@@ -1,6 +1,8 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
+import { useEffect } from "react";
+
 const courses = [
   {
     _id: {
@@ -184,18 +186,15 @@ const course = {
     "Learn how to use the most popular data structures",
   ],
 };
+
+
+
 const GuestCourses = () => {
-  // const courses = [
-  //   { id: 1, name: "CSEN702", totalHours: 6, rating: 5, price: 40 },
-  //   { id: 2, name: "CSEN704", totalHours: 8, rating: 4, price: 40 },
-  //   {
-  //     id: 3,
-  //     name: "CSEN703",
-  //     totalHours: 4,
-  //     rating: 1,
-  //     price: 40,
-  //   },
-  // ];
+
+  const handleButtonClick = ()=>{
+    localStorage.setItem("Course",course.Course_ID+"")
+  }
+  useEffect(() => {handleButtonClick})
 
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
@@ -260,9 +259,9 @@ const GuestCourses = () => {
             </div>
             {/* //h1 el se3r */}
             <div className="flex flex-row justify-between my-2">
-              <Link href="guestviewcourse">
+              <Link href="course">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80">
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={handleButtonClick}>
                   View Course
                 </button>
               </Link>
