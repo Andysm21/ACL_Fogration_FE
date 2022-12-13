@@ -3,130 +3,13 @@ import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
-const courses = [
-  {
-    _id: {
-      $oid: "636820e12887948f062b493e",
-    },
-    Course_ID: 4,
-    Course_Title: "Data structures & Algorithms",
-    Course_Subject: "Computer Science",
-    Course_Description: "Data Structures and Algorithms",
-    Course_Price: 0,
-    Course_Rating: 5,
-    Course_Instructor: "Malak",
-    Course_Hours: 5,
-    Course_Country: "Egypt",
-    Course_Discount: 10,
-    Course_Discount_Duration: 5,
-    Course_Subtitle: [
-      {
-        Subtitle_ID: 1,
-        Subtitle_Name: "S1",
-        Subtitle_Course_ID: "1",
-        Subtitle_Video: [
-          {
-            Video_ID: 1,
-            Video_Link:
-              "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-            Video_Subtitle: "S1",
-            Video_Description: "Introduction",
-            Video_Length: 10,
-          },
-        ],
-        Subtitle_Hours: "10",
-      },
-      {
-        Subtitle_ID: 2,
-        Subtitle_Name: "S2",
-        Subtitle_Course_ID: "1",
-        Subtitle_Video: [
-          {
-            Video_ID: 1,
-            Video_Link:
-              "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-            Video_Subtitle: "S1",
-            Video_Description: "Introduction",
-            Video_Length: 10,
-          },
-        ],
-        Subtitle_Hours: "10",
-      },
-    ],
-    Course_Trainee: [{ Trainee_ID: 1, Trainee_Name: "Ahmed" }],
-    Course_Review: ["Very Good Course"],
-    Course_Rate: ["zeft"],
-    Course_Exam: [
-      { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
-    ],
-  },
-  {
-    _id: {
-      $oid: "636820e12887948f062b493e",
-    },
-    Course_ID: 4,
-    Course_Title: "asda",
-    Course_Subject: "Computer Science",
-    Course_Description: "Data Structures and Algorithms",
-    Course_Price: 0,
-    Course_Rating: 5,
-    Course_Instructor: "Malak",
-    Course_Hours: 5,
-    Course_Country: "Egypt",
-    Course_Discount: 10,
-    Course_Discount_Duration: 5,
-    Course_Subtitle: [
-      {
-        Subtitle_ID: 1,
-        Subtitle_Name: "S1",
-        Subtitle_Course_ID: "1",
-        Subtitle_Video: [
-          {
-            Video_ID: 1,
-            Video_Link:
-              "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-            Video_Subtitle: "S1",
-            Video_Description: "Introduction",
-            Video_Length: 10,
-          },
-        ],
-        Subtitle_Hours: "10",
-      },
-      {
-        Subtitle_ID: 2,
-        Subtitle_Name: "S2",
-        Subtitle_Course_ID: "1",
-        Subtitle_Video: [
-          {
-            Video_ID: 1,
-            Video_Link:
-              "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-            Video_Subtitle: "S1",
-            Video_Description: "Introduction",
-            Video_Length: 10,
-          },
-        ],
-        Subtitle_Hours: "10",
-      },
-    ],
-    Course_Trainee: [{ Trainee_ID: 1, Trainee_Name: "Ahmed" }],
-    Course_Review: ["Very Good Course"],
-    Course_Rate: ["zeft"],
-    Course_Exam: [
-      { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
-    ],
-    Course_What_You_Will_Learn: [
-      "How to use React",
-      "How to use Redux",
-      "How to use Material UI",
-    ],
-  },
-];
+import { useEffect, useState } from "react";
+
+  
+
+const Course_What_You_Will_Learn =["Learn new algorithms","Learn more  abour data structures and algorithms"]
 
 const InstructorCourseCard: React.FC<{ course }> = ({ course }) => {
-  if (courses.length === 0) {
-    return <div className="text-center "> No courses</div>;
-  }
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -138,6 +21,38 @@ const InstructorCourseCard: React.FC<{ course }> = ({ course }) => {
     }
     return stars;
   };
+
+
+const [type, setType ]= useState("");
+  useEffect(()=>{
+    localStorage.setItem("Type","Admin")
+    setType(localStorage.getItem("Type"));
+  })
+
+ const addExam =()=>{
+    
+     if(type=="Admin"){
+            return <div></div>
+            }
+        else{
+          return <div className="flex flex-col p-2">
+           <AiOutlineFileAdd size={100}/>
+            <div className="items-center justify-center flex ">
+                        Add Exam
+            </div>
+            </div>
+        }
+    
+ }
+
+ const viewGrade = (grade:string) => {
+    if(type=="Admin"){
+            return <div></div>
+            }
+        else{
+          return  <div className="text-l">{grade} %</div>
+        }
+ }
   return (
     <div
       key={course.Course_ID}
@@ -198,7 +113,7 @@ const InstructorCourseCard: React.FC<{ course }> = ({ course }) => {
           <div className="text-white font-bold text-l">What you will learn</div>
           <div className="flex flex-col gap-1">
             {/* //m7taga 23melha grid */}
-            {course.Course_What_You_Will_Learn.map((item) => (
+            {Course_What_You_Will_Learn.map((item) => (
               <div className="flex flex-row gap-1 text-white items-center">
                 <TiTick />
                 <div className="text-white">{item}</div>
@@ -283,20 +198,16 @@ const InstructorCourseCard: React.FC<{ course }> = ({ course }) => {
                       <AiFillFilePdf size={100}/>
                       <div className="items-center justify-center flex flex-col">
                         <div className="text-l">Exam {item.Exam_ID}</div>
-                      <div className="text-l">{item.Exam_Grade} %</div>
+
+                        {viewGrade(item.Exam_Grade)}
                        <div className="text-l">{item.Exam_Question_ID.length} Questions</div>
                       </div>
                     </div>
               )
             })}
         </div>
-       
-        <div className="flex flex-col p-2">
-        <AiOutlineFileAdd size={100}/>
-            <div className="items-center justify-center flex ">
-                        Add Exam
-            </div>
-        </div>
+          
+        {addExam()}
          </div>
         </div>
     </div>

@@ -200,7 +200,7 @@ const person = {
 };
 
 const ViewUser: React.FC<{ user }> = ({ user }) => {
-    var type="";
+    
     const average = (x) =>{
     let avg = 0;
     for(let i = 0;i< x.length ;i++){
@@ -231,12 +231,24 @@ const ViewUser: React.FC<{ user }> = ({ user }) => {
   // Default this to a country's code to preselect it
   const [country, setCountry] = useState('DE');
   const [starsnum, setStarsnum] = useState(0);
+  const [type, setType ]= useState("");
+
   useEffect(()=>{
     //localStorage.removeItem("Type")
-    localStorage.setItem("Type","IndividualUser")
-    type = localStorage.getItem("Type")
-    console.log(type)
+    localStorage.setItem("Type","CorporateUser")
+    setType(localStorage.getItem("Type"));
+   
   })
+ const isCorp =()=>{
+     console.log(type)
+     if(type=="IndividualUser"){
+            return <div className="font-light text-md">Trainee</div>
+            }
+        else{
+            return <div className="font-light text-md">Trainee in {person.User_Corporate}</div>
+        }
+    
+ }
 
   return (
     <div
@@ -248,7 +260,8 @@ const ViewUser: React.FC<{ user }> = ({ user }) => {
         <div className="flex flex-col items-center justify-center">
           <CgProfile size={100} />
             <div className="font-bold text-2xl">{person.User_FirstName} {person.User_LastName} </div>
-            <div className="font-light text-md">{type == "IndividualUser" ? "Trainee"  : "Trainee in " +person.User_Corporate}</div>
+            
+            <div className="font-light text-md">{isCorp()}</div>
 
         </div>
 
@@ -275,14 +288,8 @@ const ViewUser: React.FC<{ user }> = ({ user }) => {
          <div  className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
          >           {person.User_Country}
         </div>
-
-          </div>
-
-          
-          
-          </div>
-      
-          
+          </div>    
+          </div>    
           </div>
           
           <div className="w-1/2">
