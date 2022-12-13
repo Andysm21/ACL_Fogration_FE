@@ -6,6 +6,7 @@ import HeaderInstructorMyCourses from "../../components/organisms/HeaderInstruct
 import InstructorCoursesCard from "../../components/molecules/InstructorCoursesCard";
 import InstructorMyCoursesCard from "../../components/molecules/InstructorMyCoursesCard";
 import axios from 'axios'
+import Fiter from "../../components/molecules/Filter";
 
 // interface Props {
 //   data: {
@@ -24,15 +25,80 @@ const mycourses: NextPage = () => {
      }
     ).then((response) => {
       console.log(Number(localStorage.getItem("InstID")))
+      //console.log(localStorage.getItem("Test"))
 
       setCourseArray(response.data)
     }).catch((error) => console.log(error))
   }
-  useEffect(() =>{getCourses()
-    localStorage.setItem("InstID","2")
-  },[])
 
-  var x =useEffect(() =>{getCourses()},[])
+  function getCoursesFilterPrice(){
+    axios.post("http://localhost:8000/filterPriceInst",{
+     Instructor_ID: Number(localStorage.getItem("InstID")),
+     FilterPrice1: Number(localStorage.getItem("MinPrice")),
+     FilterPrice2:Number(localStorage.getItem("MaxPrice"))
+    }
+   ).then((response) => {
+      //console.log(Number(localStorage.getItem("InstID")))
+      // console.log(Number(localStorage.getItem("MinPrice")))
+      // console.log(Number(localStorage.getItem("MaxPrice")))
+    // console.log("Hello")
+    // console.log(response.data)
+     setCourseArray(response.data)
+   }).catch((error) => console.log(error))
+ }
+
+ function getCoursesFilterSubject(){
+  axios.post("http://localhost:8000/filterSubjectInst",{
+   Instructor_ID: Number(localStorage.getItem("InstID")),
+   FilterSubject: localStorage.getItem("Subject"),
+  }
+ ).then((response) => {
+   //console.log(Number(localStorage.getItem("InstID")))
+   //console.log(Number(localStorage.getItem("Subject")))
+   //console.log(localStorage.getItem("H1"))
+   setCourseArray(response.data)
+ }).catch((error) => console.log(error))
+}
+
+function getCoursesFilterSubjectandPrice(){
+  axios.post("http://localhost:8000/filterPriceAndSubjectInst",{
+   Instructor_ID: Number(localStorage.getItem("InstID")),
+   FilterPrice1: Number(localStorage.getItem("MinPrice")),
+   FilterPrice2:Number(localStorage.getItem("MaxPrice")),
+   FilterSubject: localStorage.getItem("Subject")
+  }
+ ).then((response) => {
+   //console.log(Number(localStorage.getItem("InstID")))
+   //console.log(Number(localStorage.getItem("Subject")))
+   //console.log(localStorage.getItem("H1"))
+   setCourseArray(response.data)
+ }).catch((error) => console.log(error))
+}
+
+
+useEffect(()=>{
+  if(localStorage.getItem("Subject")==""){
+    if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+         getCourses()
+          localStorage.setItem("InstID","2")
+    }
+    else{
+      getCoursesFilterPrice()
+        localStorage.setItem("InstID","2")
+    }
+}
+else{
+  if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+    getCoursesFilterSubject()
+    localStorage.setItem("InstID","2")
+}
+  else{
+    getCoursesFilterSubjectandPrice()
+    localStorage.setItem("InstID","2")
+  }
+}
+})
+
   return (
     <div className="bg-bc h-screen">
       <Head>

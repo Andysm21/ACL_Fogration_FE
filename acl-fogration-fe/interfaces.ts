@@ -34,16 +34,14 @@ export interface questions {
 }
 
 export interface course {
-  _id: {
-    $oid: string;
-  };
+
   Course_ID: number; //course id m7tag yetzabat string
   Course_Title: string;
   Course_Subject: string;
   Course_Description: string;
   Course_Price: number;
   Course_Rating: number;
-  Course_Instructor: string;
+  Course_Instructor: number;
   Course_Hours: number;
   Course_Country: string;
   Course_Discount: number;
@@ -56,9 +54,7 @@ export interface course {
   Course_What_You_Will_Learn: string[];
 };
 export interface user {
-  _id: {
-    $oid: string;
-  },
+
   User_ID: number;
   User_Name: string;
   User_Email: string;
@@ -71,6 +67,24 @@ export interface user {
   User_Courses: course[];
   User_isCorporate: boolean;
 };
+export interface instructor {
+
+  Instructor_ID: number;
+  Instructor_FirstName: string;
+  Instructor_LastName: string;
+  Instructor_Email: string;
+  Instructor_Password: string;
+  Instructor_Country: string;
+  Instructor_Gender: string;
+  Instructor_Biography: string;
+  Instructor_Ratings: number[];
+  Instructor_Reviews: string[];
+  Instructor_Agreement: Boolean;
+  Instructor_Courses: course[];
+};
 export interface users {
   users: user[];
+}
+export interface courses {
+  courses: course[];
 }
