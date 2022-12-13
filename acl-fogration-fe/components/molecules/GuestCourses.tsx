@@ -5,9 +5,9 @@ import {courses} from '../../interfaces'
 const GuestCourses:React.FC<{ courses }> = ({courses }) => {
 
 
-  // if (courses.length === 0) {
-  //   return <div className="text-center "> No courses</div>;
-  // }
+  if (courses.length === 0) {
+    return <div className="text-center "> No courses</div>;
+  }
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {

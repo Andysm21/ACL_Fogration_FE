@@ -25,7 +25,6 @@ const mycourses: NextPage = () => {
      }
     ).then((response) => {
       console.log(Number(localStorage.getItem("InstID")))
-      //console.log(localStorage.getItem("Test"))
 
       setCourseArray(response.data)
     }).catch((error) => console.log(error))
@@ -38,11 +37,6 @@ const mycourses: NextPage = () => {
      FilterPrice2:Number(localStorage.getItem("MaxPrice"))
     }
    ).then((response) => {
-      //console.log(Number(localStorage.getItem("InstID")))
-      // console.log(Number(localStorage.getItem("MinPrice")))
-      // console.log(Number(localStorage.getItem("MaxPrice")))
-    // console.log("Hello")
-    // console.log(response.data)
      setCourseArray(response.data)
    }).catch((error) => console.log(error))
  }
@@ -53,9 +47,6 @@ const mycourses: NextPage = () => {
    FilterSubject: localStorage.getItem("Subject"),
   }
  ).then((response) => {
-   //console.log(Number(localStorage.getItem("InstID")))
-   //console.log(Number(localStorage.getItem("Subject")))
-   //console.log(localStorage.getItem("H1"))
    setCourseArray(response.data)
  }).catch((error) => console.log(error))
 }
@@ -68,9 +59,6 @@ function getCoursesFilterSubjectandPrice(){
    FilterSubject: localStorage.getItem("Subject")
   }
  ).then((response) => {
-   //console.log(Number(localStorage.getItem("InstID")))
-   //console.log(Number(localStorage.getItem("Subject")))
-   //console.log(localStorage.getItem("H1"))
    setCourseArray(response.data)
  }).catch((error) => console.log(error))
 }

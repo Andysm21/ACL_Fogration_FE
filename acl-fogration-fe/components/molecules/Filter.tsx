@@ -75,6 +75,7 @@ const Filter: React.FC<Props> = ({ handleClose, isOpen }) => {
       minPrice
     };
     localStorage.setItem("Subject",data.subject)
+    localStorage.setItem("Rating",data.rating)
     localStorage.setItem("MaxPrice",data.maxPrice)
     localStorage.setItem("MinPrice",data.minPrice)
 
