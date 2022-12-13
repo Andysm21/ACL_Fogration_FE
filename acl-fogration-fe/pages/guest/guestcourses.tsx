@@ -3,6 +3,7 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import LayoutGuest from "../../components/templates/LayoutGuest";
 import GuestCourses from "../../components/molecules/GuestCourses";
+import HeaderGuest from "../../components/organisms/HeaderGuest";
 
 
 
@@ -16,7 +17,7 @@ const guestcourses: NextPage = () => {
       </Head>
       <LayoutGuest>
         <div>
-            
+            <HeaderGuest/>
           <GuestCourses/>
         
         </div>

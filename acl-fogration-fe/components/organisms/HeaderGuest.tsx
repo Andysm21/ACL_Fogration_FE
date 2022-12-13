@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 
-const HeaderInstructorCourses = ({
+const HeaderGuest = ({
   page,
   total,
   next,
@@ -84,4 +84,4 @@ const HeaderInstructorCourses = ({
   );
 };
 
-export default HeaderInstructorCourses;
+export default HeaderGuest;

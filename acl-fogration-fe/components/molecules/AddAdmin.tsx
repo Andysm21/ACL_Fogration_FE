@@ -86,11 +86,11 @@ const AddAdmin: React.FC<Props> = ({ handleClose, isOpen }) => {
               >
                 <div className="grid grid-column gap-y-4 w-96 m-2 ">
                 <TextField
-                  required
-                  id="outlined-basic"
-                  label="Username"
-                  variant="outlined"
-                  onChange={handleUsername}
+                    required
+                    id="outlined-basic"
+                    label="Username"
+                    variant="outlined"
+                    onChange={handleUsername}
                 />
 
                 <TextField
