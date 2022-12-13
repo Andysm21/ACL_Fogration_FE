@@ -33,13 +33,13 @@ function Login() {
         <div className="  flex flex-col items-center justify-start rounded-lg bg-bc py-6 px-4">
           <div className="flex flex-col items-center justify-center gap-2">
             <input
-              className="bg-black3 rounded-md p-3 w-72"
+              className="bg-black3 rounded-md p-3 w-72 text-white"
               id="username"
               placeholder="Username"
               type="text"
             />
             <input
-              className="bg-black3 rounded-md p-3 w-72 "
+              className="bg-black3 rounded-md p-3 w-72 text-white"
               id="password"
               placeholder="Password"
               type="password"
@@ -55,7 +55,7 @@ function Login() {
             </Link>
             <div className="flex flex-col items-center justify-center underline text-violet-400 ">
               <Link
-                href="/"
+                href="/guest/enterEmail"
                 onClick={() => {
                   console.info("I'm a button.");
                 }}

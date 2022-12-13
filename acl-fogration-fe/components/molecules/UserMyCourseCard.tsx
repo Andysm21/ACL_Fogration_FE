@@ -1,8 +1,9 @@
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
+import { useState } from "react";
 const courses = [
   {
     _id: {
@@ -138,6 +139,8 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
     }
     return stars;
   };
+
+  const [starsnum, setStarsnum] = useState(0);
   return (
     <div
       key={course.Course_ID}
@@ -186,6 +189,17 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
             <h1 className=" text-violet-400 text-4xl font-bold ">
               $${course.Course_Price}
             </h1>
+
+                                    <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
+                <div onClick={() => {setStarsnum(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                 <div onClick={() => {setStarsnum(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  {/*  save the rating in the user  */}
+
+                
+        </div>
 
 
           </div>

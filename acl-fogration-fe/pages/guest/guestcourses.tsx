@@ -3,6 +3,10 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import LayoutGuest from "../../components/templates/LayoutGuest";
 import GuestCourses from "../../components/molecules/GuestCourses";
+
+import HeaderGuest from "../../components/organisms/HeaderGuest";
+import {Routes, Route, useNavigate} from 'react-router-dom';
+
 import {useState} from 'react';
 import axios  from 'axios';
 
@@ -19,6 +23,7 @@ const guestcourses: NextPage = () => {
       setCourseArray(response.data)
     }).catch((error) => console.log(error))
   }
+
 
   function getCoursesFilterPrice(){
     axios.post("http://localhost:8000/filterPrice",{
@@ -87,6 +92,7 @@ useEffect(()=>{
 // }
 // })
 
+
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -96,8 +102,8 @@ useEffect(()=>{
       </Head>
       <LayoutGuest>
         <div>
+            <HeaderGuest/>
           <GuestCourses courses={CourseArray}/>
-        
         </div>
       </LayoutGuest>
       

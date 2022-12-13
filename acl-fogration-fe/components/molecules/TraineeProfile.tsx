@@ -129,9 +129,9 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
             {person.User_isCorporate && <div className="font-light text-md"> {person.User_Corporate}</div> }
         </div>
         <div className="flex flex-row ">
-          <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
+          <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2 gap-5">
           <div className="text-white font-bold text-l">Personal Information</div>
-            <div className="bg-black3 rounded-md flex flex-col gap-2 " >
+            <div className="bg-black3 rounded-md flex flex-col gap-4 " >
            <div className="text-white text-l">Username</div>
           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-52  border-white rounded-md "
           defaultValue= {person.User_username}   
@@ -144,10 +144,7 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {person.User_LastName} 
          /> 
-           <div className="text-l">Email </div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.User_Email}
-         /> 
+         
           <div className="text-l">Gender </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {person.User_Gender}

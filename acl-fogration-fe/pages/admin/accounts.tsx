@@ -290,13 +290,13 @@ const people = [
   // },
 ];
 
-const accounts: React.FC<{ accounts }> = ({ accounts }) => {
+const accounts: React.FC<{ users }> = ({ users }) => {
   return (
     <div className="bg-bc h-screen">
       
       <Layout>
         <HeaderAccounts/>
-        <UsersCard accounts={people} />
+        <UsersCard users={people} />
       </Layout>
       
     </div>
