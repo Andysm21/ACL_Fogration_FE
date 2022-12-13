@@ -22,24 +22,12 @@ function getInstProf(){
   }
  ).then((response) => {
    setPerson(response.data)
-   console.log(response.data)
  }).catch((error) => console.log(error))
 }
 
-function changePassword(){
-  axios.post("http://localhost:8000/changePassword",{
-    x:2,
-    pass: localStorage.getItem("NewPassword"),
-    type:localStorage.getItem("type")
-  }
- ).then((response) => {
-   setPerson(response.data)
-   console.log(response.data)
- }).catch((error) => console.log(error))
-}
+
 useEffect(()=>{
   getInstProf();
-  console.log(instructor)
 })
 
   return (

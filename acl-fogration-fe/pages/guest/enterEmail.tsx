@@ -47,6 +47,7 @@ function enterEmail() {
             {/* adding login button */}
             <Link href="/guest/login">
               <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white" onClick ={handleSubmit}>
+
                 Send email
               </button>
             </Link>
