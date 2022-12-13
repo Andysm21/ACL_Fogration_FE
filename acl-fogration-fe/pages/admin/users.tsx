@@ -1,7 +1,6 @@
 import React from "react";
 import UsersCard from "../../components/molecules/UsersCard";
 import Layout from "../../components/templates/Layout";
-
 const people = [
   {
     _id: {
@@ -11,7 +10,6 @@ const people = [
     User_Name: "Pasha",
     User_Email: "Pasha@gmail.com",
     User_Password: "1234",
-    User_Role: "Student",
     User_Country: "Egypt",
     User_City: "Berlin",
     User_Address: "Alexanderplatz",
@@ -82,7 +80,6 @@ const people = [
     User_Name: "Hassan",
     User_Email: "Pasha@gmail.com",
     User_Password: "1234",
-    User_Role: "Student",
     User_Country: "Egypt",
     User_City: "Berlin",
     User_Address: "Alexanderplatz",
@@ -154,9 +151,7 @@ const users: React.FC<{ users }> = ({ users }) => {
       </Layout>
     </div>
   );
-  {
-    console.log(users);
-  }
+ 
 };
 
 export default users;

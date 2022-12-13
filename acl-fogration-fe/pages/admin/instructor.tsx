@@ -1,10 +1,6 @@
-import React from 'react'
-import Layout from '../../components/templates/Layout'
-import InstructorProfile from '../../components/molecules/InstructorProfile';
-import IndividualUserProfile from '../../components/molecules/IndividualUserProfile';
-import CorporateUserProfile from '../../components/molecules/TraineeProfile';
-import TraineeProfile from '../../components/molecules/TraineeProfile';
-
+import React from "react";
+import ViewInstructor from "../../components/molecules/ViewInstructor";
+import Layout from "../../components/templates/Layout";
 const person = {
   _id: {
     $oid: "636820e12887948f062b493e",
@@ -73,23 +69,17 @@ const person = {
       Course_Exam: [
         { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
       ],
-    },
+    },  
   ],
 };
-const profile = () => {
+const instructor: React.FC<{ user }> = ({ user }) => {
   return (
-    <div>
-        <Layout>
-        <div>
-            <InstructorProfile user={person} />
-            {/* <IndividualUserProfile user={person}/> */}
-            {/* <CorporateUserProfile user={person}/> */}
-            {/* <TraineeProfile user={person}/> */}
-
-        </div>
+    <div className="bg-bc h-screen">
+      <Layout>
+        <ViewInstructor user={person} />
       </Layout>
     </div>
-  )
-}
+  );
+};
 
-export default profile
+export default instructor;

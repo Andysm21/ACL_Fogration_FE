@@ -130,7 +130,7 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
           <div className="text-white font-bold text-l">Personal Information</div>
           <div className="flex flex-row justify-between">
-            <div className="bg-black3 rounded-md flex flex-col gap-2 " >
+            <div className="bg-black3 rounded-md flex flex-col gap-4 " >
            <div className="text-white text-l">Username</div>
           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-52  border-white rounded-md "
           defaultValue= {person.Instructor_username}   
@@ -143,10 +143,7 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {person.Instructor_LastName} 
          /> 
-           <div className="text-l">Email </div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {person.Instructor_Email}
-         /> 
+        
           <div className="text-l">Gender </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {person.Instructor_Gender}
@@ -169,13 +166,6 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
            <input type="text"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52 h-72  border-white rounded-md"
           defaultValue= {person.Instructor_Biography}
          /> 
-          {/* <TextField
-                    required
-                    id="outlined-basic"
-                   
-                    variant="outlined"
-                    defaultValue={person.Instructor_Biography}
-                  /> */}
          
           </div>
           

@@ -176,7 +176,22 @@ const course = {
           Question_Grade: "A",
         },
       ],
-      Exam_Grade: "A",
+      Exam_Grade: 90,
+      Exam_Instructor_ID: "123",
+      Exam_Course_ID: "4",
+    },
+    {
+      Exam_ID: "2",
+      Exam_Question_ID: [
+        {
+          Question_ID: "1",
+          Question_Name: "Ex 1",
+          Question_choices: ["a", "b", "c", "d"],
+          Question_Correct_Answers: "a b d c",
+          Question_Grade: "A",
+        },
+      ],
+      Exam_Grade: 80,
       Exam_Instructor_ID: "123",
       Exam_Course_ID: "4",
     },

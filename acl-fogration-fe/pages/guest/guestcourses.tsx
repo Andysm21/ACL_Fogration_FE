@@ -31,6 +31,7 @@ const guestcourses: NextPage = () => {
       </Head>
       <LayoutGuest>
         <div>
+
             <HeaderGuest/>
           <GuestCourses courses={CourseArray}/>
         </div>
