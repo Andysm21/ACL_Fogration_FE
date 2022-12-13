@@ -228,8 +228,8 @@ const InstructorProfile: React.FC<{ user }> = ({ user }) => {
           <div className="text-white font-bold text-l">Reviews</div>
 
           <div className="flex flex-row gap-2">
-            {person.Instructor_Reviews.map((review) => (
-                <div key={person.Instructor_ID} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
+            {person.Instructor_Reviews.map((review,index) => (
+                <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
                   {review}</div>    
             ))}
           </div>
