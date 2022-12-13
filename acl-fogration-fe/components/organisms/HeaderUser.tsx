@@ -2,6 +2,8 @@ import React from "react";
 import AddAdmin from "../molecules/AddAdmin";
 import AddInstructor from "../molecules/AddInstructor";
 import AddTrainee from "../molecules/AddTrainee";
+import SearchIcon from "@mui/icons-material/Search";
+
 
 
 
@@ -43,46 +45,63 @@ const HeaderUser = ({
     setOpen3(false);
   };
 
-  return (
-    <div className="flex w-full items-center justify-between bg-black2 py-2  px-4">
-      <div className="flex items-center">
-        <div className="">
-          <input
-            type="text"
-            className=" focus:shadow-outline-blue focus:border-blue-300 box-content w-[100%] rounded-md bg-white py-2 px-4 text-gray-700 placeholder-gray-500 transition duration-150 ease-in-out focus:outline-none"
-            placeholder="Search"
-          />
-        </div>
-      </div>
-      <div className="flex flex-row gap-1">
-        <button
-          className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey"
-          onClick={handleClickOpen}
-        >
-          Add Admin
-        </button>
-        <AddAdmin isOpen={open} handleClose={handleClose} />
+        const [search, setSearch] = React.useState("");
+        const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+          setSearch(event.target.value);
+        };
 
-        <button
-          className=" rounded-md border border-black px-4 py-2 text-black  hover:bg-white hover:text-darkgrey"
-          onClick={handleClickOpen2}
-        >
-          Add Instructor
-        </button>
-        <AddInstructor isOpen={open2} handleClose={handleClose2} />
+        const handleSubmit = () => {
+          console.log("submit");
+          const data = {
+            search,
+          };
+          console.log(data);
+        };
 
-        <button
-          className=" rounded-md border border-black px-4 py-2 text-black  hover:bg-white hover:text-darkgrey"
-          onClick={handleClickOpen3}
-        >
-          Add Trainee
-        </button>
-        <AddTrainee isOpen={open3} handleClose={handleClose3} />
-        <div>
-        </div>
-      </div>
-    </div>
-  );
+        return (
+          <div className="flex flex-row w-full items-center justify-between bg-black2 py-2  px-4">
+            <div className="flex items-center">
+              <div className="">
+                <input
+                  type="text"
+                  className=" focus:shadow-outline-blue focus:border-blue-300 box-content w-[100%] rounded-md bg-white py-2 px-4 text-gray-700 placeholder-gray-500 transition duration-150 ease-in-out focus:outline-none"
+                  placeholder="Search"
+                  onChange={handleSearch}
+                />
+
+                <div onClick={handleSubmit}>
+                  <SearchIcon />
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row gap-1">
+              <button
+                className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey"
+                onClick={handleClickOpen}
+              >
+                Add Admin
+              </button>
+              <AddAdmin isOpen={open} handleClose={handleClose} />
+
+              <button
+                className=" rounded-md border border-black px-4 py-2 text-black  hover:bg-white hover:text-darkgrey"
+                onClick={handleClickOpen2}
+              >
+                Add Instructor
+              </button>
+              <AddInstructor isOpen={open2} handleClose={handleClose2} />
+
+              <button
+                className=" rounded-md border border-black px-4 py-2 text-black  hover:bg-white hover:text-darkgrey"
+                onClick={handleClickOpen3}
+              >
+                Add Trainee
+              </button>
+              <AddTrainee isOpen={open3} handleClose={handleClose3} />
+              <div></div>
+            </div>
+          </div>
+        );
 };
 
 export default HeaderUser;

@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/templates/Layout";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import UserCoursesCard from "../../components/molecules/UserCoursesCard";
-// interface Props {
-//   data: {
-//     song: string;
-//     artist: string;
-//     year: string;
-//   }[];
-// }
+import HeaderUserCourses from "../../components/organisms/HeaderUserCourses";
+import axios from "axios";
+
 
 const courses: NextPage = () => {
+  var [CourseArray,setCourseArray]=useState([]);
+
+  
+  function getCourses(){
+     axios.get("http://localhost:8000/viewCoursesCorporate"
+    ).then((response) => {
+      console.log("Hello")
+      console.log(response.data)
+      setCourseArray(response.data)
+    }).catch((error) => console.log(error))
+  }
+  
+  var x =useEffect(() =>{getCourses()},[])
+
+
+
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -22,32 +34,14 @@ const courses: NextPage = () => {
 
       <Layout>
         <div>
-          <UserCoursesCard/>
+          <HeaderUserCourses/>
+          <UserCoursesCard courses={CourseArray}/>
         </div>
       </Layout>
     </div>
   );
 };
 
-// export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
-//   const data = [
-//     {
-//       song: 'The Sliding',
-//       artist: 'The Beatles',
-//       year: '1967',
-//     },
-//     {
-//       song: 'Witchy Woman',
-//       artist: 'The Beatles',
-//       year: '1967',
-//     },
-//   ];
 
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// };
 
 export default courses;

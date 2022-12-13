@@ -2,7 +2,7 @@ import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
-import HeaderCourse from "../../components/organisms/HeaderCourse";
+import HeaderInstructorMyCourses from "../../components/organisms/HeaderInstructorMyCourses";
 import InstructorCoursesCard from "../../components/molecules/InstructorCoursesCard";
 import InstructorMyCoursesCard from "../../components/molecules/InstructorMyCoursesCard";
 // interface Props {
@@ -24,7 +24,7 @@ const mycourses: NextPage = () => {
 
       <Layout>
         <div>
-          <HeaderCourse/>
+          <HeaderInstructorMyCourses/>
 
           <InstructorMyCoursesCard/>
         </div>
