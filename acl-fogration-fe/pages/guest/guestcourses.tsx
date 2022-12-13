@@ -63,33 +63,30 @@ function getCoursesFilterRating(){
 }
 
 useEffect(()=>{
-  getCourses()
+  if(localStorage.getItem("Subject")==""){
+    if(localStorage.getItem("Rating")==""){
+      if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+         getCourses()
+      }
+      else{
+        getCoursesFilterPrice()
+      }
+    }
+    else{
+        getCoursesFilterRating()
+    }
+}
+else{
+  if(localStorage.getItem("Rating")==""){
+    if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+      getCoursesFilterSubject()
+    }
+  }
+  else{
+    getCoursesFilterSubjectandRating()
+  }
+}
 })
-// useEffect(()=>{
-//   if(localStorage.getItem("Subject")==""){
-//     if(localStorage.getItem("Rating")==" "){
-//       if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
-//          getCourses()
-//       }
-//       else{
-//         getCoursesFilterPrice()
-//       }
-//     }
-//     else{
-//         getCoursesFilterRating()
-//     }
-// }
-// else{
-//   if(localStorage.getItem("Rating")==" "){
-//     if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
-//       getCoursesFilterSubject()
-//     }
-//   }
-//   else{
-//     getCoursesFilterSubjectandRating()
-//   }
-// }
-// })
 
 
   return (
