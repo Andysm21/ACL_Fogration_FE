@@ -3,8 +3,10 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import LayoutGuest from "../../components/templates/LayoutGuest";
 import GuestCourses from "../../components/molecules/GuestCourses";
+
 import HeaderGuest from "../../components/organisms/HeaderGuest";
 import {Routes, Route, useNavigate} from 'react-router-dom';
+
 import {useState} from 'react';
 import axios  from 'axios';
 
@@ -12,6 +14,7 @@ import axios  from 'axios';
 
 const guestcourses: NextPage = () => {
   var [CourseArray,setCourseArray]=useState([]);
+
   function getCourses(){
      axios.get("http://localhost:8000/viewCoursesALL"
     ).then((response) => {
@@ -20,7 +23,75 @@ const guestcourses: NextPage = () => {
       setCourseArray(response.data)
     }).catch((error) => console.log(error))
   }
-  var x =useEffect(() =>{getCourses()},[])
+
+
+  function getCoursesFilterPrice(){
+    axios.post("http://localhost:8000/filterPrice",{
+     FilterPrice1: Number(localStorage.getItem("MinPrice")),
+     FilterPrice2:Number(localStorage.getItem("MaxPrice"))
+    }
+   ).then((response) => {
+     setCourseArray(response.data)
+   }).catch((error) => console.log(error))
+ }
+
+ function getCoursesFilterSubject(){
+  axios.post("http://localhost:8000/filterSubject",{
+    Course_Subject: localStorage.getItem("Subject"),
+  }
+ ).then((response) => {
+   setCourseArray(response.data)
+ }).catch((error) => console.log(error))
+}
+
+function getCoursesFilterSubjectandRating(){
+  axios.post("http://localhost:8000/filterSubjectRating",{
+    Course_Subject: localStorage.getItem("Subject"),
+    Course_Rating: localStorage.getItem("Rating")
+  }
+ ).then((response) => {
+   setCourseArray(response.data)
+ }).catch((error) => console.log(error))
+}
+
+function getCoursesFilterRating(){
+  axios.post("http://localhost:8000/filterRating",{
+    Course_Rating: localStorage.getItem("Rating")
+  }
+ ).then((response) => {
+   setCourseArray(response.data)
+ }).catch((error) => console.log(error))
+}
+
+useEffect(()=>{
+  getCourses()
+})
+// useEffect(()=>{
+//   if(localStorage.getItem("Subject")==""){
+//     if(localStorage.getItem("Rating")==" "){
+//       if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+//          getCourses()
+//       }
+//       else{
+//         getCoursesFilterPrice()
+//       }
+//     }
+//     else{
+//         getCoursesFilterRating()
+//     }
+// }
+// else{
+//   if(localStorage.getItem("Rating")==" "){
+//     if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+//       getCoursesFilterSubject()
+//     }
+//   }
+//   else{
+//     getCoursesFilterSubjectandRating()
+//   }
+// }
+// })
+
 
   return (
     <div className="bg-bc h-screen">
@@ -31,7 +102,6 @@ const guestcourses: NextPage = () => {
       </Head>
       <LayoutGuest>
         <div>
-
             <HeaderGuest/>
           <GuestCourses courses={CourseArray}/>
         </div>

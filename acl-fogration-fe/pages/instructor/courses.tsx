@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 import InstructorCoursesCard from "../../components/molecules/InstructorCoursesCard";
 import HeaderInstructorCourses from "../../components/organisms/HeaderInstructorCourses";
+import {useState} from 'react';
+import axios  from 'axios';
 
 const coursesArray = [
   {
@@ -189,6 +191,79 @@ const course = {
   ],
 };
 const courses: NextPage = () => {
+  var [courseArray,setCourseArray]=useState([]);
+
+  function getCourses(){
+     axios.get("http://localhost:8000/viewCoursesALL"
+    ).then((response) => {
+      setCourseArray(response.data)
+    }).catch((error) => console.log(error))
+  }
+
+  function getCoursesFilterPrice(){
+    axios.post("http://localhost:8000/filterPrice",{
+     FilterPrice1: Number(localStorage.getItem("MinPrice")),
+     FilterPrice2:Number(localStorage.getItem("MaxPrice"))
+    }
+   ).then((response) => {
+     setCourseArray(response.data)
+   }).catch((error) => console.log(error))
+ }
+
+ function getCoursesFilterSubject(){
+  axios.post("http://localhost:8000/filterSubject",{
+    Course_Subject: localStorage.getItem("Subject"),
+  }
+ ).then((response) => {
+   setCourseArray(response.data)
+ }).catch((error) => console.log(error))
+}
+
+function getCoursesFilterSubjectandRating(){
+  axios.post("http://localhost:8000/filterSubjectRating",{
+    Course_Subject: localStorage.getItem("Subject"),
+    Course_Rating: localStorage.getItem("Rating")
+  }
+ ).then((response) => {
+   setCourseArray(response.data)
+ }).catch((error) => console.log(error))
+}
+
+function getCoursesFilterRating(){
+  axios.post("http://localhost:8000/filterRating",{
+    Course_Rating: localStorage.getItem("Rating")
+  }
+ ).then((response) => {
+   setCourseArray(response.data)
+ }).catch((error) => console.log(error))
+}
+
+useEffect(()=>{
+  if(localStorage.getItem("Subject")==""){
+    if(localStorage.getItem("Rating")==""){
+      if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+         getCourses()
+      }
+      else{
+        getCoursesFilterPrice()
+      }
+    }
+    else{
+        getCoursesFilterRating()
+    }
+}
+else{
+  if(localStorage.getItem("Rating")==""){
+    if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+      getCoursesFilterSubject()
+    }
+  }
+  else{
+    getCoursesFilterSubjectandRating()
+  }
+}
+})
+
   return (
     <div className="bg-bc h-screen">
       <Head>

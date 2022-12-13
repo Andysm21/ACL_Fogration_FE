@@ -1,5 +1,9 @@
+import { RiProjector2Line } from "react-icons/ri";
+import { GiOldMicrophone } from "react-icons/gi";
+import { HiVideoCamera } from "react-icons/hi";
 import { AiFillStar } from "react-icons/ai";
 import { Button } from "@mui/material";
+
 import Link from "next/link";
 
 const CourseCard:React.FC<{course}>= ({course}) => {
@@ -16,6 +20,7 @@ const CourseCard:React.FC<{course}>= ({course}) => {
   };
   return (
     <div className="m-2 grid grid-cols-1 place-items-center ">
+
       
         <div
           key={course.id}
@@ -28,6 +33,7 @@ const CourseCard:React.FC<{course}>= ({course}) => {
           <div className="text-l">{course.price} $$</div>
           <div className="text-l"> {course.totalHours} Credit Hours</div>
           <Button variant="contained">Book Course</Button>
+
 
           {/* //Course content  */}
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
@@ -88,10 +94,10 @@ const CourseCard:React.FC<{course}>= ({course}) => {
         </div>
 
       
+
     </div>
   );
 
 };
-
 
 export default CourseCard;
