@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/templates/Layout";
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import UserCoursesCard from "../../components/molecules/UserCoursesCard";
 import HeaderUserCourses from "../../components/organisms/HeaderUserCourses";

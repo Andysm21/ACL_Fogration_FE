@@ -17,7 +17,7 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-function password_reset() {
+function adminPasswordReset() {
   const router = useRouter();
   const [value, setValue] = React.useState<Date | null>();
 
@@ -61,4 +61,4 @@ function password_reset() {
   );
 }
 
-export default password_reset;
+export default adminPasswordReset;
