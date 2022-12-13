@@ -85,7 +85,21 @@ const profile = () => {
   
 const [instructor,setPerson]=useState([])
 function getInstProf(){
-  axios.post("http://localhost:8000/instructorProfile",{Instructor_ID:2}
+  axios.post("http://localhost:8000/instructorProfile",{
+    Instructor_ID:2
+  }
+ ).then((response) => {
+   setPerson(response.data)
+   console.log(response.data)
+ }).catch((error) => console.log(error))
+}
+
+function changePassword(){
+  axios.post("http://localhost:8000/changePassword",{
+    x:2,
+    pass: localStorage.getItem("NewPassword"),
+    type:localStorage.getItem("type")
+  }
  ).then((response) => {
    setPerson(response.data)
    console.log(response.data)
