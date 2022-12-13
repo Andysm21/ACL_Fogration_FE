@@ -22,12 +22,10 @@ const CourseCard:React.FC<{course}>= ({course}) => {
 
   }
   else{ 
-    <div className="">
+    <div className="flex flex-row">
     <div className="text-l line-through">{price} $$</div>
      <div className="text-l">{(price) * (1-discount)} $$</div>
      </div>
-
-  
   }
   }
  
@@ -91,7 +89,6 @@ const CourseCard:React.FC<{course}>= ({course}) => {
             })}
             <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
               <div className="text-white font-bold text-l">Reviews</div>
-
               <div className="flex flex-row gap-2">
                 {course.Course_Review.map((review,index) => (
                   <div
