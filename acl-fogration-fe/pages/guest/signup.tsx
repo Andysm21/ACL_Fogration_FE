@@ -77,6 +77,7 @@ function signUp(){
       <div className="flex items-center justify-center bg-[url('/images/bgacl.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
         {/* div for the form */}
 
+
         <div className="flex flex-col items-center justify-start rounded-lg bg-bc py-6 px-4">
           <div className="flex flex-col items-center justify-center gap-2">
             <input className="bg-black3 rounded-md p-3 w-72" id="username" placeholder="Username" type="text" onChange={handleChangeU}/>
@@ -99,7 +100,7 @@ function signUp(){
                   defaultValue="female"
                   name="radio-buttons-group"
                   onChange={handleChangeG}
-                 
+
                 >
                   <div>
                     <FormControlLabel
@@ -122,6 +123,7 @@ function signUp(){
             {/* <InputField id="password" placeholder="Password" type="password" /> */}
             {/* adding login button */}
             <Link href="/guest/login">
+
               <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white" onClick={signUp}>
                 Sign up
               </button>

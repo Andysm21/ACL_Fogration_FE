@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import LayoutGuest from "../../components/templates/LayoutGuest";
 import GuestCourses from "../../components/molecules/GuestCourses";
 import HeaderGuest from "../../components/organisms/HeaderGuest";
+import {Routes, Route, useNavigate} from 'react-router-dom';
+import {useState} from 'react';
+import axios  from 'axios';
 
 
 
 const guestcourses: NextPage = () => {
+  var [CourseArray,setCourseArray]=useState([]);
+  function getCourses(){
+     axios.get("http://localhost:8000/viewCoursesALL"
+    ).then((response) => {
+      console.log("Hello")
+      console.log(response.data)
+      setCourseArray(response.data)
+    }).catch((error) => console.log(error))
+  }
+  var x =useEffect(() =>{getCourses()},[])
+
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -19,6 +33,7 @@ const guestcourses: NextPage = () => {
         <div>
             <HeaderGuest/>
           <GuestCourses/>
+          <GuestCourses courses={CourseArray}/>
         
         </div>
       </LayoutGuest>
