@@ -3,6 +3,7 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import LayoutGuest from "../../components/templates/LayoutGuest";
 import GuestCourses from "../../components/molecules/GuestCourses";
+import HeaderGuest from "../../components/organisms/HeaderGuest";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import {useState} from 'react';
 import axios  from 'axios';
@@ -30,6 +31,8 @@ const guestcourses: NextPage = () => {
       </Head>
       <LayoutGuest>
         <div>
+            <HeaderGuest/>
+          <GuestCourses/>
           <GuestCourses courses={CourseArray}/>
         
         </div>

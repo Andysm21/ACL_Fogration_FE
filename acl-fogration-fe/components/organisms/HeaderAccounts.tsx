@@ -2,6 +2,7 @@ import React from "react";
 import AddAdmin from "../molecules/AddAdmin";
 import AddInstructor from "../molecules/AddInstructor";
 import AddTrainee from "../molecules/AddTrainee";
+import SearchIcon from "@mui/icons-material/Search";
 
 
 
@@ -43,15 +44,32 @@ const HeaderAccounts = ({
     setOpen3(false);
   };
 
+      const [search, setSearch] = React.useState("");
+      const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(event.target.value);
+      };
+
+      const handleSubmit = () => {
+    console.log("submit");
+    const data = {
+      search
+    };
+    console.log(data);
+  };
+
   return (
     <div className="flex w-full items-center justify-between bg-black2 py-2 px-4">
       <div className="flex items-center">
         <div className="">
           <input
             type="text"
-            className=" focus:shadow-outline-blue focus:border-blue-300 box-content w-[100%] rounded-md bg-white py-2 px-4 text-gray-700 placeholder-gray-500 transition duration-150 ease-in-out focus:outline-none"
-            placeholder="Search"
+          className=" focus:shadow-outline-blue focus:border-blue-300 box-content w-[100%] rounded-md bg-white py-2 px-4 text-gray-700 placeholder-gray-500 transition duration-150 ease-in-out focus:outline-none"
+                  placeholder="Search"
+            onChange={handleSearch}
           />
+        </div>
+        <div onClick={handleSubmit}>
+          <SearchIcon />
         </div>
       </div>
       <div className="flex flex-row gap-1">
@@ -78,8 +96,7 @@ const HeaderAccounts = ({
           Add Trainee
         </button>
         <AddTrainee isOpen={open3} handleClose={handleClose3} />
-        <div>
-        </div>
+        <div></div>
       </div>
     </div>
   );
