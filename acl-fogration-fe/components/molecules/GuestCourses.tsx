@@ -4,14 +4,14 @@ import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 
 
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {courses} from '../../interfaces'
 const GuestCourses:React.FC<{ courses }> = ({courses }) => {
 
-  const handleButtonClick = ()=>{
-    localStorage.setItem("Course",courses.Course_ID+"")
-  }
-  useEffect(() => {handleButtonClick})
+  // const handleButtonClick = ()=>{
+  //   localStorage.setItem("Course",course.Course_ID+"")
+  // }
+
 
   if (courses.length === 0) {
     return <div className="text-center text-white text-bold"> No courses</div>;
@@ -95,10 +95,14 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
             </div>
             {/* //h1 el se3r */}
             <div className="flex flex-row justify-between my-2">
-              <Link href={"http://localhost:3000/guest/"+course.Course_ID}>
+              {/* <Link href={"http://localhost:3000/guest/"+course.Course_ID}> */}
+              <Link href={"http://localhost:3000/guest/viewcourse"}>
 
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={handleButtonClick}>
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
+                  localStorage.setItem("Course",course?.Course_ID+"")
+                  // console.log(localStorage.getItem("CourseIIDD"))
+                  }}>
                   View Course
                 </button>
               </Link>
