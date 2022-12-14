@@ -3,6 +3,8 @@ import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
+import { useEffect, useState } from "react";
+import Axios from 'axios'
 
 
 const Course_What_You_Will_Learn =[
@@ -11,10 +13,30 @@ const Course_What_You_Will_Learn =[
   "Learn about new algorithms"]
 
 const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
-  console.log(course);
+ // console.log(course);
   // if (courses.length === 0) {
   //   return <div className="text-center ">No courses</div>;
   // }
+    var [SavedCourseData,setSavedCourseData]=useState({
+      Course_ID: NaN,
+      Course_Subject: '',
+      Course_Description: '',
+      Course_Price: NaN,
+      Course_Rating: NaN,
+      Course_Instructor: {
+        Instructor_FirstName: '',
+      },
+      Course_Hours: NaN,
+      Course_Country: '',
+      Course_Discount: NaN,
+      Course_Title: '',
+      Course_Discount_Duration: NaN,
+      Course_Subtitle: [],
+      Course_Trainee: [],
+      Course_Review: [],
+      Course_Rate: [''],
+      Course_Exam: [''],
+      Course_What_You_Will_Learn: [],    })
      const discount =(discount:number,price:number) =>{
       if(discount == 0){
     return <h1 className=" text-violet-400 text-4xl font-bold ">
@@ -41,28 +63,36 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
       );
     }
     return stars;
-  };
+  }
+useEffect(()=>{
+  Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
+  ).then((response) => {
+    course=response.data
+    setSavedCourseData(response.data)
+  }).catch((error) => console.log(error))
+
+})
   return (
-    <div key={course.Course_ID} className=" flex flex-col bg-bc w-75% shadow-lg text-white">
+    <div key={SavedCourseData?.Course_ID} className=" flex flex-col bg-bc w-75% shadow-lg text-white">
       {/* //div el eswd */}
       <div className="flex flex-row bg-bc justify-between mx-6 my-4">
         {/* //div el title bel kalam */}
         <div className="flex flex-col">
           {/* //div el title bel rating */}
           <div className="flex flex-col text-3xl">
-            <div className="Font-bold  text-white">{course.Course_Title}</div>
-            <div className="flex flex-row  ">{stars(course.Course_Rating)}</div>
+            <div className="Font-bold  text-white">{SavedCourseData?.Course_Title}</div>
+            <div className="flex flex-row  ">{stars(SavedCourseData?.Course_Rating)}</div>
           </div>
           {/* //div el kalam eswd */}
           <div className="bg-bc flex flex-col  gap-3 my-2">
-            <div>{course.Course_Description}</div>
+            <div>{SavedCourseData?.Course_Description}</div>
             <div className="flex flex-row">
-              {course.Course_Trainee} enrolled students, taught by{" "}
+              {SavedCourseData?.Course_Trainee} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
-              <Link href="/{course.Course_Instructor.Instructor_FirstName}">
+              <Link href="/{SavedCourseData?.Course_Instructor?.Instructor_FirstName}">
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
-                  {course.Course_Instructor.Instructor_FirstName}
+                  {SavedCourseData?.Course_Instructor?.Instructor_FirstName}
                 </div>
               </Link>
             </div>
@@ -70,7 +100,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
             {/* /*div el country*/}
             <div className="flex flex-row gap-1 items-center">
               <BsGlobe2 />
-              {course.Course_Country}
+              {SavedCourseData?.Course_Country}
             </div>
           </div>
         </div>
@@ -85,9 +115,9 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
           {/* //h1 el se3r */}
           <div className="flex flex-row justify-between my-2">
             {/* <h1 className=" text-violet-400 text-4xl font-bold ">
-              $${course.Course_Price}
+              $${SavedCourseData?.Course_Price}
             </h1> */}
-            {discount(course.Course_Discount, course.Course_Price)}
+            {discount(SavedCourseData?.Course_Discount, SavedCourseData?.Course_Price)}
 
 
             <Link href="/guest/signup">
@@ -126,7 +156,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
           <div className="flex flex-col border-black1 text-white bg-black2 m-2 px-2 w-52 h-20 rounded-md justify-between items-center py-2">
             <BsPlayBtnFill size={30} />
             <div className="  justify-center items-end">
-              {course.Course_Hours} hours of video
+              {SavedCourseData?.Course_Hours} hours of video
             </div>
           </div>
 
@@ -143,7 +173,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
         <h1 className="text-white font-bold text-3xl ">Course Content</h1>
-        {course.Course_Subtitle?.map((subtitle) => {
+        {SavedCourseData?.Course_Subtitle?.map((subtitle) => {
           return (
             <div>
               <div className="flex flex-col gap-2 ">
