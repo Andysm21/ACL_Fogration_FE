@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import NavGuest from "../../components/atoms/NavGuest";
 import axios from 'axios'
+import axios from 'axios'
 
 function enterEmail() {
   const router = useRouter();
@@ -11,6 +12,20 @@ function enterEmail() {
   const handleChange1 = (newValue: Date | null) => {
     setValue(newValue);
   };
+
+  const[email,setEmail]= React.useState("")
+  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value)
+    setEmail(event.target.value);
+  };
+
+  
+  function handleSubmit (){
+    axios.post("http://localhost:8000/forgotPassword",{Email:email}).then((response)=>{
+      console.log(response.data)
+    })
+
+  }
 
   const[email,setEmail]= React.useState("")
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {

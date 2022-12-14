@@ -47,6 +47,9 @@ const mycourses: NextPage = () => {
    FilterSubject: localStorage.getItem("Subject"),
   }
  ).then((response) => {
+   //console.log(Number(localStorage.getItem("InstID")))
+   //console.log(Number(localStorage.getItem("Subject")))
+   //console.log(localStorage.getItem("H1"))
    setCourseArray(response.data)
  }).catch((error) => console.log(error))
 }
@@ -59,6 +62,9 @@ function getCoursesFilterSubjectandPrice(){
    FilterSubject: localStorage.getItem("Subject")
   }
  ).then((response) => {
+   //console.log(Number(localStorage.getItem("InstID")))
+   //console.log(Number(localStorage.getItem("Subject")))
+   //console.log(localStorage.getItem("H1"))
    setCourseArray(response.data)
  }).catch((error) => console.log(error))
 }
