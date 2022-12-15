@@ -64,6 +64,8 @@ const AddInstructor: React.FC<Props> = ({ handleClose, isOpen }) => {
         else if(response.data == "4"){
           status = "Created a new Instructor.";
         }
+        console.log(status);
+
       }).catch((error) => console.log(error))
       //console.log(data);
     };

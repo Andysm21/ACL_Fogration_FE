@@ -10,7 +10,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import axios from "axios";
 import {
   useMediaQuery,
   Dialog,
@@ -55,6 +55,7 @@ const AddAdmin: React.FC<Props> = ({ handleClose, isOpen }) => {
     const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
       setPassword(event.target.value);
     };
+    var status = '';
 
     const handleSubmit = () => {
       console.log("submit");
@@ -62,6 +63,24 @@ const AddAdmin: React.FC<Props> = ({ handleClose, isOpen }) => {
         username,
         password,
       };
+      axios.post('http://localhost:8000/createAdmin',{
+        Admin_Username:username,
+        Admin_Password:password,
+    }).then(response => {
+      if(response.data == "1"){
+        status = "Username field should not be empty";
+      }
+      else if(response.data == "2"){
+        status = "Password field should not be empty";
+      }
+      else if(response.data == "3"){
+        status = "Choose another username.";
+      }
+      else if(response.data == "4"){
+        status = "Created a new Instructor.";
+      }
+      console.log(status)
+    })
       console.log(data);
     };
 
