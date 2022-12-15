@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useRouter } from "next/router";
@@ -17,13 +17,78 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
+import Axios  from "axios";
 function Login() {
   const router = useRouter();
   const [value, setValue] = React.useState<Date | null>();
-
+  const [error,setError] = useState("")
+  const [Username,setUsername]=useState('')
+  const [Password,setPassword]=useState('')
   const handleChange1 = (newValue: Date | null) => {
     setValue(newValue);
   };
+  const handleChangeU = event => {
+    setUsername(event.target.value);
+    console.log(Username)
+        };
+  const handleChangeP = event => {
+    setPassword(event.target.value);
+    console.log(Password)
+        };
+
+
+
+   function handleLogin(){
+     Axios.post("http://localhost:8000/login", {Uname:Username,Pass:Password},
+ 
+   ).then((response) => {
+    console.log(response.data)
+       if(response.data == "1"){
+         localStorage.removeItem("Type")
+         localStorage.setItem("Type","Admin")
+         console.log("Admin")
+       }
+       else if(response.data == "2"){
+        localStorage.removeItem("Type")
+        localStorage.setItem("Type","Instructor")
+        console.log(localStorage.getItem("Type"))
+        console.log("Instructor ")
+       }
+       else if(response.data == "3"){
+        localStorage.removeItem("Type")
+        localStorage.setItem("isCorp", "false")
+        localStorage.removeItem("Type")
+        localStorage.setItem("Type","User")
+        console.log("Ind User")
+        console.log(localStorage.getItem("Type"))
+        console.log(localStorage.getItem("isCorp"))
+       }
+       else if(response.data == "4"){
+        localStorage.removeItem("Type")
+        localStorage.setItem("isCorp", "true")
+        localStorage.removeItem("Type")
+        localStorage.setItem("Type","Corp")
+        console.log("Corp User.")
+        console.log(localStorage.getItem("Type"))
+        console.log(localStorage.getItem("isCorp"))
+        }
+        else if(response.data =="5"){
+        console.log("WRONG")
+        }
+
+       
+   }).catch((error) => console.log(error))
+ 
+  //  console.log(1)
+ 
+ 
+ }
+ 
+
+  useEffect(()=>{
+    setError(localStorage.getItem("SignUpError"))
+  })
+
   return (
     <div>
       <NavGuestLogin />
@@ -37,22 +102,22 @@ function Login() {
               id="username"
               placeholder="Username"
               type="text"
+              onChange={handleChangeU}
             />
             <input
               className="bg-black3 rounded-md p-3 w-72 text-white"
               id="password"
               placeholder="Password"
               type="password"
+              onChange={handleChangeP}
             />
 
             {/* adding password input */}
             {/* <InputField id="password" placeholder="Password" type="password" /> */}
             {/* adding login button */}
-            <Link href="/">
-              <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white">
+              <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white" onClick={handleLogin}>
                 Login
               </button>
-            </Link>
             <div className="flex flex-col items-center justify-center underline text-violet-400 ">
               <Link
                 href="/guest/enterEmail"
@@ -63,10 +128,12 @@ function Login() {
                 Forgot password?
               </Link>
             </div>
+            <div className="w-72 rounded-lg  p-2 text-red-700  hover:text-red-700" >{error}</div>
           </div>
         </div>
       </div>
     </div>
+  
   );
 }
 

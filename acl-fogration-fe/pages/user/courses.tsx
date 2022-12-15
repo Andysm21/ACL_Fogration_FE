@@ -11,15 +11,21 @@ const courses: NextPage = () => {
   var [CourseArray,setCourseArray]=useState([]);
 
   
+  const [isCorporate, setIsCorporate]= useState("false");
+  useEffect(() => {
+    setIsCorporate(localStorage.getItem("isCorp"))
+  })
+
   function getCourses(){
-     axios.get("http://localhost:8000/viewCoursesCorporate"
-    ).then((response) => {
-      console.log("Hello")
-      console.log(response.data)
-      setCourseArray(response.data)
-    }).catch((error) => console.log(error))
-  }
+      axios.get("http://localhost:8000/viewCoursesALL"
+      ).then((response) => {
+        console.log("Not Corp")
+        console.log(response.data)
+        setCourseArray(response.data)
+      }).catch((error) => console.log(error))
   
+  }
+
   var x =useEffect(() =>{getCourses()},[])
 
 

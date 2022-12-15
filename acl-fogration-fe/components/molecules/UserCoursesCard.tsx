@@ -11,8 +11,7 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
 
 
   useEffect(() => {
-    localStorage.setItem("isCorporate", "false");
-    localStorage.getItem("isCorporate")
+    setIsCorporate(localStorage.getItem("isCorp"))
   })
 
   const viewPrice =(price:number)=>{

@@ -19,6 +19,7 @@ import {
 
 
 function Signup() {
+  const [error,setError]=useState('');
   const router = useRouter();
   const [value, setValue] = React.useState<Date | null>();
   const [FirstName,setFirstName]=useState('')
@@ -54,13 +55,40 @@ const handleChangeP = event => {
 const handleChangeC = event => {
   setCountry(event.target.value);
       };
-
-function signUp(){
-  Axios.post("http://localhost:8000/signUp", {individualUser_UserName:Username, individualUser_Email:Email, individualUser_Password:Password, individualUser_FirstName:FirstName, individualUser_LastName:LastName,individualUser_Gender:Gender, individualUser_Country:Country},
+var status='';
+ async function signUp(){
+   await Axios.post("http://localhost:8000/signUp", {individualUser_UserName:Username, individualUser_Email:Email, individualUser_Password:Password, individualUser_FirstName:FirstName, individualUser_LastName:LastName,individualUser_Gender:Gender, individualUser_Country:Country},
 
   ).then((response) => {
-      
-      console.log("Successful Emtry!")
+      if(response.data == "1"){
+        localStorage.removeItem("SignUpError")
+        localStorage.setItem("SignUpError","User already exists.")
+        console.log("User already exists.")
+      }
+      else if(response.data == "2"){
+        localStorage.removeItem("SignUpError")
+        localStorage.setItem("SignUpError","Choose another username.")
+        
+        console.log("Ind User")
+      }
+      else if(response.data == "3"){
+        localStorage.removeItem("SignUpError")
+        localStorage.setItem("SignUpError","User already exists.")
+
+        console.log("Corp User")
+      }
+      else if(response.data == "4"){
+        localStorage.removeItem("SignUpError")
+        localStorage.setItem("SignUpError","")
+
+        console.log("Create a new user.")
+      }
+      else if(response.data == "5"){
+        localStorage.removeItem("SignUpError")
+        localStorage.setItem("SignUpError","Please fill all required fields")
+
+        console.log("Please fill all required fields")
+      }
       
   }).catch((error) => console.log(error))
 
