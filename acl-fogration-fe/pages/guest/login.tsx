@@ -42,37 +42,58 @@ function Login() {
      Axios.post("http://localhost:8000/login", {Uname:Username,Pass:Password},
  
    ).then((response) => {
-    console.log(response.data)
-       if(response.data == "1"){
-         localStorage.removeItem("Type")
-         localStorage.setItem("Type","Admin")
-         console.log("Admin")
+    // console.log(response.data)
+    var data = response.data.split(":")
+    var id = data[1]
+    var type=data[0]
+       if(type == 1){
+        localStorage.removeItem("user_id")
+        localStorage.setItem("user_id",id)
+        localStorage.removeItem("Type")
+        localStorage.setItem("Type","Admin")
+        localStorage.removeItem("isCorp")
+        localStorage.setItem("isCorp", "false")
+        
+        console.log(localStorage.getItem("Type"))
+        console.log(localStorage.getItem("user_id"))
+
        }
-       else if(response.data == "2"){
+       else if(type == "2"){
+        localStorage.removeItem("user_id")
+        localStorage.setItem("user_id",id)
         localStorage.removeItem("Type")
         localStorage.setItem("Type","Instructor")
+        localStorage.removeItem("isCorp")
+        localStorage.setItem("isCorp", "false")
+
         console.log(localStorage.getItem("Type"))
-        console.log("Instructor ")
+        console.log(localStorage.getItem("user_id"))
        }
-       else if(response.data == "3"){
-        localStorage.removeItem("Type")
+       else if(type == "3"){
+        localStorage.removeItem("user_id")
+        localStorage.setItem("user_id",id)
+        localStorage.removeItem("isCorp")
         localStorage.setItem("isCorp", "false")
         localStorage.removeItem("Type")
         localStorage.setItem("Type","User")
-        console.log("Ind User")
+
         console.log(localStorage.getItem("Type"))
+        console.log(localStorage.getItem("user_id"))
         console.log(localStorage.getItem("isCorp"))
        }
-       else if(response.data == "4"){
+       else if(type == "4"){
+        localStorage.removeItem("user_id")
+        localStorage.setItem("user_id",id)
         localStorage.removeItem("Type")
         localStorage.setItem("isCorp", "true")
         localStorage.removeItem("Type")
         localStorage.setItem("Type","Corp")
-        console.log("Corp User.")
+
         console.log(localStorage.getItem("Type"))
+        console.log(localStorage.getItem("user_id"))
         console.log(localStorage.getItem("isCorp"))
         }
-        else if(response.data =="5"){
+        else if(type =="5"){
         console.log("WRONG")
         }
 
