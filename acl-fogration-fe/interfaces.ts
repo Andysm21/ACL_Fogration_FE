@@ -42,7 +42,7 @@ export interface course {
   Course_Description: string;
   Course_Price: number;
   Course_Rating: number;
-  Course_Instructor: number;
+  Course_Instructor: instructor;
   Course_Hours: number;
   Course_Country: string;
   Course_Discount: number;

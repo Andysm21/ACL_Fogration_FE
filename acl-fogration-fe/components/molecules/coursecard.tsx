@@ -11,7 +11,6 @@ import { Button } from "@mui/material";
 // ]);
 
 const CourseCard = () => {
-
   const courses = [
     { id: 1, name: "CSEN702", totalHours: 6, rating: 5, price: 40 },
     { id: 2, name: "CSEN704", totalHours: 8, rating: 4, price: 40 },
@@ -51,26 +50,8 @@ const CourseCard = () => {
      <div className="text-l">{(price) * (1-discount)} $$</div>
      </div>
   }
-   }
-  //  var course ={
-  //   Course_ID: NaN, //course id m7tag yetzabat string
-  //   Course_Title: "",
-  //   Course_Subject: "",
-  //   Course_Description: "",
-  //   Course_Price: NaN,
-  //   Course_Rating: NaN,
-  //   Course_Instructor: NaN,
-  //   Course_Hours: NaN,
-  //   Course_Country: "",
-  //   Course_Discount: NaN,
-  //   Course_Discount_Duration: NaN,
-  //   Course_Subtitle: [""],
-  //   Course_Users: [""],
-  //   Course_Review: [""],
-  //   Course_Rate: [""],
-  //   Course_Exam: [""],
-  //   Course_What_You_Will_Learn: [""],
-  //   }
+  }
+ 
   return (
     <div className="m-2 grid grid-cols-1 place-items-center ">
       {courses.map((course) => (

@@ -59,7 +59,7 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
                 <Link href="/[{course.Course_Instructor}]">
                   {/* // 23deli el link */}
                   <div className="text-violet-400">
-                    {course.Course_Instructor.Instructor_FirstName}
+                    {course?.Course_Instructor?.Instructor_FirstName}
                   </div>
                 </Link>
               </div>
