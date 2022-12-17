@@ -42,8 +42,12 @@ function Login() {
      Axios.post("http://localhost:8000/login", {Uname:Username,Pass:Password},
  
    ).then((response) => {
-    // console.log(response.data)
-    var data = response.data.split(":")
+    localStorage.setItem("Subject","")
+    localStorage.setItem("Rating","")
+    localStorage.setItem("MaxPrice","")
+    localStorage.setItem("MinPrice","")
+    console.log(response.data)
+    var data = (response.data).split(":")
     var id = data[1]
     var type=data[0]
        if(type == 1){

@@ -21,10 +21,10 @@ const mycourses: NextPage = () => {
   var [courseArray,setCourseArray]=useState([]);
   function getCourses(){
      axios.post("http://localhost:8000/viewMyCoursesInstructor",{
-      Instructor_ID: Number(localStorage.getItem("InstID"))
+      Instructor_ID: Number(localStorage.getItem("user_id"))
      }
     ).then((response) => {
-      console.log(Number(localStorage.getItem("InstID")))
+      console.log(Number(localStorage.getItem("user_id")))
 
       setCourseArray(response.data)
     }).catch((error) => console.log(error))
@@ -32,7 +32,7 @@ const mycourses: NextPage = () => {
 
   function getCoursesFilterPrice(){
     axios.post("http://localhost:8000/filterPriceInst",{
-     Instructor_ID: Number(localStorage.getItem("InstID")),
+     Instructor_ID: Number(localStorage.getItem("user_id")),
      FilterPrice1: Number(localStorage.getItem("MinPrice")),
      FilterPrice2:Number(localStorage.getItem("MaxPrice"))
     }
@@ -43,7 +43,7 @@ const mycourses: NextPage = () => {
 
  function getCoursesFilterSubject(){
   axios.post("http://localhost:8000/filterSubjectInst",{
-   Instructor_ID: Number(localStorage.getItem("InstID")),
+   Instructor_ID: Number(localStorage.getItem("user_id")),
    FilterSubject: localStorage.getItem("Subject"),
   }
  ).then((response) => {
@@ -56,7 +56,7 @@ const mycourses: NextPage = () => {
 
 function getCoursesFilterSubjectandPrice(){
   axios.post("http://localhost:8000/filterPriceAndSubjectInst",{
-   Instructor_ID: Number(localStorage.getItem("InstID")),
+   Instructor_ID: Number(localStorage.getItem("user_id")),
    FilterPrice1: Number(localStorage.getItem("MinPrice")),
    FilterPrice2:Number(localStorage.getItem("MaxPrice")),
    FilterSubject: localStorage.getItem("Subject")
@@ -74,21 +74,17 @@ useEffect(()=>{
   if(localStorage.getItem("Subject")==""){
     if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
          getCourses()
-          localStorage.setItem("InstID","2")
     }
     else{
       getCoursesFilterPrice()
-        localStorage.setItem("InstID","2")
     }
 }
 else{
   if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
     getCoursesFilterSubject()
-    localStorage.setItem("InstID","2")
 }
   else{
     getCoursesFilterSubjectandPrice()
-    localStorage.setItem("InstID","2")
   }
 }
 })
