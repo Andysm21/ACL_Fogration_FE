@@ -1,13 +1,16 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
+import { useState } from "react";
 
 
 const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
+  const [courseID,setcourseID]=useState("") 
   
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
   }
+
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -70,7 +73,12 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
             <div className="flex flex-row justify-between my-2">
               <Link href="viewcourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80">
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
+                  setcourseID(course?.Course_ID)
+                  localStorage.removeItem('CourseID')
+                  localStorage.setItem('CourseID', course.Course_ID)
+
+                }}>
                   View Course
                 </button>
               </Link>

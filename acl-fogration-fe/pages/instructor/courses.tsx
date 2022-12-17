@@ -15,6 +15,8 @@ const courses: NextPage = () => {
      axios.get("http://localhost:8000/viewCoursesALL"
     ).then((response) => {
       setCourseArray(response.data)
+      // console.log(response.data)
+
     }).catch((error) => console.log(error))
   }
 
@@ -57,10 +59,13 @@ function getCoursesFilterRating(){
 }
 
 useEffect(()=>{
+  // console.log(localStorage.getItem("Subject"))
   if(localStorage.getItem("Subject")==""){
     if(localStorage.getItem("Rating")==""){
       if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
          getCourses()
+        //  console.log("Hi")
+
       }
       else{
         getCoursesFilterPrice()
