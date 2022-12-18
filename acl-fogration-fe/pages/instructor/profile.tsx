@@ -34,7 +34,7 @@ useEffect(()=>{
     <div>
         <Layout>
         <div>
-            <InstructorProfile instructor={instructor} />
+            <InstructorProfile instructor={instructor}/>
 
             {/* <IndividualUserProfile user={person}/> */}
             {/* <CorporateUserProfile user={person}/> */}
