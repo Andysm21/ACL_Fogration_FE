@@ -80,7 +80,7 @@ const HeaderInstructorMyCourses = ({
         <Filter isOpen={open2} handleClose={handleClose2} />
       </div>
 
-      <div>
+      {/* <div>
         <button
           className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey"
           onClick={handleClickOpen}
@@ -89,7 +89,7 @@ const HeaderInstructorMyCourses = ({
         </button>
 
         <AddCourse isOpen={open} handleClose={handleClose} />
-      </div>
+      </div> */}
     </div>
   );
 };

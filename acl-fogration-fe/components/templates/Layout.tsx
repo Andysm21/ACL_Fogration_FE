@@ -30,7 +30,9 @@ const instructorlinks = [
   { href: "/instructor/courses", label: "Courses" },
   { href: "/instructor/mycourses", label: "My Courses" },
   { href: "/instructor/contracts", label: "Contracts" },
+  { href: "/instructor/createcourse", label: "Create Course" },
 ];
+
 const adminlinks = [
   // { href: '/car-system', label: 'Dashboard' },
   { href: "/admin", label: "Dashboard" },
