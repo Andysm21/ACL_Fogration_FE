@@ -31,7 +31,7 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
 
 
 
-//   const [username, setUsername] = React.useState(user.user_username);
+  const [username, setUsername] = React.useState(user.user_username);
   
 // const [password1,setPassword1]=useState('')
 // const [password,setPassword]=useState('')
@@ -106,6 +106,8 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
     }
     return stars;
   };
+  var status = '';
+
   // const average = ([]) =>{
   //   let avg = 0;
   //   for(let i = 0;i< person.User_Ratings.length ;i++){
@@ -128,6 +130,152 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
      setPassword(event.target.value);
       };
   
+      const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUsername(event.target.value);
+      };
+      
+        const [email, setEmail] = React.useState(user.User_Email);
+        const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+          setId(localStorage.getItem("user_id"))
+
+        setEmail(event.target.value);
+      };
+      
+
+      
+        const [FirstName, setFirstName] = React.useState(user.User_FirstName);
+        const handleFirstName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFirstName(event.target.value);
+        console.log(FirstName)
+        setId(localStorage.getItem("user_id"))
+        console.log( "ID IS "+ID)
+      };
+      
+        const [LastName, setLastName] = React.useState(user.User_LastName);
+        const handleLastName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setLastName(event.target.value);
+        setId(localStorage.getItem("user_id"))
+
+        console.log(LastName)
+      };
+      
+        const [Gender, setGender] = React.useState(user.User_Gender);
+        const handleGender = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setGender(event.target.value);
+        setId(localStorage.getItem("user_id"))
+
+
+      };
+      
+      const [ID, setId ]= useState("");
+
+
+      const handleSubmit = () => {
+        setId(localStorage.getItem("user_id"))
+
+        if(localStorage.getItem("isCorp")=="false"){
+        axios.put('http://localhost:8000/editProfileUserInd', {ID: Number(localStorage.getItem("user_id")), username: username,
+        FirstName: FirstName, 
+        LastName: LastName, Gender: Gender, Country: country})
+      
+        .then((response) => {
+          console.log("HELLO")
+          if(response.data == "1"){
+            status = "Username field should not be empty";
+          }
+          else if(response.data == "2"){
+            status = "Choose another username, its already in use";
+          }
+          else if(response.data == "3"){
+            status = "Email already in use";
+          }
+          else if(response.data == "4"){
+            status = "Individual user got updated.";
+          }
+          console.log(status)
+        }).catch((error) => console.log(error))
+        //console.log(data);
+      }
+      else{
+        console.log(localStorage.getItem("user_id"))
+        console.log("a7a")
+        axios.put('http://localhost:8000/editProfileUserC', {ID: Number(localStorage.getItem("user_id")),
+        FirstName: FirstName, 
+        LastName: LastName, Gender: Gender, Country: country})
+      
+        .then((response) => {
+          console.log("inside C")
+          console.log(response.data)
+          // if(response.data == "1"){
+          //   status = "Username field should not be empty";
+          // }
+          // else if(response.data == "2"){
+          //   status = "Choose another username, its already in use";
+          // }
+          // else if(response.data == "3"){
+          //   status = "Email already in use";
+          // }
+          // else if(response.data == "4"){
+            status = "Corporate user got updated.";
+          // }
+          console.log(status)
+        }).catch((error) => console.log(error))
+        //console.log(data);
+      }
+      };
+      
+      const handleSubmitUserEmail = () => {
+        setId(localStorage.getItem("user_id"))
+
+        if(localStorage.getItem("isCorp")=="false"){
+
+        axios.put('http://localhost:8000/editProfileEmailUserInd', {ID: Number(localStorage.getItem("user_id")), username: username, Email: email})
+      
+        .then((response) => {
+
+          if(response.data == "1"){
+            status = "Username field should not be empty";
+          }
+          else if(response.data == "2"){
+            status = "Choose another username, its already in use";
+          }
+          else if(response.data == "3"){
+            status = "Email already in use";
+          }
+          else if(response.data == "4"){
+            status = "Individual got updated.";
+          }
+          console.log(status);
+        }).catch((error) => console.log(error))
+        //console.log(data);
+      }
+      else{
+
+        axios.put('http://localhost:8000/editProfileEmailUserC', {ID: Number(localStorage.getItem("user_id")), username: username, Email: email})
+      
+        .then((response) => {
+          if(response.data == "1"){
+            status = "Username field should not be empty";
+          }
+          else if(response.data == "2"){
+            status = "Choose another username, its already in use";
+          }
+          else if(response.data == "3"){
+            status = "Email already in use";
+          }
+          else if(response.data == "4"){
+            status = "Individual got updated.";
+          }
+          console.log(status);
+        }).catch((error) => console.log(error))
+        //console.log(data);
+      }
+      };
+
+
+
+
+      
 var Type;
   function changePassword(){
     if(localStorage.getItem("Type")=="Corp")
@@ -175,15 +323,15 @@ var Type;
            <div className="text-l"> First Name </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {user.User_FirstName} 
-         /> 
+         onChange={handleFirstName}/> 
           <div className="text-l">Last Name </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {user.User_LastName} 
+          defaultValue= {user.User_LastName}   onChange={handleLastName}
          /> 
          
           <div className="text-l">Gender </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {user.User_Gender}
+          defaultValue= {user.User_Gender}  onChange={handleGender}
          /> 
         <div className="text-l">Country of birth </div>
         <div className="text-black w-52">
@@ -197,7 +345,7 @@ var Type;
         /> </div>
 
           </div>
-           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
+           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={handleSubmit}>
                   Update
                 </button>
           
@@ -209,13 +357,13 @@ var Type;
         
           <div className="text-l">Username</div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {user.User_UserName}  
+          defaultValue= {user.User_UserName}    onChange={handleUsername}
          /> 
          <div className="text-l">Email</div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {user.User_Email }  
+          defaultValue= {user.User_Email }   onChange={handleEmail}
          /> 
-          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
+          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={handleSubmitUserEmail}>
                   Update
                 </button>
 
@@ -228,16 +376,16 @@ var Type;
         
           <div className="text-l">Old password </div>
            <input readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-          value= {user.User_Password}  
+          value= {user.User_Password} 
          /> 
          <div className="text-l">New password </div>
            <input type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= ''  
          onChange={handleChangeP1}/> 
-         {/* <div className="text-l">Re-enter new password </div>
+         <div className="text-l">Re-enter new password </div>
            <input  type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= ''
-        onChange={handleChangeP} />  */}
+        onChange={handleChangeP} /> 
           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "onClick={changePassword}>
                   Update
                 </button>
