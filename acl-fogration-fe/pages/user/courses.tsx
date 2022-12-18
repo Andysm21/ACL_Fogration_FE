@@ -21,7 +21,7 @@ const courses: NextPage = () => {
       if(localStorage.getItem("isCorp")=="true"){
         axios.get("http://localhost:8000/viewCoursesCorporate"
        ).then((response) => {
-         console.log(Number(localStorage.getItem("user_id")))
+        //  console.log(Number(localStorage.getItem("user_id")))
    
          setCourseArray(response.data)
        }).catch((error) => console.log(error))
@@ -29,7 +29,7 @@ const courses: NextPage = () => {
    else{
        axios.get("http://localhost:8000/viewCoursesALL"
       ).then((response) => {
-        console.log(Number(localStorage.getItem("user_id")))
+        // console.log(Number(localStorage.getItem("user_id")))
    
         setCourseArray(response.data)
       }).catch((error) => console.log(error))
@@ -78,24 +78,51 @@ function getCoursesFilterRating(){
  }).catch((error) => console.log(error))
 }
 
+function getCoursesSearch(){
+  axios.post("http://localhost:8000/Search",{
+    searchR: localStorage.getItem("Search")
+  }
+ ).then((response) => {
+   //console.log("Function:")
+   // console.log(localStorage.getItem("Search"))
+   // console.log("response data:")
+   if(response.data == "")
+    setCourseArray([])
+   else
+    setCourseArray(response.data)
+
+ }).catch((error) => console.log(error))
+}
+
+
 useEffect(()=>{
   // console.log(localStorage.getItem("Subject"))
   
-  if(localStorage.getItem("isCorp")=="false"){
+if(localStorage.getItem("isCorp")=="false"){
   if(localStorage.getItem("Subject")==""){
     if(localStorage.getItem("Rating")==""){
       if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
-         getCourses()
-        //  console.log("Hi")
+        if(localStorage.getItem("Search")=='' || localStorage.getItem("Search")==""){
+          getCourses()
+          localStorage.setItem("Search","")
+ 
+         //  console.log("Hi")
+         }
+         else{
+           getCoursesSearch();
+         }
 
       }
       else{
         getCoursesFilterPrice()
+        localStorage.setItem("Search","")
       }
     }
     else{
         getCoursesFilterRating()
+        localStorage.setItem("Search","")
     }
+    
 }
 else{
   if(localStorage.getItem("Rating")==""){
@@ -112,19 +139,34 @@ else{
 else{
   if(localStorage.getItem("Subject")==""){
     if(localStorage.getItem("Rating")==""){
-         getCourses()
-        //  console.log("Hi")
+      if(localStorage.getItem("Search")=='' || localStorage.getItem("Search")==""){
+        getCourses()
+        localStorage.setItem("Search","")
+        console.log("ALL")
+
+       //  console.log("Hi")
+       }
+       else{
+         getCoursesSearch();
+        console.log("serach")
+        }
     }
     else{
         getCoursesFilterRating()
+        localStorage.setItem("Search","")
+        console.log("Rate")
     }
 }
 else{
   if(localStorage.getItem("Rating")==""){
       getCoursesFilterSubject()
+      console.log("Subject")
+
   }
   else{
     getCoursesFilterSubjectandRating()
+    console.log("SubjandRate")
+
   }
 }
 }
