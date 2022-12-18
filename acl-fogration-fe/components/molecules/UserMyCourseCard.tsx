@@ -126,6 +126,11 @@ const courses = [
 
 const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
 
+
+  useEffect(() => {
+    setIsCorporate(localStorage.getItem("isCorp"))
+  })
+
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
   }
@@ -165,7 +170,9 @@ const [isCorporate, setIsCorporate]= useState("false");
     }
   }
    const discount =(discount:number,price:number) =>{
-      if(discount == 0){
+ if(isCorporate == "false"){
+    
+    if(discount == 0){
     return <div className="">{price} $$</div>
 
   }
@@ -178,13 +185,17 @@ const [isCorporate, setIsCorporate]= useState("false");
     )
   }
   }
+  else{
+    return <div></div>
+  }
+  }
 
 
 
 
   return (
     <div
-      key={course.Course_ID}
+      key={course?.Course_ID}
       className=" flex flex-col bg-bc w-75% shadow-lg text-white"
     >
       {/* //div el eswd */}
@@ -193,19 +204,19 @@ const [isCorporate, setIsCorporate]= useState("false");
         <div className="flex flex-col">
           {/* //div el title bel rating */}
           <div className="flex flex-col text-3xl">
-            <div className="Font-bold  text-white">{course.Course_Title}</div>
-            <div className="flex flex-row  ">{stars(course.Course_Rating)}</div>
+            <div className="Font-bold  text-white">{course?.Course_Title}</div>
+            <div className="flex flex-row  ">{stars(course?.Course_Rating)}</div>
           </div>
           {/* //div el kalam eswd */}
           <div className="bg-bc flex flex-col  gap-3 my-2">
-            <div>{course.Course_Description}</div>
+            <div>{course?.Course_Description}</div>
             <div className="flex flex-row">
-              {course.Course_Trainee.length} enrolled students, taught by{" "}
+              {course?.Course_Trainee?.length} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
               <Link href="/[{course.Course_Instructor}]">
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
-                  {course.Course_Instructor}
+                {course?.Course_Instructor?.Instructor_FirstName}
                 </div>
               </Link>
             </div>
@@ -213,7 +224,7 @@ const [isCorporate, setIsCorporate]= useState("false");
             {/* /*div el country*/}
             <div className="flex flex-row gap-1 items-center">
               <BsGlobe2 />
-              {course.Course_Country}
+              {course?.Course_Country}
             </div>
           </div>
         </div>
@@ -228,7 +239,7 @@ const [isCorporate, setIsCorporate]= useState("false");
           {/* //h1 el se3r */}
           <div className="flex flex-row justify-between my-2">
             <h1 className=" text-violet-400 text-4xl font-bold ">
-              {discount(course.Course_Discount,viewPrice(course.Course_Price))}
+              {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
               </h1>
 
                  <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
@@ -253,7 +264,7 @@ const [isCorporate, setIsCorporate]= useState("false");
           <div className="text-white font-bold text-l">What you will learn</div>
           <div className="flex flex-col gap-1">
             {/* //m7taga 23melha grid */}
-            {What_You_Will_Learn.map((item,index) => (
+            {What_You_Will_Learn?.map((item,index) => (
               <div key={index} className="flex flex-row gap-1 text-white items-center">
                 <TiTick />
                 <div className="text-white">{item}</div>
@@ -290,7 +301,7 @@ const [isCorporate, setIsCorporate]= useState("false");
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
         <h1 className="text-white font-bold text-3xl ">Course Content</h1>
-        {course.Course_Subtitle.map((subtitle,index) => {
+        {course?.Course_Subtitle?.map((subtitle,index) => {
           return (
             <div key={index}>
               <div className="flex flex-col gap-2 ">
@@ -299,12 +310,12 @@ const [isCorporate, setIsCorporate]= useState("false");
                     {subtitle.Subtitle_Name}
                   </div>
                   <div className="text-l flex items-end ">
-                    Total Time: {subtitle.Subtitle_Hours} mins
+                    Total Time: {subtitle?.Subtitle_Hours} mins
                   </div>
                 </div>
               </div>
               <div className="flex flex-row gap-2 w-[100%] ">
-                {subtitle.Subtitle_Video.map((video,index) => {
+                {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
                     <div key={index}>
                       <img
@@ -313,8 +324,8 @@ const [isCorporate, setIsCorporate]= useState("false");
                         alt="No image yet 😅"
                       />
 
-                      <div className="text-l">{video.Video_Description}</div>
-                      <div className="text-l">{video.Video_Length} mins</div>
+                      <div className="text-l">{video?.Video_Description}</div>
+                      <div className="text-l">{video?.Video_Length} mins</div>
                     </div>
                   );
                 })}

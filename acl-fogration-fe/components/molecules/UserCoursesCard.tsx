@@ -23,7 +23,9 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
     }
   }
    const discount =(discount:number,price:number) =>{
-      if(discount == 0){
+    if(isCorporate == "false"){
+    
+    if(discount == 0){
     return <div className="">{price} $$</div>
 
   }
@@ -36,7 +38,10 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
     )
   }
   }
-
+  else{
+    return <div></div>
+  }
+   }
 
 
   if (courses.length === 0) {
@@ -83,10 +88,10 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
               {/* /*div el country*/}
               <div className="flex flex-row gap-1 items-center">
                 <BsGlobe2 />
-                {course.Course_Country}
+                {course?.Course_Country}
               </div>
               <h1 className=" text-violet-400 text-4xl font-bold ">
-              {discount(course.Course_Discount,viewPrice(course.Course_Price))}
+              {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
               </h1>
             </div>
           </div>
@@ -107,6 +112,8 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
                 {/* //link button to enroll */}
                 <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36" onClick={()=>{
                   localStorage.removeItem('CourseID')
+                  console.log("Gowa UserCoursesCard")
+                  console.log(course)
                   localStorage.setItem('CourseID', course?.Course_ID)
                 }}>
                   View Course
