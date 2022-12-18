@@ -33,11 +33,6 @@ interface answer {
 }
 const solved = [];
 
-// const [answers, setAnswers] = React.useState([]);
-    // const addanswer = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //  answers.push(event.target.value);
-    // };
-
 const solveexam = () => {
   return (
     <div>
@@ -48,7 +43,6 @@ const solveexam = () => {
                 <div className="">
                 {Exam.Exam_Questions?.map((question,index) => {return (
                     <div key={index} className="bg-black3  border-2 border-bc rounded-md ">
-                        
                         <h1 className="font-bold text-2xl m-2">Q{question.Question_ID})  {question.Question_Name}</h1>
                         <div className="flex flex-col text-xl m-2 justify-center  ">
                             {question.Question_Choices.map((questionChoice,index) =>{return(            
@@ -56,9 +50,7 @@ const solveexam = () => {
                             )})}
                              <input type="number" min="1" max="4" className="text-black rounded-md w-52 p-1" onChange={(e) => (solved.push((question.Question_ID + e.target.value)),console.log(solved))}/>
                         </div>
-                        
-                    </div>
-                    
+                    </div> 
                 )})}
                 </div>
                 <div className="flex justify-end items-end m-2">
