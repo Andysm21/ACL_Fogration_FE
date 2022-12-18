@@ -78,6 +78,8 @@ useEffect(()=>{
       if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
         if(localStorage.getItem("Search")=='' || localStorage.getItem("Search")==""){
          getCourses()
+         localStorage.setItem("Search","")
+
         //  console.log("Hi")
         }
         else{
@@ -86,10 +88,14 @@ useEffect(()=>{
       }
       else{
         getCoursesFilterPrice()
+        localStorage.setItem("Search","")
+
       }
     }
     else{
         getCoursesFilterRating()
+        localStorage.setItem("Search","")
+
     }
 }
 else{
