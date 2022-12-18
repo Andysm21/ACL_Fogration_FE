@@ -152,14 +152,16 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
     const [starsnum, setStarsnum] = useState(0);
   const discount =(discount:number,price:number) =>{
       if(discount == 0){
-    return <div className="text-l">{price} $$</div>
+    return <div className="">{price} $$</div>
 
   }
   else{ 
-    <div className="flex flex-row">
-    <div className="text-l line-through">{price} $$</div>
-     <div className="text-l">{(price) * (1-discount)} $$</div>
+    return(
+    <div className="flex flex-row gap-2">
+    <div className="line-through">{price} </div>
+     <div className="">{(price) * ((100-discount)/100)}$$</div>
      </div>
+    )
   }
   }
   return (
@@ -185,7 +187,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
               <Link href="/[{course.Course_Instructor}]">
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
-                  {course?.Course_Instructor?.Instructor_FirstNames}
+                  {course?.Course_Instructor?.Instructor_FirstName}
                 </div>
               </Link>
             </div>
@@ -211,8 +213,8 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
             {/* {!isCorporate && <h1 className=" text-violet-400 text-4xl font-bold ">
               $${course.Course_Price}
             </h1> } */}
-             {discount(course?.Course_Discount,course?.Course_Price)}
-            
+            {/* discount(course?.Course_Discount,course?.Course_Price) */}
+             <h1 className=" text-violet-400 text-4xl font-bold ">{discount(course?.Course_Discount,course?.Course_Price)}</h1>
             <Link href="/">
               {/* //link button to enroll */}
               <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-48">
@@ -283,9 +285,9 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
                 </div>
               </div>
               <div className="flex flex-row gap-2 w-[100%] ">
-                {subtitle?.Subtitle_Video?.map((video) => {
+                {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       <img
                         className="flex-shrink-0  "
                         src="/images/pausedvideo.png"
@@ -326,10 +328,10 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
           <div className="text-white font-bold text-l">Reviews</div>
 
           <div className="flex flex-row gap-2">
-            {course?.Course_Review && course?.Course_Review?.map((review,index) => (
+            {course?.Course_Review && course?.Course_Review?.map((review,index) => {return (
                 <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
                   {review}</div>    
-            ))}
+            )})}
           </div>
           
         </div> 

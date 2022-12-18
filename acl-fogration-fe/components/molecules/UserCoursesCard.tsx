@@ -16,12 +16,28 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
 
   const viewPrice =(price:number)=>{
     if(isCorporate == "false"){
-      return  <h1 className=" text-violet-400 text-4xl font-bold "> $${price}</h1>   
+      return  price   
     }
     else{
       return 
     }
   }
+   const discount =(discount:number,price:number) =>{
+      if(discount == 0){
+    return <div className="">{price} $$</div>
+
+  }
+  else{ 
+    return(
+    <div className="flex flex-row gap-2">
+    <div className="line-through">{price} </div>
+     <div className="">{(price) * ((100-discount)/100)}$$</div>
+     </div>
+    )
+  }
+  }
+
+
 
   if (courses.length === 0) {
     return <div className="text-center text-white"> No courses</div>;
@@ -37,10 +53,11 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
     }
     return stars;
   };
+ 
   return (
     <div className="grid grid-cols-2 text-white place-items-center bg-bc gap-4">
-      {courses.map((course) => (
-        <div className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg p-2 ">
+      {courses.map((course,index) => (
+        <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg p-2 ">
           {/* //div el title bel kalam */}
           <div className="flex flex-col">
             {/* //div el title bel rating */}
@@ -68,7 +85,9 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
                 <BsGlobe2 />
                 {course.Course_Country}
               </div>
-              {viewPrice(course.Course_Price)}
+              <h1 className=" text-violet-400 text-4xl font-bold ">
+              {discount(course.Course_Discount,viewPrice(course.Course_Price))}
+              </h1>
             </div>
           </div>
           {/* //div el video bel se3r wel button */}

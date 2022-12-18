@@ -1,7 +1,7 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const isCorporate = true;
 
 // const courses = [
@@ -188,22 +188,37 @@ const isCorporate = true;
 //   ],
 // };
 const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
+    const [isCorporate, setIsCorporate]= useState("false");
 
-  // const courses = [
-  //   { id: 1, name: "CSEN702", totalHours: 6, rating: 5, price: 40 },
-  //   { id: 2, name: "CSEN704", totalHours: 8, rating: 4, price: 40 },
-  //   {
-  //     id: 3,
-  //     name: "CSEN703",
-  //     totalHours: 4,
-  //     rating: 1,
-  //     price: 40,
-  //   },
-  // ];
+    useEffect(() => {
+    setIsCorporate(localStorage.getItem("isCorp"))
+  })
 
+  const viewPrice =(price:number)=>{
+    if(isCorporate == "false"){
+      return  price   
+    }
+    else{
+      return 
+    }
+  }
+   const discount =(discount:number,price:number) =>{
+      if(discount == 0){
+    return <div className="">{price} $$</div>
 
+  }
+  else{ 
+    return(
+    <div className="flex flex-row gap-2">
+    <div className="line-through">{price} </div>
+     <div className="">{(price) * ((100-discount)/100)}$$</div>
+     </div>
+    )
+  }
+  }
+ 
   if (courses?.length === 0) {
-    return <div className="text-center "> No courses</div>;
+    return <div className="text-center text-white "> No courses</div>;
   }
   const stars = (rating: number) => {
     let stars = [];
@@ -216,6 +231,8 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
     }
     return stars;
   };
+
+
   return (
     <div className="grid grid-cols-2 text-white place-items-center bg-bc gap-4">
       {courses?.map((course) => (
@@ -247,11 +264,9 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
                 <BsGlobe2 />
                 {course?.Course_Country}
               </div>
-              {!isCorporate && (
-                <h1 className=" text-violet-400 text-4xl font-bold ">
-                  $${course?.Course_Price}
-                </h1>
-              )}
+              <h1 className=" text-violet-400 text-4xl font-bold ">
+              {discount(course.Course_Discount,viewPrice(course.Course_Price))}
+              </h1>
             </div>
           </div>
           {/* //div el video bel se3r wel button */}

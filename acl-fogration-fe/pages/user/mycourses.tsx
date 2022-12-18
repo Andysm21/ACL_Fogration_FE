@@ -141,14 +141,6 @@ useEffect(()=>{
 })
 
 
-
-
-
-
-
-
-
-
   return (
     <div className="bg-bc h-screen">
       <Head>
