@@ -139,6 +139,14 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
   })
+    const viewPrice =(price:number)=>{
+    if(isCorporate == "false"){
+      return  price   
+    }
+    else{
+      return 
+    }
+  }
   // if (courses.length === 0) {
   //   return <div className="text-center "> No courses</div>;
   // }
@@ -155,9 +163,9 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
     return stars;
   };
     const [starsnum, setStarsnum] = useState(0);
+
   const discount =(discount:number,price:number) =>{
     if(isCorporate == "false"){
-    
       if(discount == 0){
       return <div className="">{price} $$</div>
   
@@ -220,12 +228,15 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
             </Link>
           </div>
           {/* //h1 el se3r */}
+          <div className="flex flex-col">
           <div className="flex flex-row justify-between my-2 ">
             {/* {!isCorporate && <h1 className=" text-violet-400 text-4xl font-bold ">
               $${course.Course_Price}
             </h1> } */}
-            {/* discount(course?.Course_Discount,course?.Course_Price) */}
-             <h1 className=" text-violet-400 text-4xl font-bold ">{discount(course?.Course_Discount,course?.Course_Price)}</h1>
+          
+             <h1 className=" text-violet-400 text-4xl font-bold ">
+               {discount(course?.Course_Discount,viewPrice(course?.Course_Price))} </h1>
+              
             <Link href="/">
               {/* //link button to enroll */}
               <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-48">
@@ -234,6 +245,9 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
             </Link>
 
             
+
+          </div>
+           <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
 
           </div>
         </div>

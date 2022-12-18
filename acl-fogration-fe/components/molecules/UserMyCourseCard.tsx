@@ -237,10 +237,13 @@ const [isCorporate, setIsCorporate]= useState("false");
             </Link>
           </div>
           {/* //h1 el se3r */}
+          <div className="flex flex-col">
           <div className="flex flex-row justify-between my-2">
+            
             <h1 className=" text-violet-400 text-4xl font-bold ">
               {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
               </h1>
+           
 
                  <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
                 <div onClick={() => {setStarsnum(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
@@ -255,6 +258,9 @@ const [isCorporate, setIsCorporate]= useState("false");
 
 
           </div>
+
+     <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
+</div>
         </div>
       </div>
       {/* //div el abyad */}
