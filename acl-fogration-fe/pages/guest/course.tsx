@@ -5,26 +5,30 @@ import Head from "next/head";
 import LayoutGuest from "../../components/templates/LayoutGuest";
 import GuestCourseCard from "../../components/molecules/GuestCourseCard";
 import Axios from 'axios'
-import {useParams} from 'react-router-dom'
 
 
 //Number(localStorage.getItem("Course")
 
 const course: NextPage = () => {
-  var [Course  , setCourse] = useState('');
- // localStorage.setItem("isCorp","1")
-  function guestViewCourse(){
-    Axios.post("http://localhost:8000/viewCourse", {id: 1}).then((response)=>{
-      setCourse(response.data)
-      console.log(Course);
+ var [courseArray,setCourseArray]=useState([]);
 
+ function getCourses(){
 
-      
-    })
-      .catch(error=>console.error("there is an error"))
-  }
-  useEffect(() => {guestViewCourse()})
-    
+    // Axios.post("http://localhost:8000/viewCourse",{id:Number(localStorage.getItem("CourseIIDD"))}
+        Axios.post(`http://localhost:8000/viewCourse/${2}`
+
+   ).then((response) => {
+     setCourseArray(response.data[0])
+     console.log(response.data)
+     console.log(courseArray)
+   }).catch((error) => console.log(error))
+ }
+
+  
+ useEffect(() => {
+  // if(localStorage.getItem("Course")!=undefined){
+  getCourses();
+}, []);
 
   return (
     <div className="bg-bc h-screen">
@@ -36,7 +40,7 @@ const course: NextPage = () => {
 
       <LayoutGuest>
         <div className="">
-          <GuestCourseCard course={Course} />
+          <GuestCourseCard course={courseArray} />
         </div>
       </LayoutGuest>
     </div>

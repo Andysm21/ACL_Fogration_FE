@@ -16,8 +16,7 @@ const guestcourses: NextPage = () => {
   function getCourses(){
      axios.get("http://localhost:8000/viewCoursesALL"
     ).then((response) => {
-      console.log("Hello")
-      console.log(response.data)
+
       setCourseArray(response.data)
     }).catch((error) => console.log(error))
   }
@@ -85,6 +84,10 @@ else{
     getCoursesFilterSubjectandRating()
   }
 }
+// localStorage.removeItem("Course")
+// localStorage.setItem("Course",CourseArray[0]?.Course_ID+"")
+// console.log(localStorage.getItem("Course"))
+
 })
 
 

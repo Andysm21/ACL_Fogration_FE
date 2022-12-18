@@ -25,8 +25,8 @@ const InstructorCourseCard: React.FC<{ course }> = ({ course }) => {
 
 const [type, setType ]= useState("");
   useEffect(()=>{
-    localStorage.setItem("Type","Admin")
     setType(localStorage.getItem("Type"));
+    console.log(course)
   })
 
  const addExam =()=>{
@@ -55,7 +55,7 @@ const [type, setType ]= useState("");
  }
   return (
     <div
-      key={course.Course_ID}
+      key={course?.Course_ID}
       className=" flex flex-col bg-bc w-75% shadow-lg text-white"
     >
       {/* //div el eswd */}
@@ -64,19 +64,19 @@ const [type, setType ]= useState("");
         <div className="flex flex-col">
           {/* //div el title bel rating */}
           <div className="flex flex-col text-3xl">
-            <div className="Font-bold  text-white">{course.Course_Title}</div>
-            <div className="flex flex-row  ">{stars(course.Course_Rating)}</div>
+            <div className="Font-bold  text-white">{course?.Course_Title}</div>
+            <div className="flex flex-row  ">{stars(course?.Course_Rating)}</div>
           </div>
           {/* //div el kalam eswd */}
           <div className="bg-bc flex flex-col  gap-3 my-2">
-            <div>{course.Course_Description}</div>
+            <div>{course?.Course_Description}</div>
             <div className="flex flex-row">
-              {course.Course_Trainee.length} enrolled students, taught by{" "}
+              {course?.Course_Trainee?.length} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
-              <Link href="/[{course.Course_Instructor}]">
+              <Link href="/[{course?.Course_Instructor}]">
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
-                  {course.Course_Instructor}
+                  {course?.Course_Instructor?.Instructor_FirstName}
                 </div>
               </Link>
             </div>
@@ -84,7 +84,7 @@ const [type, setType ]= useState("");
             {/* /*div el country*/}
             <div className="flex flex-row gap-1 items-center">
               <BsGlobe2 />
-              {course.Course_Country}
+              {course?.Course_Country}
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@ const [type, setType ]= useState("");
           {/* //h1 el se3r */}
           <div className="flex flex-row justify-between my-2">
             <h1 className=" text-violet-400 text-4xl font-bold ">
-              $${course.Course_Price}
+              $${course?.Course_Price}
             </h1>
 
 
@@ -133,7 +133,7 @@ const [type, setType ]= useState("");
           <div className="flex flex-col border-black1 text-white bg-black2 m-2 px-2 w-52 h-20 rounded-md justify-between items-center py-2">
             <BsPlayBtnFill size={30} />
             <div className="  justify-center items-end">
-              {course.Course_Hours} hours of video
+              {course?.Course_Hours} hours of video
             </div>
           </div>
 
@@ -150,21 +150,21 @@ const [type, setType ]= useState("");
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
         <h1 className="text-white font-bold text-3xl ">Course Content</h1>
-        {course.Course_Subtitle.map((subtitle) => {
+        {course?.Course_Subtitle?.map((subtitle) => {
           return (
             <div>
               <div className="flex flex-col gap-2 ">
                 <div className="flex flex-row gap-2 justify-between">
                   <div className="text-xl font-bold">
-                    {subtitle.Subtitle_Name}
+                    {subtitle?.Subtitle_Name}
                   </div>
                   <div className="text-l flex items-end ">
-                    Total Time: {subtitle.Subtitle_Hours} mins
+                    Total Time: {subtitle?.Subtitle_Hours} mins
                   </div>
                 </div>
               </div>
               <div className="flex flex-row gap-2 w-[100%] ">
-                {subtitle.Subtitle_Video.map((video) => {
+                {subtitle?.Subtitle_Video?.map((video) => {
                   return (
                     <div>
                       <img
@@ -173,8 +173,8 @@ const [type, setType ]= useState("");
                         alt="No image yet 😅"
                       />
 
-                      <div className="text-l">{video.Video_Description}</div>
-                      <div className="text-l">{video.Video_Length} mins</div>
+                      <div className="text-l">{video?.Video_Description}</div>
+                      <div className="text-l">{video?.Video_Length} mins</div>
                     </div>
                   );
                 })}
@@ -192,15 +192,15 @@ const [type, setType ]= useState("");
         </div>
         <div className= "flex flex-row">
         <div className="flex flex-row p-2">
-            {course.Course_Exam.map((item) => {
+            {course?.Course_Exam?.map((item) => {
               return(
-              <div key={course.Course_Exam.Exam_ID}  className="flex flex-col items-start ">
+              <div key={course?.Course_Exam?.Exam_ID}  className="flex flex-col items-start ">
                       <AiFillFilePdf size={100}/>
                       <div className="items-center justify-center flex flex-col">
-                        <div className="text-l">Exam {item.Exam_ID}</div>
+                        <div className="text-l">Exam {item?.Exam_ID}</div>
 
                         {viewGrade(item.Exam_Grade)}
-                       <div className="text-l">{item.Exam_Question_ID.length} Questions</div>
+                       <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div>
                       </div>
                     </div>
               )

@@ -8,9 +8,6 @@ function enterEmail() {
   const router = useRouter();
   const [value, setValue] = React.useState<Date | null>();
 
-  const handleChange1 = (newValue: Date | null) => {
-    setValue(newValue);
-  };
 
   const[email,setEmail]= React.useState("")
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +22,7 @@ function enterEmail() {
     })
 
   }
+  
   return (
     <div>
       <NavGuest />

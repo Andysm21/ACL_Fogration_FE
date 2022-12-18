@@ -56,7 +56,48 @@ const handleChangeP = event => {
 };
 
 const [ID, setId ]= useState("");
+const handleSubmit = () => {
+  axios.put('http://localhost:8000/editProfile', {Instructor_ID: Number(ID), Instructor_username: username, Instructor_Email: email,
+  Instructor_Biography: biography,Instructor_FirstName: FirstName, 
+  Instructor_LastName: LastName, Instructor_Gender: Gender, Instructor_Country: country})
 
+  .then((response) => {
+    if(response.data == "1"){
+      status = "Username field should not be empty";
+    }
+    else if(response.data == "2"){
+      status = "Choose another username, its already in use";
+    }
+    else if(response.data == "3"){
+      status = "Email already in use";
+    }
+    else if(response.data == "4"){
+      status = "Instructor got updated.";
+    }
+  }).catch((error) => console.log(error))
+  //console.log(data);
+};
+
+const handleSubmitUserEmail = () => {
+  axios.put('http://localhost:8000/editProfileUserEmail', {Instructor_ID: Number(ID), Instructor_username: username, Instructor_Email: email})
+
+  .then((response) => {
+    if(response.data == "1"){
+      status = "Username field should not be empty";
+    }
+    else if(response.data == "2"){
+      status = "Choose another username, its already in use";
+    }
+    else if(response.data == "3"){
+      status = "Email already in use";
+    }
+    else if(response.data == "4"){
+      status = "Instructor got updated.";
+    }
+    console.log(status);
+  }).catch((error) => console.log(error))
+  //console.log(data);
+};
   function changePassword(){
     if(password1===password){ 
     axios.post("http://localhost:8000/changePassword",{
@@ -74,33 +115,13 @@ useEffect(()=>{
     localStorage.setItem("ID","1")
   setId(localStorage.getItem("ID"));
 });
-console.log(ID);
+// console.log(ID);
   const [country, setCountry] = useState('DE');
 
   var status = '';
 
   //SALMA WILL CONTINUE THIS LATER
-  // const handleSubmit = () => {
-  //   axios.put('http://localhost:8000/editProfile', {Instructor_ID: Number(ID), Instructor_username: username, Instructor_Email: email,
-  //   Instructor_Biography: biography,Instructor_FirstName: FirstName, 
-  //   Instructor_LastName: LastName, Instructor_Gender: Gender, Instructor_Country: country})
 
-  //   .then((response) => {
-  //     if(response.data == "1"){
-  //       status = "Username field should not be empty";
-  //     }
-  //     else if(response.data == "2"){
-  //       status = "Choose another username.";
-  //     }
-  //     else if(response.data == "3"){
-  //       status = "email already in use";
-  //     }
-  //     else if(response.data == "4"){
-  //       status = "Instructor got updated.";
-  //     }
-  //   }).catch((error) => console.log(error))
-  //   //console.log(data);
-  // };
 
 
   const stars = (rating: number) => {
@@ -141,27 +162,27 @@ console.log(ID);
         </div>
         <div className="flex flex-row ">
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
-          <div className="text-white font-bold text-l">instructoral Information</div>
+          <div className="text-white font-bold text-l">Instructor Information</div>
           <div className="flex flex-row justify-between">
             <div className="bg-black3 rounded-md flex flex-col gap-4 " >
-           <div className="text-white text-l">Username</div>
+           {/* <div className="text-white text-l">Username</div>
           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-52  border-white rounded-md "
-          defaultValue= {instructor.Instructor_username} onChange = {handleUsername}/> 
+          defaultValue= {instructor.Instructor_username} onChange = {handleUsername}/>  */}
            <div className="text-l"> First Name </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {instructor.Instructor_FirstName} onChange = {handleFirstName}/> 
           <div className="text-l">Last Name </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {instructor.Instructor_LastName} onChange = {handleLastName}/> 
-           <div className="text-l">Email </div>
+           {/* <div className="text-l">Email </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {instructor.Instructor_Email} onChange = {handleEmail}/> 
+          defaultValue= {instructor.Instructor_Email} onChange = {handleEmail}/>  */}
 
           <div className="text-l">Gender </div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {instructor.Instructor_Gender} onChange = {handleGender}/> 
 
-        <div className="text-l">Country of birth </div>
+        <div className="text-l">Country </div>
         <div className="text-black w-52">
           <CountrySelector
           id={'countries'}
@@ -178,7 +199,7 @@ console.log(ID);
            <div>Biography</div>
            <input type="text"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52 h-72  border-white rounded-md"
           defaultValue= {instructor.Instructor_Biography}
-         /> 
+         onChange={handlebiography}/> 
           {/* <TextField
                     required
                     id="outlined-basic"
@@ -193,7 +214,7 @@ console.log(ID);
           
           </div>
           {/* onClick = {handleSubmit} */}
-           <button  className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
+           <button  className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={handleSubmit}>
                   Update 
                 </button>
           
@@ -206,12 +227,12 @@ console.log(ID);
           <div className="text-l">Username</div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {instructor.Instructor_username}  
-         /> 
+         onChange={handleUsername}/> 
          <div className="text-l">Email</div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= {instructor.Instructor_Email }  
-         /> 
-          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded ">
+         onChange={handleEmail}/> 
+          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={handleSubmitUserEmail}>
                   Update
                 </button>
 

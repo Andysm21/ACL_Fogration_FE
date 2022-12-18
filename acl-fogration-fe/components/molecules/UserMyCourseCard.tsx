@@ -3,7 +3,7 @@ import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const courses = [
   {
     _id: {
@@ -125,6 +125,7 @@ const courses = [
 ];
 
 const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
+
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
   }
@@ -140,7 +141,47 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
     return stars;
   };
 
+
+const What_You_Will_Learn = [
+      "How to use React",
+      "How to use Redux",
+      "How to use Material UI",
+    ];
   const [starsnum, setStarsnum] = useState(0);
+
+const [isCorporate, setIsCorporate]= useState("false");
+
+
+  useEffect(() => {
+    setIsCorporate(localStorage.getItem("isCorp"))
+  })
+
+  const viewPrice =(price:number)=>{
+    if(isCorporate == "false"){
+      return  price   
+    }
+    else{
+      return 
+    }
+  }
+   const discount =(discount:number,price:number) =>{
+      if(discount == 0){
+    return <div className="">{price} $$</div>
+
+  }
+  else{ 
+    return(
+    <div className="flex flex-row gap-2">
+    <div className="line-through">{price} </div>
+     <div className="">{(price) * ((100-discount)/100)}$$</div>
+     </div>
+    )
+  }
+  }
+
+
+
+
   return (
     <div
       key={course.Course_ID}
@@ -187,10 +228,10 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
           {/* //h1 el se3r */}
           <div className="flex flex-row justify-between my-2">
             <h1 className=" text-violet-400 text-4xl font-bold ">
-              $${course.Course_Price}
-            </h1>
+              {discount(course.Course_Discount,viewPrice(course.Course_Price))}
+              </h1>
 
-                                    <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
+                 <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
                 <div onClick={() => {setStarsnum(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
                  <div onClick={() => {setStarsnum(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
                   <div onClick={() => {setStarsnum(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
@@ -212,8 +253,8 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
           <div className="text-white font-bold text-l">What you will learn</div>
           <div className="flex flex-col gap-1">
             {/* //m7taga 23melha grid */}
-            {course.Course_What_You_Will_Learn.map((item) => (
-              <div className="flex flex-row gap-1 text-white items-center">
+            {What_You_Will_Learn.map((item,index) => (
+              <div key={index} className="flex flex-row gap-1 text-white items-center">
                 <TiTick />
                 <div className="text-white">{item}</div>
               </div>
@@ -249,9 +290,9 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
         <h1 className="text-white font-bold text-3xl ">Course Content</h1>
-        {course.Course_Subtitle.map((subtitle) => {
+        {course.Course_Subtitle.map((subtitle,index) => {
           return (
-            <div>
+            <div key={index}>
               <div className="flex flex-col gap-2 ">
                 <div className="flex flex-row gap-2 justify-between">
                   <div className="text-xl font-bold">
@@ -263,9 +304,9 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
                 </div>
               </div>
               <div className="flex flex-row gap-2 w-[100%] ">
-                {subtitle.Subtitle_Video.map((video) => {
+                {subtitle.Subtitle_Video.map((video,index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       <img
                         className="flex-shrink-0  "
                         src="/images/pausedvideo.png"
