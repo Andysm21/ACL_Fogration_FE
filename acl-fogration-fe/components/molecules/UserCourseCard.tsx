@@ -183,6 +183,18 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
       return <div></div>
     }
   }
+
+  
+  function DiscountDuration(){
+    if(isCorporate == "true"){
+      return <div></div>
+    }
+    else{
+         return  <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
+  
+    }
+  }
+  
   return (
     <div
       key={course?.Course_ID}
@@ -247,7 +259,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
             
 
           </div>
-           <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
+           {DiscountDuration()}
 
           </div>
         </div>

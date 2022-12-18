@@ -75,70 +75,96 @@ else{
    }).catch((error) => console.log(error))
  }
 }
-  function getCoursesFilterPrice(){
-    axios.post("http://localhost:8000/filterPriceInst",{
-     Instructor_ID: Number(localStorage.getItem("InstID")),
-     FilterPrice1: Number(localStorage.getItem("MinPrice")),
-     FilterPrice2:Number(localStorage.getItem("MaxPrice"))
-    }
-   ).then((response) => {
-     setCourseArray(response.data)
-   }).catch((error) => console.log(error))
- }
-
- function getCoursesFilterSubject(){
-  axios.post("http://localhost:8000/filterSubjectInst",{
-   Instructor_ID: Number(localStorage.getItem("InstID")),
-   FilterSubject: localStorage.getItem("Subject"),
-  }
- ).then((response) => {
-   //console.log(Number(localStorage.getItem("InstID")))
-   //console.log(Number(localStorage.getItem("Subject")))
-   //console.log(localStorage.getItem("H1"))
-   setCourseArray(response.data)
- }).catch((error) => console.log(error))
-}
-
-function getCoursesFilterSubjectandPrice(){
-  axios.post("http://localhost:8000/filterPriceAndSubjectInst",{
-   Instructor_ID: Number(localStorage.getItem("InstID")),
+function getCoursesFilterPrice(){
+  axios.post("http://localhost:8000/filterPrice",{
    FilterPrice1: Number(localStorage.getItem("MinPrice")),
-   FilterPrice2:Number(localStorage.getItem("MaxPrice")),
-   FilterSubject: localStorage.getItem("Subject")
+   FilterPrice2:Number(localStorage.getItem("MaxPrice"))
   }
  ).then((response) => {
-   //console.log(Number(localStorage.getItem("InstID")))
-   //console.log(Number(localStorage.getItem("Subject")))
-   //console.log(localStorage.getItem("H1"))
    setCourseArray(response.data)
  }).catch((error) => console.log(error))
 }
 
+function getCoursesFilterSubject(){
+axios.post("http://localhost:8000/filterSubject",{
+  Course_Subject: localStorage.getItem("Subject"),
+}
+).then((response) => {
+ setCourseArray(response.data)
+}).catch((error) => console.log(error))
+}
+
+function getCoursesFilterSubjectandRating(){
+axios.post("http://localhost:8000/filterSubjectRating",{
+  Course_Subject: localStorage.getItem("Subject"),
+  Course_Rating: localStorage.getItem("Rating")
+}
+).then((response) => {
+ setCourseArray(response.data)
+}).catch((error) => console.log(error))
+}
+
+function getCoursesFilterRating(){
+axios.post("http://localhost:8000/filterRating",{
+  Course_Rating: localStorage.getItem("Rating")
+}
+).then((response) => {
+ setCourseArray(response.data)
+}).catch((error) => console.log(error))
+}
 
 useEffect(()=>{
-  console.log(localStorage.getItem("user_id"));
-  getCourses();
-//   if(localStorage.getItem("Subject")==""){
-//     if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
-//          getCourses()
-//           localStorage.setItem("InstID","2")
-//     }
-//     else{
-//       getCoursesFilterPrice()
-//         localStorage.setItem("InstID","2")
-//     }
-// }
-// else{
-//   if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
-//     getCoursesFilterSubject()
-//     localStorage.setItem("InstID","2")
-// }
-//   else{
-//     getCoursesFilterSubjectandPrice()
-//     localStorage.setItem("InstID","2")
-//   }
-// }
+// console.log(localStorage.getItem("Subject"))
+
+if(localStorage.getItem("isCorp")=="false"){
+if(localStorage.getItem("Subject")==""){
+  if(localStorage.getItem("Rating")==""){
+    if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+       getCourses()
+      //  console.log("Hi")
+
+    }
+    else{
+      getCoursesFilterPrice()
+    }
+  }
+  else{
+      getCoursesFilterRating()
+  }
+}
+else{
+if(localStorage.getItem("Rating")==""){
+  if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+    getCoursesFilterSubject()
+  }
+}
+else{
+  getCoursesFilterSubjectandRating()
+}
+}
+}
+
+else{
+if(localStorage.getItem("Subject")==""){
+  if(localStorage.getItem("Rating")==""){
+       getCourses()
+      //  console.log("Hi")
+  }
+  else{
+      getCoursesFilterRating()
+  }
+}
+else{
+if(localStorage.getItem("Rating")==""){
+    getCoursesFilterSubject()
+}
+else{
+  getCoursesFilterSubjectandRating()
+}
+}
+}
 })
+
 
 
   return (
