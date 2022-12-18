@@ -211,7 +211,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
             {/* {!isCorporate && <h1 className=" text-violet-400 text-4xl font-bold ">
               $${course.Course_Price}
             </h1> } */}
-             {discount(course.Course_Discount,course.Course_Price)}
+            <h1 className="text-violet-400 text-4xl font-bold" >{discount(course.Course_Discount,course.Course_Price)}</h1>
             
             <Link href="/">
               {/* //link button to enroll */}
@@ -283,9 +283,9 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
                 </div>
               </div>
               <div className="flex flex-row gap-2 w-[100%] ">
-                {subtitle.Subtitle_Video.map((video) => {
+                {subtitle.Subtitle_Video.map((video,index) => {
                   return (
-                    <div>
+                    <div key={index} >
                       <img
                         className="flex-shrink-0  "
                         src="/images/pausedvideo.png"
