@@ -110,11 +110,11 @@ const handleSubmitUserEmail = () => {
    }).catch((error) => console.log(error))
   }
 }
-useEffect(()=>{
-  //localStorage.removeItem("Type")
-    localStorage.setItem("ID","1")
-  setId(localStorage.getItem("ID"));
-});
+// useEffect(()=>{
+//   //localStorage.removeItem("Type")
+//     // localStorage.setItem("ID","1")
+//   // setId(localStorage.getItem("ID"));
+// });
 // console.log(ID);
   const [country, setCountry] = useState('DE');
 

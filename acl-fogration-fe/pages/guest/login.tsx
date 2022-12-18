@@ -99,6 +99,7 @@ const router = useRouter();
        else if(type == "4"){
         localStorage.removeItem("user_id")
         localStorage.setItem("user_id",id)
+        console.log("ID IS "+id)
         localStorage.removeItem("Type")
         localStorage.setItem("isCorp", "true")
         localStorage.removeItem("Type")

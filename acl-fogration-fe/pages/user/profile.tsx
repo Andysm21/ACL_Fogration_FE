@@ -18,7 +18,7 @@ function getProfile(){
   }
  ).then((response) => {
    setPerson(response.data)
-   console.log(response.data)
+  //  console.log(response.data)
  }).catch((error) => console.log(error))
 }
 else if(isCorp=="false"){
