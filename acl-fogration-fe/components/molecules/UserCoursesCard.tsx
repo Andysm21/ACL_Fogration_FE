@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 
 
-
+ 
 const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
   const [isCorporate, setIsCorporate]= useState("false");
 
@@ -86,7 +86,10 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
             <div className="flex flex-row justify-between my-2">
               <Link href="viewcourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36">
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36" onClick={()=>{
+                  localStorage.removeItem('CourseID')
+                  localStorage.setItem('CourseID', course?.Course_ID)
+                }}>
                   View Course
                 </button>
               </Link>
