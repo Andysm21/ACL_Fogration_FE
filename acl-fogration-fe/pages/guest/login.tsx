@@ -10,6 +10,8 @@ import dayjs, { Dayjs } from "dayjs";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import NavGuestLogin from "../../components/atoms/NavGuestLogin";
 import GuestCourses from "../../components/molecules/GuestCourses";
+// import { useNavigate } from "react-router-dom";
+
 import {
   FormControl,
   FormControlLabel,
@@ -18,8 +20,13 @@ import {
   RadioGroup,
 } from "@mui/material";
 import Axios  from "axios";
+
 function Login() {
-  const router = useRouter();
+const router = useRouter();
+
+  // let navigate = useNavigate(); 
+
+  // const router = useRouter();
   const [value, setValue] = React.useState<Date | null>();
   const [error,setError] = useState("")
   const [Username,setUsername]=useState('')
@@ -60,7 +67,7 @@ function Login() {
         
         console.log(localStorage.getItem("Type"))
         console.log(localStorage.getItem("user_id"))
-
+        router.push("/admin")
        }
        else if(type == "2"){
         localStorage.removeItem("user_id")
@@ -72,6 +79,8 @@ function Login() {
 
         console.log(localStorage.getItem("Type"))
         console.log(localStorage.getItem("user_id"))
+        router.push("/instructor")
+
        }
        else if(type == "3"){
         localStorage.removeItem("user_id")
@@ -84,6 +93,8 @@ function Login() {
         console.log(localStorage.getItem("Type"))
         console.log(localStorage.getItem("user_id"))
         console.log(localStorage.getItem("isCorp"))
+        router.push("/user")
+
        }
        else if(type == "4"){
         localStorage.removeItem("user_id")
@@ -96,6 +107,8 @@ function Login() {
         console.log(localStorage.getItem("Type"))
         console.log(localStorage.getItem("user_id"))
         console.log(localStorage.getItem("isCorp"))
+        router.push("/user")
+
         }
         else if(type =="5"){
         console.log("WRONG")

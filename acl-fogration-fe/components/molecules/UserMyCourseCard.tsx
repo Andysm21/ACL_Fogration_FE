@@ -189,7 +189,15 @@ const [isCorporate, setIsCorporate]= useState("false");
     return <div></div>
   }
   }
-
+  function DiscountDuration(){
+    if(isCorporate == "true"){
+      return <div></div>
+    }
+    else{
+         return  <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
+  
+    }
+  }
 
 
 
@@ -259,7 +267,7 @@ const [isCorporate, setIsCorporate]= useState("false");
 
           </div>
 
-     <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
+     {DiscountDuration()}
 </div>
         </div>
       </div>
