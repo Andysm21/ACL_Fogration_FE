@@ -18,15 +18,14 @@ const viewcourse: NextPage = () => {
         axios.post(`http://localhost:8000/viewCourse/${x}`
 
    ).then((response) => {
+    console.log("Ana henaaa")
      setCourseArray(response.data)
      console.log(response.data)
      console.log(courseArray)
    }).catch((error) => console.log(error))
  }
 
-  useEffect(()=>{
-getCourses();
-  })
+ useEffect(() =>{getCourses()},[]);
   return (
     <div className="bg-bc h-screen">
       <Head>

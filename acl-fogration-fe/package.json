@@ -15,9 +15,7 @@
     "@mui/material": "^5.10.11",
     "@mui/x-date-pickers": "^5.0.6",
     "axios": "^1.2.1",
-
     "cors": "^2.8.5",
-
     "dayjs": "^1.11.6",
     "framer-motion": "^7.6.15",
     "i": "^0.3.7",

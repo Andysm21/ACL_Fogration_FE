@@ -3,42 +3,32 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 import UserMyCourseCard from "../../components/molecules/UserMyCourseCard";
-import  Axios  from "axios";
+import  axios  from "axios";
 
 
 const viewmycourse: NextPage = () => {
-  var [course,setCourseArray]=useState([]);
-
+  var [courseArray,setCourseArray]=useState([]);
 
   function getCourses(){
-
-    if(localStorage.getItem("isCorp")){
+ 
     // Axios.post("http://localhost:8000/viewCourse",{id:Number(localStorage.getItem("CourseIIDD"))}
-        Axios.post(`http://localhost:8000/myCoursesCorp/`
+     var x = Number(localStorage.getItem("CourseID"));
+    console.log(x);
+        axios.post(`http://localhost:8000/viewCourse/${x}`
 
    ).then((response) => {
-     console.log(response.data);
-     setCourseArray(response.data[0])
+     setCourseArray(response.data)
      console.log(response.data)
-     console.log(course)
+     console.log(courseArray)
    }).catch((error) => console.log(error))
  }
-//  else{
-//   Axios.post(`http://localhost:8000/myCoursesInd/`
-
-//   ).then((response) => {
-//     console.log(response.data[0]);
-//     setCourseArray(response.data[0])
-//     console.log(response.data)
-//     console.log(course)
-//   }).catch((error) => console.log(error))
-//   }
- }
-
-  
-useEffect(()=>{
-  getCourses();
-})
+ 
+   
+  useEffect(() => {
+   // if(localStorage.getItem("Course")!=undefined){
+   getCourses();
+   console.log(courseArray)
+ }, []);
   
   return (
     <div className="bg-bc h-screen">
@@ -50,7 +40,7 @@ useEffect(()=>{
 
       <Layout>
         <div className="">
-          <UserMyCourseCard course={course} />
+          <UserMyCourseCard course={courseArray} />
         </div>
       </Layout>
     </div>

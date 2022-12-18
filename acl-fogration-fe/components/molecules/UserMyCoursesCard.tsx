@@ -203,18 +203,24 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
     }
   }
    const discount =(discount:number,price:number) =>{
+    if(isCorporate == "false"){
+    
       if(discount == 0){
-    return <div className="">{price} $$</div>
-
-  }
-  else{ 
-    return(
-    <div className="flex flex-row gap-2">
-    <div className="line-through">{price} </div>
-     <div className="">{(price) * ((100-discount)/100)}$$</div>
-     </div>
-    )
-  }
+      return <div className="">{price} $$</div>
+  
+    }
+    else{ 
+      return(
+      <div className="flex flex-row gap-2">
+      <div className="line-through">{price} </div>
+       <div className="">{(price) * ((100-discount)/100)}$$</div>
+       </div>
+      )
+    }
+    }
+    else{
+      return <div></div>
+    }
   }
  
   if (courses?.length === 0) {
@@ -284,7 +290,10 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
             <div className="flex flex-row justify-between my-2">
               <Link href="viewmycourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80">
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
+                  localStorage.removeItem('CourseID')
+                  localStorage.setItem('CourseID', course?.Course_ID)
+                }}>
                   View Course
                 </button>
               </Link>

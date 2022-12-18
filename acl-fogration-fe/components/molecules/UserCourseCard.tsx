@@ -4,7 +4,7 @@ import { BsGlobe2, BsPlayBtnFill ,} from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import {AiFillFilePdf} from "react-icons/ai"
 import { TbCertificate } from "react-icons/tb";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const isCorporate = true;
 // const courses = [
 //   {
@@ -133,7 +133,12 @@ const  What_You_Will_Learn= [
     ];
  
 const UserCourseCard: React.FC<{ course }> = ({ course }) => {
-  
+  const [isCorporate, setIsCorporate]= useState("false");
+
+
+  useEffect(() => {
+    setIsCorporate(localStorage.getItem("isCorp"))
+  })
   // if (courses.length === 0) {
   //   return <div className="text-center "> No courses</div>;
   // }
@@ -151,18 +156,24 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   };
     const [starsnum, setStarsnum] = useState(0);
   const discount =(discount:number,price:number) =>{
+    if(isCorporate == "false"){
+    
       if(discount == 0){
-    return <div className="">{price} $$</div>
-
-  }
-  else{ 
-    return(
-    <div className="flex flex-row gap-2">
-    <div className="line-through">{price} </div>
-     <div className="">{(price) * ((100-discount)/100)}$$</div>
-     </div>
-    )
-  }
+      return <div className="">{price} $$</div>
+  
+    }
+    else{ 
+      return(
+      <div className="flex flex-row gap-2">
+      <div className="line-through">{price} </div>
+       <div className="">{(price) * ((100-discount)/100)}$$</div>
+       </div>
+      )
+    }
+    }
+    else{
+      return <div></div>
+    }
   }
   return (
     <div

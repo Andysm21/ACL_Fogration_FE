@@ -9,22 +9,33 @@ import axios from "axios";
 
 const courses: NextPage = () => {
   var [CourseArray,setCourseArray]=useState([]);
-
-  
   const [isCorporate, setIsCorporate]= useState("false");
+
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
   })
 
+  
+
   function getCourses(){
-      axios.get("http://localhost:8000/viewCoursesALL"
+      if(localStorage.getItem("isCorp")=="true"){
+        axios.get("http://localhost:8000/viewCoursesCorporate"
+       ).then((response) => {
+         console.log(Number(localStorage.getItem("user_id")))
+   
+         setCourseArray(response.data)
+       }).catch((error) => console.log(error))
+     }
+   else{
+       axios.get("http://localhost:8000/viewCoursesALL"
       ).then((response) => {
-        console.log("Not Corp")
-        console.log(response.data)
+        console.log(Number(localStorage.getItem("user_id")))
+   
         setCourseArray(response.data)
       }).catch((error) => console.log(error))
+    }
+   }
   
-  }
 
   var x =useEffect(() =>{getCourses()},[])
 
