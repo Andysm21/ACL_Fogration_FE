@@ -11,13 +11,18 @@ const viewcourse: NextPage = () => {
   var [courseArray,setCourseArray] = useState([]);
 
   function getCourses(){
-     axios.get("http://localhost:8000/viewCoursesALL"
-    ).then((response) => {
-      setCourseArray(response.data)
-      // console.log(response.data)
+ 
+    // Axios.post("http://localhost:8000/viewCourse",{id:Number(localStorage.getItem("CourseIIDD"))}
+     var x = Number(localStorage.getItem("CourseID"));
 
-    }).catch((error) => console.log(error))
-  }
+        axios.post(`http://localhost:8000/viewCourse/${x}`
+
+   ).then((response) => {
+     setCourseArray(response.data)
+     console.log(response.data)
+     console.log(courseArray)
+   }).catch((error) => console.log(error))
+ }
 
   useEffect(()=>{
 getCourses();
