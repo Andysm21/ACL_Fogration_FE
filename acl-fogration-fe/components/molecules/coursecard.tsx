@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 //   ["microphone", <GiOldMicrophone className="h-32 w-32" key={3} />],
 // ]);
 
-const CourseCard = () => {
+const CourseCard:React.FC<{course}> = ({course}) => {
   const courses = [
     { id: 1, name: "CSEN702", totalHours: 6, rating: 5, price: 40 },
     { id: 2, name: "CSEN704", totalHours: 8, rating: 4, price: 40 },

@@ -234,20 +234,15 @@ var Type;
            <input type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= ''  
          onChange={handleChangeP1}/> 
-         <div className="text-l">Re-enter new password </div>
+         {/* <div className="text-l">Re-enter new password </div>
            <input  type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= ''
-        onChange={handleChangeP} /> 
-
-
+        onChange={handleChangeP} />  */}
           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "onClick={changePassword}>
                   Update
                 </button>
-
         </div>
-        
         </div>
-U
         </div>
 
        {/* hena 7oty ay 7aga 3aiza tezawediha odam heya m3 kol eli fo2 zy el reviews fel user */}
