@@ -15,7 +15,7 @@ const HeaderInstructorMyCourses = ({
   count,
 }: any) => {
   const [open, setOpen] = React.useState(false);
-    const [open2, setOpen2] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,18 +38,18 @@ const HeaderInstructorMyCourses = ({
           setFilterDiv(!filterDiv);
         }
 
-              const [search, setSearch] = React.useState("");
+      const [search, setSearch] = React.useState("");
       const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value);
       };
 
-      const handleSubmit = () => {
+    const handleSubmit = () => {
     console.log("submit");
     const data = {
       search
     };
     localStorage.setItem("Search",data.search)
-    console.log(data);
+    console.log(data.search);
   };
 
   return (
