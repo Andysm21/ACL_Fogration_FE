@@ -1,6 +1,6 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
-import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
+import { BsGlobe2, BsPlayBtnFill, BsPlusCircle } from "react-icons/bs";
 import { useState } from "react";
 
 

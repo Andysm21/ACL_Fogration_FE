@@ -1,6 +1,6 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
-import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
+import { BsGlobe2, BsPlayBtnFill, BsPlusCircle } from "react-icons/bs";
 import { useState } from "react";
 
 const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
@@ -25,6 +25,13 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
   console.log(courses)
   return (
     <div className="grid grid-cols-2 text-white place-items-center bg-bc gap-4">
+
+      <div className="flex gap-4 bg-black3 justify-center items-center mx-6 my-4 rounded-lg p-2 w-[84%] h-[90%]">
+          <Link href="/instructor/createcourse">
+          <BsPlusCircle size={100} color="white"/>
+          </Link>
+          </div>
+
       {courses?.map((course) => (
       <div key={course.Course_Title} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg p-2 ">
           {/* //div el title bel kalam */}
