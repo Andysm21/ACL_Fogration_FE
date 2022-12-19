@@ -12,7 +12,7 @@ const NavGuestLogin = () => {
   // Default this to a country's code to preselect it
   const [country, setCountry] = useState("DE");
   return (
-    <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-transparent px-4">
+    <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between px-4 bg-bc shadow-lg">
         {/* <img className="w-16 " src="/Images/fogration-blue.png " alt="siteLogo" /> */}
         <div>
           <CountrySelector
@@ -28,7 +28,7 @@ const NavGuestLogin = () => {
             }
           />
         </div>  
-        <div className="grid grid-cols-3 gap-12 relative top-0 left-0 right-0">
+        <div className="fixed grid grid-cols-3 gap-12 relative top-0 left-0 right-0 ">
           <Link href="/guest/guestcourses">
             <h1 className="cursor-pointer border-b-lightgrey  text-lg font-light  text-white hover:border-b hover:text-gray-300">
               Courses
@@ -51,8 +51,8 @@ const NavGuestLogin = () => {
       <div className="flex flex-row items-center">
 
         <Link href="/guest/signup">
-          <button className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey">
-            Sign up
+          <button className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey w-24 flex justify-items-center justify-center">
+            Register
           </button>
         </Link>
       </div>
