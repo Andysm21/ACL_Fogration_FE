@@ -4,15 +4,20 @@ import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
+import { course } from "../../interfaces";
+import axios from "axios";
+import { CountrySelector } from "./Selector";
 
 const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
   const [courseID,setcourseID]=useState("") 
+  var courseRate = course.Course_Rating;
   const Course_What_You_Will_Learn =["Learn new algorithms","Learn more  abour data structures and algorithms"]
 
   // if (course.length === 0) {
   //   return <div className="text-center "> No courses</div>;
   // }
   const stars = (rating: number) => {
+    console.log(courseRate);
     let stars = [];
     for (let i = 0; i < rating; i++) {
       stars.push(
@@ -28,6 +33,24 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
       
     console.log(course)
   })
+  const average = ()=>{
+    // axios.post("http://localhost:8000/getCourseAverage",{
+    //   id: course?.Course_ID}).then((response) => {
+    //     setcourseRate = response.data;
+    //   }).catch((error) => console.log(error))
+   let avg = 0;
+   try{
+    for(let i =0;i<course.Course_Rating.length;i++){
+      avg+= course.Course_Rating[i]
+     }
+     avg=avg/(course.Course_Rating.length())
+   }
+   finally{
+    return avg;
+   }
+  
+  }
+
 
   const discount =(discount:number,price:number) =>{
     
@@ -64,7 +87,7 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
           {/* //div el title bel rating */}
           <div className="flex flex-col text-3xl">
             <div className="Font-bold  text-white">{course?.Course_Title}</div>
-            <div className="flex flex-row  ">{stars(course?.Course_Rating)}</div>
+            <div className="flex flex-row  ">{stars(courseRate)}</div>
           </div>
           {/* //div el kalam eswd */}
           <div className="bg-bc flex flex-col  gap-3 my-2">
@@ -188,6 +211,7 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
           <div className="text-white font-bold text-l">Reviews</div>
 
           <div className="flex flex-row gap-2">
+
             {course?.Course_Review && course?.Course_Review?.map((review,index) => {return (
                 <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
                   {review}</div>    
