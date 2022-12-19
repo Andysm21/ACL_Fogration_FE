@@ -16,7 +16,7 @@ import axios from 'axios';
 
 const InstructorProfile: React.FC<{ instructor }> = ({ instructor }) => {
   const [username, setUsername] = React.useState(instructor.Instructor_username);
-  
+  const Insrating = React.useState(instructor.Instructor_Ratings);
 const [password1,setPassword1]=useState('')
 const [password,setPassword]=useState('')
 const handleChangeP1 = event => {
@@ -135,13 +135,20 @@ const handleSubmitUserEmail = () => {
     }
     return stars;
   };
-  const average = ([]) =>{
+  const average = () =>{
     let avg = 0;
-    for(let i = 0;i< instructor.Instructor_Ratings.length ;i++){
-      avg += instructor.Instructor_Ratings[i];
+   // console.log(instructor.ID);
+   // console.log(instructor.Instructor_Ratings);
+    try{
+      for(let i = 0;i< instructor.Instructor_Ratings.length ;i++){
+        avg += instructor.Instructor_Ratings[i];
+      }
+      avg = avg/(instructor.Instructor_Ratings.length);
     }
-    avg = avg/(instructor.Instructor_Ratings.length);
-    return avg;
+    finally{
+      return avg;
+    }
+  
   };
   const myRef = React.createRef<HTMLDivElement>();
   const [isOpen, setIsOpen] = useState(false);
@@ -149,7 +156,7 @@ const handleSubmitUserEmail = () => {
   
   return (
     <div
-
+    //instructor.Instructor_Ratings
       key={instructor.Instructor_ID}
       className=" border-2 border-bc flex flex-col bg-black2 w-75% shadow-lg text-white "
     >
@@ -158,7 +165,7 @@ const handleSubmitUserEmail = () => {
           <CgProfile size={100} />
             <div className="font-bold text-2xl">{instructor.Instructor_FirstName} {instructor.Instructor_LastName} </div>
             <div className="font-light text-md">Instructor</div>
-              {/* <div className="flex flex-row  ">{stars(average(instructor.Instructor_Ratings))}</div> */}
+              { <div className="flex flex-row  ">{stars(average())}</div> }
         </div>
         <div className="flex flex-row ">
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
