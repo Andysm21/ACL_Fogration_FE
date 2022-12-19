@@ -29,6 +29,29 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
     console.log(course)
   })
 
+  const discount =(discount:number,price:number) =>{
+    
+      if(discount == 0){
+      return <div className="">{price} $$</div>
+  
+    }
+    else{ 
+      return(
+      <div className="flex flex-row gap-2">
+      <div className="line-through">{price} </div>
+       <div className="">{(price) * ((100-discount)/100)}$$</div>
+       </div>
+      )
+    
+    }
+  
+  }
+
+  function DiscountDuration(Course_Discount_Duration){
+         return  <p className=" text-violet-400">Discount available for {Course_Discount_Duration} days</p>
+
+  }
+
   return (
     <div
       key={course?.Course_ID}
@@ -73,10 +96,12 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
             </Link>
           </div>
           {/* //h1 el se3r */}
-          <div className="flex flex-row justify-between my-2">
+          <div className="flex flex-col justify-between my-2">
             <h1 className=" text-violet-400 text-4xl font-bold ">
-              $${course?.Course_Price}
+              {discount(course?.Course_Discount, course?.Course_Price)}
             </h1>
+            {DiscountDuration(course?.Course_Discount_Duration)}
+
 
 
           </div>
@@ -89,8 +114,8 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
           <div className="text-white font-bold text-l">What you will learn</div>
           <div className="flex flex-col gap-1">
             {/* //m7taga 23melha grid */}
-            {course?.Course_What_You_Will_Learn?.map((item) => (
-              <div className="flex flex-row gap-1 text-white items-center">
+            {Course_What_You_Will_Learn?.map((item,index) => (
+              <div key={index} className="flex flex-row gap-1 text-white items-center">
                 <TiTick />
                 <div className="text-white">{item}</div>
               </div>
@@ -126,9 +151,9 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
         <h1 className="text-white font-bold text-3xl ">Course Content</h1>
-        {course?.Course_Subtitle?.map((subtitle) => {
+        {course?.Course_Subtitle?.map((subtitle,index) => {
           return (
-            <div>
+            <div key={index}>
               <div className="flex flex-col gap-2 ">
                 <div className="flex flex-row gap-2 justify-between">
                   <div className="text-xl font-bold">
@@ -140,9 +165,9 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
                 </div>
               </div>
               <div className="flex flex-row gap-2 w-[100%] ">
-                {subtitle?.Subtitle_Video?.map((video) => {
+                {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       <img
                         className="flex-shrink-0  "
                         src="/images/pausedvideo.png"
