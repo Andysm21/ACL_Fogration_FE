@@ -22,6 +22,28 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
     }
     return stars;
   };
+  const discount =(discount:number,price:number) =>{
+    
+      if(discount == 0){
+      return <div className="">{price} $$</div>
+  
+    }
+    else{ 
+      return(
+      <div className="flex flex-row gap-2">
+      <div className="line-through">{price} </div>
+       <div className="">{(price) * ((100-discount)/100)}$$</div>
+       </div>
+      )
+    
+    }
+  
+  }
+
+  function DiscountDuration(Course_Discount_Duration){
+         return  <p className=" text-violet-400">Discount available for {Course_Discount_Duration} days</p>
+
+  }
   return (
     <div className="grid grid-cols-2 text-white place-items-center bg-bc gap-4">
       {courses.map((course) => (
@@ -54,8 +76,9 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
                 {course.Course_Country}
               </div>
               <h1 className=" text-violet-400 text-4xl font-bold ">
-                $${course.Course_Price}
+                {discount(course?.Course_Discount, course?.Course_Price)}
               </h1>
+              {/* {DiscountDuration(course?.Course_Discount_Duration)} */}
             </div>
           </div>
           {/* //div el video bel se3r wel button */}

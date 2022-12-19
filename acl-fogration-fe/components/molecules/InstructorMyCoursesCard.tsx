@@ -21,8 +21,33 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
     }
     return stars;
   };
-  console.log("Inside InstructorMyCoursesCard")
-  console.log(courses)
+const discount =(discount:number,price:number) =>{
+    
+      if(discount == 0){
+      return <div className="">{price} $$</div>
+  
+    }
+    else{ 
+      return(
+      <div className="flex flex-row gap-2">
+      <div className="line-through">{price} </div>
+       <div className="">{(price) * ((100-discount)/100)}$$</div>
+       </div>
+      )
+    
+    }
+  
+  }
+
+  function DiscountDuration(Course_Discount_Duration){
+         return  <p className=" text-violet-400">Discount available for {Course_Discount_Duration} days</p>
+
+  }
+
+
+
+
+
   return (
     <div className="grid grid-cols-2 text-white place-items-center bg-bc gap-4">
 
@@ -32,8 +57,8 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
           </Link>
           </div>
 
-      {courses?.map((course) => (
-      <div key={course.Course_Title} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg p-2 ">
+      {courses?.map((course,index) => (
+      <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg p-2 ">
           {/* //div el title bel kalam */}
           <div className="flex flex-col">
             {/* //div el title bel rating */}
@@ -61,9 +86,10 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
                 <BsGlobe2 />
                 {course?.Course_Country}
               </div>
-              <h1 className=" text-violet-400 text-4xl font-bold ">
-                $${course?.Course_Price}
+              <h1 className="text-violet-400 text-4xl font-bold ">
+                {discount(course?.Course_Discount, course?.Course_Price)}
               </h1>
+              {/* {DiscountDuration(course?.Course_Discount_Duration)} */}
             </div>
           </div>
           {/* //div el video bel se3r wel button */}
@@ -108,25 +134,3 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
 };
 
 export default InstructorMyCoursesCard;
-//<div
-//   key={course.id}
-//   className=" border-2 border-bc flex h-52 w-1/2 flex-col rounded-lg bg-black2 items-start gap-4 justify-start p-2 text-center text-white shadow-lg"
-// >
-//   <div className="flex flex-row font-bold text-2xl justify-center items-center gap-2">
-//     {course.name}
-//     <div className="flex flex-row  ">{stars(course.rating)}</div>
-//   </div>
-
-//   <div className="text-l">{course.price} $$</div>
-//   <div className="text-l"> {course.totalHours} Hours</div>
-//  <div className="flex flex-row gap-2"> <Link href="viewcourse">
-//     <button className="bg-gradient-to-r px-4 py-2 rounded-md from-purple to-babyblue text-white hover:font-bold">
-//       View Course
-//     </button>
-//   </Link>
-//   <Link href="/login">
-//     <button className="bg-gradient-to-r px-4 py-2 rounded-md from-purple to-babyblue text-white hover:font-bold">
-//      Enroll
-//     </button>
-//   </Link></div>
-// </div>

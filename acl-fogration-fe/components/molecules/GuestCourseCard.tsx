@@ -13,6 +13,27 @@ const Course_What_You_Will_Learn =[
   "Learn about new algorithms"]
 
 const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
+
+const discount =(discount:number,price:number) =>{
+ 
+      if(discount == 0){
+      return <div className="">{price} $$</div>
+  
+      }
+    else{ 
+      return(
+      <div className="flex flex-row gap-2">
+      <div className="line-through">{price} </div>
+       <div className="">{(price) * ((100-discount)/100)}$$</div>
+       </div>
+      )
+    }
+    }
+  
+
+  function DiscountDuration(){
+         return  <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
+  }
  // console.log(course);
   // if (courses.length === 0) {
   //   return <div className="text-center ">No courses</div>;
@@ -37,22 +58,10 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
       Course_Rate: [''],
       Course_Exam: [''],
       Course_What_You_Will_Learn: [],    })
-     const discount =(discount:number,price:number) =>{
-      if(discount == 0){
-    return <h1 className=" text-violet-400 text-4xl font-bold ">
-                $${price}
-              </h1>
 
-  }
-  else{ 
-    <div className="flex flex-row">
-    <div className=" text-violet-400 text-4xl font-bold line-through">{price} $$</div>
-     <h1 className=" text-violet-400 text-4xl font-bold ">
-                $${price * (1-discount)}
-              </h1>
-     </div>
-  }
-  }
+
+      
+   
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -64,6 +73,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
     }
     return stars;
   }
+  
 useEffect(()=>{
   Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
   ).then((response) => {
@@ -72,6 +82,9 @@ useEffect(()=>{
   }).catch((error) => console.log(error))
 
 })
+
+
+
   return (
     <div key={SavedCourseData?.Course_ID} className=" flex flex-col bg-bc w-75% shadow-lg text-white">
       {/* //div el eswd */}
@@ -113,19 +126,23 @@ useEffect(()=>{
             </Link>
           </div>
           {/* //h1 el se3r */}
+          <div className="flex flex-col">
           <div className="flex flex-row justify-between my-2">
             {/* <h1 className=" text-violet-400 text-4xl font-bold ">
               $${SavedCourseData?.Course_Price}
             </h1> */}
-            {discount(SavedCourseData?.Course_Discount, SavedCourseData?.Course_Price)}
+           <h1 className=" text-violet-400 text-4xl font-bold "> {discount(SavedCourseData?.Course_Discount, SavedCourseData?.Course_Price)}</h1>
 
 
             <Link href="/guest/signup">
               {/* //link button to enroll */}
-              <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-48">
+              <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80">
                 Enroll Now
               </button>
             </Link>
+          </div>
+           {DiscountDuration()}
+
           </div>
         </div>
       </div>
@@ -206,6 +223,17 @@ useEffect(()=>{
           );
         })}
       </div>
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+          <div className="text-white font-bold text-l">Reviews</div>
+
+          <div className="flex flex-row gap-2">
+            {course?.Course_Review && course?.Course_Review?.map((review,index) => {return (
+                <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
+                  {review}</div>    
+            )})}
+          </div>
+          
+        </div> 
     </div>
   );
 };

@@ -131,20 +131,20 @@ const router = useRouter();
   return (
     <div>
       <NavGuestLogin />
-      <div className="flex items-center justify-center bg-[url('/images/bgacl.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
+      <div className="flex items-center justify-start px-40 bg-bc w-screen h-screen bg-cover bg-no-repeat">
         {/* div for the form */}
 
-        <div className="  flex flex-col items-center justify-start rounded-lg bg-bc py-6 px-4">
+        <div className="  flex flex-col items-center justify-start rounded-lg bg-black3 py-6 px-4">
           <div className="flex flex-col items-center justify-center gap-2">
             <input
-              className="bg-black3 rounded-md p-3 w-72 text-white"
+              className="bg-bc rounded-md p-3 w-72 text-white"
               id="username"
               placeholder="Username"
               type="text"
               onChange={handleChangeU}
             />
             <input
-              className="bg-black3 rounded-md p-3 w-72 text-white"
+              className="bg-bc rounded-md p-3 w-72 text-white"
               id="password"
               placeholder="Password"
               type="password"
@@ -167,7 +167,7 @@ const router = useRouter();
                 Forgot password?
               </Link>
             </div>
-            <div className="w-72 rounded-lg  p-2 text-red-700  hover:text-red-700" >{error}</div>
+            <div className="flex justify-center w-72 rounded-lg  p-2 text-red-700  hover:text-red-700" >{error}</div>
           </div>
         </div>
       </div>
