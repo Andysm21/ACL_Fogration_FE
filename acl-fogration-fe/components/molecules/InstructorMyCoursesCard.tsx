@@ -89,7 +89,7 @@ const discount =(discount:number,price:number) =>{
               <h1 className="text-violet-400 text-4xl font-bold ">
                 {discount(course?.Course_Discount, course?.Course_Price)}
               </h1>
-              {DiscountDuration(course?.Course_Discount_Duration)}
+              {/* {DiscountDuration(course?.Course_Discount_Duration)} */}
             </div>
           </div>
           {/* //div el video bel se3r wel button */}

@@ -72,8 +72,8 @@ const [type, setType ]= useState("");
   
   }
 
-  function DiscountDuration(Course_Discount_Duration){
-         return  <p className=" text-violet-400">Discount available for {Course_Discount_Duration} days</p>
+  function DiscountDuration(){
+         return  <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
 
   }
 
@@ -125,7 +125,7 @@ const [type, setType ]= useState("");
             <h1 className=" text-violet-400 text-4xl font-bold ">
             {discount(course?.Course_Discount, course?.Course_Price)}
             </h1>
-            {DiscountDuration(course?.Course_Discount_Duration)}
+            {DiscountDuration()}
 
 
           </div>
