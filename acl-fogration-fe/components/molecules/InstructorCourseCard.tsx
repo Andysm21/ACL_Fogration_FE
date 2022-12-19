@@ -210,6 +210,18 @@ const [type, setType ]= useState("");
         {addExam()}
          </div>
         </div>
+
+        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+          <div className="text-white font-bold text-l">Reviews</div>
+
+          <div className="flex flex-row gap-2">
+            {course?.Course_Review && course?.Course_Review?.map((review,index) => {return (
+                <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
+                  {review}</div>    
+            )})}
+          </div>
+          
+        </div> 
     </div>
   );
 };
