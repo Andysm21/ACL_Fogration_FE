@@ -158,7 +158,7 @@ const handleSubmitUserEmail = () => {
           <CgProfile size={100} />
             <div className="font-bold text-2xl">{instructor.Instructor_FirstName} {instructor.Instructor_LastName} </div>
             <div className="font-light text-md">Instructor</div>
-              {/* <div className="flex flex-row  ">{stars(average(instructor.Instructor_Ratings))}</div> */}
+              <div className="flex flex-row  ">{stars(average(instructor.Instructor_Ratings))}</div>
         </div>
         <div className="flex flex-row ">
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
@@ -235,11 +235,7 @@ const handleSubmitUserEmail = () => {
           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={handleSubmitUserEmail}>
                   Update
                 </button>
-
         </div>
-
-
-          
          <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2">
           <div className="text-white font-bold text-l">Update password</div>
         

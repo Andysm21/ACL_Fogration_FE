@@ -124,11 +124,11 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
   const [password1,setPassword1]=useState('')
   const [password,setPassword]=useState('')
   const handleChangeP1 = event => {
-    setPassword1(event.target.value);
-      };
+  setPassword1(event.target.value);
+  };
   const handleChangeP = event => {
-     setPassword(event.target.value);
-      };
+  setPassword(event.target.value);
+  };
   
       const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
@@ -136,8 +136,7 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
       
         const [email, setEmail] = React.useState(user.User_Email);
         const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-          setId(localStorage.getItem("user_id"))
-
+        setId(localStorage.getItem("user_id"))
         setEmail(event.target.value);
       };
       
@@ -155,7 +154,6 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
         const handleLastName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setLastName(event.target.value);
         setId(localStorage.getItem("user_id"))
-
         console.log(LastName)
       };
       
@@ -163,8 +161,6 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
         const handleGender = (event: React.ChangeEvent<HTMLInputElement>) => {
         setGender(event.target.value);
         setId(localStorage.getItem("user_id"))
-
-
       };
       
       const [ID, setId ]= useState("");
@@ -198,7 +194,6 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
       }
       else{
         console.log(localStorage.getItem("user_id"))
-        console.log("a7a")
         axios.put('http://localhost:8000/editProfileUserC', {ID: Number(localStorage.getItem("user_id")),
         FirstName: FirstName, 
         LastName: LastName, Gender: Gender, Country: country})
@@ -357,11 +352,11 @@ var Type;
         
           <div className="text-l">Username</div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {user.User_UserName}    onChange={handleUsername}
+          defaultValue= {user.User_UserName} onChange={handleUsername}
          /> 
          <div className="text-l">Email</div>
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {user.User_Email }   onChange={handleEmail}
+          defaultValue={user.User_Email } onChange={handleEmail}
          /> 
           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={handleSubmitUserEmail}>
                   Update
