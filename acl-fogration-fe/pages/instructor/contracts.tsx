@@ -1,10 +1,20 @@
 import React from "react";
+import useState from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../../components/templates/Layout";
+import  Axios  from "axios";
+
+
 
 const contracts: NextPage = () => {
+  function contract(){
+    Axios.put("http://localhost:8000/agreementContract",{id:Number(localStorage.getItem("user_id")) , Instructor_Agreement: true})
+    .then((response) => {
+    
+   }).catch((error) => console.log(error))
+ }
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -73,7 +83,7 @@ Any claim related to our Website shall be governed by the laws of INSERT STATE
           <div className="flex justify-center">
             <Link href="/instructor">
               <div>
-            <button className=" p-2 rounded bg-gradient-to-r from-purple to-babyblue text-white font-bold">
+            <button onClick={()=>{contract()}} className=" p-2 rounded bg-gradient-to-r from-purple to-babyblue text-white font-bold">
               Accept terms & conditions
               </button>
               </div>
