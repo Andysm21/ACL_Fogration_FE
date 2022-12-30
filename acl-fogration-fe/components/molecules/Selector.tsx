@@ -46,11 +46,10 @@ export const CountrySelector = React.forwardRef<
       return "£"
     }
 
-    return "currency";
-
   }
-
+    useEffect(() => {
   localStorage.setItem("currency", currency());
+  }, [props.selectedValue.value]);
 
   return (
     <div ref={ref}>
