@@ -67,17 +67,20 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   return (
     <div className="relative top-0 left-0 right-0">
-      
-      <Nav />
-      <div className="flex pt-16">
+      <div className="grid grid-cols-3 gap-12">
+      <Nav links={
+            tabs.find((tab) => router.pathname.includes(tab.key))?.links || []
+          } />
+      {/* <div className="flex pt-16">
         <Sidebar
           links={
             tabs.find((tab) => router.pathname.includes(tab.key))?.links || []
           }
-        />
+        /> */}
+        </div>
 
-        <div className={"ml-[15%] w-[85%]"}>{children}</div>
-      </div>
+        <div className={"pt-16 w-[100%]"}>{children}</div>
+      {/* </div> */}
     </div>
   );
 };

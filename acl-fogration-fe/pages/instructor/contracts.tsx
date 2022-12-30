@@ -23,7 +23,7 @@ const contracts: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout>
+      {/* <Layout> */}
         <div className="grid grid-cols-1 gap-4 bg-bc bg-screen text-white justify-center items-center py-2 px-2 text-bold">
           <div className="flex justify-center font-bold text-4xl"
           >Terms & Conditions:</div>
@@ -91,7 +91,7 @@ Any claim related to our Website shall be governed by the laws of INSERT STATE
           </div>
           </div>
 
-      </Layout>
+      {/* </Layout> */}
     </div>
   );
 };
