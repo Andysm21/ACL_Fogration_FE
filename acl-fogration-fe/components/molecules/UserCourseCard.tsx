@@ -68,7 +68,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   
   function DiscountDuration(){
     if(isCorporate == "true"){
-      return <div></div>
+      return <div></div>                                                                    
     }
     else{
          return  <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
