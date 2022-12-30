@@ -2,6 +2,7 @@ import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill, BsPlusCircle } from "react-icons/bs";
 import { useState } from "react";
+import { CountrySelector } from "./Selector";
 
 
 const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
@@ -22,17 +23,29 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
     }
     return stars;
   };
+  
   const discount =(discount:number,price:number) =>{
+
+      if (localStorage.getItem('currency') == '£'){
+          price = price*20;
+        }
+
+      if (localStorage.getItem('currency') == '$'){
+          price = price*1.5;
+        }
     
       if(discount == 0){
       return <div className="">{price} $$</div>
   
     }
     else{ 
+
+    
       return(
+      // <div className="">{price} {localStorage.getItem('currency')}</div>
       <div className="flex flex-row gap-2">
       <div className="line-through">{price} </div>
-       <div className="">{(price) * ((100-discount)/100)}$$</div>
+       <div className="">{(price) * ((100-discount)/100)} {localStorage.getItem('currency')}</div>
        </div>
       )
     

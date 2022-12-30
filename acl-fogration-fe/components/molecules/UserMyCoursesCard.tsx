@@ -202,25 +202,33 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
       return 
     }
   }
-   const discount =(discount:number,price:number) =>{
-    if(isCorporate == "false"){
+const discount =(discount:number,price:number) =>{
+
+      if (localStorage.getItem('currency') == '£'){
+          price = price*20;
+        }
+
+      if (localStorage.getItem('currency') == '$'){
+          price = price*1.5;
+        }
     
       if(discount == 0){
       return <div className="">{price} $$</div>
   
     }
     else{ 
+
+    
       return(
+      // <div className="">{price} {localStorage.getItem('currency')}</div>
       <div className="flex flex-row gap-2">
       <div className="line-through">{price} </div>
-       <div className="">{(price) * ((100-discount)/100)}$$</div>
+       <div className="">{(price) * ((100-discount)/100)} {localStorage.getItem('currency')}</div>
        </div>
       )
+    
     }
-    }
-    else{
-      return <div></div>
-    }
+  
   }
  
   if (courses?.length === 0) {

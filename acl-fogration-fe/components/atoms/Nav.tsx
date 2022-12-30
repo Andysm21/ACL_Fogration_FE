@@ -5,7 +5,16 @@ import { SelectMenuOption } from '../atoms/types';
 import {CountrySelector} from '../molecules/Selector';
 import {COUNTRIES} from '../atoms/countries';
 
-const Nav = () => {
+interface Props {
+  links:
+    | {
+        href: string;
+        label: string;
+      }[]
+    | [];
+}
+
+const Nav: React.FC<Props> = ({ links }) => {
   const router = useRouter();
   const myRef = React.createRef<HTMLDivElement>();
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +35,7 @@ const Nav = () => {
         />
           </div>
         <div className="flex items-center gap-4 px-8">
-          <Link href="/user">
+          {/* <Link href="/user">
             <h1 className="cursor-pointer border-b-lightgrey  text-lg font-light  text-white hover:border-b hover:text-gray-300">
               Users
             </h1>
@@ -40,7 +49,17 @@ const Nav = () => {
             <h1 className="cursor-pointer border-b-lightgrey  text-lg font-light  text-white hover:border-b hover:text-gray-300">
               Admins
             </h1>
-          </Link>
+          </Link> */}
+
+        {links.map((link, index) => (
+        <Link href={link.href} passHref key={index} legacyBehavior>
+          <a
+            className="cursor-pointer border-b-lightgrey px-2 text-lg font-light  text-white hover:border-b hover:text-gray-300"
+          >
+            {link.label}
+          </a>
+        </Link>
+      ))}
         </div>
       </div>
       <div className="flex flex-row items-center ">
