@@ -46,6 +46,8 @@ export const CountrySelector = React.forwardRef<
       return "£"
     }
 
+    return "currency";
+
   }
 
   localStorage.setItem("currency", currency());
