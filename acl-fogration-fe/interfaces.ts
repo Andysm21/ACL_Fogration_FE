@@ -64,6 +64,7 @@ export interface user {
   User_Password: string;
   User_Country: string;
   User_Gender: string;
+  User_Wallet: number;
   User_Courses: course[];
   User_Corporate:string;
   User_isCorporate: boolean;
