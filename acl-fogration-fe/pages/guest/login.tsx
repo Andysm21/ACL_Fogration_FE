@@ -43,8 +43,6 @@ const router = useRouter();
     console.log(Password)
         };
 
-
-
    function handleLogin(){
      Axios.post("http://localhost:8000/login", {Uname:Username,Pass:Password},
  
@@ -76,11 +74,21 @@ const router = useRouter();
         localStorage.setItem("Type","Instructor")
         localStorage.removeItem("isCorp")
         localStorage.setItem("isCorp", "false")
-
         console.log(localStorage.getItem("Type"))
         console.log(localStorage.getItem("user_id"))
-        router.push("/instructor")
 
+        Axios.post("http://localhost:8000/InstContractStatus", {id:Number(localStorage.getItem("user_id"))},
+        ).then((response) => {
+          console.log("THIS IS THE AGREEMENT")
+          var Agreement=response.data.Instructor_Agreement; 
+          console.log(Agreement);
+          if(Agreement==true){          
+            router.push("/instructor")
+           }
+           else if(Agreement==false){
+             router.push("/instructor/contracts")
+           }
+        })
        }
        else if(type == "3"){
         localStorage.removeItem("user_id")
