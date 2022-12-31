@@ -107,12 +107,12 @@ var status='';
 
         <div className="flex flex-col items-center justify-start rounded-lg bg-black3 py-6 px-4">
           <div className="flex flex-col items-center justify-start gap-2">
-            <input className="bg-bc rounded-md p-3 w-72" id="username" placeholder="Username" type="text" onChange={handleChangeU}/>
-            <input className="bg-bc rounded-md p-3 w-72" id="password" placeholder="Password" type="password" onChange={handleChangeP}/>
-            <input className="bg-bc rounded-md p-3 w-72" id="firstName" placeholder="First Name" type="text" onChange={handleChangeFN}/>
-            <input className="bg-bc rounded-md p-3 w-72" id="lastName" placeholder="Last Name" type="text" onChange={handleChangeLN}/>
-            <input className="bg-bc rounded-md p-3 w-72" id="email" placeholder="Email" type="email" onChange={handleChangeEM}/>
-            <input className="bg-bc rounded-md p-3 w-72" id="country" placeholder="Country" type="text" onChange={handleChangeC}/>
+            <input className="bg-bc rounded-md p-3 w-72 text-white" id="username" placeholder="Username" type="text" onChange={handleChangeU}/>
+            <input className="bg-bc rounded-md p-3 w-72 text-white" id="password" placeholder="Password" type="password" onChange={handleChangeP}/>
+            <input className="bg-bc rounded-md p-3 w-72 text-white" id="firstName" placeholder="First Name" type="text" onChange={handleChangeFN}/>
+            <input className="bg-bc rounded-md p-3 w-72 text-white" id="lastName" placeholder="Last Name" type="text" onChange={handleChangeLN}/>
+            <input className="bg-bc rounded-md p-3 w-72 text-white" id="email" placeholder="Email" type="email" onChange={handleChangeEM}/>
+            <input className="bg-bc rounded-md p-3 w-72 text-white" id="country" placeholder="Country" type="text" onChange={handleChangeC}/>
 
             <div className="flex flex-col py-2 px-2 justify-start items-start">
               {/* adding gender radiobuttons */}
@@ -155,6 +155,14 @@ var status='';
                 Sign up
               </button>
             </Link>
+            <div className="text-white">
+            By signing up, you agree to our
+            <div className="flex flex-col items-center justify-center underline text-violet-400">
+            <Link href="/guest/policies">
+            Payment & Refund policy
+            </Link>
+            </div>
+            </div>
           </div>
         </div>
       </div>
