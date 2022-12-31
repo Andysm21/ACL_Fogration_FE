@@ -6,18 +6,94 @@ import { Button, Link, ratingClasses, TextField } from "@mui/material";
 import { user } from "../../interfaces";
 import { CgProfile } from "react-icons/cg";
 import { CountrySelector } from "./Selector";
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import { SelectMenuOption } from "../atoms/types";
 import {COUNTRIES} from '../atoms/countries';
 import axios from "axios";
 
 
-const TraineeProfile: React.FC<{ user }> = ({ user }) => {
+// var person = {
+//   User_ID: NaN,
+//   User_UserName : " ",
+//   User_FirstName:" ",
+//   User_LastName:" ",
+//   User_Email:"",
+//   User_Password:"",
+//   User_Country: "",
+//   User_Gender: "",
+//   User_Courses: [],
+//   User_Corporate:"",
+//   User_isCorporate: false,
+// }
+
+const TraineeWallet: React.FC<{ user }> = ({ user }) => {
 
 
 
 
   const [username, setUsername] = React.useState(user.user_username);
+  
+// const [password1,setPassword1]=useState('')
+// const [password,setPassword]=useState('')
+// const handleChangeP1 = event => {
+//   setPassword1(event.target.value);
+//     };
+// const handleChangeP = event => {
+//    setPassword(event.target.value);
+//     };
+
+//   const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+//   setUsername(event.target.value);
+// };
+
+//   const [email, setEmail] = React.useState(user.User_Email);
+//   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+//   setEmail(event.target.value);
+// };
+
+//   const [biography, setbiography] = React.useState(user.User_Biography);
+//   const handlebiography = (event: React.ChangeEvent<HTMLInputElement>) => {
+//   setbiography(event.target.value);
+// };
+
+//   const [FirstName, setFirstName] = React.useState(user.User_FirstName);
+//   const handleFirstName = (event: React.ChangeEvent<HTMLInputElement>) => {
+//   setFirstName(event.target.value);
+// };
+
+//   const [LastName, setLastName] = React.useState(user.User_LastName);
+//   const handleLastName = (event: React.ChangeEvent<HTMLInputElement>) => {
+//   setLastName(event.target.value);
+// };
+
+//   const [Gender, setGender] = React.useState(user.User_Gender);
+//   const handleGender = (event: React.ChangeEvent<HTMLInputElement>) => {
+//   setGender(event.target.value);
+// };
+
+// const [ID, setId ]= useState("");
+
+//   function changePassword(){
+//     if(password1===password){ 
+//     axios.post("http://localhost:8000/changePassword",{
+//       ID:user.User_ID,
+//       Password: password,
+//       type: 1
+//     }
+//    ).then((response) => {
+//      console.log(response)
+//    }).catch((error) => console.log(error))
+//   }
+// }
+// useEffect(()=>{
+//   //localStorage.removeItem("Type")
+//     localStorage.setItem("ID","1")
+//   setId(localStorage.getItem("ID"));
+// });
+// console.log(ID);
+//   const [country, setCountry] = useState('DE');
+
+//   var status = '';
 
   const stars = (rating: number) => {
     let stars = [];
@@ -32,6 +108,14 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
   };
   var status = '';
 
+  // const average = ([]) =>{
+  //   let avg = 0;
+  //   for(let i = 0;i< person.User_Ratings.length ;i++){
+  //     avg += person.User_Ratings[i];
+  //   }
+  //   avg = avg/(person.User_Ratings.length);
+  //   return avg;
+  // };
   const myRef = React.createRef<HTMLDivElement>();
   const [isOpen, setIsOpen] = useState(false);
   // Default this to a country's code to preselect it
@@ -39,14 +123,12 @@ const TraineeProfile: React.FC<{ user }> = ({ user }) => {
   // console.log(user)
   const [password1,setPassword1]=useState('')
   const [password,setPassword]=useState('')
-
   const handleChangeP1 = event => {
   setPassword1(event.target.value);
   };
   const handleChangeP = event => {
   setPassword(event.target.value);
   };
-
   
       const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
@@ -218,121 +300,127 @@ var Type;
 
 let User_Balance = 10;
 
-  const handleTopUp = () => {
-    User_Balance = User_Balance + randomInt(1, 10);
-    // localStorage.setItem("user.User_Balance", user.User_Balance);
-    console.log(User_Balance);
+  function changeBalance(){
+//     if(password1===password){ 
+//     axios.post("http://localhost:8000/changePassword",{
+//       ID:instructor.Instructor_ID,
+//       Password: password,
+//       type: 1
+//     }
+//    ).then((response) => {
+//      console.log(response)
+//    }).catch((error) => console.log(error))
+//   }
+}
 
-  };
+  function changeBalanceRandom(){
+//     if(password1===password){ 
+//     axios.post("http://localhost:8000/changePassword",{
+//       ID:instructor.Instructor_ID,
+//       Password: password,
+//       type: 1
+//     }
+//    ).then((response) => {
+//      console.log(response)
+//    }).catch((error) => console.log(error))
+//   }
+}
 
-
+const [balance,setBalance]=useState('')
+const handleBalance = event => {
+  setBalance(event.target.value);
+    };
+  
   return (
     <div
-
       key={user.User_ID}
-      className=" border-2 border-bc flex flex-col bg-black2 w-75% shadow-lg text-white "
+      className=" border-2 border-bc flex flex-col-2 bg-black2 w-75% h-screen shadow-lg text-white "
     >
-      <div className="flex flex-col gap-2">
-        <div className="flex flex-col items-center justify-center">
-          <CgProfile size={100} />
-            <div className="font-bold text-2xl">{user.User_FirstName} {user.User_LastName} </div>
-            <div className="font-light text-md">Trainee</div>
-            {user.User_isCorporate && <div className="font-light text-md"> {user.User_Corporate}</div> }
-        </div>
-        <div className="flex flex-row ">
-          <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2 gap-5">
-          <div className="text-white font-bold text-l">User Information</div>
-            <div className="bg-black3 rounded-md flex flex-col gap-4 " >
-           {/* <div className="text-white text-l">Username</div>
-          <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-52  border-white rounded-md "
-          defaultValue= {user.User_UserName} />
-          */}
-           <div className="text-l"> First Name </div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {user.User_FirstName} 
-         onChange={handleFirstName}/> 
-          <div className="text-l">Last Name </div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {user.User_LastName}   onChange={handleLastName}
-         /> 
-         
-          <div className="text-l">Gender </div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {user.User_Gender}  onChange={handleGender}
-         /> 
-        <div className="text-l">Country of birth </div>
-        <div className="text-black w-52">
-          <CountrySelector
-          id={'countries'}
-          ref={myRef}
-          open={isOpen}
-          onToggle={() => setIsOpen(!isOpen)}
-          onChange={val => setCountry(val)}
-          selectedValue={COUNTRIES.find(option => option.value === country) as SelectMenuOption} 
-        /> </div>
-
-          </div>
-           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={handleSubmit}>
-                  Update
-                </button>
-          
-          </div>
-          
-          <div className="w-1/2">
-            <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 ">
-          <div className="text-white font-bold text-l">Account Information</div>
+          <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 h-[70%] w-1/2">
+          <div className="text-white font-bold text-l">Top up using a voucher code</div>
         
-          <div className="text-l">Username</div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= {user.User_UserName} onChange={handleUsername}
-         /> 
-         <div className="text-l">Email</div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue={user.User_Email } onChange={handleEmail}
-         /> 
-          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={handleSubmitUserEmail}>
-                  Update
-                </button>
-
-        </div>
-
-
-          
-         <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2">
-          <div className="text-white font-bold text-l">Update password</div>
-        
-          <div className="text-l">Old password </div>
+          <div className="text-l">Current balance (€)</div>
            <input readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-          value= {user.User_Password} 
+          value= {User_Balance}
+         />
+         
+           {/* Need to save the new user balance after every time and to update it on the page */}
+         
+         <div className="grid grid-cols-1 gap-2">
+         <div className="text-l gap-2">Voucher code
+         </div>
+
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+           
+        //  onChange={handleBalance}
          /> 
-         <div className="text-l">New password </div>
-           <input type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= ''  
-         onChange={handleChangeP1}/> 
-         <div className="text-l">Re-enter new password </div>
-           <input  type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-          defaultValue= ''
-        onChange={handleChangeP} /> 
-          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "onClick={changePassword}>
-                  Update
+          
+                </div>
+<div className="py-18">
+                <div className="py-2">How does it work?</div>
+                <div className="py-2 bg-black2 h-full flex items-center">Fill in the given code and you will get a random top-up from 1 to 10, as simple as that!</div>
+                <div className="py-2 my-6 flex flex-col">
+                    <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded  " onClick={changeBalanceRandom}>
+                  Top-up
                 </button>
+                </div>
+</div>
+
         </div>
 
+        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 h-[70%] w-1/2">
+          <div className="text-white font-bold text-l">Top up using a credit card</div>
         
+          <div className="text-l">Current balance (€)</div>
+           <input readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
+          value= {User_Balance}
+         />
+         
+           {/* Need to save the new user balance after every time and to update it on the page */}
+         
+         <div className="grid grid-cols-1 gap-2">
+         <div className="text-l gap-2 font-bold">Credit card information
+         </div>
+
+         <div className="text-l gap-2">Card holder name
+         </div>
+
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+        //  onChange={handleBalance}
+         /> 
+
+         <div className="text-l gap-2">Expiry date
+         </div>
+
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+        //  onChange={handleBalance}
+         /> 
+
+         <div className="text-l gap-2">CVV
+         </div>
+
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+        //  onChange={handleBalance}
+         /> 
+
+         <div className="text-l gap-2">Required amount (€)
+         </div>
+
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+         onChange={handleBalance}
+         /> 
+
+         
+          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded  " onClick={changeBalance}>
+                  Pay
+                </button>
+                </div>
+
         </div>
-        
-        </div>
-
-      
-
-        
-
-       {/* hena 7oty ay 7aga 3aiza tezawediha odam heya m3 kol eli fo2 zy el reviews fel user */}
-
-      </div>
-      
     </div>
+
+    
   );
 };
 
-export default TraineeProfile;
+export default TraineeWallet;

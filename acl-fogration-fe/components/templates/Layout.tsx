@@ -19,6 +19,7 @@ const userlinks = [
   { href: "/user/profile", label: "Profile" },
   { href: "/user/courses", label: "Courses" },
   { href: "/user/mycourses", label: "My Courses" },
+  { href: "/user/wallet", label: "Wallet" },
 
   // { href: '/meetings/facilities', label: 'Facilities' },
 ];
