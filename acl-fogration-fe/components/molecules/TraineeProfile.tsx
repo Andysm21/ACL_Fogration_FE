@@ -1,7 +1,7 @@
 import { RiProjector2Line } from "react-icons/ri";
 import { GiOldMicrophone } from "react-icons/gi";
 import { HiVideoCamera } from "react-icons/hi";
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineFilePdf } from "react-icons/ai";
 import { Button, Link, ratingClasses, TextField } from "@mui/material";
 import { user } from "../../interfaces";
 import { CgProfile } from "react-icons/cg";
@@ -328,6 +328,21 @@ let User_Balance = 10;
         
 
        {/* hena 7oty ay 7aga 3aiza tezawediha odam heya m3 kol eli fo2 zy el reviews fel user */}
+
+        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+          <div className="text-white font-bold text-l">Certificates</div>
+
+          <div className="flex flex-row gap-2 ">
+            <AiOutlineFilePdf size={100} className=" text-violet-400" />
+            <AiOutlineFilePdf size={100} className=" text-violet-400" />
+            <AiOutlineFilePdf size={100} className=" text-violet-400" />
+            <AiOutlineFilePdf size={100} className=" text-violet-400" />
+            <AiOutlineFilePdf size={100} className=" text-violet-400" />
+
+
+          </div>
+          
+        </div> 
 
       </div>
       
