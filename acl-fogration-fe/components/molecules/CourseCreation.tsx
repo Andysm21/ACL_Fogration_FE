@@ -247,6 +247,7 @@ const CourseCreation = () => {
         <div className="mx-2 text-l">Video Description</div>
         <textarea
           defaultValue={videoDescription}
+          placeholder="description"
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleVideoDescription}
         />
@@ -267,12 +268,7 @@ const CourseCreation = () => {
           </div>
 
           <Link href="/instructor/createexam" className="">
-            {/* <button
-                className="mx-2  bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "
-                onClick={gotoexam}
-              >
-                Create Exam For The Course
-                      </button> */}
+           
             <div className="flex  justify-end  items-center flex-row gap-2 ">
               <div onClick={gotoexam} className=" text-gray-400 ">
                 Create Exam For The Course
