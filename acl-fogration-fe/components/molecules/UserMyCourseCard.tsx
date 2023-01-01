@@ -4,6 +4,8 @@ import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
+import ReportCourse from "./ReportCourse";
+import React from "react";
 const courses = [
   {
     _id: {
@@ -146,6 +148,16 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
     return stars;
   };
 
+    const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
 const What_You_Will_Learn = [
       "How to use React",
@@ -273,8 +285,10 @@ const [isCorporate, setIsCorporate]= useState("false");
       </div>
       {/* //div el abyad */}
       <div className="">
+        
         {/* //what you will learn */}
         <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
+          
           <div className="text-white font-bold text-l">What you will learn</div>
           <div className="flex flex-col gap-1">
             {/* //m7taga 23melha grid */}
@@ -357,8 +371,18 @@ const [isCorporate, setIsCorporate]= useState("false");
                   {review}</div>    
             )})}
           </div>
+
+          
           
         </div> 
+        <div className= "rounded-md m-6 flex flex-col justify-center w-72">
+            <button className=""
+            onClick={handleClickOpen}>
+                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded">Report an issue</div>
+
+            </button>
+            <ReportCourse isOpen={open} handleClose={handleClose} />
+          </div>
     </div>
   );
 };

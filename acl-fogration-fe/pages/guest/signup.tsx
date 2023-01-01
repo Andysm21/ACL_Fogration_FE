@@ -118,6 +118,7 @@ var status='';
               {/* adding gender radiobuttons */}
               <FormControl className="flex flex-col items-start justify-start text-white">
                 <FormLabel
+                className="text-white"
                 id="demo-radio-buttons-group-label">
                   Gender
                 </FormLabel>
