@@ -89,7 +89,9 @@ const [type, setType ]= useState("");
           {/* //div el title bel rating */}
           <div className="flex flex-col text-3xl">
             <div className="Font-bold  text-white">{course?.Course_Title}</div>
-            <div className="flex flex-row  ">{stars(course?.Course_Rating)}</div>
+            <div className="flex flex-row  ">
+              {stars(course?.Course_Rating)}
+            </div>
           </div>
           {/* //div el kalam eswd */}
           <div className="bg-bc flex flex-col  gap-3 my-2">
@@ -123,11 +125,9 @@ const [type, setType ]= useState("");
           {/* //h1 el se3r */}
           <div className="flex flex-col justify-between my-2">
             <h1 className=" text-violet-400 text-4xl font-bold ">
-            {discount(course?.Course_Discount, course?.Course_Price)}
+              {discount(course?.Course_Discount, course?.Course_Price)}
             </h1>
             {DiscountDuration()}
-
-
           </div>
         </div>
       </div>
@@ -138,8 +138,11 @@ const [type, setType ]= useState("");
           <div className="text-white font-bold text-l">What you will learn</div>
           <div className="flex flex-col gap-1">
             {/* //m7taga 23melha grid */}
-            {Course_What_You_Will_Learn.map((item,index) => (
-              <div key={index} className="flex flex-row gap-1 text-white items-center">
+            {Course_What_You_Will_Learn.map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-row gap-1 text-white items-center"
+              >
                 <TiTick />
                 <div className="text-white">{item}</div>
               </div>
@@ -175,7 +178,7 @@ const [type, setType ]= useState("");
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
         <h1 className="text-white font-bold text-3xl ">Course Content</h1>
-        {course?.Course_Subtitle?.map((subtitle,index) => {
+        {course?.Course_Subtitle?.map((subtitle, index) => {
           return (
             <div key={index}>
               <div className="flex flex-col gap-2 ">
@@ -189,7 +192,7 @@ const [type, setType ]= useState("");
                 </div>
               </div>
               <div className="flex flex-row gap-2 w-[100%] ">
-                {subtitle?.Subtitle_Video?.map((video,index) => {
+                {subtitle?.Subtitle_Video?.map((video, index) => {
                   return (
                     <div key={index}>
                       <img
@@ -208,45 +211,50 @@ const [type, setType ]= useState("");
           );
         })}
       </div>
-        {/* exams of course */}
-        <div className="flex flex-col bg-black3 rounded-md m-6">
+      {/* exams of course */}
+      <div className="flex flex-col bg-black3 rounded-md m-6">
+        <div className=" text-white font-bold text-l mx-2">Course Material</div>
+        <div className="flex flex-row">
+          <div className="flex flex-row p-2">
+            {course?.Course_Exam?.map((item, index) => {
+              return (
+                <div key={index} className="flex flex-col items-start ">
+                  <AiFillFilePdf size={100} />
+                  <div className="items-center justify-center flex flex-col">
+                    <div className="text-l">Exam {item?.Exam_ID}</div>
 
-          
-          <div className=" text-white font-bold text-l mx-2">
-          Course Material
-        </div>
-        <div className= "flex flex-row">
-        <div className="flex flex-row p-2">
-            {course?.Course_Exam?.map((item,index) => {
-              return(
-              <div key={index}  className="flex flex-col items-start ">
-                      <AiFillFilePdf size={100}/>
-                      <div className="items-center justify-center flex flex-col">
-                        <div className="text-l">Exam {item?.Exam_ID}</div>
-
-                        {viewGrade(item.Exam_Grade)}
-                       <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div>
-                      </div>
+                    {viewGrade(item.Exam_Grade)}
+                    <div className="text-l">
+                      {item?.Exam_Question_ID?.length} Questions
                     </div>
-              )
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {addExam()}
+        </div>
+      </div>
+
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+        <div className="text-white font-bold text-l">Reviews</div>
+
+        <div className="flex flex-row gap-2">
+          {course?.Course_Review &&
+            course?.Course_Review?.map((review, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52"
+                >
+                  {review}
+                </div>
+              );
             })}
         </div>
-          
-        {addExam()}
-         </div>
-        </div>
-
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-          <div className="text-white font-bold text-l">Reviews</div>
-
-          <div className="flex flex-row gap-2">
-            {course?.Course_Review && course?.Course_Review?.map((review,index) => {return (
-                <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
-                  {review}</div>    
-            )})}
-          </div>
-          
-        </div> 
+      </div>
+      
     </div>
   );
 };

@@ -75,6 +75,21 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
 
   }
 
+  const [updatedDiscount, setUpdatedDiscount] = useState(course?.Course_Discount);
+  const handleUpdatedDiscount = (event) => {
+    setUpdatedDiscount(event.target.value);
+  }
+
+  const [updatedDuration, setUpdatedDuration] = useState(course?.Course_Discount_Duration);
+  const handleUpdatedDuration = (event) => {
+    setUpdatedDuration(event.target.value);
+  };
+  
+  const AddDiscount = () => {
+
+    console.log(updatedDiscount);
+    console.log(updatedDuration);
+  }
   return (
     <div
       key={course?.Course_ID}
@@ -124,9 +139,6 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
               {discount(course?.Course_Discount, course?.Course_Price)}
             </h1>
             {DiscountDuration(course?.Course_Discount_Duration)}
-
-
-
           </div>
         </div>
       </div>
@@ -137,8 +149,11 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
           <div className="text-white font-bold text-l">What you will learn</div>
           <div className="flex flex-col gap-1">
             {/* //m7taga 23melha grid */}
-            {Course_What_You_Will_Learn?.map((item,index) => (
-              <div key={index} className="flex flex-row gap-1 text-white items-center">
+            {Course_What_You_Will_Learn?.map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-row gap-1 text-white items-center"
+              >
                 <TiTick />
                 <div className="text-white">{item}</div>
               </div>
@@ -174,7 +189,7 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
         <h1 className="text-white font-bold text-3xl ">Course Content</h1>
-        {course?.Course_Subtitle?.map((subtitle,index) => {
+        {course?.Course_Subtitle?.map((subtitle, index) => {
           return (
             <div key={index}>
               <div className="flex flex-col gap-2 ">
@@ -188,7 +203,7 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
                 </div>
               </div>
               <div className="flex flex-row gap-2 w-[100%] ">
-                {subtitle?.Subtitle_Video?.map((video,index) => {
+                {subtitle?.Subtitle_Video?.map((video, index) => {
                   return (
                     <div key={index}>
                       <img
@@ -208,17 +223,47 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
         })}
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-          <div className="text-white font-bold text-l">Reviews</div>
+        <div className="text-white font-bold text-l">Reviews</div>
 
-          <div className="flex flex-row gap-2">
-
-            {course?.Course_Review && course?.Course_Review?.map((review,index) => {return (
-                <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
-                  {review}</div>    
-            )})}
+        <div className="flex flex-row gap-2">
+          {course?.Course_Review &&
+            course?.Course_Review?.map((review, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52"
+                >
+                  {review}
+                </div>
+              );
+            })}
+        </div>
+      </div>
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+        <div className="text-white font-bold text-l">Add Discount </div>
+        <div className="flex flex-row justify-between rounded-md items-center">
+          <div className="flex flex-row gap-3">
+          <div className="flex flex-col ">
+            <div className=" text-l">Discount Percentage </div>
+            <input
+              defaultValue={course.Course_Discount}
+              className=" enabled:hover:border-gray-600  border-black2 bg-black2  text-white p-2 text-l  border-2   rounded-md h-12"
+              onChange={handleUpdatedDiscount}
+            />
           </div>
-          
-        </div> 
+          <div className="flex flex-col ">
+            <div className="text-l">Discount Duration In Days</div>
+            <input
+              defaultValue={course.Course_Discount_Duration}
+              className="enabled:hover:border-gray-600  border-black2 bg-black2  text-white p-2 text-l  border-2   rounded-md h-12"
+              onChange={handleUpdatedDuration}
+            />
+          </div>
+          </div>
+          <button onClick={AddDiscount} className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-72 h-12 ">
+            Add Discount</button>
+        </div>
+      </div>
     </div>
   );
 };
