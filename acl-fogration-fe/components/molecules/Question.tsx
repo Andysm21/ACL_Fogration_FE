@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { BsPlusCircle } from 'react-icons/bs'
-// let i = 1;
+const refresh = () => window.location.reload();
 const Question = () => {
-  const refresh = () => window.location.reload();
+  
   const addQuestion = () => {
+    localStorage.setItem('question'+ `${i}` + 'CourseID', questionCourseID);
     localStorage.setItem('question'+`${i}`+'Name',questionName)
     localStorage.setItem('question'+`${i}`+'Choice1',questionChoice1)
     localStorage.setItem('question'+`${i}`+'Choice2',questionChoice2)
@@ -11,18 +11,32 @@ const Question = () => {
     localStorage.setItem('question'+`${i}`+'Choice4',questionChoice4)
     localStorage.setItem('question'+`${i}`+'CorrectAnswer',questionCorrectAnswer)
 
-
+     console.log(
+       "question" + `${i}` + "CourseID",
+       localStorage.getItem("question" + `${i}` + "CourseID")
+     );
     console.log(('question'+`${i}`+'Name'),localStorage.getItem('question'+`${i}`+'Name'))
     console.log(('question'+`${i}`+'Choice1'),localStorage.getItem('question'+`${i}`+'Choice1'))
     console.log(('question'+`${i}`+'Choice2'),localStorage.getItem('question'+`${i}`+'Choice2'))
     console.log(('question'+`${i}`+'Choice3'),localStorage.getItem('question'+`${i}`+'Choice3'))
     console.log(('question'+`${i}`+'Choice4'),localStorage.getItem('question'+`${i}`+'Choice4'))
-    console.log(('question'+`${i}`+'CorrectAnswer'),localStorage.getItem('question'+`${i}`+'CorrectAnswer'))
-
+    console.log(('question'+`${i}`+'CorrectAnswer'),localStorage.getItem('question'+`${i}`+'CorrectAnswer'))  
     setI(i + 1);
+    setQuestionName("");
+    setQuestionChoice1("");
+    setQuestionChoice2("");
+    setQuestionChoice3("");
+    setQuestionChoice4("");
+    setQuestionCorrectAnswer("");
     console.log(i);
     refresh;
   }
+
+const [questionCourseID, setQuestionCourseID] = useState("");
+const handleCourseID = (event) => {
+  setQuestionCourseID(event.target.value);
+  // console.log(questionName)
+};
   const [i, setI] = useState(1);
   // const addingQuestion = event => { setI(i) }; 
   const [questionName,setQuestionName] = useState('')
@@ -58,15 +72,15 @@ const Question = () => {
 
 
   return (
-    <div className="bg-bc p-2 m-2 rounded-lg flex flex-col w-11/12 justify-center">
-      <div className="text-l mx-2"> Question ID </div>
+    <div className="bg-bc p-2 m-2 rounded-lg flex flex-col w-11/12 justify-center"> 
+      <div className="text-l mx-2"> Course ID </div>
       <input
-        value={i}
-        disabled
+        value={localStorage.getItem("courseID")}
         className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
+        onClick={handleCourseID}
       />
-      <div className="m-2 text-l">Question </div>
-      <input
+      <div className="m-2 text-l">Question {i}</div>
+      <textarea
         className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2    rounded-md h-12"
         onChange={handleQuestionName}
       />
