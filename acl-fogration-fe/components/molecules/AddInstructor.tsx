@@ -80,8 +80,8 @@ const AddInstructor: React.FC<Props> = ({ handleClose, isOpen }) => {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title">{"New Instructor"}</DialogTitle>
-        <DialogContent className="">
+        <DialogTitle className="bg-bc text-white "id="responsive-dialog-title">{"New Instructor"}</DialogTitle>
+        <DialogContent className="bg-bc">
           <DialogContentText className="grid gap-y-8 gap-x-3">
             <div className="items flex w-full items-end justify-center m-2 ">
               <FormControl
@@ -90,19 +90,23 @@ const AddInstructor: React.FC<Props> = ({ handleClose, isOpen }) => {
                 className="m-2 gap-4 w-full"
               >
                 <div className="grid grid-column gap-y-4 w-96 m-2 ">
-                <TextField
+                <input
+                className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                   required
                   id="outlined-basic"
-                  label="Username"
-                    variant="outlined"
+                  // label="Username"
+                    // variant="outlined"
+                    placeholder="Username"
                     onChange={handleUsername}
                 />
 
-                <TextField
+                <input
+                className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                   required
                   id="outlined-basic"
-                  label="Password"
-                    variant="outlined"
+                  // label="Password"
+                    // variant="outlined"
+                    placeholder="Password"
                     onChange={handlePassword}
                 />
                 </div>
@@ -112,11 +116,14 @@ const AddInstructor: React.FC<Props> = ({ handleClose, isOpen }) => {
             {/* <div className="items flex w-full items-end justify-center m-2 "></div> */}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+        <DialogActions className="bg-bc">
+          <Button
+          className="text-violet-400"
+           autoFocus onClick={handleClose}>
             Cancel
           </Button>
           <Button
+          className="text-violet-400"
             onClick={() => {
               handleSubmit();
               handleClose();
