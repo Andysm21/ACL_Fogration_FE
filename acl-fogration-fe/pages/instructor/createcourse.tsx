@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
+import CourseCreation from '../../components/molecules/CourseCreation';
 
 const createcourse: NextPage = () => {
-  const headers = ["Song", "Artist", "Year"];
-
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -15,7 +14,12 @@ const createcourse: NextPage = () => {
       </Head>
 
       <Layout>
-        <div></div>
+        <div className="bg-bc h-100vh p-2 flex flex-col ">
+          <h1 className="text-3xl font-bold text-white">Create Course</h1>
+          <div className="bg-black3 rounded-md flex flex-col text-white items-center justify-center p-2">
+            <CourseCreation />
+          </div>
+        </div>
       </Layout>
     </div>
   );
