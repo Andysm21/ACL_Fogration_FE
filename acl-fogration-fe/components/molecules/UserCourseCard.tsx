@@ -5,6 +5,11 @@ import { TiTick } from "react-icons/ti";
 import {AiFillFilePdf} from "react-icons/ai"
 import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
+import Payment from "./Payment";
+import React from "react";
+import AddAdmin from "./AddAdmin";
+import ReportCourse from "./ReportCourse";
+import CourseRefund from "./CourseRefund";
 
 
 const  What_You_Will_Learn= [
@@ -20,6 +25,15 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
   })
+
+    const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+    const handleClose = () => {
+    setOpen(false);
+  };
     const viewPrice =(price:number)=>{
     if(isCorporate == "false"){
       return  price   
@@ -130,12 +144,16 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
              <h1 className=" text-violet-400 text-4xl font-bold ">
                {discount(course?.Course_Discount,viewPrice(course?.Course_Price))} </h1>
               
-            <Link href="/">
-              {/* //link button to enroll */}
-              <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-48">
+
+<div>
+              <button 
+              className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-48"
+                onClick={handleClickOpen}>
                 Enroll Now
               </button>
-            </Link>
+                <Payment isOpen={open} handleClose={handleClose} />
+              </div>
+
 
             
 
@@ -253,7 +271,9 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
           </div>
           
         </div> 
-    </div>
+      
+          </div>
+
   );
 };
 

@@ -412,7 +412,7 @@ const handleBalance = event => {
 
          
           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded  " onClick={changeBalance}>
-                  Pay
+                  Top-up
                 </button>
                 </div>
 

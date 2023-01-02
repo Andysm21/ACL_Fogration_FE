@@ -342,7 +342,7 @@ let User_Balance = 10;
 
           </div>
           
-        </div> 
+        </div>
 
       </div>
       
