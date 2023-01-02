@@ -381,13 +381,15 @@ const [isCorporate, setIsCorporate]= useState("false");
                   {review}</div>    
             )})}
           </div>
-
-          
-          
         </div> 
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
 
+{/* Addd Exams to be taken and grades */}
+        <div>
 
+        </div>
+        <div className= "rounded-md m-6 flex flex-col justify-center w-72">
+
+ 
             <button className=""
             onClick={handleClickOpen}>
                 <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">Report an issue</div>
