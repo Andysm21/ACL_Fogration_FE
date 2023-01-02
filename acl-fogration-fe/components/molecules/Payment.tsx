@@ -42,7 +42,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const AddAdmin: React.FC<Props> = ({ handleClose, isOpen }) => {
+const Payment: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -87,7 +87,7 @@ const AddAdmin: React.FC<Props> = ({ handleClose, isOpen }) => {
   return (
     <div>
       <Dialog
-      
+        // className="bg-white"
         fullScreen={fullScreen}
         open={isOpen}
         TransitionComponent={Transition}
@@ -96,7 +96,7 @@ const AddAdmin: React.FC<Props> = ({ handleClose, isOpen }) => {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle className="bg-bc text-white"
-        id="responsive-dialog-title">{"New Admin"}</DialogTitle>
+        id="responsive-dialog-title">{"Pay for a course"}</DialogTitle>
         <DialogContent className="bg-bc">
           <DialogContentText className="grid gap-y-8 gap-x-3">
             <div className="flex flex-column">
@@ -106,25 +106,27 @@ const AddAdmin: React.FC<Props> = ({ handleClose, isOpen }) => {
                 className="m-2 gap-4 w-full"
               >
                 <div className="grid grid-column gap-y-4 w-96 m-2 ">
-                <input
-                className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
-                    required
-                    id="outlined-basic"
-                    // label="Username"
-                    // variant="outlined"
-                    placeholder="Username"
-                    onChange={handleUsername}
-                />
 
-                <input
-                className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
-                  required
-                  id="outlined-basic"
-                  // label="Password"
-                  // variant="outlined"
-                  placeholder="Password"
-                  onChange={handlePassword}
-                />
+            <div className="text-l text-white">Course price (€)
+           <input readOnly className = " h-12 bg-black3  text-white p-1 text-l  border-2  w-full  border-gray-600 rounded-md"
+        //   value= {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
+        value={10}
+         />
+         </div>
+
+         <div className="text-l text-white">Current balance (€)
+           <input readOnly className = "h-12 bg-black3  text-white p-1 text-l  border-2 w-full  border-gray-600 rounded-md"
+        //   value= {user.User_Balance}
+        value={15}
+         />
+         </div>
+
+         <div className="text-l text-white">New balance (€)
+           <input readOnly className = "h-12 bg-black3  text-white p-1 text-l  border-2 w-full  border-gray-600 rounded-md"
+        //   value= {user.User_Balance - discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
+        value={15-10}
+         />
+         </div>
                 </div>
                 
               </FormControl>
@@ -146,7 +148,7 @@ const AddAdmin: React.FC<Props> = ({ handleClose, isOpen }) => {
             }}
             autoFocus
           >
-            Create
+            Pay
           </Button>
         </DialogActions>
       </Dialog>
@@ -154,4 +156,4 @@ const AddAdmin: React.FC<Props> = ({ handleClose, isOpen }) => {
   );
 };
 
-export default AddAdmin;
+export default Payment;

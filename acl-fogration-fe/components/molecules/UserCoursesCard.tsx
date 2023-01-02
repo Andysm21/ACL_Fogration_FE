@@ -1,9 +1,8 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
-import { useEffect, useState } from "react";
-
-
+import React, { useEffect, useState } from "react";
+import Payment from "./Payment";
 
  
 const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
@@ -14,9 +13,18 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
     setIsCorporate(localStorage.getItem("isCorp"))
   })
 
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+    const handleClose = () => {
+    setOpen(false);
+  };
+
   const viewPrice =(price:number)=>{
     if(isCorporate == "false"){
-      return  price   
+      return price   
     }
     else{
       return 
@@ -36,11 +44,12 @@ const discount =(discount:number,price:number) =>{
       return <div className="">{price} $$</div>
   
     }
+    
     else{ 
 
     
       return(
-      // <div className="">{price} {localStorage.getItem('currency')}</div>
+
       <div className="flex flex-row gap-2">
       <div className="line-through">{price} </div>
        <div className="">{(price) * ((100-discount)/100)} {localStorage.getItem('currency')}</div>
@@ -116,6 +125,7 @@ const discount =(discount:number,price:number) =>{
             </div>
             {/* //h1 el se3r */}
             <div className="flex flex-row justify-between my-2">
+              <div>
               <Link href="viewcourse">
                 {/* //link button to enroll */}
                 <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36" onClick={()=>{
@@ -127,12 +137,16 @@ const discount =(discount:number,price:number) =>{
                   View Course
                 </button>
               </Link>
-              <Link href="/">
-                {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36">
-                  Enroll Now
-                </button>
-              </Link>
+              </div>
+
+<div>
+              <button 
+                className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36"
+                onClick={handleClickOpen}>
+                Enroll Now
+              </button>
+                <Payment isOpen={open} handleClose={handleClose} />
+              </div>
             </div>
           </div>
         </div>
