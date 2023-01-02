@@ -57,7 +57,7 @@ const vowel = () =>{
   return "a";
 }
 
-const solveexam = () => {
+const correctanswers = () => {
   return (
     <div>
       <Layout>
@@ -65,7 +65,7 @@ const solveexam = () => {
           <div className="font-bold text-3xl text-center">
             Exam {Exam.Exam_ID}
           </div>
-          <div className="text-white text-center font-bold text-3xl flex flex-row items-center justify-center">
+          <div className="text-white text-center font-bold text-l flex flex-row items-center justify-center">
             You have answered <div className="text-bc">.</div>
             <div className="text-violet-400"> {Question_Correct_Answers}</div>
             <div className="text-bc">.</div>
@@ -75,7 +75,7 @@ const solveexam = () => {
             <div className="text-bc">.</div>
             correctly
           </div>
-          <div className="text-white text-3xl font-bold text-center">Your have got {vowel()} {grade}</div>
+          <div className="text-white text-l font-bold text-center">Your got {vowel()} {grade}</div>
           
           {/* div el exam beli choices */}
           <div className=" flex flex-col">
@@ -122,12 +122,12 @@ const solveexam = () => {
             })}
           </div>
           <div className="flex justify-end items-end m-2">
-            <Link href="/user/score">
+            <Link href="/user/viewmycourse">
               <button
                 onClick={submitAnswers}
                 className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-52 "
               >
-                Submit Answers
+                Go back to course
               </button>
             </Link>
           </div>
@@ -137,4 +137,4 @@ const solveexam = () => {
   );
 }
 
-export default solveexam
+export default correctanswers;

@@ -371,10 +371,11 @@ const [isCorporate, setIsCorporate]= useState("false");
                   {review}</div>    
             )})}
           </div>
-
-          
-          
         </div> 
+{/* Addd Exams to be taken and grades */}
+        <div>
+
+        </div>
         <div className= "rounded-md m-6 flex flex-col justify-center w-72">
             <button className=""
             onClick={handleClickOpen}>

@@ -57,8 +57,8 @@ const score = () => {
             <div className="text-bc">.</div>
             correctly
           </div>
-          <div className="text-white text-3xl font-bold text-center">Your have got {vowel()} {grade}</div>
-          
+          <div className="text-white text-3xl font-bold text-center">Your got {vowel()} {grade}</div>
+
           {/* {suggest()} */}
           <div className="text-white text-center font-bold text-2xl">
             Would you like to
@@ -70,9 +70,11 @@ const score = () => {
               Retake Exam
             </button>
             </Link>
+            <Link href="/user/correctanswers">
             <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-72">
               Show Correct Answers
             </button>
+            </Link>
           </div>
           <div className="text-white text-center font-light">
             
