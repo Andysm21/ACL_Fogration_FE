@@ -385,7 +385,7 @@ const [isCorporate, setIsCorporate]= useState("false");
 
 {/* Addd Exams to be taken and grades */}
         <div>
-
+{/* Test */}
         </div>
         <div className= "rounded-md m-6 flex flex-col justify-center w-72">
 
