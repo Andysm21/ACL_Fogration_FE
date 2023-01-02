@@ -6,6 +6,7 @@ import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import ReportCourse from "./ReportCourse";
 import React from "react";
+import CourseRefund from "./CourseRefund";
 const courses = [
   {
     _id: {
@@ -158,6 +159,15 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
     setOpen(false);
   };
 
+    const [open2, setOpen2] = React.useState(false);
+
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
 
 const What_You_Will_Learn = [
       "How to use React",
@@ -375,13 +385,25 @@ const [isCorporate, setIsCorporate]= useState("false");
           
           
         </div> 
-        <div className= "rounded-md m-6 flex flex-col justify-center w-72">
+        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+
+
             <button className=""
             onClick={handleClickOpen}>
-                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded">Report an issue</div>
+                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">Report an issue</div>
 
             </button>
             <ReportCourse isOpen={open} handleClose={handleClose} />
+
+
+            <button className=""
+            onClick={handleClickOpen2}>
+                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">Refund</div>
+
+            </button>
+
+            <CourseRefund isOpen={open2} handleClose={handleClose2} />
+
           </div>
     </div>
   );

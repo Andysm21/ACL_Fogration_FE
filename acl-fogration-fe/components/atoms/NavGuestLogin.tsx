@@ -28,7 +28,7 @@ const NavGuestLogin = () => {
             }
           />
         </div>  
-        <div className="fixed grid grid-cols-3 gap-12 relative top-0 left-0 right-0 ">
+        <div className=" grid grid-cols-3 gap-12 relative top-0 left-0 right-0 ">
           <Link href="/guest/guestcourses">
             <h1 className="cursor-pointer border-b-lightgrey  text-lg font-light  text-white hover:border-b hover:text-gray-300">
               Courses
