@@ -86,9 +86,14 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
   };
   
   const AddDiscount = () => {
-
-    console.log(updatedDiscount);
-    console.log(updatedDuration);
+    axios.post("http://localhost:8000/course_promotion",{
+      courseID:Number(localStorage.getItem("CourseID")),
+      discount:updatedDiscount,
+      duration:updatedDuration,
+    }).then((response) => {
+      console.log(Number(localStorage.getItem("CourseID")))
+      console.log("done")
+    }).catch((error) => console.log(error))
   }
   return (
     <div
