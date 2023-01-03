@@ -1,5 +1,6 @@
 import { AiFillFilePdf, AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { Button, Link } from "@mui/material";
+import { Button, Link, Typography } from "@mui/material";
+import LinearProgress from '@mui/joy/LinearProgress';
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
@@ -224,10 +225,12 @@ const [isCorporate, setIsCorporate]= useState("false");
 
 
   return (
+    
     <div
       key={course?.Course_ID}
       className=" flex flex-col bg-bc w-75% shadow-lg text-white"
     >
+      
       {/* //div el eswd */}
       <div className="flex flex-row bg-bc justify-between mx-6 my-4">
         {/* //div el title bel kalam */}
@@ -372,7 +375,24 @@ const [isCorporate, setIsCorporate]= useState("false");
         })}
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+      <div className="flex flex-row">
         <div className="text-white font-bold text-l">Exams</div>
+        <div className="flex flex-row">
+         <LinearProgress
+       className="w-72 bg-bc  text-gray-300 m-2"
+       thickness={7}
+       determinate 
+        variant="solid"
+        value={90}
+        >
+         
+        </LinearProgress>
+         <Typography className="text-white text-l"
+      >
+       90%
+      </Typography>
+        </div>
+        </div>
          <div className="flex flex-row p-2 ">
             {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
               return(
