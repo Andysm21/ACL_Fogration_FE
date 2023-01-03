@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../../components/templates/Layout'
-import TraineeReports from '../../components/molecules/TraineeReports';
+import RefundRequests from '../../components/molecules/RefundRequests';
 import axios from 'axios'
 
 
 
-const reports = () => {
+const refunds = () => {
   const [person,setPerson]=useState([])
   const [isCorp,setCorp]=useState("")
 const [UserID,setUserID]=useState('')
@@ -42,11 +42,11 @@ useEffect(()=>{
     <div>
         <Layout>
         <div>
-            <TraineeReports user={person} />
+            <RefundRequests courses={undefined}/>
         </div>
       </Layout>
     </div>
   )
 }
 
-export default reports;
+export default refunds;

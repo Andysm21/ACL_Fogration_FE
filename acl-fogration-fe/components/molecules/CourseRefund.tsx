@@ -126,7 +126,13 @@ const handleChangeType = (event) => {
                     </div>} */}
 
                     <FormControl>
-      <FormLabel className="text-white" id="demo-row-radio-buttons-group-label">Are you sure you would like to opt out and refund the payment for this course?</FormLabel>
+      <FormLabel 
+      className="text-white" 
+      id="demo-row-radio-buttons-group-label">
+        <div className="text-white">
+        Are you sure you would like to opt out and refund the payment for this course?
+        </div>
+        </FormLabel>
     </FormControl>
                     </div>
 
@@ -141,7 +147,9 @@ const handleChangeType = (event) => {
           <Button  
           className="text-violet-400"
           autoFocus onClick={handleClose}>
+            <div className="text-violet-400">
             Cancel
+            </div>
           </Button>
           <Button
           className="text-violet-400"
@@ -151,7 +159,9 @@ const handleChangeType = (event) => {
             }}
             autoFocus
           >
+            <div className="text-violet-400">
             Refund
+            </div>
           </Button>
 
         </DialogActions>

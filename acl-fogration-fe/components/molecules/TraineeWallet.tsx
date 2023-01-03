@@ -337,7 +337,7 @@ const handleBalance = event => {
       className=" border-2 border-bc flex flex-col-2 bg-black2 w-75% h-screen shadow-lg text-white "
     >
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 h-[70%] w-1/2">
-          <div className="text-white font-bold text-l">Top up using a voucher code</div>
+          <div className="text-white font-bold text-l py-2">Top up using a voucher code</div>
         
           <div className="text-l">Current balance (€)</div>
            <input readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
@@ -369,7 +369,7 @@ const handleBalance = event => {
         </div>
 
         <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 h-[70%] w-1/2">
-          <div className="text-white font-bold text-l">Top up using a credit card</div>
+          <div className="text-white font-bold text-l py-1.5">Top up using a credit card</div>
         
           <div className="text-l">Current balance (€)</div>
            <input readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"

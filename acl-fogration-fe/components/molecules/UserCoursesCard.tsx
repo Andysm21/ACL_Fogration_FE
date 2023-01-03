@@ -77,20 +77,20 @@ const discount =(discount:number,price:number) =>{
   };
  
   return (
-    <div className="grid grid-cols-2 text-white place-items-center bg-bc gap-4">
+    <div className="grid grid-cols-2 text-white  bg-bc gap-4 ">
       {courses.map((course,index) => (
-        <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg p-2 ">
+        <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 ">
           {/* //div el title bel kalam */}
           <div className="flex flex-col">
             {/* //div el title bel rating */}
             <div className="flex flex-col text-3xl">
               <div className="Font-bold  text-white">{course.Course_Title}</div>
-              <div className="flex flex-row  ">
+              <div className="flex flex-row text-2xl my-2">
                 {stars(course.Course_Rating)}
               </div>
             </div>
             {/* //div el kalam eswd */}
-            <div className="bg-black3 flex flex-col  gap-3.5 my-2">
+            <div className="bg-black3 flex flex-col  gap-2 my-2">
               {course.Course_Trainee.length} enrolled students
               <div className="text-white flex flex-row">
                 Taught by
@@ -128,7 +128,7 @@ const discount =(discount:number,price:number) =>{
               <div>
               <Link href="viewcourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36" onClick={()=>{
+                <button className="border border-white text-white text-white font-bold py-2 px-4 rounded w-36" onClick={()=>{
                   localStorage.removeItem('CourseID')
                   console.log("Gowa UserCoursesCard")
                   console.log(course)
@@ -141,7 +141,7 @@ const discount =(discount:number,price:number) =>{
 
 <div>
               <button 
-                className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36"
+                className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36 border border-violet-400"
                 onClick={handleClickOpen}>
                 Enroll Now
               </button>
