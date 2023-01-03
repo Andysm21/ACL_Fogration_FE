@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../../components/templates/Layout'
-import TraineeReports from '../../components/molecules/TraineeReports';
+import ReportRequests from '../../components/molecules/ReportRequests';
 import axios from 'axios'
 
 
@@ -42,7 +42,7 @@ useEffect(()=>{
     <div>
         <Layout>
         <div>
-            <TraineeReports user={person} />
+            <ReportRequests/>
         </div>
       </Layout>
     </div>
