@@ -206,13 +206,13 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
       </div>
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <h1 className="text-white font-bold text-3xl ">Course Content</h1>
+        <h1 className="text-white font-bold text-l ">Course Content</h1>
         {course?.Course_Subtitle && course?.Course_Subtitle.map((subtitle,index) => {
           return (
             <div key={index} >
               <div className="flex flex-col gap-2 ">
                 <div className="flex flex-row gap-2 justify-between">
-                  <div className="text-xl font-bold">
+                  <div className="text-l font-bold">
                     {subtitle?.Subtitle_Name}
                   </div>
                   <div className="text-l flex items-end ">
@@ -225,7 +225,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
                   return (
                     <div key={index}>
                       <img
-                        className="flex-shrink-0  "
+                        className="flex-shrink-0 w-36  "
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
@@ -252,7 +252,6 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
                       <AiFillFilePdf size={100}/>
                       <div className="items-center justify-center flex flex-col">
                         <div className="text-l">Exam {item?.Exam_ID}</div>
-                      <div className="text-l">{item?.Exam_Grade} %</div>
                        <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div>
                       </div>
                     </div>
