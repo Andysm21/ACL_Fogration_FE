@@ -43,13 +43,13 @@ const CourseCreation = () => {
 
   
     const gotoexam = () => {
-        localStorage.setItem("course" +  "ID", `${courseID}`);
-        localStorage.setItem("course" + courseID + "Title", courseTitle);
-        localStorage.setItem("course" + courseID + "Subject", courseSubject);
-        localStorage.setItem("course" + courseID + "Description", courseDescription);
-        localStorage.setItem("course" + courseID + "Price", coursePrice);
-        localStorage.setItem("course" + courseID + "Country", courseCountry);
-        localStorage.setItem("course" + courseID + "PreviewVideo", coursePreviewVideo);
+        // localStorage.setItem("course" +  "ID", `${courseID}`);
+        localStorage.setItem("courseTitle", courseTitle);
+        localStorage.setItem("courseSubject", courseSubject);
+        localStorage.setItem("courseDescription", courseDescription);
+        localStorage.setItem("coursePrice", coursePrice);
+        localStorage.setItem("courseCountry", courseCountry);
+        localStorage.setItem("coursePreviewVideo", coursePreviewVideo);
         localStorage.setItem("subtitle" + "ID", `${subtitleID}`);
         localStorage.setItem("subtitle" + subtitleID + "Name", subtitleName);
         localStorage.setItem("video" +  "ID", `${videoID}`);
@@ -61,27 +61,27 @@ const CourseCreation = () => {
           localStorage.getItem("course" + "ID")
         );
         console.log(
-          "course" + courseID + "Title",
+          "courseTitle",
           localStorage.getItem("course" + courseTitle + "Title")
         );
         console.log(
-          "course" + courseID + "Subject",
+          "courseSubject",
           localStorage.getItem("course" + courseSubject + "Subject")
         );
          console.log(
-           "course" + courseID + "Description",
+           "courseDescription",
            localStorage.getItem("course" + courseDescription + "Description")
          );
          console.log(
-           "course" + courseID + "Price",
+           "coursePrice",
            localStorage.getItem("course" + coursePrice + "Price")
          );
          console.log(
-           "course" + courseID + "Country",
+           "courseCountry",
            localStorage.getItem("course" + courseCountry + "Country")
          );
          console.log(
-           "course" + courseID + "PreviewVideo",
+           "coursePreviewVideo",
            localStorage.getItem("course" + coursePreviewVideo + "PreviewVideo")
          );
         console.log(
@@ -105,18 +105,18 @@ const CourseCreation = () => {
          localStorage.getItem("video" + videoID + "Description")
        );
         
-        setCourseID(1);
+        // setCourseID(1);
         setVideoID(1);
         setSubtitleID(1);
 
     }
     // const [i, setI] = useState(1);
     
-    const [courseID, setCourseID] = useState(1);
-    const handleCourseID = (event) => {
-     setCourseID(event.target.value);
-     // console.log(questionName)
-   };
+  //   const [courseID, setCourseID] = useState(1);
+  //   const handleCourseID = (event) => {
+  //    setCourseID(event.target.value);
+  //    // console.log(questionName)
+  //  };
 
   
   const [courseTitle, setCourseTitle] = useState("");
@@ -178,18 +178,35 @@ const CourseCreation = () => {
        setVideoDescription(event.target.value);
        // console.log(questionName)
     }; 
+    let  courseCreated = false;
+    const createCourseButton = () =>{
+      if(courseCreated){
+        {console.log(courseCreated)}
+        return <button className="mx-2 my-2 bg-gray-500 text-white font-bold py-2 px-4 rounded" >Create Course</button>
+      }
+      else{
+        return  <button
+              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "
+              onClick={createCourse}
+            >
+             Create course
+            </button>
+      }
+    }
+
+    const createCourse = () => {
     
-    
+    }
     
     
   return (
     <div className=" p-2 m-2 rounded-lg flex flex-row w-11/12 justify-between">
       <div className="bg-bc p-2 m-2 rounded-lg flex flex-col w-2/3">
-        <div className="text-l mx-2"> Course ID </div>
+        {/* <div className="text-l mx-2"> Course ID </div>
         <input
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleCourseID}
-        />
+        /> */}
         <div className="m-2 text-l">Course Title </div>
         <input
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2    rounded-md h-12"
@@ -220,7 +237,16 @@ const CourseCreation = () => {
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleCoursePreviewVideo}
         />
+        <button
+              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "
+              onClick={createCourse}
+            >
+             Create course
+            </button>
+            
+            {/* {createCourseButton()} */}
       </div>
+      
       <div className="bg-bc p-2 m-2 rounded-lg flex flex-col w-2/3 justify-between">
         <div className="mx-2 text-l">Subtitle ID</div>
         <input
