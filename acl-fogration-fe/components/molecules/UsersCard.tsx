@@ -11,10 +11,10 @@ const UsersCard: React.FC<{ users }> = ({ users }) => {
   })
   const detailsLink = ()=>{
     if(type=="Instructor"){
-      return "Instructor"
+      return "instructor"
       }
   else{
-      return "User"
+      return "user"
   }
   }
   

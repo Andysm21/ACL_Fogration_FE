@@ -43,7 +43,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const ReportCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
+const SolveReport: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -100,7 +100,7 @@ const handleChangeType = (event) => {
         className=""
       >
         <DialogTitle className="bg-bc text-white" id="responsive-dialog-title">
-          {"New report"}
+          {"Solve report"}
         </DialogTitle>
         <DialogContent className="bg-bc">
           <DialogContentText className="grid gap-y-8 gap-x-3">
@@ -111,26 +111,24 @@ const handleChangeType = (event) => {
                 className="m-2 gap-4 w-full"
               >
                 <div className="flex flex-col items-start justify-start text-white">
-                  {/* {menu?
-                    <div className="flex flex-col items-start justify-start text-white">
-                        <button onClick={handleMenu}>
-                            true
-                        </button>
-                    </div> : <div className="flex flex-col items-start justify-start text-white">
-                        <button 
-                        className="w-96 border-2 shadow-lg rounded-md"
-                        onClick={handleMenu}>
-                            Choose a type
-                        </button>
-                    </div>} */}
 
                   <FormControl>
+                    <div className="flex flex-col items-start justify-start text-white">
+
+           <textarea readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-72 h-72 border-gray-600 rounded-md"
+                value= {/*problems?.Problem_Description*/ "Just a testing description"}
+                />
+                </div>
+                        <div className="text-white my-2">
+
                     <FormLabel
-                      className="text-white"
                       id="demo-row-radio-buttons-group-label"
                     >
-                      Report type
+                        <div className="text-white flex">
+                      Report solved?
+                      </div>
                     </FormLabel>
+                    
                     <RadioGroup
                       row
                       aria-labelledby="demo-row-radio-buttons-group-label"
@@ -138,31 +136,23 @@ const handleChangeType = (event) => {
                       onChange={handleChangeType}
                     >
                       <FormControlLabel
-                        value="technical"
+                        value="pending"
                         control={<Radio />}
-                        label="Technical"
+                        label="Pending"
                       />
                       <FormControlLabel
-                        value="financial"
+                        value="solved"
                         control={<Radio />}
-                        label="Financial"
-                      />
-                      <FormControlLabel
-                        value="other"
-                        control={<Radio />}
-                        label="Other"
+                        label="Solved"
                       />
                     </RadioGroup>
-                  </FormControl>
                 </div>
 
-                <div className="flex flex-col items-start justify-start text-white">
-                  <textarea
-                    placeholder="Description"
-                    className="rounded-md p-3 w-full h-72 text-white border-2 border-gray-300 bg-gray-800"
-                    onChange={handleDescription}
-                  />
-                </div>
+                  </FormControl>
+                      </div>
+
+
+                
               </FormControl>
             </div>
             {/* <div className="items flex w-full items-end justify-center m-2 "></div> */}
@@ -180,7 +170,7 @@ const handleChangeType = (event) => {
             }}
             autoFocus
           >
-            <div className="text-violet-400">Report</div>
+            <div className="text-violet-400">Confirm</div>
           </Button>
         </DialogActions>
       </Dialog>
@@ -188,4 +178,4 @@ const handleChangeType = (event) => {
   );
 };
 
-export default ReportCourse;
+export default SolveReport;

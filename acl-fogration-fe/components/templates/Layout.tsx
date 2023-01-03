@@ -20,6 +20,7 @@ const userlinks = [
   { href: "/user/courses", label: "Courses" },
   { href: "/user/mycourses", label: "My Courses" },
   { href: "/user/wallet", label: "Wallet" },
+  { href: "/user/reports", label: "Reports" },
 
   // { href: '/meetings/facilities', label: 'Facilities' },
 ];
@@ -39,7 +40,9 @@ const adminlinks = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/accounts", label: "Accounts" },
   { href: "/admin/courses", label: "Courses" },
-  // { href: "admin/requests", label: "Requests" },
+  { href: "/admin/reports", label: "Reports" },
+  { href: "/admin/refunds", label: "Refund Requests" },
+
 ];
 
 const guestlinks = [

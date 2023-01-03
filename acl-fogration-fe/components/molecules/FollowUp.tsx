@@ -43,7 +43,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const ReportCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
+const FollowUp: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -100,7 +100,7 @@ const handleChangeType = (event) => {
         className=""
       >
         <DialogTitle className="bg-bc text-white" id="responsive-dialog-title">
-          {"New report"}
+          {"Follow-up"}
         </DialogTitle>
         <DialogContent className="bg-bc">
           <DialogContentText className="grid gap-y-8 gap-x-3">
@@ -110,56 +110,11 @@ const handleChangeType = (event) => {
                 sx={{ width: "100%" }}
                 className="m-2 gap-4 w-full"
               >
-                <div className="flex flex-col items-start justify-start text-white">
-                  {/* {menu?
-                    <div className="flex flex-col items-start justify-start text-white">
-                        <button onClick={handleMenu}>
-                            true
-                        </button>
-                    </div> : <div className="flex flex-col items-start justify-start text-white">
-                        <button 
-                        className="w-96 border-2 shadow-lg rounded-md"
-                        onClick={handleMenu}>
-                            Choose a type
-                        </button>
-                    </div>} */}
-
-                  <FormControl>
-                    <FormLabel
-                      className="text-white"
-                      id="demo-row-radio-buttons-group-label"
-                    >
-                      Report type
-                    </FormLabel>
-                    <RadioGroup
-                      row
-                      aria-labelledby="demo-row-radio-buttons-group-label"
-                      name="row-radio-buttons-group"
-                      onChange={handleChangeType}
-                    >
-                      <FormControlLabel
-                        value="technical"
-                        control={<Radio />}
-                        label="Technical"
-                      />
-                      <FormControlLabel
-                        value="financial"
-                        control={<Radio />}
-                        label="Financial"
-                      />
-                      <FormControlLabel
-                        value="other"
-                        control={<Radio />}
-                        label="Other"
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                </div>
 
                 <div className="flex flex-col items-start justify-start text-white">
                   <textarea
-                    placeholder="Description"
-                    className="rounded-md p-3 w-full h-72 text-white border-2 border-gray-300 bg-gray-800"
+                    placeholder="Follow-up description"
+                    className="rounded-md p-3 w-96 h-72 text-white border-2 border-gray-300 bg-gray-800"
                     onChange={handleDescription}
                   />
                 </div>
@@ -180,7 +135,7 @@ const handleChangeType = (event) => {
             }}
             autoFocus
           >
-            <div className="text-violet-400">Report</div>
+            <div className="text-violet-400">Send follow-up</div>
           </Button>
         </DialogActions>
       </Dialog>
@@ -188,4 +143,4 @@ const handleChangeType = (event) => {
   );
 };
 
-export default ReportCourse;
+export default FollowUp;

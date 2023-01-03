@@ -43,7 +43,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const ReportCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
+const Refund: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -99,8 +99,9 @@ const handleChangeType = (event) => {
         aria-labelledby="responsive-dialog-title"
         className=""
       >
-        <DialogTitle className="bg-bc text-white" id="responsive-dialog-title">
-          {"New report"}
+        <DialogTitle 
+        className="bg-bc text-white"
+        id="responsive-dialog-title">{"Refund confirmation"}
         </DialogTitle>
         <DialogContent className="bg-bc">
           <DialogContentText className="grid gap-y-8 gap-x-3">
@@ -111,81 +112,50 @@ const handleChangeType = (event) => {
                 className="m-2 gap-4 w-full"
               >
                 <div className="flex flex-col items-start justify-start text-white">
-                  {/* {menu?
-                    <div className="flex flex-col items-start justify-start text-white">
-                        <button onClick={handleMenu}>
-                            true
-                        </button>
-                    </div> : <div className="flex flex-col items-start justify-start text-white">
-                        <button 
-                        className="w-96 border-2 shadow-lg rounded-md"
-                        onClick={handleMenu}>
-                            Choose a type
-                        </button>
-                    </div>} */}
 
-                  <FormControl>
-                    <FormLabel
-                      className="text-white"
-                      id="demo-row-radio-buttons-group-label"
-                    >
-                      Report type
-                    </FormLabel>
-                    <RadioGroup
-                      row
-                      aria-labelledby="demo-row-radio-buttons-group-label"
-                      name="row-radio-buttons-group"
-                      onChange={handleChangeType}
-                    >
-                      <FormControlLabel
-                        value="technical"
-                        control={<Radio />}
-                        label="Technical"
-                      />
-                      <FormControlLabel
-                        value="financial"
-                        control={<Radio />}
-                        label="Financial"
-                      />
-                      <FormControlLabel
-                        value="other"
-                        control={<Radio />}
-                        label="Other"
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                </div>
+                    <FormControl>
+      <FormLabel 
+      className="text-white" 
+      id="demo-row-radio-buttons-group-label">
+        <div className="text-white">
+        Are you sure of confirming the refund request? The refunded amount is {100}{"€"} {/*{course?course.Course_Price}*/} to {"Yahya"} {/*{user?.user_User_ID}*/}
+        </div>
+        </FormLabel>
+    </FormControl>
+                    </div>
 
-                <div className="flex flex-col items-start justify-start text-white">
-                  <textarea
-                    placeholder="Description"
-                    className="rounded-md p-3 w-full h-72 text-white border-2 border-gray-300 bg-gray-800"
-                    onChange={handleDescription}
-                  />
-                </div>
+                  
               </FormControl>
             </div>
             {/* <div className="items flex w-full items-end justify-center m-2 "></div> */}
           </DialogContentText>
         </DialogContent>
         <DialogActions className="bg-bc">
-          <Button className="text-violet-400" autoFocus onClick={handleClose}>
-            <div className="text-violet-400">Cancel</div>
+
+          <Button  
+          className="text-violet-400"
+          autoFocus onClick={handleClose}>
+            <div className="text-violet-400">
+            Cancel
+            </div>
           </Button>
           <Button
-            className="text-violet-400"
+          className="text-violet-400"
             onClick={() => {
               handleSubmit();
               handleClose();
             }}
             autoFocus
           >
-            <div className="text-violet-400">Report</div>
+            <div className="text-violet-400">
+            Refund
+            </div>
           </Button>
+
         </DialogActions>
       </Dialog>
     </div>
   );
 };
 
-export default ReportCourse;
+export default Refund;
