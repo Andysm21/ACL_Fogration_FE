@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import  Link  from 'next/link';
 import {AiOutlineArrowRight} from 'react-icons/ai' 
+import axios from 'axios';
+
 
 const CourseCreation = () => {
     const addVideo = () => {
@@ -39,6 +41,7 @@ const CourseCreation = () => {
 
   };
 
+  
     const gotoexam = () => {
         localStorage.setItem("course" +  "ID", `${courseID}`);
         localStorage.setItem("course" + courseID + "Title", courseTitle);
