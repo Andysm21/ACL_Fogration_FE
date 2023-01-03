@@ -189,7 +189,7 @@ useEffect(()=>{
       </div>
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <h1 className="text-white font-bold text-3xl ">Course Content</h1>
+        <h1 className="text-white font-bold text-l ">Course Content</h1>
         {SavedCourseData?.Course_Subtitle?.map((subtitle) => {
           return (
             <div>

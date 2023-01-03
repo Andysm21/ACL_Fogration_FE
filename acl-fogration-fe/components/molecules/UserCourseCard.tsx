@@ -153,10 +153,6 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
               </button>
                 <Payment isOpen={open} handleClose={handleClose} />
               </div>
-
-
-            
-
           </div>
            {DiscountDuration()}
 
@@ -255,8 +251,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
                        <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div>
                       </div>
                     </div>
-              )
-            })}
+              )})}
         </div>
         </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">

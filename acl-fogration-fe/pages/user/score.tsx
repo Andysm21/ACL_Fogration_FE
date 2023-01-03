@@ -1,12 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 import Layout from '../../components/templates/Layout'
-let Question_Correct_Answers = 9;
+let Question_Correct_Answers = 5;
 let Questions = 15;
-let grade = 'B';
+ let grade = Math.ceil((Question_Correct_Answers / Questions) * 100);
 const text = () => {
-   let score = (Question_Correct_Answers / Questions) * 100;
-    if (score < 50) {
+  
+    if (grade < 50) {
         return (
           <div className="text-violet-400 text-7xl text-center font-bold">
             OPPS!
@@ -21,8 +21,7 @@ const text = () => {
         );
 }
 const suggest = () => {
-    let score = (Question_Correct_Answers / Questions) * 100;
-    if (score < 50) {
+    if (grade < 50) {
       return (
         <div className="text-white text-l text-center font-bold">
               we suggest you go through the course again and retake the exam one more time before moving on to the next subtitle
@@ -35,12 +34,12 @@ const suggest = () => {
         </div>
       );
 }
-const vowel = () =>{
-  if(grade == 'A')
-  return "an";
-  else 
-  return "a";
-}
+// const vowel = () =>{
+//   if(grade == 'A')
+//   return "an";
+//   else 
+//   return "a";
+// }
 const score = () => {
   return (
     <div>
@@ -57,7 +56,7 @@ const score = () => {
             <div className="text-bc">.</div>
             correctly
           </div>
-          <div className="text-white text-3xl font-bold text-center">Your got {vowel()} {grade}</div>
+          <div className="text-white text-3xl font-bold text-center">You got {grade} %</div>
 
           {/* {suggest()} */}
           <div className="text-white text-center font-bold text-2xl">
