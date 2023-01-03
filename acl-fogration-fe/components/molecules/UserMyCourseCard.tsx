@@ -1,4 +1,4 @@
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { AiFillFilePdf, AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
@@ -338,7 +338,7 @@ const [isCorporate, setIsCorporate]= useState("false");
       </div>
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <h1 className="text-white font-bold text-3xl ">Course Content</h1>
+        <h1 className="text-white font-bold text-l ">Course Content</h1>
         {course?.Course_Subtitle?.map((subtitle,index) => {
           return (
             <div key={index}>
@@ -361,7 +361,6 @@ const [isCorporate, setIsCorporate]= useState("false");
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
-
                       <div className="text-l">{video?.Video_Description}</div>
                       <div className="text-l">{video?.Video_Length} mins</div>
                     </div>
@@ -371,6 +370,22 @@ const [isCorporate, setIsCorporate]= useState("false");
             </div>
           );
         })}
+      </div>
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+        <div className="text-white font-bold text-l">Exams</div>
+         <div className="flex flex-row p-2 ">
+            {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
+              return(
+              <div key={index}  className="flex flex-col items-start ">
+                      <AiFillFilePdf size={100}/>
+                      <div className="items-center justify-center flex flex-col">
+                        <div className="text-l">Exam {item?.Exam_ID}</div>
+                        <div className="text-l"> {item?.Exam_Grade} %</div>
+                      </div>
+                    </div>
+              )
+            })}
+        </div>
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
           <div className="text-white font-bold text-l">Reviews</div>
@@ -383,9 +398,7 @@ const [isCorporate, setIsCorporate]= useState("false");
           </div>
         </div> 
 
-{/* Addd Exams to be taken and grades */}
-        <div>
-        </div>
+
         <div className= "rounded-md m-6 flex flex-col justify-center w-96 gap-1">
 
  

@@ -188,7 +188,7 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
       </div>
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <h1 className="text-white font-bold text-3xl ">Course Content</h1>
+        <h1 className="text-white font-bold text-xl ">Course Content</h1>
         {course?.Course_Subtitle?.map((subtitle, index) => {
           return (
             <div key={index}>
