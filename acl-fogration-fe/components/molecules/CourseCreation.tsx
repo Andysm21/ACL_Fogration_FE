@@ -3,7 +3,6 @@ import  Link  from 'next/link';
 import {AiOutlineArrowRight} from 'react-icons/ai' 
 import axios from 'axios';
 
-var status = '';
 
 const CourseCreation = () => {
     const addVideo = () => {
@@ -42,27 +41,7 @@ const CourseCreation = () => {
 
   };
 
-  const handleSubmit = () => {
-    axios.put('http://localhost:8000/editProfile', {})
   
-    .then((response) => {
-      if(response.data == "1"){
-        status = "Username field should not be empty";
-      }
-      else if(response.data == "2"){
-        status = "Choose another username, its already in use";
-      }
-      else if(response.data == "3"){
-        status = "Email already in use";
-      }
-      else if(response.data == "4"){
-        status = "Instructor got updated.";
-      }
-    }).catch((error) => console.log(error))
-    //console.log(data);
-    };
-  
-
     const gotoexam = () => {
         localStorage.setItem("course" +  "ID", `${courseID}`);
         localStorage.setItem("course" + courseID + "Title", courseTitle);
