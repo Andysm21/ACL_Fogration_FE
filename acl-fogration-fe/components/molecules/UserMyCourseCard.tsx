@@ -221,6 +221,22 @@ const [isCorporate, setIsCorporate]= useState("false");
     }
   }
 
+  const refund = (isCorporate: string) => {
+    if (isCorporate == "false") {
+      return (
+        <div>
+          <button className="" onClick={handleClickOpen2}>
+            <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-96">
+              Refund
+            </div>
+          </button>
+
+          <CourseRefund isOpen={open2} handleClose={handleClose2} />
+        </div>
+      );
+    }
+  };
+
 
 
   return (
@@ -235,7 +251,9 @@ const [isCorporate, setIsCorporate]= useState("false");
           {/* //div el title bel rating */}
           <div className="flex flex-col text-3xl">
             <div className="Font-bold  text-white">{course?.Course_Title}</div>
-            <div className="flex flex-row  ">{stars(course?.Course_Rating)}</div>
+            <div className="flex flex-row  ">
+              {stars(course?.Course_Rating)}
+            </div>
           </div>
           {/* //div el kalam eswd */}
           <div className="bg-bc flex flex-col  gap-3 my-2">
@@ -246,7 +264,7 @@ const [isCorporate, setIsCorporate]= useState("false");
               <Link href="/[{course.Course_Instructor}]">
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
-                {course?.Course_Instructor?.Instructor_FirstName}
+                  {course?.Course_Instructor?.Instructor_FirstName}
                 </div>
               </Link>
             </div>
@@ -268,42 +286,95 @@ const [isCorporate, setIsCorporate]= useState("false");
           </div>
           {/* //h1 el se3r */}
           <div className="flex flex-col">
-          <div className="flex flex-row justify-between my-2">
-            
-            <h1 className=" text-violet-400 text-4xl font-bold ">
-              {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
+            <div className="flex flex-row justify-between my-2">
+              <h1 className=" text-violet-400 text-4xl font-bold ">
+                {discount(
+                  course?.Course_Discount,
+                  viewPrice(course?.Course_Price)
+                )}
               </h1>
-           
 
-                 <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
-                <div onClick={() => {setStarsnum(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                 <div onClick={() => {setStarsnum(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  {/*  save the rating in the user  */}
+              <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
+                <div
+                  onClick={() => {
+                    setStarsnum(1);
+                  }}
+                >
+                  {" "}
+                  {starsnum >= 1 ? (
+                    <AiFillStar size={30} />
+                  ) : (
+                    <AiOutlineStar size={30} />
+                  )}
+                </div>
+                <div
+                  onClick={() => {
+                    setStarsnum(2);
+                  }}
+                >
+                  {" "}
+                  {starsnum >= 2 ? (
+                    <AiFillStar size={30} />
+                  ) : (
+                    <AiOutlineStar size={30} />
+                  )}
+                </div>
+                <div
+                  onClick={() => {
+                    setStarsnum(3);
+                  }}
+                >
+                  {" "}
+                  {starsnum >= 3 ? (
+                    <AiFillStar size={30} />
+                  ) : (
+                    <AiOutlineStar size={30} />
+                  )}
+                </div>
+                <div
+                  onClick={() => {
+                    setStarsnum(4);
+                  }}
+                >
+                  {" "}
+                  {starsnum >= 4 ? (
+                    <AiFillStar size={30} />
+                  ) : (
+                    <AiOutlineStar size={30} />
+                  )}
+                </div>
+                <div
+                  onClick={() => {
+                    setStarsnum(5);
+                  }}
+                >
+                  {" "}
+                  {starsnum >= 5 ? (
+                    <AiFillStar size={30} />
+                  ) : (
+                    <AiOutlineStar size={30} />
+                  )}
+                </div>
+                {/*  save the rating in the user  */}
+              </div>
+            </div>
 
-                
-        </div>
-
-
+            {DiscountDuration()}
           </div>
-
-     {DiscountDuration()}
-</div>
         </div>
       </div>
       {/* //div el abyad */}
       <div className="">
-        
         {/* //what you will learn */}
         <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-          
           <div className="text-white font-bold text-l">What you will learn</div>
           <div className="flex flex-col gap-1">
             {/* //m7taga 23melha grid */}
-            {What_You_Will_Learn?.map((item,index) => (
-              <div key={index} className="flex flex-row gap-1 text-white items-center">
+            {What_You_Will_Learn?.map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-row gap-1 text-white items-center"
+              >
                 <TiTick />
                 <div className="text-white">{item}</div>
               </div>
@@ -339,7 +410,7 @@ const [isCorporate, setIsCorporate]= useState("false");
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
         <h1 className="text-white font-bold text-l ">Course Content</h1>
-        {course?.Course_Subtitle?.map((subtitle,index) => {
+        {course?.Course_Subtitle?.map((subtitle, index) => {
           return (
             <div key={index}>
               <div className="flex flex-col gap-2 ">
@@ -353,7 +424,7 @@ const [isCorporate, setIsCorporate]= useState("false");
                 </div>
               </div>
               <div className="flex flex-row gap-2 w-[100%] ">
-                {subtitle?.Subtitle_Video?.map((video,index) => {
+                {subtitle?.Subtitle_Video?.map((video, index) => {
                   return (
                     <div key={index}>
                       <img
@@ -373,52 +444,57 @@ const [isCorporate, setIsCorporate]= useState("false");
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
         <div className="text-white font-bold text-l">Exams</div>
-         <div className="flex flex-row p-2 ">
-            {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
-              return(
-              <div key={index}  className="flex flex-col items-start ">
-                      <AiFillFilePdf size={100}/>
-                      <div className="items-center justify-center flex flex-col">
-                        <div className="text-l">Exam {item?.Exam_ID}</div>
-                        <div className="text-l"> {item?.Exam_Grade} %</div>
-                      </div>
-                    </div>
-              )
+        <div className="flex flex-row p-2 ">
+          {course?.Course_Exam &&
+            course?.Course_Exam.map((item, index) => {
+              return (
+                <div key={index} className="flex flex-col items-start ">
+                  <AiFillFilePdf size={100} />
+                  <div className="items-center justify-center flex flex-col">
+                    <div className="text-l">Exam {item?.Exam_ID}</div>
+                    <div className="text-l"> {item?.Exam_Grade} %</div>
+                  </div>
+                </div>
+              );
             })}
         </div>
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-          <div className="text-white font-bold text-l">Reviews</div>
+        <div className="text-white font-bold text-l">Reviews</div>
 
-          <div className="flex flex-row gap-2">
-            {course?.Course_Review && course?.Course_Review?.map((review,index) => {return (
-                <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
-                  {review}</div>    
-            )})}
+        <div className="flex flex-row gap-2">
+          {course?.Course_Review &&
+            course?.Course_Review?.map((review, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52"
+                >
+                  {review}
+                </div>
+              );
+            })}
+        </div>
+      </div>
+
+      <div className="rounded-md m-6 flex flex-col justify-center w-96 gap-1">
+        <button className="" onClick={handleClickOpen}>
+          <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">
+            Report an issue
           </div>
-        </div> 
+        </button>
+        <ReportCourse isOpen={open} handleClose={handleClose} />
+            {refund(isCorporate)}
+        {/* <div>
+          <button className="" onClick={handleClickOpen2}>
+            <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">
+              Refund
+            </div>
+          </button>
 
-
-        <div className= "rounded-md m-6 flex flex-col justify-center w-96 gap-1">
-
- 
-            <button className=""
-            onClick={handleClickOpen}>
-                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">Report an issue</div>
-
-            </button>
-            <ReportCourse isOpen={open} handleClose={handleClose} />
-
-
-            <button className=""
-            onClick={handleClickOpen2}>
-                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">Refund</div>
-
-            </button>
-
-            <CourseRefund isOpen={open2} handleClose={handleClose2} />
-
-          </div>
+          <CourseRefund isOpen={open2} handleClose={handleClose2} />
+        </div> */}
+      </div>
     </div>
   );
 };

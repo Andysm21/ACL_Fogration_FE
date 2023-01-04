@@ -7,9 +7,8 @@ import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import Payment from "./Payment";
 import React from "react";
-import AddAdmin from "./AddAdmin";
+import RequestAccess from "./RequestAccess";
 import ReportCourse from "./ReportCourse";
-import CourseRefund from "./CourseRefund";
 
 
 const  What_You_Will_Learn= [
@@ -34,6 +33,18 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
     const handleClose = () => {
     setOpen(false);
   };
+
+
+    const [open2, setOpen2] = React.useState(false);
+
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
+
     const viewPrice =(price:number)=>{
     if(isCorporate == "false"){
       return  price   
@@ -90,6 +101,35 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
     }
   }
   
+const enroll = (isCorporate:string) => {
+  if (isCorporate == "false") {
+    return(
+    <div>
+      <button
+        className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36 border border-violet-400"
+        onClick={handleClickOpen}
+      >
+        Enroll Now
+      </button>
+      <Payment isOpen={open} handleClose={handleClose} />
+      </div>
+    )
+  } else {
+    return (
+    <div>
+      <button
+        className="bg-gradient-to-r from-purple to-babyblue text-white text-s font-bold py-2 px-4 rounded w-80 border border-violet-400"
+        onClick={handleClickOpen}
+      >
+        Request
+      </button>
+      <RequestAccess isOpen={open} handleClose={handleClose} />
+    </div >
+    
+    )
+  }
+};
+
   return (
     <div
       key={course?.Course_ID}
@@ -144,15 +184,15 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
              <h1 className=" text-violet-400 text-4xl font-bold ">
                {discount(course?.Course_Discount,viewPrice(course?.Course_Price))} </h1>
               
-
-<div>
+              {enroll(isCorporate)}
+{/* <div>
               <button 
               className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-48"
                 onClick={handleClickOpen}>
                 Enroll Now
               </button>
                 <Payment isOpen={open} handleClose={handleClose} />
-              </div>
+              </div> */}
           </div>
            {DiscountDuration()}
 
@@ -265,6 +305,17 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
           </div>
           
         </div> 
+
+                <div className= "rounded-md m-6 flex flex-col justify-center w-96 gap-1">
+
+ 
+            <button className=""
+            onClick={handleClickOpen2}>
+                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">Report an issue</div>
+
+            </button>
+            <ReportCourse isOpen={open2} handleClose={handleClose2} />
+</div>
       
           </div>
 
