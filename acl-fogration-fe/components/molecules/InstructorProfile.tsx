@@ -55,9 +55,9 @@ const handleChangeP = event => {
   setGender(event.target.value);
 };
 
-const [ID, setId ]= useState("");
+//const [ID, setId ]= useState("");
 const handleSubmit = () => {
-  axios.put('http://localhost:8000/editProfile', {Instructor_ID: Number(ID), Instructor_username: username, Instructor_Email: email,
+  axios.put('http://localhost:8000/editProfile', {Instructor_ID: Number(localStorage.getItem("user_id")), Instructor_username: username, Instructor_Email: email,
   Instructor_Biography: biography,Instructor_FirstName: FirstName, 
   Instructor_LastName: LastName, Instructor_Gender: Gender, Instructor_Country: country})
 
@@ -79,7 +79,7 @@ const handleSubmit = () => {
 };
 
 const handleSubmitUserEmail = () => {
-  axios.put('http://localhost:8000/editProfileUserEmail', {Instructor_ID: Number(ID), Instructor_username: username, Instructor_Email: email})
+  axios.put('http://localhost:8000/editProfileUserEmail', {Instructor_ID: Number(localStorage.getItem("user_id")), Instructor_username: username, Instructor_Email: email})
 
   .then((response) => {
     if(response.data == "1"){

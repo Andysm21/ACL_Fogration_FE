@@ -1,12 +1,14 @@
 import { AiFillFilePdf, AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { Button, Link } from "@mui/material";
+import { Button, Link, Typography } from "@mui/material";
+import LinearProgress from '@mui/joy/LinearProgress';
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ReportCourse from "./ReportCourse";
 import React from "react";
 import CourseRefund from "./CourseRefund";
+import axios from 'axios';
 const courses = [
   {
     _id: {
@@ -130,14 +132,28 @@ const courses = [
 const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
 
 
+  const [starsnum, setStarsnum] = useState(0);
+
+  function handleSubmit  (x) {
+    console.log(x);
+    setStarsnum(x); 
+    axios.post('http://localhost:8000/RatingCourse', {ID: localStorage.getItem('CourseID'), Rating: x})
+  
+    .then((response) => {
+    }).catch((error) => console.log(error))
+    //console.log(data);
+  };
+
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
   })
 
   if (courses.length === 0) {
+    
     return <div className="text-center "> No courses</div>;
   }
   const stars = (rating: number) => {
+
     let stars = [];
     for (let i = 0; i < rating; i++) {
       stars.push(
@@ -174,13 +190,14 @@ const What_You_Will_Learn = [
       "How to use Redux",
       "How to use Material UI",
     ];
-  const [starsnum, setStarsnum] = useState(0);
+
 
 const [isCorporate, setIsCorporate]= useState("false");
 
 
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
+
   })
 
   const viewPrice =(price:number)=>{
@@ -240,10 +257,12 @@ const [isCorporate, setIsCorporate]= useState("false");
 
 
   return (
+    
     <div
       key={course?.Course_ID}
       className=" flex flex-col bg-bc w-75% shadow-lg text-white"
     >
+      
       {/* //div el eswd */}
       <div className="flex flex-row bg-bc justify-between mx-6 my-4">
         {/* //div el title bel kalam */}
@@ -294,7 +313,17 @@ const [isCorporate, setIsCorporate]= useState("false");
                 )}
               </h1>
 
-              <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
+           
+                 <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
+                <div onClick={() => {handleSubmit(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                 <div onClick={() => {setStarsnum(2), handleSubmit(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(3), handleSubmit(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(4), handleSubmit(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(5), handleSubmit(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  {/*  save the rating in the user  */}
+
+
+<!--               <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
                 <div
                   onClick={() => {
                     setStarsnum(1);
@@ -356,7 +385,7 @@ const [isCorporate, setIsCorporate]= useState("false");
                   )}
                 </div>
                 {/*  save the rating in the user  */}
-              </div>
+              </div> -->
             </div>
 
             {DiscountDuration()}
@@ -443,19 +472,37 @@ const [isCorporate, setIsCorporate]= useState("false");
         })}
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+      <div className="flex flex-row">
         <div className="text-white font-bold text-l">Exams</div>
-        <div className="flex flex-row p-2 ">
-          {course?.Course_Exam &&
-            course?.Course_Exam.map((item, index) => {
-              return (
-                <div key={index} className="flex flex-col items-start ">
-                  <AiFillFilePdf size={100} />
-                  <div className="items-center justify-center flex flex-col">
-                    <div className="text-l">Exam {item?.Exam_ID}</div>
-                    <div className="text-l"> {item?.Exam_Grade} %</div>
-                  </div>
-                </div>
-              );
+
+        <div className="flex flex-row">
+         <LinearProgress
+       className="w-72 bg-bc  text-gray-300 m-2"
+       thickness={7}
+       determinate 
+        variant="solid"
+        value={90}
+        >
+         
+        </LinearProgress>
+         <Typography className="text-white text-l"
+      >
+       90%
+      </Typography>
+        </div>
+        </div>
+         <div className="flex flex-row p-2 ">
+            {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
+              return(
+              <div key={index}  className="flex flex-col items-start ">
+                      <AiFillFilePdf size={100}/>
+                      <div className="items-center justify-center flex flex-col">
+                        <div className="text-l">Exam {item?.Exam_ID}</div>
+                        <div className="text-l"> {item?.Exam_Grade} %</div>
+                      </div>
+                    </div>
+              )
+
             })}
         </div>
       </div>
