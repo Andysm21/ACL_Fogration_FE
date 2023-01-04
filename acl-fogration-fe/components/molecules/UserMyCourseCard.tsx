@@ -360,7 +360,7 @@ const [isCorporate, setIsCorporate]= useState("false");
                   return (
                     <div key={index}>
                       <img
-                        className="flex-shrink-0  "
+                        className="flex-shrink-0  w-36"
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
@@ -396,7 +396,7 @@ const [isCorporate, setIsCorporate]= useState("false");
          <div className="flex flex-row p-2 ">
             {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
               return(
-              <div key={index}  className="flex flex-col items-start ">
+              <div key={index}  className="flex flex-col ">
                       <AiFillFilePdf size={100}/>
                       <div className="items-center justify-center flex flex-col">
                         <div className="text-l">Exam {item?.Exam_ID}</div>

@@ -1,6 +1,6 @@
-import { AiFillStar } from "react-icons/ai";
+import { AiFillFilePdf, AiFillStar, AiOutlineFileAdd } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
-import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
+import { BsGlobe2, BsPlayBtnFill, BsPlusCircle } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
@@ -84,7 +84,31 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
   const handleUpdatedDuration = (event) => {
     setUpdatedDuration(event.target.value);
   };
+
   
+const [type, setType ]= useState("");
+  useEffect(()=>{
+    setType(localStorage.getItem("Type"));
+    console.log(course)
+  })
+
+  const addExam =()=>{
+    
+     if(type=="Admin"){
+            return <div></div>
+            }
+        else{
+          return <div className="flex flex-col p-2">
+            <Link href="/instructor/createexam">
+           <AiOutlineFileAdd size={100} className="text-white"/>
+           </Link>
+            <div className="items-center justify-center flex ">
+                        Add Exam
+            </div>
+            </div>
+        }
+    
+ }
   const AddDiscount = () => {
 
     console.log(updatedDiscount);
@@ -188,7 +212,7 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
       </div>
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <h1 className="text-white font-bold text-xl ">Course Content</h1>
+        <h1 className="text-white font-bold text-l ">Course Content</h1>
         {course?.Course_Subtitle?.map((subtitle, index) => {
           return (
             <div key={index}>
@@ -207,7 +231,7 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
                   return (
                     <div key={index}>
                       <img
-                        className="flex-shrink-0  "
+                        className="flex-shrink-0 w-36 "
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
@@ -221,6 +245,26 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
             </div>
           );
         })}
+      </div>
+        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+      <div className="flex flex-row justify-between items-center">
+        <div className="text-white font-bold text-l">Exams </div>
+       
+        </div>
+         <div className="flex flex-row items-center ">
+            {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
+              return(
+              <div key={index}  className="flex flex-col ">
+                      <AiFillFilePdf size={100}/>
+                      <div className="items-center justify-center flex flex-col text-l">
+                       Exam {item?.Exam_ID}
+                      </div>
+                    </div>
+              )
+            })}
+             {addExam()}
+        </div>
+        
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
         <div className="text-white font-bold text-l">Reviews</div>
