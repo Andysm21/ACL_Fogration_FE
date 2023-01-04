@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { course } from "../../interfaces";
 import axios from "axios";
 import { CountrySelector } from "./Selector";
+import React from "react";
+import ReportCourse from "./ReportCourse";
 
 const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
   const [courseID,setcourseID]=useState("") 
@@ -51,7 +53,15 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
   
   }
 
+const [open2, setOpen2] = React.useState(false);
 
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
   const discount =(discount:number,price:number) =>{
     
       if(discount == 0){
@@ -269,6 +279,16 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
             Add Discount</button>
         </div>
       </div>
+                              <div className= "rounded-md m-6 flex flex-col justify-center w-96 gap-1">
+
+ 
+            <button className=""
+            onClick={handleClickOpen2}>
+                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">Report an issue</div>
+
+            </button>
+            <ReportCourse isOpen={open2} handleClose={handleClose2} />
+</div>
     </div>
   );
 };

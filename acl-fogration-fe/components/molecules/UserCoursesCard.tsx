@@ -2,7 +2,7 @@ import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import React, { useEffect, useState } from "react";
-import Payment from "./Payment";
+import RequestAccess from "./RequestAccess";
 
  
 const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
@@ -76,6 +76,45 @@ const discount =(discount:number,price:number) =>{
     return stars;
   };
  
+const enroll = (isCorporate:string) => {
+  if (isCorporate == "false") {
+    return(
+    <div>
+      <button
+        className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36 border border-violet-400"
+        onClick={handleClickOpen}
+      >
+        Enroll Now
+      </button>
+      <RequestAccess isOpen={open} handleClose={handleClose} />
+      </div>
+    )
+  } else {
+    return (
+    <div>
+      <button
+        className="bg-gradient-to-r from-purple to-babyblue text-white text-s font-bold py-2 px-4 rounded w-36 border border-violet-400"
+        onClick={handleClickOpen}
+      >
+        Request
+      </button>
+      <RequestAccess isOpen={open} handleClose={handleClose} />
+    </div >
+    
+    )
+  }
+};
+
+// const price = (isCorporate:string) => {
+//   if (isCorporate == "false"){
+//      {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
+//   }
+
+//   else{
+//     return
+//   }
+// }
+
   return (
     <div className="grid grid-cols-2 text-white  bg-bc gap-4 ">
       {courses.map((course,index) => (
@@ -109,6 +148,7 @@ const discount =(discount:number,price:number) =>{
               </div>
               <h1 className=" text-violet-400 text-4xl font-bold ">
               {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
+              {/* {price(isCorporate)} */}
               </h1>
             </div>
           </div>
@@ -139,14 +179,15 @@ const discount =(discount:number,price:number) =>{
               </Link>
               </div>
 
-<div>
+{/* <div>
               <button 
                 className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36 border border-violet-400"
                 onClick={handleClickOpen}>
                 Enroll Now
               </button>
                 <Payment isOpen={open} handleClose={handleClose} />
-              </div>
+              </div> */}
+              {enroll(localStorage.getItem("isCorp"))}
             </div>
           </div>
         </div>

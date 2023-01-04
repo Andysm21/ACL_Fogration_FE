@@ -118,7 +118,7 @@ const discount =(discount:number,price:number) =>{
             <div className="flex flex-row justify-between my-2">
               <Link href="viewmycourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36" onClick={()=>{
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
                   setcourseID(course?.Course_ID)
                   localStorage.removeItem('CourseID')
                   localStorage.setItem('CourseID', course?.Course_ID)
@@ -130,12 +130,7 @@ const discount =(discount:number,price:number) =>{
                   View Course
                 </button>
               </Link>
-              <Link href="/">
-                {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36">
-                  Discount
-                </button>
-              </Link>
+
             </div>
           </div>
         </div>
