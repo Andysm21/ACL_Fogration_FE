@@ -4,10 +4,11 @@ import LinearProgress from '@mui/joy/LinearProgress';
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ReportCourse from "./ReportCourse";
 import React from "react";
 import CourseRefund from "./CourseRefund";
+import axios from 'axios';
 const courses = [
   {
     _id: {
@@ -131,14 +132,28 @@ const courses = [
 const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
 
 
+  const [starsnum, setStarsnum] = useState(0);
+
+  function handleSubmit  (x) {
+    console.log(x);
+    setStarsnum(x); 
+    axios.post('http://localhost:8000/RatingCourse', {ID: localStorage.getItem('CourseID'), Rating: x})
+  
+    .then((response) => {
+    }).catch((error) => console.log(error))
+    //console.log(data);
+  };
+
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
   })
 
   if (courses.length === 0) {
+    
     return <div className="text-center "> No courses</div>;
   }
   const stars = (rating: number) => {
+
     let stars = [];
     for (let i = 0; i < rating; i++) {
       stars.push(
@@ -175,13 +190,14 @@ const What_You_Will_Learn = [
       "How to use Redux",
       "How to use Material UI",
     ];
-  const [starsnum, setStarsnum] = useState(0);
+
 
 const [isCorporate, setIsCorporate]= useState("false");
 
 
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
+
   })
 
   const viewPrice =(price:number)=>{
@@ -222,7 +238,21 @@ const [isCorporate, setIsCorporate]= useState("false");
     }
   }
 
+const refund = (isCorporate: string) => {
+    if (isCorporate == "false") {
+      return (
+        <div>
+          <button className="" onClick={handleClickOpen2}>
+            <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-96">
+              Refund
+            </div>
+          </button>
 
+          <CourseRefund isOpen={open2} handleClose={handleClose2} />
+        </div>
+      );
+    }
+  };
 
   return (
     
@@ -277,13 +307,12 @@ const [isCorporate, setIsCorporate]= useState("false");
               {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
               </h1>
            
-
                  <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
-                <div onClick={() => {setStarsnum(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                 <div onClick={() => {setStarsnum(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                <div onClick={() => {handleSubmit(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                 <div onClick={() => {setStarsnum(2), handleSubmit(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(3), handleSubmit(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(4), handleSubmit(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(5), handleSubmit(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
                   {/*  save the rating in the user  */}
 
                 
@@ -430,13 +459,7 @@ const [isCorporate, setIsCorporate]= useState("false");
             <ReportCourse isOpen={open} handleClose={handleClose} />
 
 
-            <button className=""
-            onClick={handleClickOpen2}>
-                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">Refund</div>
-
-            </button>
-
-            <CourseRefund isOpen={open2} handleClose={handleClose2} />
+            {refund(isCorporate)}
 
           </div>
     </div>

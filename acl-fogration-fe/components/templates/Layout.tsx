@@ -31,8 +31,7 @@ const instructorlinks = [
   { href: "/instructor/profile", label: "Profile" },
   { href: "/instructor/courses", label: "Courses" },
   { href: "/instructor/mycourses", label: "My Courses" },
-  { href: "/instructor/contracts", label: "Contracts" },
-  { href: "/instructor/createcourse", label: "Create Course" },
+  { href: "/instructor/reports", label: "Reports"},
 ];
 
 const adminlinks = [
@@ -42,6 +41,7 @@ const adminlinks = [
   { href: "/admin/courses", label: "Courses" },
   { href: "/admin/reports", label: "Reports" },
   { href: "/admin/refunds", label: "Refund Requests" },
+  { href: "/admin/corporateRequests", label: "Corporate Requests" },
 
 ];
 

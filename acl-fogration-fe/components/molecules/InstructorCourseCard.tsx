@@ -4,6 +4,8 @@ import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
+import React from "react";
+import ReportCourse from "./ReportCourse";
 
   
 
@@ -28,6 +30,15 @@ const [type, setType ]= useState("");
     setType(localStorage.getItem("Type"));
     console.log(course)
   })
+const [open2, setOpen2] = React.useState(false);
+
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
 
  
 
@@ -235,7 +246,15 @@ const [type, setType ]= useState("");
             })}
         </div>
       </div>
-      
+
+      <div className="rounded-md m-6 flex flex-col justify-center w-96 gap-1">
+        <button className="" onClick={handleClickOpen2}>
+          <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">
+            Report an issue
+          </div>
+        </button>
+        <ReportCourse isOpen={open2} handleClose={handleClose2} />
+      </div>
     </div>
   );
 };

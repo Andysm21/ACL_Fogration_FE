@@ -4,10 +4,17 @@ import { BsFillPlayBtnFill, BsGlobe2, BsPlayBtn, BsPlayBtnFill } from "react-ico
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
-import React from "react";
+
 import AddVideo from "./AddVideo";
 import {RxVideo} from "react-icons/rx"
 import {TbPlayerPlay} from "react-icons/tb"
+
+import { course } from "../../interfaces";
+import axios from "axios";
+import { CountrySelector } from "./Selector";
+import React from "react";
+import ReportCourse from "./ReportCourse";
+
 
 const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
   const [courseID,setcourseID]=useState("") 
@@ -52,7 +59,15 @@ const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
   
   }
 
+const [open2, setOpen2] = React.useState(false);
 
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
   const discount =(discount:number,price:number) =>{
     
       if(discount == 0){
@@ -119,9 +134,14 @@ const [type, setType ]= useState("");
   };
 
   const AddDiscount = () => {
-
-    console.log(updatedDiscount);
-    console.log(updatedDuration);
+    axios.post("http://localhost:8000/course_promotion",{
+      courseID:Number(localStorage.getItem("CourseID")),
+      discount:updatedDiscount,
+      duration:updatedDuration,
+    }).then((response) => {
+      console.log(Number(localStorage.getItem("CourseID")))
+      console.log("done")
+    }).catch((error) => console.log(error))
   }
   return (
     <div
@@ -324,6 +344,16 @@ const [type, setType ]= useState("");
             Add Discount</button>
         </div>
       </div>
+                              <div className= "rounded-md m-6 flex flex-col justify-center w-96 gap-1">
+
+ 
+            <button className=""
+            onClick={handleClickOpen2}>
+                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">Report an issue</div>
+
+            </button>
+            <ReportCourse isOpen={open2} handleClose={handleClose2} />
+</div>
     </div>
   );
 };
