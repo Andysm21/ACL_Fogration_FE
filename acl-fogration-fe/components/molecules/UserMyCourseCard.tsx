@@ -406,12 +406,12 @@ const refund = (isCorporate: string) => {
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
       <div className="flex flex-row">
         <div className="text-white font-bold text-l">Exams</div>
-        <div className="flex flex-row">
+        <div className="flex flex-row  ">
          <LinearProgress
-       className="w-72 bg-bc  text-gray-300 m-2"
+       className="w-72 bg-black2  text-gray-300 m-2 "
        thickness={7}
        determinate 
-        variant="solid"
+        variant="outlined"
         value={90}
         >
          
