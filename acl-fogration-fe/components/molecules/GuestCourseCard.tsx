@@ -24,7 +24,7 @@ const discount =(discount:number,price:number) =>{
       return(
       <div className="flex flex-row gap-2">
       <div className="line-through">{price} </div>
-       <div className="">{(price) * ((100-discount)/100)}$$</div>
+       <div className="">{(price) * ((100-discount)/100)}$</div>
        </div>
       )
     }
@@ -136,7 +136,7 @@ useEffect(()=>{
 
             <Link href="/guest/signup">
               {/* //link button to enroll */}
-              <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80">
+              <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-52">
                 Enroll Now
               </button>
             </Link>
