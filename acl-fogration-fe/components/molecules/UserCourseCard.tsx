@@ -279,16 +279,16 @@ const enroll = (isCorporate:string) => {
         {/* exams of course */}
         <div className="flex flex-col bg-black3 rounded-md m-6">
           <div className=" text-white font-bold text-l mx-2">
-          Course Material
+          Exams
         </div>
         <div className="flex flex-row p-2">
             {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
               return(
-              <div key={index}  className="flex flex-col items-start ">
+              <div key={index}  className="flex flex-col ">
                       <AiFillFilePdf size={100}/>
                       <div className="items-center justify-center flex flex-col">
                         <div className="text-l">Exam {item?.Exam_ID}</div>
-                       <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div>
+                       {/* <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div> */}
                       </div>
                     </div>
               )})}

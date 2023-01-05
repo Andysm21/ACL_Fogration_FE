@@ -1,14 +1,20 @@
-import { AiFillStar } from "react-icons/ai";
-import { Button, Link } from "@mui/material";
-import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
+import { AiFillFilePdf, AiFillStar, AiOutlineFileAdd } from "react-icons/ai";
+import { Link } from "@mui/material";
+import { BsFillPlayBtnFill, BsGlobe2, BsPlayBtn, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
+
+import AddVideo from "./AddVideo";
+import {RxVideo} from "react-icons/rx"
+import {TbPlayerPlay} from "react-icons/tb"
+
 import { course } from "../../interfaces";
 import axios from "axios";
 import { CountrySelector } from "./Selector";
 import React from "react";
 import ReportCourse from "./ReportCourse";
+
 
 const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
   const [courseID,setcourseID]=useState("") 
@@ -94,7 +100,39 @@ const [open2, setOpen2] = React.useState(false);
   const handleUpdatedDuration = (event) => {
     setUpdatedDuration(event.target.value);
   };
+
   
+const [type, setType ]= useState("");
+  useEffect(()=>{
+    setType(localStorage.getItem("Type"));
+    console.log(course)
+  })
+
+  const addExam =()=>{
+    
+     if(type=="Admin"){
+            return <div></div>
+            }
+        else{
+          return <div className="flex flex-col p-2">
+            <Link href="/instructor/createexam">
+           <AiOutlineFileAdd size={100} className="text-white"/>
+           </Link>
+            <div className="items-center justify-center flex ">
+                        Add Exam
+            </div>
+            </div>
+        }
+    
+ }
+   const [openAddVideo, setOpenAddVideo] = React.useState(false);
+    const handleClickAddVideo = () => {
+    setOpenAddVideo(true);
+  };
+  const handleCloseAddVideo = () => {
+    setOpenAddVideo(false);
+  };
+
   const AddDiscount = () => {
     axios.post("http://localhost:8000/course_promotion",{
       courseID:Number(localStorage.getItem("CourseID")),
@@ -161,7 +199,7 @@ const [open2, setOpen2] = React.useState(false);
       <div className="">
         {/* //what you will learn */}
         <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-          <div className="text-white font-bold text-l">What you will learn</div>
+          <div className="text-white font-bold text-2xl">What you will learn</div>
           <div className="flex flex-col gap-1">
             {/* //m7taga 23melha grid */}
             {Course_What_You_Will_Learn?.map((item, index) => (
@@ -179,7 +217,7 @@ const [open2, setOpen2] = React.useState(false);
       {/*  div de m7taga tet7at ta7t */}
       {/* //This course includes  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <div className="text-white font-bold text-l mx-2">
+        <div className="text-white font-bold text-2xl mx-2">
           This course includes
         </div>
         <div className="flex flex-row">
@@ -202,31 +240,38 @@ const [open2, setOpen2] = React.useState(false);
         </div>
       </div>
       {/* //Course content  */}
-      <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <h1 className="text-white font-bold text-xl ">Course Content</h1>
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-4">
+        <h1 className="text-white font-bold text-2xl ">Course Content</h1>
+        <a href="/instructor/createsubtitle">
+        <div className="text-white text-l bg-bc font-bold h-24 rounded-md cursor-pointer items-center justify-center flex border border-gray-300">Add Subtitle</div>
+        </a>
         {course?.Course_Subtitle?.map((subtitle, index) => {
           return (
-            <div key={index}>
+            <div key={index}  className="bg-bc p-2 rounded-md">
               <div className="flex flex-col gap-2 ">
                 <div className="flex flex-row gap-2 justify-between">
-                  <div className="text-xl font-bold">
+                  <div className="text-l font-bold px-2 py-1  ">
                     {subtitle?.Subtitle_Name}
                   </div>
-                  <div className="text-l flex items-end ">
+                  <div className="text-l flex items-end">
                     Total Time: {subtitle?.Subtitle_Hours} mins
                   </div>
                 </div>
               </div>
               <div className="flex flex-row gap-2 w-[100%] ">
+                <div className="flex flex-col items-center justify-center">
+                <BsPlayBtn size={100} className="text-white cursor-pointer " onClick={handleClickAddVideo} />
+                <AddVideo isOpen={openAddVideo} handleClose={handleCloseAddVideo}/>
+                <div>Add Video</div>
+                </div>
                 {subtitle?.Subtitle_Video?.map((video, index) => {
                   return (
                     <div key={index}>
                       <img
-                        className="flex-shrink-0  "
+                        className="flex-shrink-0 w-36 "
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
-
                       <div className="text-l">{video?.Video_Description}</div>
                       <div className="text-l">{video?.Video_Length} mins</div>
                     </div>
@@ -237,8 +282,28 @@ const [open2, setOpen2] = React.useState(false);
           );
         })}
       </div>
+        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+      <div className="flex flex-row justify-between items-center">
+        <div className="text-white font-bold text-2xl">Exams </div>
+       
+        </div>
+         <div className="flex flex-row items-center ">
+            {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
+              return(
+              <div key={index}  className="flex flex-col ">
+                      <AiFillFilePdf size={100}/>
+                      <div className="items-center justify-center flex flex-col text-l">
+                       Exam {item?.Exam_ID}
+                      </div>
+                    </div>
+              )
+            })}
+             {addExam()}
+        </div>
+        
+      </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-        <div className="text-white font-bold text-l">Reviews</div>
+        <div className="text-white font-bold text-2xl">Reviews</div>
 
         <div className="flex flex-row gap-2">
           {course?.Course_Review &&
@@ -255,7 +320,7 @@ const [open2, setOpen2] = React.useState(false);
         </div>
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-        <div className="text-white font-bold text-l">Add Discount </div>
+        <div className="text-white font-bold text-2xl">Add Discount </div>
         <div className="flex flex-row justify-between rounded-md items-center">
           <div className="flex flex-row gap-3">
           <div className="flex flex-col ">

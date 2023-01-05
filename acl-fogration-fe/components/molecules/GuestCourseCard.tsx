@@ -1,4 +1,4 @@
-import { AiFillStar } from "react-icons/ai";
+import { AiFillFilePdf, AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
@@ -24,7 +24,7 @@ const discount =(discount:number,price:number) =>{
       return(
       <div className="flex flex-row gap-2">
       <div className="line-through">{price} </div>
-       <div className="">{(price) * ((100-discount)/100)}$$</div>
+       <div className="">{(price) * ((100-discount)/100)}$</div>
        </div>
       )
     }
@@ -136,7 +136,7 @@ useEffect(()=>{
 
             <Link href="/guest/signup">
               {/* //link button to enroll */}
-              <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80">
+              <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-52">
                 Enroll Now
               </button>
             </Link>
@@ -208,7 +208,7 @@ useEffect(()=>{
                   return (
                     <div>
                       <img
-                        className="flex-shrink-0  "
+                        className="flex-shrink-0 w-36 "
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
@@ -223,6 +223,23 @@ useEffect(()=>{
           );
         })}
       </div>
+      <div className="flex flex-col bg-black3 rounded-md m-6">
+          <div className=" text-white font-bold text-l mx-2">
+          Exams
+        </div>
+        <div className="flex flex-row p-2">
+            {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
+              return(
+              <div key={index}  className="flex flex-col ">
+                      <AiFillFilePdf size={100}/>
+                      <div className="items-center justify-center flex flex-col">
+                        <div className="text-l">Exam {item?.Exam_ID}</div>
+                       {/* <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div> */}
+                      </div>
+                    </div>
+              )})}
+        </div>
+        </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
           <div className="text-white font-bold text-l">Reviews</div>
 

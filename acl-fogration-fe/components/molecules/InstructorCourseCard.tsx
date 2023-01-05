@@ -40,21 +40,7 @@ const [open2, setOpen2] = React.useState(false);
     setOpen2(false);
   };
 
- const addExam =()=>{
-    
-     if(type=="Admin"){
-            return <div></div>
-            }
-        else{
-          return <div className="flex flex-col p-2">
-           <AiOutlineFileAdd size={100}/>
-            <div className="items-center justify-center flex ">
-                        Add Exam
-            </div>
-            </div>
-        }
-    
- }
+ 
 
  const viewGrade = (grade:string) => {
     if(type=="Admin"){
@@ -207,7 +193,7 @@ const [open2, setOpen2] = React.useState(false);
                   return (
                     <div key={index}>
                       <img
-                        className="flex-shrink-0  "
+                        className="flex-shrink-0  w-36"
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
@@ -224,27 +210,22 @@ const [open2, setOpen2] = React.useState(false);
       </div>
       {/* exams of course */}
       <div className="flex flex-col bg-black3 rounded-md m-6">
-        <div className=" text-white font-bold text-l mx-2">Course Material</div>
+        <div className=" text-white font-bold text-l mx-2">Exams</div>
         <div className="flex flex-row">
           <div className="flex flex-row p-2">
             {course?.Course_Exam?.map((item, index) => {
               return (
-                <div key={index} className="flex flex-col items-start ">
+                <div key={index} className="flex flex-col ">
                   <AiFillFilePdf size={100} />
                   <div className="items-center justify-center flex flex-col">
                     <div className="text-l">Exam {item?.Exam_ID}</div>
-
-                    {viewGrade(item.Exam_Grade)}
-                    <div className="text-l">
-                      {item?.Exam_Question_ID?.length} Questions
-                    </div>
                   </div>
                 </div>
               );
             })}
           </div>
 
-          {addExam()}
+         
         </div>
       </div>
 

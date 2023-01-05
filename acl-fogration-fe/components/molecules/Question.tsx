@@ -69,16 +69,17 @@ const handleCourseID = (event) => {
   setQuestionCorrectAnswer(event.target.value);
   // console.log(questionName)
   };
-
+// const [x,setX]=useState("");
+// setX(localStorage.getItem("courseID"));
 
   return (
     <div className="bg-bc p-2 m-2 rounded-lg flex flex-col w-11/12 justify-center"> 
-      <div className="text-l mx-2"> Course ID </div>
+      {/* <div className="text-l mx-2"> Course ID </div>
       <input
         value={localStorage.getItem("courseID")}
         className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
         onClick={handleCourseID}
-      />
+      /> */}
       <div className="m-2 text-l">Question {i}</div>
       <textarea
         className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2    rounded-md h-12"
