@@ -41,6 +41,7 @@ const adminlinks = [
   { href: "/admin/courses", label: "Courses" },
   { href: "/admin/reports", label: "Reports" },
   { href: "/admin/refunds", label: "Refund Requests" },
+  { href: "/admin/corporateRequests", label: "Corporate Requests" },
 
 ];
 
