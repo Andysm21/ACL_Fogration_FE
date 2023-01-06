@@ -168,9 +168,6 @@ const router = useRouter();
             <div className="flex flex-col items-center justify-center underline text-violet-400 ">
               <Link
                 href="/guest/enterEmail"
-                onClick={() => {
-                  console.info("I'm a button.");
-                }}
               >
                 Forgot password?
               </Link>

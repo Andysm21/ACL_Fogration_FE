@@ -19,7 +19,8 @@ function enterEmail() {
   function handleSubmit (){
     axios.post("http://localhost:8000/forgotPassword",{Email:email}).then((response)=>{
       console.log(response.data)
-    })
+    }).catch((error) => console.log(error))
+
 
   }
   
