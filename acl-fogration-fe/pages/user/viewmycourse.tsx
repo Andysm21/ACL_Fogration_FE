@@ -8,13 +8,22 @@ import  axios  from "axios";
 
 const viewmycourse: NextPage = () => {
   var [courseArray,setCourseArray]=useState([]);
+  var type;
 
   function getCourses(){
  
+    var userid= Number(localStorage.getItem("user_id"));
+
+    if(localStorage.getItem("Type")=="Corp"){
+      type=2;
+    }
+    else if(localStorage.getItem("Type")=="User"){
+      type=1;
+    }
     // Axios.post("http://localhost:8000/viewCourse",{id:Number(localStorage.getItem("CourseIIDD"))}
      var x = Number(localStorage.getItem("CourseID"));
     console.log(x);
-        axios.post(`http://localhost:8000/viewCourse/${x}`
+    axios.post(`http://localhost:8000/viewMyCourse/${x}`,{id:x,UserID:userid,type:type}
 
    ).then((response) => {
      setCourseArray(response.data)

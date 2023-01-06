@@ -8,6 +8,7 @@ import { useEffect, useMemo, useState } from "react";
 import ReportCourse from "./ReportCourse";
 import React from "react";
 import CourseRefund from "./CourseRefund";
+import { useRouter } from "next/router";
 import axios from 'axios';
 const courses = [
   {
@@ -130,6 +131,7 @@ const courses = [
 ];
 
 const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
+  const router = useRouter();
 
 
   const [starsnum, setStarsnum] = useState(0);
@@ -146,6 +148,7 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
 
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
+    console.log(course)
   })
 
   if (courses.length === 0) {
@@ -424,9 +427,17 @@ const refund = (isCorporate: string) => {
         </div>
          <div className="flex flex-row p-2 ">
             {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
+
               return(
-              <div key={index}  className="flex flex-col ">
-                      <AiFillFilePdf size={100}/>
+              <div key={index}  className="flex flex-col items-start " onClick={()=>{
+                localStorage.setItem("CurrentExamID",item?.Exam_ID);
+                console.log("HERE")
+                console.log(localStorage.getItem("CurrentExamID"))
+                console.log(localStorage.getItem("user_id"))
+                console.log(localStorage.getItem("CourseID"))
+                router.push('/user/solveexam')
+
+              }}>                      <AiFillFilePdf size={100}/>
                       <div className="items-center justify-center flex flex-col">
                         <div className="text-l">Exam {item?.Exam_ID}</div>
                         <div className="text-l"> {item?.Exam_Grade} %</div>

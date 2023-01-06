@@ -1,10 +1,11 @@
 import {  QuestionMark } from '@mui/icons-material'
 import Link from 'next/link'
-import React from 'react'
 import { GiSoulVessel } from 'react-icons/gi'
 import Layout from '../../components/templates/Layout'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
-const Exam = {
+const Exams = {
     Exam_ID:1,
     Exam_Questions : [
         {Question_ID:1,
@@ -29,8 +30,43 @@ const Exam = {
 
 }
 const submitAnswers = () => {
-    console.log(solved);
 
+  var type ;
+  var userid= Number(localStorage.getItem("user_id"));
+
+  if(localStorage.getItem("Type")=="Corp"){
+    type=2;
+  }
+  else if(localStorage.getItem("Type")=="User"){
+    type=1;
+  }
+    axios.post("https://localhost:8000/createStudentTakeExam",
+    {
+      StudentTookExam_Student_ID:userid,
+      StudentTookExam_Exam_ID:Number(localStorage.getItem("ExamID")),
+      StudentTookExam_Type:type,
+
+    }).then((response) => {
+      console.log("StudentTookExamCreated")
+  }).catch((error) => console.log(error))
+for(let i =0;i<solved.length;i++){
+  var questions=[];
+  var answers=[];
+  var solvedSplit = solved[i].split("-")
+  questions.push(solvedSplit[0]);
+  answers.push(solvedSplit[1])
+}
+for(let i=0;i<questions.length;i++){
+  axios.post("https://localhost:8000/SubmitAnswers",
+  {
+    QID:questions[i],
+    EID:Number(localStorage.getItem("ExamID")),
+    UserID:Number(localStorage.getItem("user_id")),
+    answer:answers[i],
+  }).then((response) => {
+    console.log("StudentTookExamCreated")
+}).catch((error) => console.log(error))
+}
 }
 interface answer { 
     Question_ID:number,
@@ -39,26 +75,52 @@ interface answer {
 const solved = [];
 
 const solveexam = () => {
+  const [Exam,SetExam]=useState({
+    Exam_ID:NaN,
+    Exam_Questions : [],
+    Exam_Grade:NaN,
+    Exam_Instructor_ID:NaN,
+    Exam_Course_ID:NaN
+  });
+
+
+  const fetchExam = ()=>
+{
+  axios.post("http://localhost:8000/getExam",
+  {
+    Exam_ID:Number(localStorage.getItem("CurrentExamID")),
+    Course_ID:Number(localStorage.getItem("CourseID")),
+  }).then((response) => {
+    SetExam(response.data);
+    // console.log(Number(localStorage.getItem("ExamID")));
+    // console.log(Number(localStorage.getItem("user_id")))
+    // console.log(response.data)
+  }).catch((error) => console.log(error))
+}
+useEffect(() => {
+  fetchExam();
+  // console.log(Exam)
+})
   return (
     <div>
       <Layout>
         <div className="bg-bc text-white p-2 flex flex-col h-100vh">
           <div className="font-bold text-3xl text-center">
-            Exam {Exam.Exam_ID}
+            Exam {Exam?.Exam_ID}
           </div>
           {/* div el exam beli choices */}
           <div className="">
-            {Exam.Exam_Questions?.map((question, index) => {
+            {Exam?.Exam_Questions?.map((question, index) => {
               return (
                 <div
                   key={index}
                   className="bg-black3  border-2 border-bc rounded-md "
                 >
                   <h1 className="font-bold text-2xl m-2">
-                    Q{question.Question_ID}) {question.Question_Name}
+                    Q{question?.Question_ID}) {question?.Question_Name}
                   </h1>
                   <div className="flex flex-col text-xl m-2 justify-center  ">
-                    {question.Question_Choices.map((questionChoice, index) => {
+                    {question?.Question_Choices.map((questionChoice, index) => {
                       return (
                         <div key={index} className="p-1">
                           ({index + 1}) {questionChoice}
@@ -71,7 +133,7 @@ const solveexam = () => {
                       max="4"
                       className="text-black rounded-md w-52 p-1"
                       onChange={(e) => (
-                        solved.push(question.Question_ID + e.target.value),
+                        solved.push(question?.Question_ID + e.target.value),
                         console.log(solved)
                       )}
                     />
