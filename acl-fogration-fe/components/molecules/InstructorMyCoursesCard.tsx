@@ -60,16 +60,16 @@ const discount =(discount:number,price:number) =>{
 
 
   return (
-    <div className="grid grid-cols-2 text-white place-items-center bg-bc gap-4">
+    <div className="grid grid-cols-2 text-white  bg-bc gap-4">
 
-      <div className="flex gap-4 bg-black3 justify-center items-center mx-6 my-4 rounded-lg p-2 w-[84%] h-[90%]">
+      <div className="flex gap-4 bg-black3 justify-center items-center mx-6 my-4 rounded-lg py-3 px-4">
           <Link href="/instructor/createcourse">
           <BsPlusCircle size={100} color="white"/>
           </Link>
           </div>
 
       {courses?.map((course,index) => (
-      <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg p-2 ">
+        <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 ">
           {/* //div el title bel kalam */}
           <div className="flex flex-col">
             {/* //div el title bel rating */}
@@ -80,7 +80,7 @@ const discount =(discount:number,price:number) =>{
               </div>
             </div>
             {/* //div el kalam eswd */}
-            <div className="bg-black3 flex flex-col  gap-3.5 my-2">
+            <div className="bg-black3 flex flex-col  gap-2 my-2">
               {course?.Course_Trainee?.length} enrolled students
               <div className="text-white flex flex-row">
                 Taught by

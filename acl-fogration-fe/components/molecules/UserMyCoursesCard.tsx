@@ -248,9 +248,9 @@ const discount =(discount:number,price:number) =>{
 
 
   return (
-    <div className="grid grid-cols-2 text-white place-items-center bg-bc gap-4">
+    <div className="grid grid-cols-2 text-white bg-bc gap-4">
       {courses?.map((course) => (
-        <div className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg p-2 ">
+        <div className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 ">
           {/* //div el title bel kalam */}
           <div className="flex flex-col">
             {/* //div el title bel rating */}
@@ -261,7 +261,7 @@ const discount =(discount:number,price:number) =>{
               </div>
             </div>
             {/* //div el kalam eswd */}
-            <div className="bg-black3 flex flex-col  gap-3.5 my-2">
+            <div className="bg-black3 flex flex-col  gap-2 my-2">
               {course?.Course_Trainee.length} enrolled students
               <div className="text-white flex flex-row">
                 Taught by
