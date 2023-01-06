@@ -11,6 +11,7 @@ export interface subtitle {
 }
 export interface video {
   Video_ID: number;
+  Video_Title: string;
   Video_Link: string;
   Video_Subtitle: string;
   Video_Description: string;
@@ -66,7 +67,7 @@ export interface user {
   User_Gender: string;
   User_Wallet: number;
   User_Courses: course[];
-  User_Corporate:string;
+  User_Corporate: string;
   User_isCorporate: boolean;
 };
 export interface instructor {
