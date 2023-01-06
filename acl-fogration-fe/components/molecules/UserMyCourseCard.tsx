@@ -132,6 +132,7 @@ const courses = [
 
 const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
   const router = useRouter();
+  var flag;
 
 
   const [starsnum, setStarsnum] = useState(0);
@@ -427,7 +428,8 @@ const refund = (isCorporate: string) => {
         </div>
          <div className="flex flex-row p-2 ">
             {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
-
+              console.log(item?.Exam_ID)
+console.log(item?.Exam_Grade),console.log("Fo2eyaaaa")
               return(
               <div key={index}  className="flex flex-col items-start " onClick={()=>{
                 localStorage.setItem("CurrentExamID",item?.Exam_ID);
@@ -435,7 +437,37 @@ const refund = (isCorporate: string) => {
                 console.log(localStorage.getItem("CurrentExamID"))
                 console.log(localStorage.getItem("user_id"))
                 console.log(localStorage.getItem("CourseID"))
-                router.push('/user/solveexam')
+                var type ;
+                var userid= Number(localStorage.getItem("user_id"));
+              
+                if(localStorage.getItem("Type")=="Corp"){
+                  type=2;
+                }
+                else if(localStorage.getItem("Type")=="User"){
+                  type=1;
+                }
+              
+                  axios.post("http://localhost:8000/createStudentTakeExam",
+                  {
+                    StudentTookExam_Student_ID:userid,
+                    StudentTookExam_Exam_ID:Number(localStorage.getItem("CurrentExamID")),
+                    StudentTookExam_Type:type,
+              
+                  }).then((response) => {
+                    if(response.data==false)
+                    {
+                      console.log("StudentTookExamCreated")
+
+                      router.push('/user/solveexam')
+
+                    }
+                  else
+                  {
+                    console.log("You already took the exam")
+
+                  }
+                }).catch((error) =>console.log("ERROR"))
+
 
               }}>                      <AiFillFilePdf size={100}/>
                       <div className="items-center justify-center flex flex-col">

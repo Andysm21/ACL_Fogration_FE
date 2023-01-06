@@ -4,6 +4,7 @@ import { GiSoulVessel } from 'react-icons/gi'
 import Layout from '../../components/templates/Layout'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { formControlClasses } from '@mui/joy'
 
 const Exams = {
     Exam_ID:1,
@@ -30,25 +31,27 @@ const Exams = {
 
 }
 const submitAnswers = () => {
+  // var type ;
+  // var userid= Number(localStorage.getItem("user_id"));
 
-  var type ;
-  var userid= Number(localStorage.getItem("user_id"));
+  // if(localStorage.getItem("Type")=="Corp"){
+  //   type=2;
+  // }
+  // else if(localStorage.getItem("Type")=="User"){
+  //   type=1;
+  // }
 
-  if(localStorage.getItem("Type")=="Corp"){
-    type=2;
-  }
-  else if(localStorage.getItem("Type")=="User"){
-    type=1;
-  }
-    axios.post("https://localhost:8000/createStudentTakeExam",
-    {
-      StudentTookExam_Student_ID:userid,
-      StudentTookExam_Exam_ID:Number(localStorage.getItem("ExamID")),
-      StudentTookExam_Type:type,
+  //   axios.post("http://localhost:8000/createStudentTakeExam",
+  //   {
+  //     StudentTookExam_Student_ID:userid,
+  //     StudentTookExam_Exam_ID:Number(localStorage.getItem("CurrentExamID")),
+  //     StudentTookExam_Type:type,
 
-    }).then((response) => {
-      console.log("StudentTookExamCreated")
-  }).catch((error) => console.log(error))
+  //   }).then((response) => {
+  //     console.log("StudentTookExamCreated")
+  // }).catch((error) =>console.log("ERROR"))
+
+
 for(let i =0;i<solved.length;i++){
   var questions=[];
   var answers=[];
@@ -56,25 +59,44 @@ for(let i =0;i<solved.length;i++){
   questions.push(solvedSplit[0]);
   answers.push(solvedSplit[1])
 }
-for(let i=0;i<questions.length;i++){
-  axios.post("https://localhost:8000/SubmitAnswers",
+var type ;
+var userid= Number(localStorage.getItem("user_id"));
+
+if(localStorage.getItem("Type")=="Corp"){
+  type=2;
+}
+else if(localStorage.getItem("Type")=="User"){
+  type=1;
+}
+for(let i=0;i<Solutions.length;i++){
+  console.log(Solutions[i].substring(Solutions[i].length-1))
+
+  axios.post("http://localhost:8000/SubmitAnswers",
   {
-    QID:questions[i],
-    EID:Number(localStorage.getItem("ExamID")),
+    QID:Number(Solutions[i].substring(0,Solutions[i].length-1)),
+    EID:Number(localStorage.getItem("CurrentExamID")),
     UserID:Number(localStorage.getItem("user_id")),
-    answer:answers[i],
+    answer:Solutions[i].substring(Solutions[i].length-1),
+    Type:type
   }).then((response) => {
-    console.log("StudentTookExamCreated")
-}).catch((error) => console.log(error))
+    console.log("Submitted for "+Number(Solutions[i].substring(0,Solutions[i].length-1)))
+}).catch((error) => console.log("Error f Submit"))
 }
 }
+
+
+
+
 interface answer { 
     Question_ID:number,
     Question_Answer:string
 }
 const solved = [];
+var flag =0;
+var Solutions=[];
 
 const solveexam = () => {
+  
   const [Exam,SetExam]=useState({
     Exam_ID:NaN,
     Exam_Questions : [],
@@ -90,15 +112,28 @@ const solveexam = () => {
   {
     Exam_ID:Number(localStorage.getItem("CurrentExamID")),
     Course_ID:Number(localStorage.getItem("CourseID")),
+    UserID:Number(localStorage.getItem("user_id")),
   }).then((response) => {
     SetExam(response.data);
+
     // console.log(Number(localStorage.getItem("ExamID")));
     // console.log(Number(localStorage.getItem("user_id")))
     // console.log(response.data)
   }).catch((error) => console.log(error))
 }
+var length =Exam?.Exam_Questions.length;
+if(flag==0){
+for(let i=0;i<length;i++){
+  Solutions[i]=2;
+  if(i==length-1){
+    flag=1
+  }
+}
+}
+const [EID,SetEID]=useState(0);
 useEffect(() => {
   fetchExam();
+  SetEID(Number(localStorage.getItem("CurrentExamID")));
   // console.log(Exam)
 })
   return (
@@ -106,12 +141,16 @@ useEffect(() => {
       <Layout>
         <div className="bg-bc text-white p-2 flex flex-col h-100vh">
           <div className="font-bold text-3xl text-center">
-            Exam {Exam?.Exam_ID}
+            Exam {EID}
           </div>
+          
           {/* div el exam beli choices */}
+          
           <div className="">
+            
             {Exam?.Exam_Questions?.map((question, index) => {
-              return (
+    
+            return (
                 <div
                   key={index}
                   className="bg-black3  border-2 border-bc rounded-md "
@@ -131,10 +170,12 @@ useEffect(() => {
                       type="number"
                       min="1"
                       max="4"
+                      key={index}
                       className="text-black rounded-md w-52 p-1"
                       onChange={(e) => (
-                        solved.push(question?.Question_ID + e.target.value),
-                        console.log(solved)
+                        Solutions[index]=question?.Question_ID + e.target.value,
+                        //solved.push(question?.Question_ID + e.target.value),
+                        console.log(Solutions[index])                        
                       )}
                     />
                   </div>

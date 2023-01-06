@@ -1,14 +1,15 @@
 import {  QuestionMark } from '@mui/icons-material'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { GiSoulVessel } from 'react-icons/gi'
 import Layout from '../../components/templates/Layout'
 import {TiTick} from 'react-icons/ti'
 import {ImCross} from 'react-icons/im'
+import axios from 'axios'
 let Question_Correct_Answers = 9;
 let Questions = 15;
 let grade = 'B';
-const Exam = {
+const Exams = {
     Exam_ID:1,
     Exam_Questions : [
         {Question_ID:1,
@@ -58,6 +59,64 @@ const vowel = () =>{
 }
 
 const correctanswers = () => {
+  const[grade,SetGrade]=useState(0);
+  const[Question_Correct_Answers,SetQCA]=useState(0);
+  const[Questions,SetQ]=useState(0);
+  const[Model,SetM]=useState([]);
+  const[Student,SetS]=useState([]);
+
+  
+    const [Exam,SetExam]=useState({
+    Exam_ID:NaN,
+    Exam_Questions : [],
+    Exam_Grade:NaN,
+    Exam_Instructor_ID:NaN,
+    Exam_Course_ID:NaN
+  });
+
+  function fetchExam ()
+  {
+    var type ;
+    var userid= Number(localStorage.getItem("user_id"));
+  
+    if(localStorage.getItem("Type")=="Corp"){
+      type=2;
+    }
+    else if(localStorage.getItem("Type")=="User"){
+      type=1;
+    }
+    axios.post("http://localhost:8000/examGrades",
+    {
+      UserID:userid,
+      EID:Number(localStorage.getItem("CurrentExamID")),
+      Type:type,
+    }).then((response) => {
+      console.log(response.data)
+      SetM(response.data.Model)
+      SetS(response.data.Student)
+      SetGrade(response.data.Grade);
+      SetQ(response.data.Model.length);
+      SetQCA(response.data.TotalRight)
+  }).catch((error) => console.log(error))
+  
+    axios.post("http://localhost:8000/getExam",
+    {
+      Exam_ID:Number(localStorage.getItem("CurrentExamID")),
+      Course_ID:Number(localStorage.getItem("CourseID")),
+      UserID:Number(localStorage.getItem("user_id")),
+    }).then((response) => {
+      SetExam(response.data);
+  
+      // console.log(Number(localStorage.getItem("ExamID")));
+      // console.log(Number(localStorage.getItem("user_id")))
+      // console.log(response.data)
+    }).catch((error) => console.log(error))
+  }
+
+  useEffect(() => {
+    fetchExam();
+    // console.log(Exam)
+  })
   return (
     <div>
       <Layout>
@@ -105,16 +164,16 @@ const correctanswers = () => {
                       type="text"
                       disabled
                       className="text-white rounded-md w-52 p-1 bg-black2"
-                     value={question.Question_Correct_Answer}
+                     value={Model[index]}
                     />
                     <div>Your Answer</div>
                     <input
                       type="text"
                       disabled
                       className="text-white rounded-md w-52 p-1 bg-black2"
-                     value={question.Question_Solved_Answer}
+                     value={Student[index]}
                     />
-                    {correct(question.Question_Correct_Answer,question.Question_Solved_Answer)}
+                    {correct(Model[index],Student[index])}
                     </div>
                     
                 </div>
