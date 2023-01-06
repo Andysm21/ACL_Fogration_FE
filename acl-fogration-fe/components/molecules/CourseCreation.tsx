@@ -259,9 +259,6 @@ const CourseCreation = () => {
             </button>
       }
     }
-
-    
-  
     
   return (
     <div className=" p-2 m-2 rounded-lg flex flex-row w-11/12 justify-between">

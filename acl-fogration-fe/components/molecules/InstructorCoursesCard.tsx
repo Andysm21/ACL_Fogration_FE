@@ -24,34 +24,34 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
     return stars;
   };
   
-  const discount =(discount:number,price:number) =>{
+  // const discount =(discount:number,price:number) =>{
 
-      if (localStorage.getItem('currency') == '£'){
-          price = price*20;
-        }
+  //     if (localStorage.getItem('currency') == '£'){
+  //         price = price*20;
+  //       }
 
-      if (localStorage.getItem('currency') == '$'){
-          price = price*1.5;
-        }
+  //     if (localStorage.getItem('currency') == '$'){
+  //         price = price*1.5;
+  //       }
     
-      if(discount == 0){
-      return <div className="">{price} $$</div>
+  //     if(discount == 0){
+  //     return <div className="">{price} $$</div>
   
-    }
-    else{ 
+  //   }
+  //   else{ 
 
     
-      return(
-      // <div className="">{price} {localStorage.getItem('currency')}</div>
-      <div className="flex flex-row gap-2">
-      <div className="line-through">{price} </div>
-       <div className="">{(price) * ((100-discount)/100)} {localStorage.getItem('currency')}</div>
-       </div>
-      )
+  //     return(
+  //     // <div className="">{price} {localStorage.getItem('currency')}</div>
+  //     <div className="flex flex-row gap-2">
+  //     <div className="line-through">{price} </div>
+  //      <div className="">{(price) * ((100-discount)/100)} {localStorage.getItem('currency')}</div>
+  //      </div>
+  //     )
     
-    }
+  //   }
   
-  }
+  // }
 
   function DiscountDuration(Course_Discount_Duration){
          return  <p className=" text-violet-400">Discount available for {Course_Discount_Duration} days</p>
@@ -59,8 +59,8 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
   }
   return (
     <div className="grid grid-cols-2 text-white bg-bc gap-4">
-      {courses.map((course) => (
-        <div className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 ">
+      {courses.map((course,index) => (
+        <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 ">
           {/* //div el title bel kalam */}
           <div className="flex flex-col">
             {/* //div el title bel rating */}
@@ -89,7 +89,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
                 {course.Course_Country}
               </div>
               <h1 className=" text-violet-400 text-4xl font-bold ">
-                {discount(course?.Course_Discount, course?.Course_Price)}
+                {/* {discount(course?.Course_Discount, course?.Course_Price)} */}
               </h1>
               {/* {DiscountDuration(course?.Course_Discount_Duration)} */}
             </div>

@@ -3,6 +3,8 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 import InstructorCoursesCard from "../../components/molecules/InstructorCoursesCard";
+import AddDiscount from "../../components/molecules/AddDiscount";
+import HeaderAdminCourses from "../../components/organisms/HeaderAdminCourses";
 const coursesArray = [
   {
     _id: {
@@ -186,7 +188,10 @@ const course = {
     "Learn how to use the most popular data structures",
   ],
 };
+
+
 const courses: NextPage = () => {
+
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -196,7 +201,10 @@ const courses: NextPage = () => {
       </Head>
 
       <Layout>
+        <div>
+        <HeaderAdminCourses courses={coursesArray}/>
         <InstructorCoursesCard courses={coursesArray} />
+        </div>
       </Layout>
     </div>
   );
