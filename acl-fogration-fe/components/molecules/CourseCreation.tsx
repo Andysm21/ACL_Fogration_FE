@@ -214,7 +214,8 @@ const CourseCreation = () => {
     const createCourse = () => {
     courseCreated = true;
     createCourseButton();
-    router.reload();
+    //router.reload();
+    
     }
     
     
