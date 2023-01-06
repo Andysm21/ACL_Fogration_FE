@@ -124,7 +124,7 @@ const enroll = (isCorporate:string) => {
             {/* //div el title bel rating */}
             <div className="flex flex-col text-3xl">
               <div className="Font-bold  text-white">{course.Course_Title}</div>
-              <div className="flex flex-row text-2xl my-2">
+              <div className="flex flex-row">
                 {stars(course.Course_Rating)}
               </div>
             </div>
@@ -168,7 +168,7 @@ const enroll = (isCorporate:string) => {
               <div>
               <Link href="viewcourse">
                 {/* //link button to enroll */}
-                <button className="border border-white text-white text-white font-bold py-2 px-4 rounded w-36" onClick={()=>{
+                <button className="border border-white text-white font-bold py-2 px-4 rounded w-36" onClick={()=>{
                   localStorage.removeItem('CourseID')
                   console.log("Gowa UserCoursesCard")
                   console.log(course)
