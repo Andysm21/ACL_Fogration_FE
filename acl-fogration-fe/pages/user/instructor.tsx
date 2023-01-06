@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 import UserCourseCard from "../../components/molecules/UserCourseCard";
 import ViewInstructor from "../../components/molecules/ViewInstructor";
+import axios from 'axios';
 
 const person = {
   _id: {
@@ -84,6 +85,26 @@ const person = {
 };
 
 const instructor: NextPage = () => {
+
+//   const [personArray, setPerson] = useState([]);
+//   function getInstructor(){
+//     axios.post("http://localhost:8000/instructorAccount",{Instructor_ID: 1}
+
+//   ).then((response) => {
+//   console.log(response.data);
+//   setPerson(response.data);
+//  console.log('H!!!!!!!!!');
+//  console.log(personArray);
+// }).catch((error) => console.log(error))
+
+// console.log(personArray);
+// };
+
+// useEffect(() => {
+//   getInstructor();
+// console.log(personArray)
+// }, []);
+
   return (
     <div className="bg-bc h-screen">
       <Head>
