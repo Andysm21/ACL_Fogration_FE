@@ -1,8 +1,24 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 const refresh = () => window.location.reload();
 const Question = () => {
   
   const addQuestion = () => {
+
+    axios.post("http://localhost:8000/createQuestion",
+      {Question_Name: questionName,
+      Question_Correct_Answer: questionCorrectAnswer,
+      exam_id: localStorage.getItem("exam_id"),
+      questionChoice1: questionChoice1, 
+      questionChoice2: questionChoice2, 
+      questionChoice3: questionChoice3, 
+      questionChoice4: questionChoice4}
+  
+      ).then((response) => {
+      }).catch((error) => console.log(error))
+  
+
+
     localStorage.setItem('question'+ `${i}` + 'CourseID', questionCourseID);
     localStorage.setItem('question'+`${i}`+'Name',questionName)
     localStorage.setItem('question'+`${i}`+'Choice1',questionChoice1)
