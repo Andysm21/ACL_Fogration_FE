@@ -37,7 +37,7 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
           price = price*1.5;
         }
       if((discount == 0) || price == 0){
-      return <h1 className=" text-violet-400 text-4xl font-bold ">
+      return <h1 className=" text-violet-400 text-4xl  ">
                 {price} {localStorage.getItem('currency')}
               </h1>
 
@@ -46,9 +46,9 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
       
       return(
       <div className="flex flex-row">
-      <div className=" text-violet-400 text-4xl font-bold line-through">{price}</div>
-      <div className="text-black3 text-4xl font-bold ">.</div>
-      <div className=" text-violet-400 text-4xl font-bold ">
+      <div className=" text-violet-400 text-4xl  line-through">{price}</div>
+      <div className="text-black3 text-4xl  ">.</div>
+      <div className=" text-violet-400 text-4xl  ">
                     {price * (100-discount)/100} {localStorage.getItem('currency')}</div>
       </div>
 

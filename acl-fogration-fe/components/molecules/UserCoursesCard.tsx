@@ -47,7 +47,7 @@ const [curr, setCurr] = useState('€');
   const discount =(discount:number,price:number) =>{
     if(isCorporate == "false"){
         if((discount == 0) || price == 0){
-      return <h1 className=" text-violet-400 text-4xl font-bold ">
+      return <h1 className=" text-violet-400 text-4xl  ">
                 {price*factor} {curr}
               </h1>
 
@@ -57,9 +57,9 @@ const [curr, setCurr] = useState('€');
       
       return(
       <div className="flex flex-row">
-      <div className=" text-violet-400 text-4xl font-bold line-through">{price}</div>
-      <div className="text-black3 text-4xl font-bold ">.</div>
-      <div className=" text-violet-400 text-4xl font-bold ">
+      <div className=" text-violet-400 text-4xl  line-through">{price}</div>
+      <div className="text-black3 text-4xl  ">.</div>
+      <div className=" text-violet-400 text-4xl  ">
                     {price *factor* (100-discount)/100} {curr}</div>
       </div>
       )
