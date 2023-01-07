@@ -62,6 +62,7 @@ const mycourses: NextPage = () => {
       console.log(Number(localStorage.getItem("user_id")))
 
       setCourseArray(response.data)
+
     }).catch((error) => console.log(error))
   }
 else{
@@ -72,6 +73,7 @@ else{
      console.log(Number(localStorage.getItem("user_id")))
 
      setCourseArray(response.data)
+     console.log(courseArray)
    }).catch((error) => console.log(error))
  }
 }

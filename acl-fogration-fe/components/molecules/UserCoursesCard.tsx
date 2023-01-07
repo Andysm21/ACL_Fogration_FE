@@ -120,7 +120,7 @@ const enroll = (isCorporate:string) => {
       {courses.map((course,index) => (
         <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 ">
           {/* //div el title bel kalam */}
-          <div className="flex flex-col">
+          <div className="flex flex-col" key={index}>
             {/* //div el title bel rating */}
             <div className="flex flex-col text-3xl">
               <div className="Font-bold  text-white">{course.Course_Title}</div>
@@ -134,12 +134,18 @@ const enroll = (isCorporate:string) => {
               <div className="text-white flex flex-row">
                 Taught by
                 <div className="text-black3">.</div>
-                <Link href="/[{course.Course_Instructor}]">
+
+                <div onClick={()=>{
+                  localStorage.setItem("course_instructor", course?.Course_Instructor?.Instructor_ID)
+                }} >
+                <Link href="instructor">
+
                   {/* // 23deli el link */}
                   <div className="text-violet-400">
                     {course?.Course_Instructor?.Instructor_FirstName}
                   </div>
                 </Link>
+                </div>
               </div>
               {/* /*div el country*/}
               <div className="flex flex-row gap-1 items-center">

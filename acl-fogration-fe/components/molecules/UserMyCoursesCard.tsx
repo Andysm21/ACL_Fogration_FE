@@ -265,13 +265,19 @@ const discount =(discount:number,price:number) =>{
               {course?.Course_Trainee.length} enrolled students
               <div className="text-white flex flex-row">
                 Taught by
+                <div onClick={()=>{
+                  localStorage.setItem("course_instructor", course?.Course_Instructor?.Instructor_ID)
+                }} ></div>
                 <div className="text-black3">.</div>
-                <Link href="/[{course?.Course_Instructor}]">
+
+                <Link href="/user/instructor">
+
                   {/* // 23deli el link */}
                   <div className="text-violet-400">
                     {course?.Course_Instructor?.Instructor_FirstName}
                   </div>
                 </Link>
+                
               </div>
               {/* /*div el country*/}
               <div className="flex flex-row gap-1 items-center">
@@ -301,6 +307,7 @@ const discount =(discount:number,price:number) =>{
                 <button className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-80 border border-violet-400" onClick={()=>{
                   localStorage.removeItem('CourseID')
                   localStorage.setItem('CourseID', course?.Course_ID)
+              
                 }}>
                   View Course
                 </button>

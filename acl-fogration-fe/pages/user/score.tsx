@@ -1,11 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Layout from '../../components/templates/Layout'
-let Question_Correct_Answers = 5;
-let Questions = 15;
- let grade = Math.ceil((Question_Correct_Answers / Questions) * 100);
-const text = () => {
-  
+import axios from 'axios';
+
+// let Question_Correct_Answers = 5;
+// let Questions = 15;
+//  let grade = Math.ceil((Question_Correct_Answers / Questions) * 100);
+
+
+
+//  let grade ;
+
+
+
+// const vowel = () =>{
+//   if(grade == 'A')
+//   return "an";
+//   else 
+//   return "a";
+// // }
+// let Question_Correct_Answers ;
+// let Questions ;
+const score = () => {
+  const[grade,SetGrade]=useState(0);
+  const[Question_Correct_Answers,SetQCA]=useState(0);
+  const[Questions,SetQ]=useState(0);
+
+  const text = () => {
     if (grade < 50) {
         return (
           <div className="text-violet-400 text-7xl text-center font-bold">
@@ -34,13 +55,54 @@ const suggest = () => {
         </div>
       );
 }
-// const vowel = () =>{
-//   if(grade == 'A')
-//   return "an";
-//   else 
-//   return "a";
-// }
-const score = () => {
+
+function retake(){
+  var type ;
+  var userid= Number(localStorage.getItem("user_id"));
+
+  if(localStorage.getItem("Type")=="Corp"){
+    type=2;
+  }
+  else if(localStorage.getItem("Type")=="User"){
+    type=1;
+  }
+  axios.post("http://localhost:8000/retakeExam",
+  {
+    UserID:userid,
+    EID:Number(localStorage.getItem("CurrentExamID")),
+    Type:type,
+  }).then((response) => {
+console.log("WENT TO RETAKE")
+}).catch((error) => console.log(error))
+  
+}
+function getScore (){ 
+   var type ;
+  var userid= Number(localStorage.getItem("user_id"));
+
+  if(localStorage.getItem("Type")=="Corp"){
+    type=2;
+  }
+  else if(localStorage.getItem("Type")=="User"){
+    type=1;
+  }
+  axios.post("http://localhost:8000/examGrades",
+  {
+    UserID:userid,
+    EID:Number(localStorage.getItem("CurrentExamID")),
+    Type:type,
+  }).then((response) => {
+    console.log(response.data)
+    SetGrade(response.data.Grade);
+    SetQ(response.data.Model.length);
+    SetQCA(response.data.TotalRight)
+}).catch((error) => console.log(error))
+}
+useEffect(() => {
+  getScore();
+  // console.log(Exam)
+})
+
   return (
     <div>
       <Layout>
@@ -65,7 +127,7 @@ const score = () => {
 
           <div className="flex flex-row gap-2 justify-center">
             <Link href="/user/solveexam">
-            <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded  w-72">
+            <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded  w-72" onClick={retake}>
               Retake Exam
             </button>
             </Link>

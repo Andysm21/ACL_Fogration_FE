@@ -2,10 +2,13 @@ import React from 'react'
 import { BsPlusCircle } from 'react-icons/bs'
 import Question from '../../components/molecules/Question'
 import Layout from '../../components/templates/Layout'
-
+import axios from 'axios';
 
 
 const createexam = () => {
+
+  
+    
 
   return (
     <div>

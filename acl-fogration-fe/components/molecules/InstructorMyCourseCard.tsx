@@ -105,8 +105,24 @@ const [open2, setOpen2] = React.useState(false);
 const [type, setType ]= useState("");
   useEffect(()=>{
     setType(localStorage.getItem("Type"));
+    localStorage.setItem("course_id", course.Course_ID);
     console.log(course)
   })
+
+  const gotoexam = () => {
+    console.log("Hello")
+    console.log(localStorage.getItem("course_id"))
+    axios.post("http://localhost:8000/createExam",
+    {
+    Instructor: Number(localStorage.getItem("user_id")),
+    Course: Number(localStorage.getItem("course_id"))}
+  
+    ).then((response) => {
+      console.log(response.data);
+      localStorage.setItem("exam_id", response.data);
+    }).catch((error) => console.log(error))
+  }
+
 
   const addExam =()=>{
     
@@ -114,11 +130,12 @@ const [type, setType ]= useState("");
             return <div></div>
             }
         else{
-          return <div className="flex flex-col p-2">
+          return <div onClick={gotoexam} className="flex flex-col p-2">
+            
             <Link href="/instructor/createexam">
            <AiOutlineFileAdd size={100} className="text-white"/>
            </Link>
-            <div className="items-center justify-center flex ">
+           <div  className="items-center justify-center flex ">
                         Add Exam
             </div>
             </div>
@@ -143,6 +160,8 @@ const [type, setType ]= useState("");
       console.log("done")
     }).catch((error) => console.log(error))
   }
+
+
   return (
     <div
       key={course?.Course_ID}
@@ -163,7 +182,7 @@ const [type, setType ]= useState("");
             <div className="flex flex-row">
               {course?.Course_Trainee?.length} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
-              <Link href="/[{course?.Course_Instructor}]">
+              <Link href="/user/instructor">
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
                   {course?.Course_Instructor?.Instructor_FirstName}

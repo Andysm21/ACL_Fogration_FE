@@ -102,7 +102,7 @@ useEffect(()=>{
             <div className="flex flex-row">
               {SavedCourseData?.Course_Trainee} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
-              <Link href="/{SavedCourseData?.Course_Instructor?.Instructor_FirstName}">
+              <Link href="/guest/instructor">
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
                   {SavedCourseData?.Course_Instructor?.Instructor_FirstName}

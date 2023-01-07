@@ -2,34 +2,33 @@ import React, { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
-import InstructorMyCourseCard from "../../components/molecules/InstructorMyCourseCard";
 import  Axios  from "axios";
+import AdminCourseCard from "../../components/molecules/AdminCourseCard";
 
 
-const viewmycourse: NextPage = () => {
+const course: NextPage = () => {
 
   var [courseArray,setCourseArray]=useState([]);
 
   function getCourses(){
  
-    // Axios.post("http://localhost:8000/viewCourse",{id:Number(localStorage.getItem("CourseIIDD"))}
-     var x = Number(localStorage.getItem("CourseID"));
-    console.log(x);
-        Axios.post(`http://localhost:8000/viewCourse/${x}`
+     // Axios.post("http://localhost:8000/viewCourse",{id:Number(localStorage.getItem("CourseIIDD"))}
+      var x = Number(localStorage.getItem("CourseID"));
 
-   ).then((response) => {
-     setCourseArray(response.data)
-     console.log(response.data)
-     console.log(courseArray)
-   }).catch((error) => console.log(error))
- }
+         Axios.post(`http://localhost:8000/viewCourse/${x}`
+ 
+    ).then((response) => {
+      setCourseArray(response.data)
+      console.log(response.data)
+      console.log(courseArray)
+    }).catch((error) => console.log(error))
+  }
  
    
   useEffect(() => {
    // if(localStorage.getItem("Course")!=undefined){
    getCourses();
-   console.log(courseArray)
- }, []);
+  }, []);
 
 
   return (
@@ -42,10 +41,10 @@ const viewmycourse: NextPage = () => {
 
       <Layout>
         <div className="">
-          <InstructorMyCourseCard course={courseArray}/>
+          <AdminCourseCard course={courseArray} />
         </div>
       </Layout>
     </div>
   );
 };
-export default viewmycourse;
+export default course;
