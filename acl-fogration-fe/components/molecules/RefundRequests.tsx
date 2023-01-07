@@ -67,7 +67,8 @@ const discount =(discount:number,price:number) =>{
 
  
   return (
-    <div className="grid grid-cols-2 text-white  bg-bc gap-4 h-screen">
+    <div className="bg-bc h-screen">
+    <div className="grid grid-cols-2 text-white  bg-bc gap-4 ">
       {/* {problems.map((problem,index) => ( */}
         {/* <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 "> */}
         <div className="flex gap-4 flex-row-1 bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 h-20">
@@ -85,7 +86,7 @@ const discount =(discount:number,price:number) =>{
 
           <div>
               <button 
-                className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-3 px-4 rounded w-36 border border-violet-400"
+                className="bg-gradient-to-r from-purple to-babyblue text-white py-3 px-4 rounded w-36 border border-violet-400"
                 onClick={handleClickOpen}>
                 Refund
               </button>
@@ -93,6 +94,7 @@ const discount =(discount:number,price:number) =>{
               </div>
         </div>
     {/*   ))} */}
+    </div>
     </div>
   );
 };

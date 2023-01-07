@@ -232,10 +232,10 @@ let User_Balance = 10;
       key={user.User_ID}
       className=" border-2 border-bc flex flex-col bg-black2 w-75% shadow-lg text-white "
     >
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 my-2">
         <div className="flex flex-col items-center justify-center">
           <CgProfile size={100} />
-            <div className="font-bold text-2xl">{user.User_FirstName} {user.User_LastName} </div>
+            <div className=" text-2xl">{user.User_FirstName} {user.User_LastName} </div>
             <div className="font-light text-md">Trainee</div>
             {user.User_isCorporate && <div className="font-light text-md"> {user.User_Corporate}</div> }
         </div>
@@ -272,7 +272,7 @@ let User_Balance = 10;
         /> </div>
 
           </div>
-           <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={handleSubmit}>
+           <button className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded border border-violet-400" onClick={handleSubmit}>
                   Update
                 </button>
           
@@ -290,7 +290,7 @@ let User_Balance = 10;
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue={user.User_Email } onChange={handleEmail}
          /> 
-          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded " onClick={handleSubmitUserEmail}>
+          <button className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded border border-violet-400" onClick={handleSubmitUserEmail}>
                   Update
                 </button>
 
@@ -313,7 +313,7 @@ let User_Balance = 10;
            <input  type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
           defaultValue= ''
         onChange={handleChangeP} /> 
-          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "onClick={changePassword}>
+          <button className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded border border-violet-400"onClick={changePassword}>
                   Update
                 </button>
         </div>
@@ -329,10 +329,10 @@ let User_Balance = 10;
 
        {/* hena 7oty ay 7aga 3aiza tezawediha odam heya m3 kol eli fo2 zy el reviews fel user */}
 
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-          <div className="text-white font-bold text-l">Certificates</div>
+        <div className="bg-black3 rounded-md m-6 flex flex-col py-2 gap-1">
+          <div className="text-white  text-l mx-3">Certificates</div>
 
-          <div className="flex flex-row gap-2 ">
+          <div className="flex flex-row">
             <AiOutlineFilePdf size={100} className=" text-violet-400" />
             <AiOutlineFilePdf size={100} className=" text-violet-400" />
             <AiOutlineFilePdf size={100} className=" text-violet-400" />

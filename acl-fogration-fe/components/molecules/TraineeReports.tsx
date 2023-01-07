@@ -81,7 +81,7 @@ const discount =(discount:number,price:number) =>{
 
           <div>
               <button 
-                className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-3 px-4 rounded w-36 border border-violet-400"
+                className="bg-gradient-to-r from-purple to-babyblue text-white py-3 px-4 rounded w-36 border border-violet-400"
                 onClick={handleClickOpen}>
                 Follow-up
               </button>

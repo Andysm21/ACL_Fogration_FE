@@ -215,14 +215,14 @@ const [isCorporate, setIsCorporate]= useState("false");
  if(isCorporate == "false"){
     
     if(discount == 0){
-    return <div className="">{price} $$</div>
+    return <div className="">{price} $</div>
 
   }
   else{ 
     return(
     <div className="flex flex-row gap-2">
     <div className="line-through">{price} </div>
-     <div className="">{(price) * ((100-discount)/100)}$$</div>
+     <div className="">{(price) * ((100-discount)/100)}$</div>
      </div>
     )
   }
@@ -246,7 +246,7 @@ const refund = (isCorporate: string) => {
       return (
         <div>
           <button className="" onClick={handleClickOpen2}>
-            <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-96">
+            <div className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-96 border border-violet-400">
               Refund
             </div>
           </button>
@@ -311,7 +311,7 @@ const refund = (isCorporate: string) => {
           <div className="flex flex-col">
           <div className="flex flex-row justify-between my-2">
             
-            <h1 className=" text-violet-400 text-4xl font-bold ">
+            <h1 className=" text-violet-400 text-4xl ">
               {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
               </h1>
            
@@ -337,10 +337,9 @@ const refund = (isCorporate: string) => {
       <div className="">
         
         {/* //what you will learn */}
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-          
-          <div className="text-white font-bold text-l">What you will learn</div>
-          <div className="flex flex-col gap-1">
+       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
+          <div className="text-white font-bold text-2xl mx-2">What you will learn</div>
+          <div className="flex flex-col gap-1 mx-2">
             {/* //m7taga 23melha grid */}
             {What_You_Will_Learn?.map((item,index) => (
               <div key={index} className="flex flex-row gap-1 text-white items-center">
@@ -354,7 +353,7 @@ const refund = (isCorporate: string) => {
       {/*  div de m7taga tet7at ta7t */}
       {/* //This course includes  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <div className="text-white font-bold text-l mx-2">
+        <div className="text-white font-bold text-2xl mx-2">
           This course includes
         </div>
         <div className="flex flex-row">
@@ -362,7 +361,7 @@ const refund = (isCorporate: string) => {
           <div className="flex flex-col border-black1 text-white bg-black2 m-2 px-2 w-52 h-20 rounded-md justify-between items-center py-2">
             <BsPlayBtnFill size={30} />
             <div className="  justify-center items-end">
-              {course.Course_Hours} hours of video
+              {course?.Course_Hours} hours of video
             </div>
           </div>
 
@@ -377,27 +376,27 @@ const refund = (isCorporate: string) => {
         </div>
       </div>
       {/* //Course content  */}
-      <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <h1 className="text-white font-bold text-l ">Course Content</h1>
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-4">
+        <h1 className="text-white font-bold text-2xl mx-2">Course Content</h1>
         {course?.Course_Subtitle?.map((subtitle,index) => {
           return (
-            <div key={index}>
+<div key={index}  className="bg-bc p-2 rounded-md mx-2">
               <div className="flex flex-col gap-2 ">
                 <div className="flex flex-row gap-2 justify-between">
-                  <div className="text-xl font-bold">
+                  <div className="text-l font-bold">
                     {subtitle.Subtitle_Name}
                   </div>
-                  <div className="text-l flex items-end ">
+                  <div className="text-l flex">
                     Total Time: {subtitle?.Subtitle_Hours} mins
                   </div>
                 </div>
               </div>
-              <div className="flex flex-row gap-2 w-[100%] ">
+              <div className="flex flex-row gap-3 w-[100%] ">
                 {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
                     <div key={index}>
                       <img
-                        className="flex-shrink-0  w-36"
+                        className="w-36"
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
@@ -412,9 +411,9 @@ const refund = (isCorporate: string) => {
         })}
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-      <div className="flex flex-row">
-        <div className="text-white font-bold text-l">Exams</div>
-        <div className="flex flex-row  ">
+      <div className="flex flex-row items-center">
+        <div className="text-white font-bold text-2xl mx-2">Exams </div>
+        <div className="flex flex-row ">
          <LinearProgress
        className="w-72 bg-black2  text-gray-300 m-2 "
        thickness={7}
@@ -430,7 +429,7 @@ const refund = (isCorporate: string) => {
       </Typography>
         </div>
         </div>
-         <div className="flex flex-row p-2 ">
+         <div className="flex flex-row items-center ">
             {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
               console.log(item?.Exam_ID)
 console.log(item?.Exam_Grade),console.log("Fo2eyaaaa")
@@ -475,7 +474,9 @@ console.log(item?.Exam_Grade),console.log("Fo2eyaaaa")
 
               }}>                      <AiFillFilePdf size={100}/>
                       <div className="items-center justify-center flex flex-col">
-                        <div className="text-l">Exam {item?.Exam_ID}</div>
+<div className="items-center justify-center flex flex-col text-l">
+                       Exam {item?.Exam_ID}
+                      </div>
                         <div className="text-l"> {item?.Exam_Grade} %</div>
                       </div>
                     </div>
@@ -484,9 +485,9 @@ console.log(item?.Exam_Grade),console.log("Fo2eyaaaa")
         </div>
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-          <div className="text-white font-bold text-l">Reviews</div>
+        <div className="text-white font-bold text-2xl mx-2">Reviews</div>
 
-          <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2 mx-2">
             {course?.Course_Review && course?.Course_Review?.map((review,index) => {return (
                 <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
                   {review}</div>    
@@ -500,7 +501,8 @@ console.log(item?.Exam_Grade),console.log("Fo2eyaaaa")
  
             <button className=""
             onClick={handleClickOpen}>
-                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">Report an issue</div>
+                <div className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-[100%] border border-violet-400">Report an issue</div>
+
 
             </button>
             <ReportCourse isOpen={open} handleClose={handleClose} />

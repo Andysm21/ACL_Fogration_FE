@@ -42,7 +42,7 @@ useEffect(()=>{
     <div>
         <Layout>
         <div>
-            <TraineeReports user={person} />
+            <TraineeReports courses={undefined} />
         </div>
       </Layout>
     </div>

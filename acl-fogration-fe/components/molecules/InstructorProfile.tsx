@@ -160,19 +160,19 @@ const handleSubmitUserEmail = () => {
       key={instructor.Instructor_ID}
       className=" border-2 border-bc flex flex-col bg-black2 w-75% shadow-lg text-white "
     >
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 my-2">
         <div className="flex flex-col items-center justify-center">
           <CgProfile size={100} />
-          <div className="font-bold text-2xl">
+          <div className=" text-2xl">
             {instructor.Instructor_FirstName} {instructor.Instructor_LastName}{" "}
           </div>
           <div className="font-light text-md">Instructor</div>
 
-          {<div className="flex flex-row  ">{stars(average())}</div>}
+          {<div className="flex flex-row">{stars(average())}</div>}
         </div>
         <div className="flex flex-row ">
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
-            <div className="text-white font-bold text-l">
+            <div className="text-white  text-l font-bold">
               Instructor Information
             </div>
             <div className="flex flex-row justify-between">
@@ -246,7 +246,7 @@ const handleSubmitUserEmail = () => {
             </div>
             {/* onClick = {handleSubmit} */}
             <button
-              className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "
+              className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded border border-violet-400"
               onClick={handleSubmit}
             >
               Update
@@ -272,14 +272,14 @@ const handleSubmitUserEmail = () => {
                 onChange={handleEmail}
               />
               <button
-                className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "
+                className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded border border-violet-400"
                 onClick={handleSubmitUserEmail}
               >
                 Update
               </button>
             </div>
-            <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2">
-              <div className="text-white font-bold text-l">Update password</div>
+            <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 ">
+              <div className="text-white  text-l font-bold">Update password</div>
 
               <div className="text-l">Old password </div>
               <input
@@ -303,7 +303,7 @@ const handleSubmitUserEmail = () => {
               />
 
               <button
-                className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "
+                className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded border border-violet-400"
                 onClick={changePassword}
               >
                 Update
@@ -313,7 +313,7 @@ const handleSubmitUserEmail = () => {
         </div>
 
         <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-          <div className="text-white font-bold text-l">Reviews</div>
+          <div className="text-white  text-l">Reviews</div>
 
           <div className="flex flex-row gap-2">
             {instructor.Instructor_Reviews?.map((review, index) => (
