@@ -41,7 +41,7 @@ const discount =(discount:number,price:number) =>{
         }
     
       if(discount == 0){
-      return <div className="">{price} $$</div>
+      return <div className="">{price} {localStorage.getItem('currency')}</div>
   
     }
     
@@ -81,7 +81,7 @@ const enroll = (isCorporate:string) => {
     return(
     <div>
       <button
-        className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36 border border-violet-400"
+        className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded w-36 border border-violet-400"
         onClick={handleClickOpen}
       >
         Enroll Now
@@ -93,7 +93,7 @@ const enroll = (isCorporate:string) => {
     return (
     <div>
       <button
-        className="bg-gradient-to-r from-purple to-babyblue text-white text-s font-bold py-2 px-4 rounded w-36 border border-violet-400"
+        className="bg-gradient-to-r from-purple to-babyblue text-white text-s  py-2 px-4 rounded w-36 border border-violet-400"
         onClick={handleClickOpen}
       >
         Request
@@ -146,7 +146,7 @@ const enroll = (isCorporate:string) => {
                 <BsGlobe2 />
                 {course?.Course_Country}
               </div>
-              <h1 className=" text-violet-400 text-4xl font-bold ">
+              <h1 className=" text-violet-400 text-4xl  ">
               {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
               {/* {price(isCorporate)} */}
               </h1>
@@ -168,7 +168,7 @@ const enroll = (isCorporate:string) => {
               <div>
               <Link href="viewcourse">
                 {/* //link button to enroll */}
-                <button className="border border-white text-white font-bold py-2 px-4 rounded w-36" onClick={()=>{
+                <button className="border border-white text-white  py-2 px-4 rounded w-36" onClick={()=>{
                   localStorage.removeItem('CourseID')
                   console.log("Gowa UserCoursesCard")
                   console.log(course)
@@ -181,7 +181,7 @@ const enroll = (isCorporate:string) => {
 
 {/* <div>
               <button 
-                className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-36 border border-violet-400"
+                className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded w-36 border border-violet-400"
                 onClick={handleClickOpen}>
                 Enroll Now
               </button>

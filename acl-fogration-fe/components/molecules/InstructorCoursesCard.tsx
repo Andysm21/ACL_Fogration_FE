@@ -35,7 +35,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
         }
     
       if(discount == 0){
-      return <div className="">{price} $$</div>
+        return <div className="">{price} {localStorage.getItem('currency')}</div>
   
     }
     else{ 
@@ -71,7 +71,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
               </div>
             </div>
             {/* //div el kalam eswd */}
-            <div className="bg-black3 flex flex-col  gap-2 my-2">
+            <div className="bg-black3 flex flex-col gap-2 my-2">
               {course.Course_Trainee.length} enrolled students
               <div className="text-white flex flex-row">
                 Taught by
@@ -88,7 +88,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
                 <BsGlobe2 />
                 {course.Course_Country}
               </div>
-              <h1 className=" text-violet-400 text-4xl font-bold ">
+              <h1 className=" text-violet-400 text-4xl ">
                 {discount(course?.Course_Discount, course?.Course_Price)}
               </h1>
               {/* {DiscountDuration(course?.Course_Discount_Duration)} */}
@@ -109,7 +109,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
             <div className="flex flex-row justify-between my-2">
               <Link href="viewcourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white border border-violet-400 py-2 px-4 rounded w-80" onClick={()=>{
                   setcourseID(course?.Course_ID)
                   localStorage.removeItem('CourseID')
                   localStorage.setItem('CourseID', course.Course_ID)

@@ -80,7 +80,7 @@ const handleCourseID = (event) => {
         className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
         onClick={handleCourseID}
       /> */}
-      <div className="m-2 text-l">Question {i}</div>
+      <div className="mx-2 text-l">Question {i}</div>
       <textarea
         className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2    rounded-md h-12"
         onChange={handleQuestionName}
@@ -115,12 +115,12 @@ const handleCourseID = (event) => {
       />
       <div className="flex justify-center flex-row">
         <button
-          className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80"
+          className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white border border-violet-400 py-2 px-4 rounded w-80"
           onClick={addQuestion}
         >
           Add New Question
         </button>
-        <button className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={addQuestion}>
+        <button className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white border border-violet-400 py-2 px-4 rounded w-80" onClick={addQuestion}>
           Submit Exam
         </button>
       </div>

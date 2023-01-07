@@ -278,7 +278,7 @@ const discount =(discount:number,price:number) =>{
                 <BsGlobe2 />
                 {course?.Course_Country}
               </div>
-              <h1 className=" text-violet-400 text-4xl font-bold ">
+              <h1 className=" text-violet-400 text-4xl ">
               {discount(course.Course_Discount,viewPrice(course.Course_Price))}
               </h1>
             </div>
@@ -298,7 +298,7 @@ const discount =(discount:number,price:number) =>{
             <div className="flex flex-row justify-between my-2">
               <Link href="viewmycourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-80 border border-violet-400" onClick={()=>{
                   localStorage.removeItem('CourseID')
                   localStorage.setItem('CourseID', course?.Course_ID)
                 }}>

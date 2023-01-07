@@ -360,7 +360,7 @@ const handleBalance = event => {
                 <div className="py-2">How does it work?</div>
                 <div className="py-2 bg-black2 h-full flex items-center">Fill in the given code and you will get a random top-up from 1 to 10, as simple as that!</div>
                 <div className="py-2 my-6 flex flex-col">
-                    <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded  " onClick={changeBalanceRandom}>
+                    <button className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400" onClick={changeBalanceRandom}>
                   Top-up
                 </button>
                 </div>
@@ -411,7 +411,7 @@ const handleBalance = event => {
          /> 
 
          
-          <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded  " onClick={changeBalance}>
+          <button className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400" onClick={changeBalance}>
                   Top-up
                 </button>
                 </div>

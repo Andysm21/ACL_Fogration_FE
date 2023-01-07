@@ -199,11 +199,11 @@ const CourseCreation = () => {
     const createCourseButton = () =>{
       if(courseCreated){
         {console.log(courseCreated)}
-        return <button className="mx-2 my-2 bg-gray-500 text-white font-bold py-2 px-4 rounded" >Create Course</button>
+        return <button className="mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded" >Create Course</button>
       }
       else{
         return  <button
-              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "
+              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400"
               onClick={createCourse}
             >
              Create course
@@ -220,13 +220,13 @@ const CourseCreation = () => {
     
   return (
     <div className=" p-2 m-2 rounded-lg flex flex-row w-11/12 justify-between">
-      <div className="bg-bc p-2 m-2 rounded-lg flex flex-col w-2/3">
+      <div className="bg-bc p-2 m-2 rounded-lg flex flex-col w-2/3 ">
         {/* <div className="text-l mx-2"> Course ID </div>
         <input
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleCourseID}
         /> */}
-        <div className="m-2 text-l">Title </div>
+        <div className="mx-2 text-l">Title </div>
         <input
           placeholder="Fogration"
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2    rounded-md h-12"
@@ -240,13 +240,13 @@ const CourseCreation = () => {
         />
         <div className="mx-2 text-l">Description</div>
         <textarea
-          placeholder='This is a course about.....'
+          placeholder='This is a course about ...'
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2    rounded-md h-12"
           onChange={handleCourseDescription}
         />
         <div className="mx-2 text-l">Price</div>
         <input
-         placeholder="$$"
+         placeholder="€€  "
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2    rounded-md h-12"
           onChange={handleCoursePrice}
         />
@@ -256,14 +256,14 @@ const CourseCreation = () => {
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2    rounded-md h-12"
           onChange={handleCourseCountry}
         />
-        <div className="mx-2 text-l">Preview Video</div>
+        <div className="mx-2 text-l">Preview video</div>
         <input
-         placeholder="https://www.youtube.com/watch?v=xxxxxxxxxxx"
+         placeholder="https://www.youtube.com/watch?v=x"
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleCoursePreviewVideo}
         />
         {/* <button
-              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded "
+              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded "
               onClick={createCourse}
             >
              Create course
@@ -273,71 +273,71 @@ const CourseCreation = () => {
       </div>
       
       <div className="bg-bc p-2 m-2 rounded-lg flex flex-col w-2/3 justify-between">
-        <div className="mx-2 text-l">Subtitle Number</div>
+        <div className="mx-2 text-l">Subtitle number</div>
         <input
           value={subtitleNumber}
           disabled
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onClick={handleSubtitleNumber}
         />
-        <div className="mx-2 text-l">Subtitle Name</div>
+        <div className="mx-2 text-l">Subtitle name</div>
         <input
           placeholder="Introduction"
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleSubtitleName}
         />
-        <div className="mx-2 text-l">Video Number</div>
+        <div className="mx-2 text-l">Video number</div>
         <input
           value={videoNumber}
           disabled
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleVideoNumber}
         />
-        <div className="mx-2 text-l">Video Title</div>
+        <div className="mx-2 text-l">Video title</div>
         <input
           value={videoTitle}
           placeholder="Fogr"
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleVideoTitle}
         />
-        <div className="mx-2 text-l">Video Link</div>
+        <div className="mx-2 text-l">Video link</div>
         <input
         
           defaultValue={videoLink}
-          placeholder="https://www.youtube.com/watch?v=xxxxxxxxxxx"
+          placeholder="https://www.youtube.com/watch?v=x"
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleVideoLink}
         />
-        <div className="mx-2 text-l">Video Description</div>
+        <div className="mx-2 text-l">Video description</div>
         <textarea
           defaultValue={videoDescription}
-          placeholder="This is a video about the topic of....."
+          placeholder="This is a video about the topic of ..."
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleVideoDescription}
         />
         <div className="flex flex-col  ">
           <div className="flex flex-row">
             <button
-              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-72"
+              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400"
               onClick={addVideo}
             >
               Add video
             </button>
             <button
-              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-72"
+              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400"
               onClick={addSubtitle}
             >
-              Add Subtitle
+              Add subtitle
             </button>
           </div>
 
           <Link href="/instructor/createexam" className="">
            
-            <div className="flex  justify-end  items-center flex-row gap-2 ">
-              <div onClick={gotoexam} className=" text-gray-400 ">
-                Create Exam For The Course
+            <div className="flex  justify-end  items-center flex-row ">
+              <div onClick={gotoexam} className=" text-violet-400 ">
+                Create an exam for the course
               </div>
-              <AiOutlineArrowRight className="text-gray-400" size={30} />
+              <AiOutlineArrowRight className="text-violet-400" size={20} />
             </div>
           </Link>
         </div>
