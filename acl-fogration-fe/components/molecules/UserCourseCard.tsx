@@ -20,9 +20,21 @@ const  What_You_Will_Learn= [
 const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   const [isCorporate, setIsCorporate]= useState("false");
 
+  const [factor, setFactor] = useState(1);
+  const [curr, setCurr] = useState('€');
 
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
+    if (localStorage.getItem('currency') == '£'){
+          setFactor(factor*2);
+          setCurr('£');
+        }
+
+      if (localStorage.getItem('currency') == '$'){
+          setFactor(factor*1.5);
+          setCurr('$');
+        }
+        
   })
 
     const [open, setOpen] = React.useState(false);
@@ -72,33 +84,44 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
 
   const discount =(discount:number,price:number) =>{
     if(isCorporate == "false"){
-      if(discount == 0){
-      return <div className="">{price} $</div>
-  
+
+        if((discount == 0) || price == 0){
+      return <h1 className=" text-violet-400 text-4xl  ">
+                {price*factor} {curr}
+              </h1>
+
     }
     else{ 
+      
       return(
-      <div className="flex flex-row gap-2">
-      <div className="line-through">{price} </div>
-       <div className="">{(price) * ((100-discount)/100)}$</div>
-       </div>
+
+      <div className="flex flex-row">
+      <div className=" text-violet-400 text-4xl line-through">{price}</div>
+      <div className="text-black3 text-4xl ">.</div>
+      <div className=" text-violet-400 text-4xl font-bold ">
+                    {price *factor* (100-discount)/100} {curr}</div>
+      </div>
+
       )
     }
-    }
-    else{
-      return <div></div>
-    }
-  }
+    }else{
+      return (<div>
+        
+      </div>)
+    }}
 
   
-  function DiscountDuration(){
-    if(isCorporate == "true"){
+ function DiscountDuration(duration : number,discount : number ,price : number){
+         if(isCorporate == "true"){
       return <div></div>                                                                    
+    }else{
+      if(duration == 0 || discount == 0 || price == 0){
+        return <div></div>
+      }
+        else{
+         return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
     }
-    else{
-         return  <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
-  
-    }
+  }
   }
   
 const enroll = (isCorporate:string) => {
@@ -188,7 +211,7 @@ const enroll = (isCorporate:string) => {
                {discount(course?.Course_Discount,viewPrice(course?.Course_Price))} </h1>
               
               {enroll(isCorporate)}
-{/* <div>
+            { /* <div>
               <button 
               className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-48"
                 onClick={handleClickOpen}>
@@ -197,7 +220,7 @@ const enroll = (isCorporate:string) => {
                 <Payment isOpen={open} handleClose={handleClose} />
               </div> */}
           </div>
-           {DiscountDuration()}
+           {DiscountDuration(course?.Course_Discount_Duration,course?.Course_Discount,viewPrice(course?.Course_Price))}
 
           </div>
         </div>

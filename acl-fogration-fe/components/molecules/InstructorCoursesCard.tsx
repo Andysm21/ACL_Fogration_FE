@@ -1,7 +1,7 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill, BsPlusCircle } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CountrySelector } from "./Selector";
 
 
@@ -9,7 +9,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
   const [courseID,setcourseID]=useState("") 
   
   if (courses.length === 0) {
-    return <div className="text-center "> No courses</div>;
+    return <div className="text-center text-white "> No courses</div>;
   }
 
   const stars = (rating: number) => {
@@ -23,40 +23,59 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
     }
     return stars;
   };
-  
-  const discount =(discount:number,price:number) =>{
+  const [factor, setFactor] = useState(1);
+  const [curr, setCurr] = useState('€');
 
-      if (localStorage.getItem('currency') == '£'){
-          price = price*20;
+  useEffect(()=>{
+  
+
+    console.log(localStorage.getItem('currency'));
+    if (localStorage.getItem('currency') == '£'){
+          setFactor(factor*2);
+          setCurr('£');
         }
 
       if (localStorage.getItem('currency') == '$'){
-          price = price*1.5;
+          setFactor(factor*1.5);
+          setCurr('$');
         }
+        
+
+  })
+  
+   const discount =(discount:number,price:number) =>{
+
+
+     
     
 
-      if(discount == 0){
-        return <div className="">{price} {localStorage.getItem('currency')}</div>
-  
+        if((discount == 0) || price == 0){
+      return <h1 className=" text-violet-400 text-4xl font-bold ">
+                {price*factor} {curr}
+              </h1>
+
+
     }
     else{ 
-
-    
+      
       return(
-      // <div className="">{price} {localStorage.getItem('currency')}</div>
-      <div className="flex flex-row gap-2">
-      <div className="line-through">{price} </div>
-       <div className="">{(price) * ((100-discount)/100)} {localStorage.getItem('currency')}</div>
-       </div>
+      <div className="flex flex-row">
+      <div className=" text-violet-400 text-4xl font-bold line-through">{price}</div>
+      <div className="text-black3 text-4xl font-bold ">.</div>
+      <div className=" text-violet-400 text-4xl font-bold ">
+                    {price *factor* (100-discount)/100} {curr}</div>
+      </div>
       )
-    
     }
-  
-  }
+    }
 
-  function DiscountDuration(Course_Discount_Duration){
-         return  <p className=" text-violet-400">Discount available for {Course_Discount_Duration} days</p>
-
+      function DiscountDuration(duration : number,discount : number ,price : number){
+      if(duration == 0 || discount == 0 || price == 0){
+        return <div></div>
+      }
+        else{
+         return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
+    }
   }
   return (
     <div className="grid grid-cols-2 text-white bg-bc gap-4">
@@ -93,8 +112,9 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
               <h1 className=" text-violet-400 text-4xl ">
                 {discount(course?.Course_Discount, course?.Course_Price)}
 
+
               </h1>
-              {/* {DiscountDuration(course?.Course_Discount_Duration)} */}
+              {DiscountDuration(course?.Course_Discount_Duration, course?.Course_Discount, course?.Course_Price)}
             </div>
           </div>
           {/* //div el video bel se3r wel button */}

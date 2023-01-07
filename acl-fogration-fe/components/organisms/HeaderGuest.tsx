@@ -38,7 +38,7 @@ const HeaderGuest = ({
           setFilterDiv(!filterDiv);
         }
 
-              const [search, setSearch] = React.useState("");
+       const [search, setSearch] = React.useState("");
       const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value);
       };

@@ -68,28 +68,7 @@ const [open2, setOpen2] = React.useState(false);
   const handleClose2 = () => {
     setOpen2(false);
   };
-  const discount =(discount:number,price:number) =>{
-    
-      if(discount == 0){
-      return <div className="">{price} $</div>
-  
-    }
-    else{ 
-      return(
-      <div className="flex flex-row gap-2">
-      <div className="line-through">{price} </div>
-       <div className="">{(price) * ((100-discount)/100)}$</div>
-       </div>
-      )
-    
-    }
-  
-  }
 
-  function DiscountDuration(Course_Discount_Duration){
-         return  <p className=" text-violet-400">Discount available for {Course_Discount_Duration} days</p>
-
-  }
 
   const [updatedDiscount, setUpdatedDiscount] = useState(course?.Course_Discount);
   const handleUpdatedDiscount = (event) => {
@@ -161,7 +140,56 @@ const [type, setType ]= useState("");
     }).catch((error) => console.log(error))
   }
 
+const [factor, setFactor] = useState(1);
+  const [curr, setCurr] = useState('€');
 
+  useEffect(()=>{
+  
+    console.log(localStorage.getItem('currency'));
+    if (localStorage.getItem('currency') == '£'){
+          setFactor(factor*2);
+          setCurr('£');
+        }
+
+      if (localStorage.getItem('currency') == '$'){
+          setFactor(factor*1.5);
+          setCurr('$');
+        }
+        
+
+  })
+  
+   const discount =(discount:number,price:number) =>{
+
+     
+    
+        if((discount == 0) || price == 0){
+      return <h1 className=" text-violet-400 text-4xl font-bold ">
+                {price*factor} {curr}
+              </h1>
+
+    }
+    else{ 
+      
+      return(
+      <div className="flex flex-row">
+      <div className=" text-violet-400 text-4xl font-bold line-through">{price}</div>
+      <div className="text-black3 text-4xl font-bold ">.</div>
+      <div className=" text-violet-400 text-4xl font-bold ">
+                    {price *factor* (100-discount)/100} {curr}</div>
+      </div>
+      )
+    }
+    }
+
+      function DiscountDuration(duration : number,discount : number ,price : number){
+      if(duration == 0 || discount == 0 || price == 0){
+        return <div></div>
+      }
+        else{
+         return  <p className=" text-violet-400">Discount available for {duration} days</p>
+    }
+  }
   return (
     <div
       key={course?.Course_ID}
@@ -210,7 +238,7 @@ const [type, setType ]= useState("");
             <h1 className=" text-violet-400 text-4xl ">
               {discount(course?.Course_Discount, course?.Course_Price)}
             </h1>
-            {DiscountDuration(course?.Course_Discount_Duration)}
+            {DiscountDuration(course?.Course_Discount_Duration,course?.Course_Discount,course?.Course_Price)}
           </div>
         </div>
       </div>
