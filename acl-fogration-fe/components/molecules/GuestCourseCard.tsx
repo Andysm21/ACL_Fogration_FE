@@ -11,28 +11,58 @@ const Course_What_You_Will_Learn =[
   "Learn how to use the most popular data structures",
   "Learn how to use the most popular algorithms",
   "Learn about new algorithms"]
-
-const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
-
-const discount =(discount:number,price:number) =>{
  
-      if(discount == 0){
-      return <div className="">{price} $$</div>
+const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
+   const [factor, setFactor] = useState(1);
+  const [curr, setCurr] = useState('€');
+
+useEffect(()=>{
   
-      }
+    console.log(localStorage.getItem('currency'));
+    if (localStorage.getItem('currency') == '£'){
+          setFactor(factor*2);
+          setCurr('£');
+        }
+
+      if (localStorage.getItem('currency') == '$'){
+          setFactor(factor*1.5);
+          setCurr('$');
+        }
+        
+
+  })
+      const discount = (discount:number,price:number) =>{
+      
+      
+      if((discount == 0) || price == 0){
+    return <h1 className=" text-violet-400 text-4xl font-bold ">
+                {price*factor} {curr}
+              </h1>
+
+    }
     else{ 
+      
       return(
-      <div className="flex flex-row gap-2">
-      <div className="line-through">{price} </div>
-       <div className="">{(price) * ((100-discount)/100)}$</div>
-       </div>
+      <div className="flex flex-row">
+      <div className=" text-violet-400 text-4xl font-bold line-through">{price}</div>
+      <div className="text-bc text-4xl font-bold  ">. </div>
+      <div className=" text-violet-400 text-4xl font-bold ">
+                    {price* factor * (100-discount)/100}{curr}</div>
+      </div>
+
       )
     }
     }
-  
 
-  function DiscountDuration(){
-         return  <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
+
+function DiscountDuration(duration : number,discount : number ,price : number){
+  
+      if(duration == 0 || discount == 0 || price == 0){
+        return <div></div>
+      }
+        else{
+         return  <p className=" text-violet-400">Discount available for {duration} days</p>
+        }
   }
  // console.log(course);
   // if (courses.length === 0) {
@@ -141,7 +171,7 @@ useEffect(()=>{
               </button>
             </Link>
           </div>
-           {DiscountDuration()}
+           {DiscountDuration(SavedCourseData?.Course_Discount_Duration, SavedCourseData?.Course_Discount,SavedCourseData?.Course_Price)}
 
           </div>
         </div>
