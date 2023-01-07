@@ -134,10 +134,9 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
   const router = useRouter();
   var flag;
 
-
   const [starsnum, setStarsnum] = useState(0);
 
-  function handleSubmit  (x) {
+  function handleSubmit (x) {
     console.log(x);
     setStarsnum(x); 
     axios.post('http://localhost:8000/RatingCourse', {ID: localStorage.getItem('CourseID'), Rating: x})
@@ -280,12 +279,17 @@ const refund = (isCorporate: string) => {
             <div className="flex flex-row">
               {course?.Course_Trainee?.length} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
-              <Link href="/user/instructor">
+
+              <div onClick={()=>{ localStorage.setItem('course_instructor', course.Course_Instructor.Instructor_ID)}}>
+              <Link href="instructor" >
+               
+
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
                 {course?.Course_Instructor?.Instructor_FirstName}
                 </div>
               </Link>
+              </div>
             </div>
 
             {/* /*div el country*/}
@@ -312,7 +316,7 @@ const refund = (isCorporate: string) => {
               </h1>
            
                  <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
-                <div onClick={() => {handleSubmit(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                <div onClick={() => {setStarsnum(1),handleSubmit(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
                  <div onClick={() => {setStarsnum(2), handleSubmit(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
                   <div onClick={() => {setStarsnum(3), handleSubmit(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
                   <div onClick={() => {setStarsnum(4), handleSubmit(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>

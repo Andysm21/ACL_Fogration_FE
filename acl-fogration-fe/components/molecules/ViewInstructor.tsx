@@ -9,197 +9,9 @@ import { CountrySelector } from "./Selector";
 import React, { useState } from "react";
 import { SelectMenuOption } from "../atoms/types";
 import {COUNTRIES} from '../atoms/countries';
+import axios from 'axios';
 
 
-const person = {
-  _id: {
-    $oid: "636880e12886948f062b493e",
-  },
- Instructor_ID: 4,
-  Instructor_username: "Pasha",
-  Instructor_Email: "Pasha@gmail.com",
-  Instructor_Password: "1234",
-  Instructor_FirstName:"Hana",
-  Instructor_LastName:"Pasha",
-  Instructor_Gender:"Female",
-  Instructor_Country: "Egypt",
-  
-
-  Instructor_Courses: [
-
-    {
-      _id: {
-        $oid: "666820e1288794o098062b493e",
-      },
-      Course_ID: 4,
-      Course_Title: "Computer Science",
-      Course_Subject: "Computer Science",
-      Course_Description: "Data Structures and Algorithms",
-      Course_Price: 0,
-      Course_Rating: 5,
-      Course_Instructor: "Malak",
-      Course_Hours: 5,
-      Course_Country: "Egypt",
-      Course_Discount: 10,
-      Course_Discount_Duration: 5,
-      Course_Subtitle: [
-        {
-          Subtitle_ID: 1,
-          Subtitle_Name: "S1",
-          Subtitle_Course_ID: "1",
-          Subtitle_Video: [
-            {
-              Video_ID: 1,
-              Video_Link:
-                "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-              Video_Subtitle: "S1",
-              Video_Description: "Introduction",
-              Video_Length: 10,
-            },
-          ],
-          Subtitle_Hours: "10",
-        },
-        {
-          Subtitle_ID: 2,
-          Subtitle_Name: "S2",
-          Subtitle_Course_ID: "1",
-          Subtitle_Video: [
-            {
-              Video_ID: 1,
-              Video_Link:
-                "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-              Video_Subtitle: "S1",
-              Video_Description: "Introduction",
-              Video_Length: 10,
-            },
-          ],
-          Subtitle_Hours: "10",
-        },
-      ],
-      Course_Trainee: [{ Trainee_ID: 1, Trainee_Name: "Ahmed" }],
-      Course_Review: ["Very Good Course"],
-      Course_Rate: ["zeft"],
-      Course_Exam: [
-        { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
-      ],
-    },
-    {
-      _id: {
-        $oid: "666820e1288794o098062b493e",
-      },
-      Course_ID: 4,
-      Course_Title: "Computer Science",
-      Course_Subject: "Computer Science",
-      Course_Description: "Data Structures and Algorithms",
-      Course_Price: 0,
-      Course_Rating: 5,
-      Course_Instructor: "Malak",
-      Course_Hours: 5,
-      Course_Country: "Egypt",
-      Course_Discount: 10,
-      Course_Discount_Duration: 5,
-      Course_Subtitle: [
-        {
-          Subtitle_ID: 1,
-          Subtitle_Name: "S1",
-          Subtitle_Course_ID: "1",
-          Subtitle_Video: [
-            {
-              Video_ID: 1,
-              Video_Link:
-                "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-              Video_Subtitle: "S1",
-              Video_Description: "Introduction",
-              Video_Length: 10,
-            },
-          ],
-          Subtitle_Hours: "10",
-        },
-        {
-          Subtitle_ID: 2,
-          Subtitle_Name: "S2",
-          Subtitle_Course_ID: "1",
-          Subtitle_Video: [
-            {
-              Video_ID: 1,
-              Video_Link:
-                "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-              Video_Subtitle: "S1",
-              Video_Description: "Introduction",
-              Video_Length: 10,
-            },
-          ],
-          Subtitle_Hours: "10",
-        },
-      ],
-      Course_Trainee: [{ Trainee_ID: 1, Trainee_Name: "Ahmed" }],
-      Course_Review: ["Very Good Course"],
-      Course_Rate: ["zeft"],
-      Course_Exam: [
-        { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
-      ],
-    },
-    {
-      _id: {
-        $oid: "666820e1288794o098062b493e",
-      },
-      Course_ID: 3,
-      Course_Title: "Computer Engineering",
-      Course_Subject: "Computer Science",
-      Course_Description: "Data Structures and Algorithms",
-      Course_Price: 0,
-      Course_Rating: 5,
-      Course_Instructor: "Malak",
-      Course_Hours: 5,
-      Course_Country: "Egypt",
-      Course_Discount: 10,
-      Course_Discount_Duration: 5,
-      Course_Subtitle: [
-        {
-          Subtitle_ID: 1,
-          Subtitle_Name: "S1",
-          Subtitle_Course_ID: "1",
-          Subtitle_Video: [
-            {
-              Video_ID: 1,
-              Video_Link:
-                "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-              Video_Subtitle: "S1",
-              Video_Description: "Introduction",
-              Video_Length: 10,
-            },
-          ],
-          Subtitle_Hours: "10",
-        },
-        {
-          Subtitle_ID: 2,
-          Subtitle_Name: "S2",
-          Subtitle_Course_ID: "1",
-          Subtitle_Video: [
-            {
-              Video_ID: 1,
-              Video_Link:
-                "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-              Video_Subtitle: "S1",
-              Video_Description: "Introduction",
-              Video_Length: 10,
-            },
-          ],
-          Subtitle_Hours: "10",
-        },
-      ],
-      Course_Trainee: [{ Trainee_ID: 1, Trainee_Name: "Ahmed" }],
-      Course_Review: ["Very Good Course"],
-      Course_Rate: ["zeft"],
-      Course_Exam: [
-        { Exam_ID: "1", Exam_Question_ID: ["1", "2"], Exam_Grade: "A" },
-      ],
-    },
-  ],
-  Instructor_Biography: "Hating Uni",
-  Instructor_Ratings:[5,2],
-  Instructor_Reviews:["I Loved your materials,It helped alot.Keep the great work!","Would have been better if you did more examples but other than that GREAT JOB!!"]
-};
 
 const ViewInstructor: React.FC<{ user }> = ({ user }) => {
   const stars = (rating: number) => {
@@ -213,12 +25,14 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
     }
     return stars;
   };
-  const average = ([]) =>{
+
+
+  const average = () =>{
     let avg = 0;
-    for(let i = 0;i< person.Instructor_Ratings.length ;i++){
-      avg += person.Instructor_Ratings[i];
+    for(let i = 0;i< user.Instructor_Ratings?.length ;i++){
+      avg += user.Instructor_Ratings[i];
     }
-    avg = avg/(person.Instructor_Ratings.length);
+    avg = avg/(user.Instructor_Ratings?.length);
     return avg;
   };
   const myRef = React.createRef<HTMLDivElement>();
@@ -227,26 +41,37 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
   const [country, setCountry] = useState('DE');
   const [starsnum, setStarsnum] = useState(0);
 
+  
+  function handleSubmit  (x) {
+    console.log(x);
+    setStarsnum(x); 
+    axios.post('http://localhost:8000/RatingInstructor', {ID: user.Instructor_ID, Rating: x})
+  
+    .then((response) => {
+    }).catch((error) => console.log(error))
+    //console.log(data);
+  };
+
   return (
     <div
 
-      key={person.Instructor_ID}
+      key={user.Instructor_ID}
       className=" border-2 border-bc flex flex-col bg-black2 w-75% shadow-lg text-white "
     >
       <div className="flex flex-col gap-2">
         <div className="flex flex-col items-center justify-center">
           <CgProfile size={100} />
-            <div className="font-bold text-2xl">{person.Instructor_FirstName} {person.Instructor_LastName} </div>
+            <div className="font-bold text-2xl">{user.Instructor_FirstName} {user.Instructor_LastName} </div>
             <div className="font-light text-md">Instructor</div>
-            <div className="flex flex-row  ">{stars(average(person.Instructor_Ratings))}</div>
+            <div className="flex flex-row  ">{stars(average())}</div>
         </div>
          <div className="flex flex-row px-2 justify-end items-end gap-2  text-violet-400">
                 <div className="text-xl text-white">Rate  </div> 
-                <div onClick={() => {setStarsnum(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                 <div onClick={() => {setStarsnum(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                <div onClick={() => {setStarsnum(1), handleSubmit(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                 <div onClick={() => {setStarsnum(2), handleSubmit(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(3), handleSubmit(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(4), handleSubmit(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(5), handleSubmit(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
                   {/*  save the rating in the user  */}
 
         </div> 
@@ -259,19 +84,19 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
          
            <div className="text-l">Name </div>
            <div  className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-         >           {person.Instructor_FirstName + " " + person.Instructor_LastName}</div>
+         >           {user.Instructor_FirstName + " " + user.Instructor_LastName}</div>
          
            <div className="text-l">Email </div>
             <div  className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-         >           {person.Instructor_Email}
+         >           {user.Instructor_Email}
         </div>
           <div className="text-l">Gender </div>
             <div  className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-         >           {person.Instructor_Gender}
+         >           {user.Instructor_Gender}
         </div>
         <div className="text-l">Country of birth </div>
          <div  className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-         >           {person.Instructor_Country}
+         >           {user.Instructor_Country}
         </div>
 
           </div>
@@ -279,7 +104,7 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
           <div className="flex flex-col gap-2">
            <div>Biography</div>
           <div  className = " bg-black3 h-52 text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
-         >           {person.Instructor_Biography}
+         >           {user.Instructor_Biography}
         </div>
 
          
@@ -295,12 +120,14 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
             <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 ">
           <div className="text-white font-bold text-l">Assigned to courses</div>
               <div className="grid grid-cols-2 gap-2">
+
             {person.Instructor_Courses.map((course,index) => (
               <Link href="/user/viewcourse">
                 <div key={index} className="flex flex-col bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md shadow-lg">
+
                      
                   <div className="text-xl font-bold"> {course.Course_Title}</div>
-                  <div className="flex flex-row">{stars(average(course.Course_Rate))}</div>
+                  <div className="flex flex-row">{stars(average())}</div>
                   <div className="text-md font-light"> {course.Course_Description}</div>
                   </div> 
                   </Link>
@@ -316,8 +143,10 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
 
          <div className="text-white font-bold text-l">Reviews</div>
           <div className="flex flex-row gap-2">
+
             {person.Instructor_Reviews.map((review,index) => (
                 <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52 shadow-lg">
+
                   {review}</div>    
             ))}
           </div>

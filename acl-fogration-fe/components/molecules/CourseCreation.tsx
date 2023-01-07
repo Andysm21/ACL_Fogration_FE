@@ -7,6 +7,16 @@ import router from 'next/router';
 
 const CourseCreation = () => {
     const addVideo = () => {
+
+    axios.post("http://localhost:8000/createVideo",
+    {title: videoTitle, link: videoLink,
+    subtitle: localStorage.getItem("subtitle_id"), description: videoDescription}
+
+    ).then((response) => {
+      console.log(response.data);
+    }).catch((error) => console.log(error))
+
+
      localStorage.setItem("video" +  "Number", `${videoNumber}`);
           localStorage.setItem("video" + videoNumber + "Title", videoLink);
 
@@ -27,6 +37,16 @@ const CourseCreation = () => {
 
      }
   const addSubtitle = () => {
+
+    axios.post("http://localhost:8000/createSubtitle",
+    {Subtitle: subtitleName, Subtitle_Course_ID: Number(localStorage.getItem("course_id"))}
+
+    ).then((response) => {
+      console.log(response.data);
+      localStorage.setItem("subtitle_id", response.data);
+ }).catch((error) => console.log(error))
+
+
     localStorage.setItem("subtitle" +  "Number", `${subtitleNumber}`);
     localStorage.setItem("subtitle" + subtitleNumber + "Name", subtitleName);
    
@@ -48,8 +68,37 @@ const CourseCreation = () => {
 
   };
 
+  const createCourse = () => {
+    axios.post("http://localhost:8000/createCourse",
+    {Course_Instructor: localStorage.getItem("user_id"), Course_Title:courseTitle, 
+    Course_Subject: courseSubject, Course_Description: courseDescription, 
+    Course_Price: coursePrice, Course_Country: courseCountry,Course_Video_Preview: coursePreviewVideo}
+
+    ).then((response) => {
+      console.log(response.data);
+      localStorage.setItem("course_id", response.data);
+ }).catch((error) => console.log(error))
+  courseCreated = true;
+  createCourseButton();
+  //router.reload();
+  }
+
   
     const gotoexam = () => {
+      axios.post("http://localhost:8000/createExam",
+      {Instructor: localStorage.getItem("user_id"),
+      Course: localStorage.getItem("course_id")}
+    
+      ).then((response) => {
+        console.log(response.data);
+        localStorage.setItem("exam_id", response.data);
+      }).catch((error) => console.log(error))
+      courseCreated = true;
+
+
+    createCourseButton();
+    //router.reload();
+
         // localStorage.setItem("course" +  "ID", `${courseID}`);
         localStorage.setItem("courseTitle", courseTitle);
         localStorage.setItem("courseSubject", courseSubject);
@@ -210,14 +259,6 @@ const CourseCreation = () => {
             </button>
       }
     }
-
-    const createCourse = () => {
-    courseCreated = true;
-    createCourseButton();
-    //router.reload();
-    
-    }
-    
     
   return (
     <div className=" p-2 m-2 rounded-lg flex flex-row w-11/12 justify-between">
