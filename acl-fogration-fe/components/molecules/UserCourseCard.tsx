@@ -150,8 +150,10 @@ const enroll = (isCorporate:string) => {
             <div className="flex flex-row">
               {course.Course_Users} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
+
               <div onClick={()=>{ localStorage.setItem('course_instructor', course.Course_Instructor.Instructor_ID)}}>
-              <Link href="instructor">
+              <Link href="user/instructor">
+
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
                   {course?.Course_Instructor?.Instructor_FirstName}

@@ -74,7 +74,6 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
                   <div onClick={() => {setStarsnum(5), handleSubmit(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
                   {/*  save the rating in the user  */}
 
-                
         </div> 
 
         <div className="flex flex-row ">
@@ -121,9 +120,11 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
             <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 ">
           <div className="text-white font-bold text-l">Assigned to courses</div>
               <div className="grid grid-cols-2 gap-2">
-            {user.Instructor_Courses?.map((course) => (
-              <Link href="/[course._id]">
-                <div key={course.Course_ID} className="flex flex-col bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md shadow-lg">
+
+            {person.Instructor_Courses.map((course,index) => (
+              <Link href="/user/viewcourse">
+                <div key={index} className="flex flex-col bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md shadow-lg">
+
                      
                   <div className="text-xl font-bold"> {course.Course_Title}</div>
                   <div className="flex flex-row">{stars(average())}</div>
@@ -142,8 +143,10 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
 
          <div className="text-white font-bold text-l">Reviews</div>
           <div className="flex flex-row gap-2">
-            {user.Instructor_Reviews?.map((review) => (
-                <div key={user.Instructor_ID} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52 shadow-lg">
+
+            {person.Instructor_Reviews.map((review,index) => (
+                <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52 shadow-lg">
+
                   {review}</div>    
             ))}
           </div>

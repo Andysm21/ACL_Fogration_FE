@@ -5,7 +5,7 @@ import { useState } from "react";
 import { CountrySelector } from "./Selector";
 
 
-const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
+const AdminCoursesCard: React.FC<{courses}>= ({courses}) => {
   const [courseID,setcourseID]=useState("") 
   
   if (courses.length === 0) {
@@ -76,7 +76,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
               <div className="text-white flex flex-row">
                 Taught by
                 <div className="text-black3">.</div>
-                <Link href="/instructor/instructor">
+                <Link href="/admin/instructor">
                   {/* // 23deli el link */}
                   <div className="text-violet-400">
                     {course.Course_Instructor.Instructor_FirstName}
@@ -107,7 +107,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
             </div>
             {/* //h1 el se3r */}
             <div className="flex flex-row justify-between my-2">
-              <Link href="/instructor/viewcourse">
+              <Link href="admin/course">
                 {/* //link button to enroll */}
                 <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
                   setcourseID(course?.Course_ID)
@@ -127,7 +127,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
   );
 };
 
-export default InstructorCoursesCard;
+export default AdminCoursesCard;
 //<div
 //   key={course.id}
 //   className=" border-2 border-bc flex h-52 w-1/2 flex-col rounded-lg bg-black2 items-start gap-4 justify-start p-2 text-center text-white shadow-lg"

@@ -1,10 +1,9 @@
 import React from "react";
-import type { GetServerSideProps, NextPage } from "next";
+import type {  NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
-import InstructorCoursesCard from "../../components/molecules/InstructorCoursesCard";
-import AddDiscount from "../../components/molecules/AddDiscount";
 import HeaderAdminCourses from "../../components/organisms/HeaderAdminCourses";
+import AdminCoursesCard from "../../components/molecules/AdminCoursesCard";
 const coursesArray = [
   {
     _id: {
@@ -203,7 +202,7 @@ const courses: NextPage = () => {
       <Layout>
         <div>
         <HeaderAdminCourses courses={coursesArray}/>
-        <InstructorCoursesCard courses={coursesArray} />
+        <AdminCoursesCard courses={coursesArray} />
         </div>
       </Layout>
     </div>

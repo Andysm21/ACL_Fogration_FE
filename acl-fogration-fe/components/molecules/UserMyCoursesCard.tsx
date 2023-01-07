@@ -269,7 +269,9 @@ const discount =(discount:number,price:number) =>{
                   localStorage.setItem("course_instructor", course?.Course_Instructor?.Instructor_ID)
                 }} ></div>
                 <div className="text-black3">.</div>
-                <Link href="instructor">
+
+                <Link href="/user/instructor">
+
                   {/* // 23deli el link */}
                   <div className="text-violet-400">
                     {course?.Course_Instructor?.Instructor_FirstName}

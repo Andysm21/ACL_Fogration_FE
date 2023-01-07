@@ -134,8 +134,7 @@ const router = useRouter();
 
   useEffect(()=>{
     setError(localStorage.getItem("SignUpError"))
-  })
-
+  },[])
   return (
     <div>
       <NavGuestLogin />
