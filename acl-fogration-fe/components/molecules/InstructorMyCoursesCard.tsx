@@ -1,7 +1,10 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
-import { BsGlobe2, BsPlayBtnFill, BsPlusCircle } from "react-icons/bs";
+
 import { useEffect, useState } from "react";
+
+import { BsGlobe2, BsPlayBtnFill, BsPlusCircle, BsPlusSquare } from "react-icons/bs";
+
 
 const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
   const [courseID,setcourseID]=useState("") 
@@ -114,7 +117,7 @@ const [curr, setCurr] = useState('€');
                 <BsGlobe2 />
                 {course?.Course_Country}
               </div>
-              <h1 className="text-violet-400 text-4xl font-bold ">
+              <h1 className="text-violet-400 text-4xl ">
                 {discount(course?.Course_Discount, course?.Course_Price)}
               </h1>
               {DiscountDuration(course?.Course_Discount_Duration, course?.Course_Discount, course?.Course_Price)}
@@ -135,7 +138,7 @@ const [curr, setCurr] = useState('€');
             <div className="flex flex-row justify-between my-2">
               <Link href="viewmycourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-80 border border-violet-400" onClick={()=>{
                   setcourseID(course?.Course_ID)
                   localStorage.removeItem('CourseID')
                   localStorage.setItem('CourseID', course?.Course_ID)

@@ -133,15 +133,21 @@ const router = useRouter();
  
 
   useEffect(()=>{
-    setError(localStorage.getItem("SignUpError"))
+    // setError(localStorage.getItem("SignUpError"))
   },[])
   return (
     <div>
       <NavGuestLogin />
-      <div className="flex items-center justify-start px-40 bg-bc w-screen h-screen bg-cover bg-no-repeat">
+      <div className="flex items-center justify-end justify-between px-60  bg-[url('/images/projbg.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
         {/* div for the form */}
+          <h1 className="text-white text-xl">Not registered yet? Don't miss the chance and
+          <Link href="/guest/signup" className="px-1 text-violet-400 cursor-pointer hover:border-b hover:text-violet-300">
+          register
+          </Link>
+          now!</h1>
 
         <div className="  flex flex-col items-center justify-start rounded-lg bg-black3 py-6 px-4">
+
           <div className="flex flex-col items-center justify-center gap-2">
             <input
               className="bg-bc rounded-md p-3 w-72 text-white"

@@ -6,7 +6,7 @@ import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
 
 import AddVideo from "./AddVideo";
-import {RxVideo} from "react-icons/rx"
+
 import {TbPlayerPlay} from "react-icons/tb"
 
 import { course } from "../../interfaces";
@@ -19,7 +19,7 @@ import ReportCourse from "./ReportCourse";
 const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
   const [courseID,setcourseID]=useState("") 
   var courseRate = course.Course_Rating;
-  const Course_What_You_Will_Learn =["Learn new algorithms","Learn more  abour data structures and algorithms"]
+  const Course_What_You_Will_Learn =["Learn new algorithms","Learn more about data structures and algorithms"]
 
   // if (course.length === 0) {
   //   return <div className="text-center "> No courses</div>;
@@ -68,9 +68,7 @@ const [open2, setOpen2] = React.useState(false);
   const handleClose2 = () => {
     setOpen2(false);
   };
-  
 
- 
 
   const [updatedDiscount, setUpdatedDiscount] = useState(course?.Course_Discount);
   const handleUpdatedDiscount = (event) => {
@@ -237,7 +235,7 @@ const [factor, setFactor] = useState(1);
           </div>
           {/* //h1 el se3r */}
           <div className="flex flex-col justify-between my-2">
-            <h1 className=" text-violet-400 text-4xl font-bold ">
+            <h1 className=" text-violet-400 text-4xl ">
               {discount(course?.Course_Discount, course?.Course_Price)}
             </h1>
             {DiscountDuration(course?.Course_Discount_Duration,course?.Course_Discount,course?.Course_Price)}
@@ -248,8 +246,8 @@ const [factor, setFactor] = useState(1);
       <div className="">
         {/* //what you will learn */}
         <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-          <div className="text-white font-bold text-2xl">What you will learn</div>
-          <div className="flex flex-col gap-1">
+          <div className="text-white font-bold text-2xl mx-2">What you will learn</div>
+          <div className="flex flex-col gap-1 mx-2">
             {/* //m7taga 23melha grid */}
             {Course_What_You_Will_Learn?.map((item, index) => (
               <div
@@ -290,34 +288,35 @@ const [factor, setFactor] = useState(1);
       </div>
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-4">
-        <h1 className="text-white font-bold text-2xl ">Course Content</h1>
+        <h1 className="text-white font-bold text-2xl mx-2">Course Content</h1>
         <a href="/instructor/createsubtitle">
-        <div className="text-white text-l bg-bc font-bold h-24 rounded-md cursor-pointer items-center justify-center flex border border-gray-300">Add Subtitle</div>
+        <div className="text-white text-l bg-bc  h-24 rounded-md cursor-pointer items-center justify-center flex border border-gray-300 mx-2">Add Subtitle</div>
         </a>
         {course?.Course_Subtitle?.map((subtitle, index) => {
           return (
-            <div key={index}  className="bg-bc p-2 rounded-md">
+            <div key={index}  className="bg-bc p-2 rounded-md mx-2">
               <div className="flex flex-col gap-2 ">
                 <div className="flex flex-row gap-2 justify-between">
-                  <div className="text-l font-bold px-2 py-1  ">
+                  <div className="text-l font-bold  ">
                     {subtitle?.Subtitle_Name}
                   </div>
-                  <div className="text-l flex items-end">
+                  <div className="text-l flex ">
                     Total Time: {subtitle?.Subtitle_Hours} mins
                   </div>
                 </div>
               </div>
-              <div className="flex flex-row gap-2 w-[100%] ">
+              <div className="flex flex-row gap-3 w-[100%] ">
                 <div className="flex flex-col items-center justify-center">
-                <BsPlayBtn size={100} className="text-white cursor-pointer " onClick={handleClickAddVideo} />
+                <BsPlayBtn size={110} className="text-white cursor-pointer" onClick={handleClickAddVideo} />
                 <AddVideo isOpen={openAddVideo} handleClose={handleCloseAddVideo}/>
                 <div>Add Video</div>
                 </div>
+                <div className="">
                 {subtitle?.Subtitle_Video?.map((video, index) => {
                   return (
                     <div key={index}>
                       <img
-                        className="flex-shrink-0 w-36 "
+                        className=" w-36 "
                         src="/images/pausedvideo.png"
                         alt="No image yet 😅"
                       />
@@ -326,6 +325,7 @@ const [factor, setFactor] = useState(1);
                     </div>
                   );
                 })}
+                </div>
               </div>
             </div>
           );
@@ -333,7 +333,7 @@ const [factor, setFactor] = useState(1);
       </div>
         <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
       <div className="flex flex-row justify-between items-center">
-        <div className="text-white font-bold text-2xl">Exams </div>
+        <div className="text-white font-bold text-2xl mx-2">Exams </div>
        
         </div>
          <div className="flex flex-row items-center ">
@@ -352,9 +352,9 @@ const [factor, setFactor] = useState(1);
         
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-        <div className="text-white font-bold text-2xl">Reviews</div>
+        <div className="text-white font-bold text-2xl mx-2">Reviews</div>
 
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2 mx-2">
           {course?.Course_Review &&
             course?.Course_Review?.map((review, index) => {
               return (
@@ -369,11 +369,11 @@ const [factor, setFactor] = useState(1);
         </div>
       </div>
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-        <div className="text-white font-bold text-2xl">Add Discount </div>
+        <div className="text-white font-bold text-2xl mx-2">Add Discount </div>
         <div className="flex flex-row justify-between rounded-md items-center">
           <div className="flex flex-row gap-3">
-          <div className="flex flex-col ">
-            <div className=" text-l">Discount Percentage </div>
+          <div className="flex flex-col mx-1">
+            <div className=" text-l mx-1">Discount Percentage </div>
             <input
               defaultValue={course.Course_Discount}
               className=" enabled:hover:border-gray-600  border-black2 bg-black2  text-white p-2 text-l  border-2   rounded-md h-12"
@@ -381,7 +381,7 @@ const [factor, setFactor] = useState(1);
             />
           </div>
           <div className="flex flex-col ">
-            <div className="text-l">Discount Duration In Days</div>
+            <div className="text-l mx-1">Discount Duration In Days</div>
             <input
               defaultValue={course.Course_Discount_Duration}
               className="enabled:hover:border-gray-600  border-black2 bg-black2  text-white p-2 text-l  border-2   rounded-md h-12"
@@ -389,8 +389,8 @@ const [factor, setFactor] = useState(1);
             />
           </div>
           </div>
-          <button onClick={AddDiscount} className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-72 h-12 ">
-            Add Discount</button>
+          <button onClick={AddDiscount} className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded w-72 h-12 border border-violet-400">
+            Add discount</button>
         </div>
       </div>
                               <div className= "rounded-md m-6 flex flex-col justify-center w-96 gap-1">
@@ -398,7 +398,7 @@ const [factor, setFactor] = useState(1);
  
             <button className=""
             onClick={handleClickOpen2}>
-                <div className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-[100%]">Report an issue</div>
+                <div className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-[100%] border border-violet-400">Report an issue</div>
 
             </button>
             <ReportCourse isOpen={open2} handleClose={handleClose2} />

@@ -28,6 +28,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
 
   useEffect(()=>{
   
+
     console.log(localStorage.getItem('currency'));
     if (localStorage.getItem('currency') == '£'){
           setFactor(factor*2);
@@ -44,12 +45,15 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
   
    const discount =(discount:number,price:number) =>{
 
+
      
     
+
         if((discount == 0) || price == 0){
       return <h1 className=" text-violet-400 text-4xl font-bold ">
                 {price*factor} {curr}
               </h1>
+
 
     }
     else{ 
@@ -87,7 +91,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
               </div>
             </div>
             {/* //div el kalam eswd */}
-            <div className="bg-black3 flex flex-col  gap-2 my-2">
+            <div className="bg-black3 flex flex-col gap-2 my-2">
               {course.Course_Trainee.length} enrolled students
               <div className="text-white flex flex-row">
                 Taught by
@@ -104,8 +108,11 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
                 <BsGlobe2 />
                 {course.Course_Country}
               </div>
-              <h1 className=" text-violet-400 text-4xl font-bold ">
+
+              <h1 className=" text-violet-400 text-4xl ">
                 {discount(course?.Course_Discount, course?.Course_Price)}
+
+
               </h1>
               {DiscountDuration(course?.Course_Discount_Duration, course?.Course_Discount, course?.Course_Price)}
             </div>
@@ -125,7 +132,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
             <div className="flex flex-row justify-between my-2">
               <Link href="/instructor/viewcourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white border border-violet-400 py-2 px-4 rounded w-80" onClick={()=>{
                   setcourseID(course?.Course_ID)
                   localStorage.removeItem('CourseID')
                   localStorage.setItem('CourseID', course.Course_ID)
@@ -141,9 +148,11 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
       ))}
     </div>
   );
+
 };
 
 export default InstructorCoursesCard;
+
 //<div
 //   key={course.id}
 //   className=" border-2 border-bc flex h-52 w-1/2 flex-col rounded-lg bg-black2 items-start gap-4 justify-start p-2 text-center text-white shadow-lg"
