@@ -201,7 +201,7 @@ const person = {
   Instructor_Reviews:["I Loved your materials,It helped alot.Keep the great work!","Would have been better if you did more examples but other than that GREAT JOB!!"]
 };
 
-const ViewInstructor: React.FC<{ user }> = ({ user }) => {
+const GuestViewInstructor: React.FC<{ user }> = ({ user }) => {
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -240,16 +240,7 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
             <div className="font-light text-md">Instructor</div>
             <div className="flex flex-row  ">{stars(average(person.Instructor_Ratings))}</div>
         </div>
-         <div className="flex flex-row px-2 justify-end items-end gap-2  text-violet-400">
-                <div className="text-xl text-white">Rate  </div> 
-                <div onClick={() => {setStarsnum(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                 <div onClick={() => {setStarsnum(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  {/*  save the rating in the user  */}
-
-        </div> 
+         
 
         <div className="flex flex-row ">
           <div className="bg-black3 rounded-md m-6 flex flex-col p-2 justify-between w-1/2">
@@ -296,7 +287,7 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
           <div className="text-white font-bold text-l">Assigned to courses</div>
               <div className="grid grid-cols-2 gap-2">
             {person.Instructor_Courses.map((course,index) => (
-              <Link href="/user/viewcourse">
+              <Link href="/guest/course">
                 <div key={index} className="flex flex-col bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md shadow-lg">
                      
                   <div className="text-xl font-bold"> {course.Course_Title}</div>
@@ -334,4 +325,4 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
   );
 };
 
-export default ViewInstructor;
+export default GuestViewInstructor;

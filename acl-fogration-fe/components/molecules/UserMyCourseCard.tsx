@@ -280,7 +280,7 @@ const refund = (isCorporate: string) => {
             <div className="flex flex-row">
               {course?.Course_Trainee?.length} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
-              <Link href="/[{course.Course_Instructor}]">
+              <Link href="/user/instructor">
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
                 {course?.Course_Instructor?.Instructor_FirstName}

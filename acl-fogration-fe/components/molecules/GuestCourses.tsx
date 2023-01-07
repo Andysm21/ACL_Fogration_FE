@@ -63,7 +63,7 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
               <div className="text-white flex flex-row">
                 Taught by
                 <div className="text-black3">.</div>
-                <Link href="/[{course.Course_Instructor}]">
+                <Link href="/guest/instrcutor">
                   {/* // 23deli el link */}
                   <div className="text-violet-400">
                     {course.Course_Instructor.Instructor_FirstName}
@@ -96,8 +96,7 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
             {/* //h1 el se3r */}
             <div className="flex flex-row justify-between my-2">
               {/* <Link href={"http://localhost:3000/guest/"+course.Course_ID}> */}
-              <Link href={"http://localhost:3000/guest/viewcourse"}>
-
+              <Link href="guest/course">
                 {/* //link button to enroll */}
                 <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
                   localStorage.setItem("Course",course?.Course_ID+"")

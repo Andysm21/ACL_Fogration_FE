@@ -201,7 +201,7 @@ const person = {
   Instructor_Reviews:["I Loved your materials,It helped alot.Keep the great work!","Would have been better if you did more examples but other than that GREAT JOB!!"]
 };
 
-const ViewInstructor: React.FC<{ user }> = ({ user }) => {
+const InstructorViewInstructor: React.FC<{ user }> = ({ user }) => {
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -296,7 +296,7 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
           <div className="text-white font-bold text-l">Assigned to courses</div>
               <div className="grid grid-cols-2 gap-2">
             {person.Instructor_Courses.map((course,index) => (
-              <Link href="/user/viewcourse">
+              <Link href="/instructor/viewcourse">
                 <div key={index} className="flex flex-col bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md shadow-lg">
                      
                   <div className="text-xl font-bold"> {course.Course_Title}</div>
@@ -334,4 +334,4 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
   );
 };
 
-export default ViewInstructor;
+export default InstructorViewInstructor;

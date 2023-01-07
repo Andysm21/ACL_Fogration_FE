@@ -266,7 +266,7 @@ const discount =(discount:number,price:number) =>{
               <div className="text-white flex flex-row">
                 Taught by
                 <div className="text-black3">.</div>
-                <Link href="/[{course?.Course_Instructor}]">
+                <Link href="/user/instructor]">
                   {/* // 23deli el link */}
                   <div className="text-violet-400">
                     {course?.Course_Instructor?.Instructor_FirstName}

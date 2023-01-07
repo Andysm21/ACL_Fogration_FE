@@ -11,7 +11,7 @@ import ReportCourse from "./ReportCourse";
 
 const Course_What_You_Will_Learn =["Learn new algorithms","Learn more  abour data structures and algorithms"]
 
-const InstructorCourseCard: React.FC<{ course }> = ({ course }) => {
+const AdminCourseCard: React.FC<{ course }> = ({ course }) => {
   const stars = (rating: number) => {
     let stars = [];
     for (let i = 0; i < rating; i++) {
@@ -96,7 +96,7 @@ const [open2, setOpen2] = React.useState(false);
             <div className="flex flex-row">
               {course?.Course_Trainee?.length} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
-              <Link href="/instructor/instructor">
+              <Link href="/admin/instructor">
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
                   {course?.Course_Instructor?.Instructor_FirstName}
@@ -259,4 +259,4 @@ const [open2, setOpen2] = React.useState(false);
   );
 };
 
-export default InstructorCourseCard;
+export default AdminCourseCard;
