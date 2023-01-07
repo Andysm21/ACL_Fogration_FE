@@ -98,7 +98,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
       <div className="flex flex-row">
       <div className=" text-violet-400 text-4xl line-through">{price}</div>
       <div className="text-black3 text-4xl ">.</div>
-      <div className=" text-violet-400 text-4xl font-bold ">
+      <div className=" text-violet-400 text-4xl  ">
                     {price *factor* (100-discount)/100} {curr}</div>
       </div>
 

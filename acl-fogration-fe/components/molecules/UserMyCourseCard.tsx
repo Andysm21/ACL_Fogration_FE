@@ -230,7 +230,7 @@ const What_You_Will_Learn = [
                 {price*factor} {curr}
               </h1>
 
-
+        }
     else{ 
       
       return(
