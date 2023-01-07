@@ -134,12 +134,16 @@ const enroll = (isCorporate:string) => {
               <div className="text-white flex flex-row">
                 Taught by
                 <div className="text-black3">.</div>
+                <div onClick={()=>{
+                  localStorage.setItem("course_instructor", course?.Course_Instructor?.Instructor_ID)
+                }} >
                 <Link href="instructor">
                   {/* // 23deli el link */}
                   <div className="text-violet-400">
                     {course?.Course_Instructor?.Instructor_FirstName}
                   </div>
                 </Link>
+                </div>
               </div>
               {/* /*div el country*/}
               <div className="flex flex-row gap-1 items-center">
