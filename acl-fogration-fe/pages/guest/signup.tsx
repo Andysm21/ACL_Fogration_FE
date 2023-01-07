@@ -6,7 +6,7 @@ import Link from "next/link";
 import InputField from "../../components/atoms/InputField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import NavGuest from "../../components/atoms/NavGuest";
+import NavGuestLogin from "../../components/atoms/NavGuestLogin";
 import {useState} from 'react';
 import Axios from 'axios';
 import {
@@ -100,26 +100,68 @@ var status='';
 
   return (
     <div>
-      <NavGuest />
-      <div className="flex items-center justify-start px-40 bg-bc w-screen h-screen bg-cover bg-no-repeat">
+      <NavGuestLogin />
+      <div className="flex items-center justify-end justify-between px-60 bg-[url('/images/projbg.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
         {/* div for the form */}
 
+        <h1 className="text-white text-xl">Already have an account?
+          <Link href="/guest/signup" className="px-1 text-violet-400 cursor-pointer hover:border-b hover:text-violet-300">
+          login
+          </Link>
+          now!</h1>
 
         <div className="flex flex-col items-center justify-start rounded-lg bg-black3 py-6 px-4">
           <div className="flex flex-col items-center justify-start gap-2">
-            <input className="bg-bc rounded-md p-3 w-72 text-white" id="username" placeholder="Username" type="text" onChange={handleChangeU}/>
-            <input className="bg-bc rounded-md p-3 w-72 text-white" id="password" placeholder="Password" type="password" onChange={handleChangeP}/>
-            <input className="bg-bc rounded-md p-3 w-72 text-white" id="firstName" placeholder="First Name" type="text" onChange={handleChangeFN}/>
-            <input className="bg-bc rounded-md p-3 w-72 text-white" id="lastName" placeholder="Last Name" type="text" onChange={handleChangeLN}/>
-            <input className="bg-bc rounded-md p-3 w-72 text-white" id="email" placeholder="Email" type="email" onChange={handleChangeEM}/>
-            <input className="bg-bc rounded-md p-3 w-72 text-white" id="country" placeholder="Country" type="text" onChange={handleChangeC}/>
+            <input
+              className="bg-bc rounded-md p-3 w-72 text-white"
+              id="username"
+              placeholder="Username"
+              type="text"
+              onChange={handleChangeU}
+            />
+            <input
+              className="bg-bc rounded-md p-3 w-72 text-white"
+              id="password"
+              placeholder="Password"
+              type="password"
+              onChange={handleChangeP}
+            />
+            <input
+              className="bg-bc rounded-md p-3 w-72 text-white"
+              id="firstName"
+              placeholder="First Name"
+              type="text"
+              onChange={handleChangeFN}
+            />
+            <input
+              className="bg-bc rounded-md p-3 w-72 text-white"
+              id="lastName"
+              placeholder="Last Name"
+              type="text"
+              onChange={handleChangeLN}
+            />
+            <input
+              className="bg-bc rounded-md p-3 w-72 text-white"
+              id="email"
+              placeholder="Email"
+              type="email"
+              onChange={handleChangeEM}
+            />
+            <input
+              className="bg-bc rounded-md p-3 w-72 text-white"
+              id="country"
+              placeholder="Country"
+              type="text"
+              onChange={handleChangeC}
+            />
 
             <div className="flex flex-col py-2 px-2 justify-start items-start">
               {/* adding gender radiobuttons */}
               <FormControl className="flex flex-col items-start justify-start text-white">
                 <FormLabel
-                className="text-white"
-                id="demo-radio-buttons-group-label">
+                  className="text-white"
+                  id="demo-radio-buttons-group-label"
+                >
                   Gender
                 </FormLabel>
                 <RadioGroup
@@ -127,15 +169,12 @@ var status='';
                   defaultValue="male"
                   name="radio-buttons-group"
                   onChange={handleChangeG}
-
                 >
                   <div>
                     <FormControlLabel
-                      
                       value="Male"
                       control={<Radio />}
                       label="Male"
-                      
                     />
                     <FormControlLabel
                       value="Female"
@@ -151,18 +190,18 @@ var status='';
             {/* <InputField id="password" placeholder="Password" type="password" /> */}
             {/* adding login button */}
             <Link href="/guest/login">
-
-              <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white" onClick={signUp}>
+              <button
+                className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white"
+                onClick={signUp}
+              >
                 Sign up
               </button>
             </Link>
             <div className="text-white">
-            By signing up, you agree to our
-            <div className="flex flex-col items-center justify-center underline text-violet-400">
-            <Link href="/guest/policies">
-            Payment & Refund policy
-            </Link>
-            </div>
+              By signing up, you agree to our
+              <div className="flex flex-col items-center justify-center underline text-violet-400">
+                <Link href="/guest/policies">Payment & Refund policy</Link>
+              </div>
             </div>
           </div>
         </div>
