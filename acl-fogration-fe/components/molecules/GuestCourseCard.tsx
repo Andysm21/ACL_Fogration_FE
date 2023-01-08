@@ -44,7 +44,7 @@ useEffect(()=>{
       
       return(
       <div className="flex flex-row">
-      <div className=" text-violet-400 text-4xlline-through">{price}</div>
+      <div className=" text-violet-400 text-4xl line-through">{price}</div>
       <div className="text-bc text-4xl ">. </div>
       <div className=" text-violet-400 text-4xl">
                     {price* factor * (100-discount)/100}{curr}</div>
