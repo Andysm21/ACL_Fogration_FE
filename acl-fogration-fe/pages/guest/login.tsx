@@ -47,6 +47,7 @@ const router = useRouter();
      Axios.post("http://localhost:8000/login", {Uname:Username,Pass:Password},
  
    ).then((response) => {
+    localStorage.setItem("Search","");
     localStorage.setItem("Subject","")
     localStorage.setItem("Rating","")
     localStorage.setItem("MaxPrice","")
@@ -138,7 +139,7 @@ const router = useRouter();
   return (
     <div>
       <NavGuestLogin />
-      <div className="flex items-center justify-end justify-between px-60  bg-[url('/images/projbg.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
+      <div className="flex items-center justify-between px-60  bg-[url('/images/projbg.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
         {/* div for the form */}
           <h1 className="text-white text-xl">Not registered yet? Don't miss the chance and
           <Link href="/guest/signup" className="px-1 text-violet-400 cursor-pointer hover:border-b hover:text-violet-300">

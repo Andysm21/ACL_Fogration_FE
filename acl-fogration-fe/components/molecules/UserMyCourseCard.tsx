@@ -297,7 +297,7 @@ const refund = (isCorporate: string) => {
           <div className="bg-bc flex flex-col  gap-3 my-2">
             <div>{course?.Course_Description}</div>
             <div className="flex flex-row">
-              {course?.Course_Trainee?.length} enrolled students, taught by{" "}
+              {course?.Course_Trainee} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
 
               <div onClick={()=>{ localStorage.setItem('course_instructor', course.Course_Instructor.Instructor_ID)}}>

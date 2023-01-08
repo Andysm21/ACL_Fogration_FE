@@ -24,6 +24,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   const [curr, setCurr] = useState('€');
 
   useEffect(() => {
+    console.log(course.name)
     setIsCorporate(localStorage.getItem("isCorp"))
     if (localStorage.getItem('currency') == '£'){
           setFactor(factor*2);
@@ -171,11 +172,11 @@ const enroll = (isCorporate:string) => {
           <div className="bg-bc flex flex-col  gap-3 my-2">
             <div>{course?.Course_Description}</div>
             <div className="flex flex-row">
-              {course.Course_Users} enrolled students, taught by{" "}
+              {course?.Course_Trainee} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
 
-              <div onClick={()=>{ localStorage.setItem('course_instructor', course.Course_Instructor.Instructor_ID)}}>
-              <Link href="user/instructor">
+              <div onClick={()=>{ localStorage.setItem('course_instructor', course?.Course_Instructor?.Instructor_ID)}}>
+              <Link href="instructor">
 
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
