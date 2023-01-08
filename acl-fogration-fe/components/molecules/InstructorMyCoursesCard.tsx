@@ -8,7 +8,24 @@ import { BsGlobe2, BsPlayBtnFill, BsPlusCircle, BsPlusSquare } from "react-icons
 
 const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
   const [courseID,setcourseID]=useState("") 
-
+  const [factor, setFactor] = useState(1);
+  const [curr, setCurr] = useState('€');
+  
+    useEffect(()=>{
+      console.log(courses)
+      console.log(localStorage.getItem('currency'));
+      if (localStorage.getItem('currency') == '£'){
+            setFactor(factor*2);
+            setCurr('£');
+          }
+  
+        if (localStorage.getItem('currency') == '$'){
+            setFactor(factor*1.5);
+            setCurr('$');
+          }
+          
+  
+    })
 
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
@@ -24,24 +41,7 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
     }
     return stars;
   };
-const [factor, setFactor] = useState(1);
-const [curr, setCurr] = useState('€');
 
-  useEffect(()=>{
-  
-    console.log(localStorage.getItem('currency'));
-    if (localStorage.getItem('currency') == '£'){
-          setFactor(factor*2);
-          setCurr('£');
-        }
-
-      if (localStorage.getItem('currency') == '$'){
-          setFactor(factor*1.5);
-          setCurr('$');
-        }
-        
-
-  })
   
    const discount =(discount:number,price:number) =>{
 
@@ -101,7 +101,7 @@ const [curr, setCurr] = useState('€');
             </div>
             {/* //div el kalam eswd */}
             <div className="bg-black3 flex flex-col  gap-2 my-2">
-              {course?.Course_Trainee?.length} enrolled students
+              {course?.Course_Trainee} enrolled students
               <div className="text-white flex flex-row">
                 Taught by
                 <div className="text-black3">.</div>

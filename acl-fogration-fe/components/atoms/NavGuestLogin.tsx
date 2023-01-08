@@ -31,7 +31,10 @@ const NavGuestLogin = () => {
         <div className=" grid grid-cols-1 px-2 relative top-0 left-0 right-0 ">
             <h1 className="cursor-pointer border-b-lightgrey text-xl font-light text-white hover:border-b hover:text-gray-300 items-center">
               Check our 
-          <Link href="/guest/guestcourses" className="text-violet-400 px-1">
+          <Link href="/guest/guestcourses" className="text-violet-400 px-1" onClick={()=>{
+                localStorage.setItem("Search","");
+               // router.push('/guest/guestcourses')
+          }}>
             courses
           </Link>
             </h1>

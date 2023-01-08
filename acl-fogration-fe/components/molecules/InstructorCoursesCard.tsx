@@ -6,6 +6,20 @@ import { CountrySelector } from "./Selector";
 
 
 const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
+  const [factor, setFactor] = useState(1);
+  const [curr, setCurr] = useState('€');
+  useEffect(()=>{
+    console.log(localStorage.getItem('currency'));
+    if (localStorage.getItem('currency') == '£'){
+          setFactor(factor*2);
+          setCurr('£');
+        }
+        if (localStorage.getItem('currency') == '$'){
+          setFactor(factor*1.5);
+          setCurr('$');
+        }
+  
+  })
   const [courseID,setcourseID]=useState("") 
   
   if (courses.length === 0) {
@@ -23,25 +37,9 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
     }
     return stars;
   };
-  const [factor, setFactor] = useState(1);
-  const [curr, setCurr] = useState('€');
 
-  useEffect(()=>{
-  
 
-    console.log(localStorage.getItem('currency'));
-    if (localStorage.getItem('currency') == '£'){
-          setFactor(factor*2);
-          setCurr('£');
-        }
-
-      if (localStorage.getItem('currency') == '$'){
-          setFactor(factor*1.5);
-          setCurr('$');
-        }
-        
-
-  })
+ 
   
    const discount =(discount:number,price:number) =>{
 
@@ -77,6 +75,8 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
          return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
     }
   }
+
+
   return (
     <div className="grid grid-cols-2 text-white bg-bc gap-4">
       {courses.map((course,index) => (
@@ -92,7 +92,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
             </div>
             {/* //div el kalam eswd */}
             <div className="bg-black3 flex flex-col gap-2 my-2">
-              {course.Course_Trainee.length} enrolled students
+              {course.Course_Trainee} enrolled students
               <div className="text-white flex flex-row">
                 Taught by
                 <div className="text-black3">.</div>

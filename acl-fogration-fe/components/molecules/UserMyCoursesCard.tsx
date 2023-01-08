@@ -284,7 +284,7 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
             </div>
             {/* //div el kalam eswd */}
             <div className="bg-black3 flex flex-col  gap-2 my-2">
-              {course?.Course_Trainee.length} enrolled students
+              {course?.Course_Trainee} enrolled students
               <div className="text-white flex flex-row">
                 Taught by
                 <div onClick={()=>{
