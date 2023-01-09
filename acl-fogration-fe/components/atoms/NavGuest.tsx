@@ -12,7 +12,7 @@ const NavGuest = () => {
   // Default this to a country's code to preselect it
   const [country, setCountry] = useState("DE");
   return (
-    <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-bc shadow-lg px-4">
+    <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-bc shadow-lg px-5">
         {/* <img className="w-16 " src="/Images/fogration-blue.png " alt="siteLogo" /> */}
         <div>
           <CountrySelector

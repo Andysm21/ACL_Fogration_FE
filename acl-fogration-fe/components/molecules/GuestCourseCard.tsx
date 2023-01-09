@@ -36,7 +36,7 @@ useEffect(()=>{
       
       if((discount == 0) || price == 0){
     return <h1 className=" text-violet-400 text-4xl">
-                {price*factor} {curr}
+                {price*factor}{curr}
               </h1>
 
     }
@@ -61,7 +61,7 @@ function DiscountDuration(duration : number,discount : number ,price : number){
         return <div></div>
       }
         else{
-         return  <p className=" text-violet-400">Discount available for {duration} days</p>
+         return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
         }
   }
  // console.log(course);
@@ -123,7 +123,7 @@ useEffect(()=>{
         <div className="flex flex-col">
           {/* //div el title bel rating */}
           <div className="flex flex-col text-3xl">
-            <div className="Font-bold  text-white">{SavedCourseData?.Course_Title}</div>
+            <div className="text-white">{SavedCourseData?.Course_Title}</div>
             <div className="flex flex-row  ">{stars(SavedCourseData?.Course_Rating)}</div>
           </div>
           {/* //div el kalam eswd */}
@@ -161,12 +161,12 @@ useEffect(()=>{
             {/* <h1 className=" text-violet-400 text-4xl font-bold ">
               $${SavedCourseData?.Course_Price}
             </h1> */}
-           <h1 className=" text-violet-400 text-4xl font-bold "> {discount(SavedCourseData?.Course_Discount, SavedCourseData?.Course_Price)}</h1>
+           <h1 className=" text-violet-400 text-4xl"> {discount(SavedCourseData?.Course_Discount, SavedCourseData?.Course_Price)}</h1>
 
 
             <Link href="/guest/signup">
               {/* //link button to enroll */}
-              <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-52">
+              <button         className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded w-36 border border-violet-400">
                 Enroll Now
               </button>
             </Link>
@@ -180,8 +180,8 @@ useEffect(()=>{
       <div className="">
         {/* //what you will learn */}
         <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-          <div className="text-white font-bold text-l">What you will learn</div>
-          <div className="flex flex-col gap-1">
+          <div className="text-white font-bold text-2xl mx-2">What you will learn</div>
+          <div className="flex flex-col gap-1 mx-2">
             {/* //m7taga 23melha grid */}
             {Course_What_You_Will_Learn?.map((item,index) => (
               <div className="flex flex-row gap-1 text-white items-center" key={index}>
@@ -195,7 +195,7 @@ useEffect(()=>{
       {/*  div de m7taga tet7at ta7t */}
       {/* //This course includes  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <div className="text-white font-bold text-l mx-2">
+        <div className="text-white font-bold text-2xl mx-2">
           This course includes
         </div>
         <div className="flex flex-row">
@@ -218,33 +218,35 @@ useEffect(()=>{
         </div>
       </div>
       {/* //Course content  */}
-      <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <h1 className="text-white font-bold text-l ">Course Content</h1>
-        {SavedCourseData?.Course_Subtitle?.map((subtitle) => {
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-4">
+        <h1 className="text-white font-bold text-2xl mx-2">Course Content</h1>
+        {course?.Course_Subtitle && course?.Course_Subtitle.map((subtitle,index) => {
           return (
-            <div>
+            <div key={index}  className="bg-bc p-2 rounded-md mx-2">
               <div className="flex flex-col gap-2 ">
                 <div className="flex flex-row gap-2 justify-between">
-                  <div className="text-xl font-bold">
-                    {subtitle.Subtitle_Name}
+                  <div className="text-l font-bold">
+                    {subtitle?.Subtitle_Name}
                   </div>
-                  <div className="text-l flex items-end ">
-                    Total Time: {subtitle.Subtitle_Hours} mins
+                  <div className="text-l flex ">
+                    Total Time: {subtitle?.Subtitle_Hours} mins
                   </div>
                 </div>
               </div>
-              <div className="flex flex-row gap-2 w-[100%] ">
-                {subtitle.Subtitle_Video.map((video) => {
+              <div className="flex flex-row gap-3 w-[100%] ">
+                {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
-                    <div>
+                    <div key={index}>
+                      <Link href={video?.Video_Link}>
                       <img
-                        className="flex-shrink-0 w-36 "
+                        className=" w-36  "
                         src="/images/pausedvideo.png"
-                        alt="No image yet 😅"
+                        alt="No image yet "
                       />
+                  </Link>
 
-                      <div className="text-l">{video.Video_Description}</div>
-                      <div className="text-l">{video.Video_Length} mins</div>
+                      <div className="text-l">{video?.Video_Description}</div>
+                      <div className="text-l">{video?.Video_Length} mins</div>
                     </div>
                   );
                 })}
@@ -271,9 +273,9 @@ useEffect(()=>{
         </div>
         </div> */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
-          <div className="text-white font-bold text-l">Reviews</div>
+        <div className="text-white font-bold text-2xl mx-2">Reviews</div>
 
-          <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2 mx-2">
             {course?.Course_Review && course?.Course_Review?.map((review,index) => {return (
                 <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
                   {review}</div>    

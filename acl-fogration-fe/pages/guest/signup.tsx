@@ -105,7 +105,7 @@ var status='';
         {/* div for the form */}
 
         <h1 className="text-white text-xl">Already have an account?
-          <Link href="/guest/signup" className="px-1 text-violet-400 cursor-pointer hover:border-b hover:text-violet-300">
+          <Link href="/guest/login" className="px-1 text-violet-400 cursor-pointer hover:border-b hover:text-violet-300">
           login
           </Link>
           now!</h1>

@@ -88,7 +88,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
 
         if((discount == 0) || price == 0){
       return <h1 className=" text-violet-400 text-4xl  ">
-                {price*factor} {curr}
+                {price*factor}{curr}
               </h1>
 
     }
@@ -100,7 +100,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
       <div className=" text-violet-400 text-4xl line-through">{price}</div>
       <div className="text-black3 text-4xl ">.</div>
       <div className=" text-violet-400 text-4xl  ">
-                    {price *factor* (100-discount)/100} {curr}</div>
+                    {price *factor* (100-discount)/100}{curr}</div>
       </div>
 
       )
@@ -165,7 +165,7 @@ const enroll = (isCorporate:string) => {
         <div className="flex flex-col">
           {/* //div el title bel rating */}
           <div className="flex flex-col text-3xl">
-            <div className="Font-bold  text-white">{course?.Course_Title}</div>
+            <div className="text-white">{course?.Course_Title}</div>
             <div className="flex flex-row  ">{stars(course?.Course_Rating)}</div>
           </div>
           {/* //div el kalam eswd */}

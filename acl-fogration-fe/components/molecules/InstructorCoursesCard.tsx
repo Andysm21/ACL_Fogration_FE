@@ -89,7 +89,7 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
           <div className="flex flex-col">
             {/* //div el title bel rating */}
             <div className="flex flex-col text-3xl">
-              <div className="Font-bold  text-white">{course.Course_Title}</div>
+              <div className="text-white">{course.Course_Title}</div>
               <div className="flex flex-row  ">
                 {stars(course.Course_Rating)}
               </div>

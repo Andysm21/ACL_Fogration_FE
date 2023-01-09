@@ -2,6 +2,7 @@ import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import React, { useEffect, useState } from "react";
+import Payment from "./Payment";
 import RequestAccess from "./RequestAccess";
 
  
@@ -108,7 +109,7 @@ const enroll = (isCorporate:string) => {
       >
         Enroll Now
       </button>
-      <RequestAccess isOpen={open} handleClose={handleClose} />
+      <Payment isOpen={open} handleClose={handleClose} />
       </div>
     )
   } else {
