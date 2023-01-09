@@ -131,6 +131,26 @@ const courses = [
 ];
 
 const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
+      var [SavedCourseData,setSavedCourseData]=useState({
+      Course_ID: NaN,
+      Course_Subject: '',
+      Course_Description: '',
+      Course_Price: NaN,
+      Course_Rating: NaN,
+      Course_Instructor: {
+        Instructor_FirstName: '',
+      },
+      Course_Hours: NaN,
+      Course_Country: '',
+      Course_Discount: NaN,
+      Course_Title: '',
+      Course_Discount_Duration: NaN,
+      Course_Subtitle: [],
+      Course_Trainee: [],
+      Course_Review: [],
+      Course_Rate: [''],
+      Course_Exam: [''],
+      Course_What_You_Will_Learn: [],    })
   const router = useRouter();
   var flag;
 
@@ -227,43 +247,42 @@ const What_You_Will_Learn = [
       return 
     }
   }
-   const discount =(discount:number,price:number) =>{
-
-    if(isCorporate == "false"){
-        if((discount == 0) || price == 0){
-      return <h1 className=" text-violet-400 text-4xl font-bold ">
-                {price*factor} {curr}
-              </h1>
-
-        }
-    else{ 
-      
-      return(
-      <div className="flex flex-row">
-      <div className=" text-violet-400 text-4xl  line-through">{price}</div>
-      <div className="text-black3 text-4xl  ">.</div>
-      <div className=" text-violet-400 text-4xl  ">
-                    {price *factor* (100-discount)/100} {curr}</div>
-      </div>
-      )
+  const discount = (discount: number, price: number, duration: number) => {
+    if (localStorage.getItem("currency") == "£") {
+      price = price * 20;
     }
-    }else{
-      return (<div>
-        
-      </div>)
-    }}
 
- function DiscountDuration(duration : number,discount : number ,price : number){
-         if(isCorporate == "true"){
-      return <div></div>                                                                    
-    }else{
-      if(duration == 0 || discount == 0 || price == 0){
-        return <div></div>
-      }
-        else{
-         return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
+    if (localStorage.getItem("currency") == "$") {
+      price = price * 1.5;
     }
-  }
+    if (discount == 0 || price == 0 || duration == 0) {
+      return (
+        <h1 className=" text-violet-400 text-4xl  ">
+          {price} {localStorage.getItem("currency")}
+        </h1>
+      );
+    } else {
+      return (
+        <div className="flex flex-row">
+          <div className=" text-violet-400 text-4xl  line-through">{price}</div>
+          <div className="text-black3 text-4xl  ">.</div>
+          <div className=" text-violet-400 text-4xl  ">
+            {(price * (100 - discount)) / 100}{" "}
+            {localStorage.getItem("currency")}
+          </div>
+        </div>
+      );
+    }
+  };
+  function DiscountDuration(duration: number, discount: number, price: number) {
+    if (duration == 0 || discount == 0 || price == 0) {
+      return <div></div>;
+    } else
+      return (
+        <p className=" text-violet-400 text-light text-sm">
+          Discount available for {duration} days
+        </p>
+      );
   }
 
 const refund = (isCorporate: string) => {
@@ -337,7 +356,11 @@ const refund = (isCorporate: string) => {
           <div className="flex flex-row justify-between my-2">
             
             <h1 className=" text-violet-400 text-4xl ">
-              {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
+{discount(
+                  course.Course_Discount,
+                  course.Course_Price,
+                  course.Course_Discount_Duration
+                )}
               </h1>
            
                  <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
@@ -354,7 +377,11 @@ const refund = (isCorporate: string) => {
 
           </div>
 
-     {DiscountDuration(course?.Course_Discount,course?.Course_Duration,course?.Course_Price)}
+{DiscountDuration(
+              SavedCourseData?.Course_Discount_Duration,
+              SavedCourseData?.Course_Discount,
+              SavedCourseData?.Course_Price
+            )}
 </div>
         </div>
       </div>

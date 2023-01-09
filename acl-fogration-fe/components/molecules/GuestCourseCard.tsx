@@ -13,57 +13,57 @@ const Course_What_You_Will_Learn =[
   "Learn about new algorithms"]
  
 const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
-   const [factor, setFactor] = useState(1);
-  const [curr, setCurr] = useState('€');
+//    const [factor, setFactor] = useState(1);
+//   const [curr, setCurr] = useState('€');
 
-useEffect(()=>{
+// useEffect(()=>{
   
-    console.log(localStorage.getItem('currency'));
-    if (localStorage.getItem('currency') == '£'){
-          setFactor(factor*2);
-          setCurr('£');
-        }
+//     console.log(localStorage.getItem('currency'));
+//     if (localStorage.getItem('currency') == '£'){
+//           setFactor(factor*2);
+//           setCurr('£');
+//         }
 
-      if (localStorage.getItem('currency') == '$'){
-          setFactor(factor*1.5);
-          setCurr('$');
-        }
+//       if (localStorage.getItem('currency') == '$'){
+//           setFactor(factor*1.5);
+//           setCurr('$');
+//         }
         
 
-  })
-      const discount = (discount:number,price:number) =>{
+//   })
+//       const discount = (discount:number,price:number) =>{
       
       
-      if((discount == 0) || price == 0){
-    return <h1 className=" text-violet-400 text-4xl">
-                {price*factor}{curr}
-              </h1>
+//       if((discount == 0) || price == 0){
+//     return <h1 className=" text-violet-400 text-4xl">
+//                 {price*factor}{curr}
+//               </h1>
 
-    }
-    else{ 
+//     }
+//     else{ 
       
-      return(
-      <div className="flex flex-row">
-      <div className=" text-violet-400 text-4xl line-through">{price}</div>
-      <div className="text-bc text-4xl ">. </div>
-      <div className=" text-violet-400 text-4xl">
-                    {price* factor * (100-discount)/100}{curr}</div>
-      </div>
+//       return(
+//       <div className="flex flex-row">
+//       <div className=" text-violet-400 text-4xl line-through">{price}</div>
+//       <div className="text-bc text-4xl ">. </div>
+//       <div className=" text-violet-400 text-4xl">
+//                     {price* factor * (100-discount)/100}{curr}</div>
+//       </div>
 
-      )
-    }
-    }
+//       )
+//     }
+//     }
 
 
-function DiscountDuration(duration : number,discount : number ,price : number){
+// function DiscountDuration(duration : number,discount : number ,price : number){
   
-      if(duration == 0 || discount == 0 || price == 0){
-        return <div></div>
-      }
-        else{
-         return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
-        }
-  }
+//       if(duration == 0 || discount == 0 || price == 0){
+//         return <div></div>
+//       }
+//         else{
+//          return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
+//         }
+//   }
  // console.log(course);
   // if (courses.length === 0) {
   //   return <div className="text-center ">No courses</div>;
@@ -103,6 +103,44 @@ function DiscountDuration(duration : number,discount : number ,price : number){
     }
     return stars;
   }
+
+  const discount = (discount: number, price: number, duration: number) => {
+    if (localStorage.getItem("currency") == "£") {
+      price = price * 20;
+    }
+
+    if (localStorage.getItem("currency") == "$") {
+      price = price * 1.5;
+    }
+    if (discount == 0 || price == 0 || duration == 0) {
+      return (
+        <h1 className=" text-violet-400 text-4xl  ">
+          {price} {localStorage.getItem("currency")}
+        </h1>
+      );
+    } else {
+      return (
+        <div className="flex flex-row">
+          <div className=" text-violet-400 text-4xl  line-through">{price}</div>
+          <div className="text-black3 text-4xl  ">.</div>
+          <div className=" text-violet-400 text-4xl  ">
+            {(price * (100 - discount)) / 100}{" "}
+            {localStorage.getItem("currency")}
+          </div>
+        </div>
+      );
+    }
+  };
+  function DiscountDuration(duration: number, discount: number, price: number) {
+    if (duration == 0 || discount == 0 || price == 0) {
+      return <div></div>;
+    } else
+      return (
+        <p className=" text-violet-400 text-light text-sm">
+          Discount available for {duration} days
+        </p>
+      );
+  }
   
 useEffect(()=>{
   Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
@@ -116,7 +154,10 @@ useEffect(()=>{
 
 
   return (
-    <div key={SavedCourseData?.Course_ID} className=" flex flex-col bg-bc w-75% shadow-lg text-white">
+    <div
+      key={SavedCourseData?.Course_ID}
+      className=" flex flex-col bg-bc w-75% shadow-lg text-white"
+    >
       {/* //div el eswd */}
       <div className="flex flex-row bg-bc justify-between mx-6 my-4">
         {/* //div el title bel kalam */}
@@ -124,7 +165,9 @@ useEffect(()=>{
           {/* //div el title bel rating */}
           <div className="flex flex-col text-3xl">
             <div className="text-white">{SavedCourseData?.Course_Title}</div>
-            <div className="flex flex-row  ">{stars(SavedCourseData?.Course_Rating)}</div>
+            <div className="flex flex-row  ">
+              {stars(SavedCourseData?.Course_Rating)}
+            </div>
           </div>
           {/* //div el kalam eswd */}
           <div className="bg-bc flex flex-col  gap-3 my-2">
@@ -157,22 +200,31 @@ useEffect(()=>{
           </div>
           {/* //h1 el se3r */}
           <div className="flex flex-col">
-          <div className="flex flex-row justify-between my-2">
-            {/* <h1 className=" text-violet-400 text-4xl font-bold ">
+            <div className="flex flex-row justify-between my-2">
+              {/* <h1 className=" text-violet-400 text-4xl font-bold ">
               $${SavedCourseData?.Course_Price}
             </h1> */}
-           <h1 className=" text-violet-400 text-4xl"> {discount(SavedCourseData?.Course_Discount, SavedCourseData?.Course_Price)}</h1>
+              <h1 className=" text-violet-400 text-4xl">
+                {" "}
+                {discount(
+                  course.Course_Discount,
+                  course.Course_Price,
+                  course.Course_Discount_Duration
+                )}
+              </h1>
 
-
-            <Link href="/guest/signup">
-              {/* //link button to enroll */}
-              <button         className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded w-36 border border-violet-400">
-                Enroll Now
-              </button>
-            </Link>
-          </div>
-           {DiscountDuration(SavedCourseData?.Course_Discount_Duration, SavedCourseData?.Course_Discount,SavedCourseData?.Course_Price)}
-
+              <Link href="/guest/signup">
+                {/* //link button to enroll */}
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded w-36 border border-violet-400">
+                  Enroll Now
+                </button>
+              </Link>
+            </div>
+            {DiscountDuration(
+              SavedCourseData?.Course_Discount_Duration,
+              SavedCourseData?.Course_Discount,
+              SavedCourseData?.Course_Price
+            )}
           </div>
         </div>
       </div>
@@ -180,11 +232,16 @@ useEffect(()=>{
       <div className="">
         {/* //what you will learn */}
         <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-          <div className="text-white font-bold text-2xl mx-2">What you will learn</div>
+          <div className="text-white font-bold text-2xl mx-2">
+            What you will learn
+          </div>
           <div className="flex flex-col gap-1 mx-2">
             {/* //m7taga 23melha grid */}
-            {Course_What_You_Will_Learn?.map((item,index) => (
-              <div className="flex flex-row gap-1 text-white items-center" key={index}>
+            {Course_What_You_Will_Learn?.map((item, index) => (
+              <div
+                className="flex flex-row gap-1 text-white items-center"
+                key={index}
+              >
                 <TiTick />
                 <div className="text-white">{item}</div>
               </div>
@@ -220,40 +277,41 @@ useEffect(()=>{
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-4">
         <h1 className="text-white font-bold text-2xl mx-2">Course Content</h1>
-        {course?.Course_Subtitle && course?.Course_Subtitle.map((subtitle,index) => {
-          return (
-            <div key={index}  className="bg-bc p-2 rounded-md mx-2">
-              <div className="flex flex-col gap-2 ">
-                <div className="flex flex-row gap-2 justify-between">
-                  <div className="text-l font-bold">
-                    {subtitle?.Subtitle_Name}
-                  </div>
-                  <div className="text-l flex ">
-                    Total Time: {subtitle?.Subtitle_Hours} mins
+        {course?.Course_Subtitle &&
+          course?.Course_Subtitle.map((subtitle, index) => {
+            return (
+              <div key={index} className="bg-bc p-2 rounded-md mx-2">
+                <div className="flex flex-col gap-2 ">
+                  <div className="flex flex-row gap-2 justify-between">
+                    <div className="text-l font-bold">
+                      {subtitle?.Subtitle_Name}
+                    </div>
+                    <div className="text-l flex ">
+                      Total Time: {subtitle?.Subtitle_Hours} mins
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex flex-row gap-3 w-[100%] ">
-                {subtitle?.Subtitle_Video?.map((video,index) => {
-                  return (
-                    <div key={index}>
-                      <Link href={video?.Video_Link}>
-                      <img
-                        className=" w-36  "
-                        src="/images/pausedvideo.png"
-                        alt="No image yet "
-                      />
-                  </Link>
+                <div className="flex flex-row gap-3 w-[100%] ">
+                  {subtitle?.Subtitle_Video?.map((video, index) => {
+                    return (
+                      <div key={index}>
+                        <Link href={video?.Video_Link}>
+                          <img
+                            className=" w-36  "
+                            src="/images/pausedvideo.png"
+                            alt="No image yet "
+                          />
+                        </Link>
 
-                      <div className="text-l">{video?.Video_Description}</div>
-                      <div className="text-l">{video?.Video_Length} mins</div>
-                    </div>
-                  );
-                })}
+                        <div className="text-l">{video?.Video_Description}</div>
+                        <div className="text-l">{video?.Video_Length} mins</div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
       {/* <div className="flex flex-col bg-black3 rounded-md m-6">
           <div className=" text-white font-bold text-l mx-2">
@@ -276,13 +334,19 @@ useEffect(()=>{
         <div className="text-white font-bold text-2xl mx-2">Reviews</div>
 
         <div className="flex flex-row gap-2 mx-2">
-            {course?.Course_Review && course?.Course_Review?.map((review,index) => {return (
-                <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
-                  {review}</div>    
-            )})}
-          </div>
-          
-        </div> 
+          {course?.Course_Review &&
+            course?.Course_Review?.map((review, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52"
+                >
+                  {review}
+                </div>
+              );
+            })}
+        </div>
+      </div>
     </div>
   );
 };
