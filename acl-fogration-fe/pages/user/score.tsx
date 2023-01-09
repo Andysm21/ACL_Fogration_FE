@@ -26,25 +26,32 @@ const score = () => {
   const[Question_Correct_Answers,SetQCA]=useState(0);
   const[Questions,SetQ]=useState(0);
 
-  const text = () => {
+  const text = (final:boolean) => {
+    if(final == true){
+      return (<div className="text-violet-400 text-7xl text-center ">
+        Congratulations! You finished the course
+      </div>
+      )
+    }else{
     if (grade < 50) {
         return (
-          <div className="text-violet-400 text-7xl text-center font-bold">
+          <div className="text-violet-400 text-7xl text-center ">
             OPPS!
           </div>
         );
     }
     else
         return (
-          <div className="text-violet-400 text-7xl text-center font-bold">
+          <div className="text-violet-400 text-7xl text-center ">
            Great Job!
           </div>
         );
+    }
 }
 const suggest = () => {
     if (grade < 50) {
       return (
-        <div className="text-white text-l text-center font-bold">
+        <div className="text-white text-l text-center ">
               we suggest you go through the course again and retake the exam one more time before moving on to the next subtitle
         </div>
       );
@@ -103,12 +110,27 @@ useEffect(() => {
   // console.log(Exam)
 })
 
+const finished = (final : boolean) =>{
+  if (final == true)
+      return (
+      <button onClick = {download} className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded  w-72" >
+        Download Cirtificate
+      </button>
+    )
+}
+
+const download = () =>{
+  console.log("Cirteficate Downloaded");
+}
+var final = true;
   return (
+  
     <div>
+     
       <Layout>
         <div className="bg-bc h-screen w-full flex flex-col justify-center gap-1">
-          {text()}
-          <div className="text-white text-center font-bold text-3xl flex flex-row items-center justify-center">
+          {text(final)}
+          <div className="text-white text-center  text-3xl flex flex-row items-center justify-center">
             You have answered <div className="text-bc">.</div>
             <div className="text-violet-400"> {Question_Correct_Answers}</div>
             <div className="text-bc">.</div>
@@ -118,33 +140,35 @@ useEffect(() => {
             <div className="text-bc">.</div>
             correctly
           </div>
-          <div className="text-white text-3xl font-bold text-center">You got {grade} %</div>
+          <div className="text-white text-3xl  text-center">You got {grade} %</div>
 
           {/* {suggest()} */}
-          <div className="text-white text-center font-bold text-2xl">
+          <div className="text-white text-center  text-2xl">
             Would you like to
           </div>
 
           <div className="flex flex-row gap-2 justify-center">
             <Link href="/user/solveexam">
-            <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded  w-72" onClick={retake}>
+            <button className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded  w-72" onClick={retake}>
               Retake Exam
             </button>
             </Link>
             <Link href="/user/correctanswers">
-            <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-72">
+            <button className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded w-72">
               Show Correct Answers
             </button>
             </Link>
-          </div>
-          <div className="text-white text-center font-light">
+            {finished(final)}
             
+          </div>
+          <div className="text-white text-center font-light"> 
             *By showing correct answers you will not be able to retake exam
           </div>
         </div>
       </Layout>
     </div>
-  );
+    
+  );  
 }
 
 export default score
