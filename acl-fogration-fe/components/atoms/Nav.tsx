@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { SelectMenuOption } from '../atoms/types';
 import {CountrySelector} from '../molecules/Selector';
 import {COUNTRIES} from '../atoms/countries';
+import axios from 'axios';
 
 interface Props {
   links:
@@ -26,16 +27,34 @@ const Nav: React.FC<Props> = ({ links }) => {
     var id=Number(localStorage.getItem("user_id" ));
     var type=localStorage.getItem("Type");
     if(type==("Corp")){
-      setName("Corp");
+      axios.post("http://localhost:8000/NameCorp",{
+        UserID:id
+      }
+     ).then((response) => {
+       setName(response.data)
+     }).catch((error) => console.log(error))
+      // setName("Corp");
     }
     else if(type=="User"){
-      setName("Ind");
+      axios.post("http://localhost:8000/NameInd",{
+        UserID:id
+      }
+     ).then((response) => {
+       setName(response.data)
+     }).catch((error) => console.log(error))
+      // setName("Ind");
     }
     else if(type=="Admin"){
       setName("Admin");
     }
     else if(type=="Instructor"){
-      setName("Instructor");
+      axios.post("http://localhost:8000/NameInst",{
+        UserID:id
+      }
+     ).then((response) => {
+       setName(response.data)
+     }).catch((error) => console.log(error))
+      // setName("Instructor");
     }
   }
   useEffect(() => {
