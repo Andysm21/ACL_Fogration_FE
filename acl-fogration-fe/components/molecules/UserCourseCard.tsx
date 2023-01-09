@@ -287,11 +287,13 @@ const enroll = (isCorporate:string) => {
                 {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
                     <div key={index}>
+                      <Link href={video?.Video_Link}>
                       <img
                         className=" w-36  "
                         src="/images/pausedvideo.png"
-                        alt="No image yet 😅"
+                        alt="No image yet "
                       />
+                  </Link>
 
                       <div className="text-l">{video?.Video_Description}</div>
                       <div className="text-l">{video?.Video_Length} mins</div>
