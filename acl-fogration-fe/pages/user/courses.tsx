@@ -142,7 +142,7 @@ else{
       if(localStorage.getItem("Search")=='' || localStorage.getItem("Search")==""){
         getCourses()
         localStorage.setItem("Search","")
-        console.log("ALL")
+        // console.log("ALL")
 
        //  console.log("Hi")
        }

@@ -215,33 +215,38 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
     }
   }
 
-     const discount = (discount:number,price:number) =>{
+  const discount = (discount:number,price:number) =>{
+    if(isCorporate == "true"){
+      return
+    }
+    else{
       if (localStorage.getItem('currency') == '£'){
-          price = price*20;
-        }
+        price = price*20;
+      }
 
-      if (localStorage.getItem('currency') == '$'){
-          price = price*1.5;
-        }
-      if((discount == 0) || price == 0){
-      return <h1 className=" text-violet-400 text-4xl  ">
-                {price} {localStorage.getItem('currency')}
-              </h1>
+    if (localStorage.getItem('currency') == '$'){
+        price = price*1.5;
+      }
+    if((discount == 0) || price == 0){
+    return <h1 className=" text-violet-400 text-4xl  ">
+              {price} {localStorage.getItem('currency')}
+            </h1>
 
-    }
-    else{ 
-      
-      return(
-      <div className="flex flex-row">
-      <div className=" text-violet-400 text-4xl  line-through">{price}</div>
-      <div className="text-black3 text-4xl  ">.</div>
-      <div className=" text-violet-400 text-4xl  ">
-                    {price * (100-discount)/100} {localStorage.getItem('currency')}</div>
-      </div>
-
-      )
-    }
   }
+  else{ 
+    
+    return(
+    <div className="flex flex-row">
+    <div className=" text-violet-400 text-4xl  line-through">{price}</div>
+    <div className="text-black3 text-4xl  ">.</div>
+    <div className=" text-violet-400 text-4xl  ">
+                  {price * (100-discount)/100} {localStorage.getItem('currency')}</div>
+    </div>
+
+    )
+     }
+    }
+   }
 
    function DiscountDuration(duration : number,discount : number ,price : number){
          if(isCorporate == "true"){

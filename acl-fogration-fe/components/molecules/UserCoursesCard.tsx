@@ -23,7 +23,8 @@ const [curr, setCurr] = useState('€');
           setFactor(factor*1.5);
           setCurr('$');
         }
-        
+        console.log(localStorage.getItem("isCorp"))
+
 
 
   })
@@ -46,7 +47,11 @@ const [curr, setCurr] = useState('€');
     }
   }
      const discount = (discount:number,price:number) =>{
-      if (localStorage.getItem('currency') == '£'){
+      if(isCorporate == "true"){
+        return
+      }
+      else{
+        if (localStorage.getItem('currency') == '£'){
           price = price*20;
         }
 
@@ -71,6 +76,7 @@ const [curr, setCurr] = useState('€');
 
       )
        }
+      }
      }
 
   if (courses.length === 0) {
@@ -99,7 +105,8 @@ const [curr, setCurr] = useState('€');
     }
   }
   }
-const enroll = (isCorporate:string) => {
+const enroll = (isCorporate:string,CID)  => {
+ 
   if (isCorporate == "false") {
     return(
     <div>
@@ -113,11 +120,16 @@ const enroll = (isCorporate:string) => {
       </div>
     )
   } else {
+    console.log(CID)
     return (
     <div>
       <button
         className="bg-gradient-to-r from-purple to-babyblue text-white text-s  py-2 px-4 rounded w-36 border border-violet-400"
-        onClick={handleClickOpen}
+        onClick={()=>{
+          localStorage.setItem("RequestedCID",CID?.Course_ID)
+          console.log(localStorage.getItem("RequestedCID"))
+      setOpen(true);
+        }}
       >
         Request
       </button>
@@ -218,7 +230,7 @@ const enroll = (isCorporate:string) => {
               </button>
                 <Payment isOpen={open} handleClose={handleClose} />
               </div> */}
-              {enroll(localStorage.getItem("isCorp"))}
+              {enroll(localStorage.getItem("isCorp"),course)}
             </div>
           </div>
         </div>
