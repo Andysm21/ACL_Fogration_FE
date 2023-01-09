@@ -229,6 +229,7 @@ const handleSubmitUserEmail = () => {
               {/* biography */}
               <div className="flex flex-col gap-2">
                 <div>Biography</div>
+
                 <textarea
                   
                   className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52 h-72  border-white rounded-md"

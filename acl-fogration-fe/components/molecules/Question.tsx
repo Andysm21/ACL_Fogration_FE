@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/router';
 const refresh = () => window.location.reload();
 const Question = () => {
-  
+  const router = useRouter();
+
   const addQuestion = () => {
 
     axios.post("http://localhost:8000/createQuestion",
@@ -134,9 +136,11 @@ const handleCourseID = (event) => {
           className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white border border-violet-400 py-2 px-4 rounded w-80"
           onClick={addQuestion}
         >
-          Add New Question
+          Add Question
         </button>
-        <button className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white border border-violet-400 py-2 px-4 rounded w-80" onClick={addQuestion}>
+        <button className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white border border-violet-400 py-2 px-4 rounded w-80" onClick={()=>{
+          router.push('/instructor/viewmycourse')
+        }}>
           Submit Exam
         </button>
       </div>
