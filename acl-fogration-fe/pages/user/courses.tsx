@@ -94,10 +94,22 @@ function getCoursesSearch(){
  }).catch((error) => console.log(error))
 }
 
+function getPopularCourses(){
+
+  axios.post("http://localhost:8000/mostViewedCourses",{}
+ ).then((response) => {
+   setCourseArray(response.data)
+   console.log(CourseArray)
+ 
+ }).catch((error) => console.log(error))
+}
+
+
+
 
 useEffect(()=>{
-  // console.log(localStorage.getItem("Subject"))
-  
+
+if(localStorage.getItem("popularCourses")=="false"){
 if(localStorage.getItem("isCorp")=="false"){
   if(localStorage.getItem("Subject")==""){
     if(localStorage.getItem("Rating")==""){
@@ -140,9 +152,10 @@ else{
   if(localStorage.getItem("Subject")==""){
     if(localStorage.getItem("Rating")==""){
       if(localStorage.getItem("Search")=='' || localStorage.getItem("Search")==""){
+
         getCourses()
         localStorage.setItem("Search","")
-        console.log("ALL")
+        // console.log("ALL")
 
        //  console.log("Hi")
        }
@@ -155,6 +168,7 @@ else{
         getCoursesFilterRating()
         localStorage.setItem("Search","")
         console.log("Rate")
+
     }
 }
 else{
@@ -170,6 +184,12 @@ else{
   }
 }
 }
+
+}
+else{
+  getPopularCourses()
+}
+
 })
 
 

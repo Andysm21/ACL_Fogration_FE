@@ -4,6 +4,7 @@ import Layout from '../../components/templates/Layout'
 import {MdFileDownload} from "react-icons/md"
 import { useEffect, useState } from "react";
 import YoutubeEmbed from '../../components/organisms/YoutubeEmbed';
+import axios from "axios";
 
  
 
@@ -19,7 +20,21 @@ const watchvideo:React.FC<{ course }> = ({ course }) => {
   };
 
   const download = () => {
-    console.log(notes);
+
+    axios.post("http://localhost:8000/downloadNotes", {
+      notes:notes
+    }).then((res)=>{
+    res.data
+    }).catch((error) => console.log(error))
+
+   /* axios.post('http://localhost:8000/downloadNotes', {responseType: 'blob'}).then(response => {
+    fs.writeFile('/temp/my.pdf', response.data, (err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+    });
+});*/
+
+    
 }
   return (
     <div>
