@@ -10,7 +10,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import axios from 'axios';
 
 import {
   useMediaQuery,
@@ -68,6 +68,11 @@ const SolveReport: React.FC<Props> = ({ handleClose, isOpen }) => {
   };
 
   const handleSubmit = () => {
+    axios.put("http://localhost:8000/markProblem", {Problem_ID: localStorage.getItem("Problem_ID"), Problem_Status: Type}).then((response) => {
+   
+   console.log(response.data)
+ }).catch((error) => console.log(error))
+
     console.log("submit");
     const data = {
       title,
@@ -116,7 +121,7 @@ const handleChangeType = (event) => {
                     <div className="flex flex-col items-start justify-start text-white">
 
            <textarea readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-72 h-72 border-gray-600 rounded-md"
-                value= {/*problems?.Problem_Description*/ "Just a testing description"}
+                value= { localStorage.getItem("Problem_Description")}
                 />
                 </div>
                         <div className="text-white my-2">
