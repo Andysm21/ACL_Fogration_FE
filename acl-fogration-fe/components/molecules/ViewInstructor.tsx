@@ -121,7 +121,9 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
           <div className="text-white font-bold text-l">Assigned to courses</div>
               <div className="grid grid-cols-2 gap-2">
 
+
             {user?.Instructor_Courses?.map((course,index) => (
+
               <Link href="/user/viewcourse">
                 <div key={index} className="flex flex-col bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md shadow-lg">
 
@@ -145,6 +147,7 @@ const ViewInstructor: React.FC<{ user }> = ({ user }) => {
           <div className="flex flex-row gap-2">
 
             {user?.Instructor_Reviews?.map((review,index) => (
+
                 <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52 shadow-lg">
 
                   {review}</div>    
