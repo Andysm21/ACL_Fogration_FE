@@ -320,7 +320,7 @@ const [type, setType ]= useState("");
           );
         })}
       </div>
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+        {/* <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
       <div className="flex flex-row justify-between items-center">
         <div className="text-white font-bold text-2xl mx-2">Exams </div>
        
@@ -338,7 +338,7 @@ const [type, setType ]= useState("");
             })}
         </div>
         
-      </div>
+      </div> */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
         <div className="text-white font-bold text-2xl mx-2">Reviews</div>
 

@@ -306,7 +306,7 @@ const enroll = (isCorporate:string) => {
         })}
       </div>
         {/* exams of course */}
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+        {/* <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
       <div className="flex flex-row justify-between items-center">
         <div className="text-white font-bold text-2xl mx-2">Exams </div>
        
@@ -320,11 +320,11 @@ const enroll = (isCorporate:string) => {
                       <div className="items-center justify-center flex flex-col text-l">
                        Exam {item?.Exam_ID}
                       </div>
-                       {/* <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div> */}
+                       <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div>
                       </div>
               )})}
         </div>
-        </div>
+        </div> */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
         <div className="text-white font-bold text-2xl mx-2">Reviews</div>
 
