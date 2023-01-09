@@ -64,13 +64,13 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
   }
   return (
     <div className="grid grid-cols-2 text-white bg-bc gap-4">
-      {courses?.map((course) => (
-        <div key={course.Course_Title} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 ">
+      {courses.map((course,index) => (
+        <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 ">
           {/* //div el title bel kalam */}
           <div className="flex flex-col">
             {/* //div el title bel rating */}
             <div className="flex flex-col text-3xl">
-              <div className="Font-bold  text-white">{course.Course_Title}</div>
+              <div className="text-white">{course.Course_Title}</div>
               <div className="flex flex-row  ">
                 {stars(course.Course_Rating)}
               </div>
@@ -116,7 +116,7 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
               {/* <Link href={"http://localhost:3000/guest/"+course.Course_ID}> */}
               <Link href="/guest/course">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white border border-violet-400 py-2 px-4 rounded w-80" onClick={()=>{
                   localStorage.setItem("Course",course?.Course_ID+"")
                   // console.log(localStorage.getItem("CourseIIDD"))
                   }}>
