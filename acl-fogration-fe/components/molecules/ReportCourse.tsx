@@ -10,6 +10,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from 'axios';
 
 
 import {
@@ -68,14 +69,22 @@ const ReportCourse: React.FC<Props> = ({ handleClose, isOpen }) => {
   };
 
   const handleSubmit = () => {
+    axios.post('http://localhost:8000/reportProblem',
+    {ID: localStorage.getItem('user_id'), CourseID: localStorage.getItem('CourseID'), User_Type: localStorage.getItem('Type'),
+    Problem_Type: Type, Problem_Description: description})
+    .then((response) => {
+      
+    }).catch((error) => console.log(error))
+
     console.log("submit");
-    const data = {
+       const data = {
       title,
       subtitles,
       price,
       description,
-    };
+      };
     console.log(data);
+   
   };
 
 //   const [menu, setMenu] = React.useState(false);
