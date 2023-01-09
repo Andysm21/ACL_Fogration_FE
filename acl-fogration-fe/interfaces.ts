@@ -17,7 +17,12 @@ export interface video {
   Video_Description: string;
   Video_Length: number;
 }
-
+export interface Requests {
+  User_ID: number;
+  Course_Title: string;
+  Request_status: string;
+  User_Company: string;
+}
 
 export interface exam {
   Exam_ID: number;
