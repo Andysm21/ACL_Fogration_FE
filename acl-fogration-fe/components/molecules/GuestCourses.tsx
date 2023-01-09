@@ -28,7 +28,7 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
     }
     return stars;
   };
-     const discount = (discount:number,price:number) =>{
+     const discount = (discount:number,price:number,duration:number) =>{
       if (localStorage.getItem('currency') == '£'){
           price = price*20;
         }
@@ -36,7 +36,7 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
       if (localStorage.getItem('currency') == '$'){
           price = price*1.5;
         }
-      if((discount == 0) || price == 0){
+      if((discount == 0) || price == 0 || duration == 0){
       return <h1 className=" text-violet-400 text-4xl  ">
                 {price} {localStorage.getItem('currency')}
               </h1>
@@ -96,7 +96,7 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
               {/* <h1 className=" text-violet-400 text-4xl font-bold ">
                 $${course.Course_Price}
               </h1> */}
-             {discount(course.Course_Discount,course.Course_Price)}
+             {discount(course.Course_Discount,course.Course_Price,course.Course_Discount_Duration)}
               {DiscountDuration(course.Course_Discount_Duration,course.Course_Discount,course.Course_Price)}
             </div>
           </div>
