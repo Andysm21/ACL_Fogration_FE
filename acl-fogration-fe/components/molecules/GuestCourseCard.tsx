@@ -253,7 +253,7 @@ useEffect(()=>{
           );
         })}
       </div>
-      <div className="flex flex-col bg-black3 rounded-md m-6">
+      {/* <div className="flex flex-col bg-black3 rounded-md m-6">
           <div className=" text-white font-bold text-l mx-2">
           Exams
         </div>
@@ -264,12 +264,12 @@ useEffect(()=>{
                       <AiFillFilePdf size={100}/>
                       <div className="items-center justify-center flex flex-col">
                         <div className="text-l">Exam {item?.Exam_ID}</div>
-                       {/* <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div> */}
+                       <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div>
                       </div>
                     </div>
               )})}
         </div>
-        </div>
+        </div> */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
           <div className="text-white font-bold text-l">Reviews</div>
 

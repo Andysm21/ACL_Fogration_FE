@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { SelectMenuOption } from '../atoms/types';
 import {CountrySelector} from '../molecules/Selector';
 import {COUNTRIES} from '../atoms/countries';
+import axios from 'axios';
 
 interface Props {
   links:
@@ -20,6 +21,46 @@ const Nav: React.FC<Props> = ({ links }) => {
   const [isOpen, setIsOpen] = useState(false);
   // Default this to a country's code to preselect it
   const [country, setCountry] = useState('DE');
+  const [name, setName] = useState("");
+
+  function login(){
+    var id=Number(localStorage.getItem("user_id" ));
+    var type=localStorage.getItem("Type");
+    if(type==("Corp")){
+      axios.post("http://localhost:8000/NameCorp",{
+        UserID:id
+      }
+     ).then((response) => {
+       setName(response.data)
+     }).catch((error) => console.log(error))
+      // setName("Corp");
+    }
+    else if(type=="User"){
+      axios.post("http://localhost:8000/NameInd",{
+        UserID:id
+      }
+     ).then((response) => {
+       setName(response.data)
+     }).catch((error) => console.log(error))
+      // setName("Ind");
+    }
+    else if(type=="Admin"){
+      setName("Admin");
+    }
+    else if(type=="Instructor"){
+      axios.post("http://localhost:8000/NameInst",{
+        UserID:id
+      }
+     ).then((response) => {
+       setName(response.data)
+     }).catch((error) => console.log(error))
+      // setName("Instructor");
+    }
+  }
+  useEffect(() => {
+    login();
+        
+  })
   return (
     <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-bc px-5 shadow-lg">
       <div className="flex gap-8">
@@ -64,7 +105,7 @@ const Nav: React.FC<Props> = ({ links }) => {
       </div>
       <div className="flex flex-row items-center ">
         <h1 className=" mx-4 border-r border-r-white px-4 py-1  font-light text-white ">
-          Hello, Yahya{" "}
+          Hello, {name}{" "}
         </h1>
 
         <Link href="/guest/login">

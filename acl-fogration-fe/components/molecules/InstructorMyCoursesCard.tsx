@@ -8,7 +8,24 @@ import { BsGlobe2, BsPlayBtnFill, BsPlusCircle, BsPlusSquare } from "react-icons
 
 const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
   const [courseID,setcourseID]=useState("") 
-
+  const [factor, setFactor] = useState(1);
+  const [curr, setCurr] = useState('€');
+  
+    useEffect(()=>{
+      console.log(courses)
+      console.log(localStorage.getItem('currency'));
+      if (localStorage.getItem('currency') == '£'){
+            setFactor(factor*2);
+            setCurr('£');
+          }
+  
+        if (localStorage.getItem('currency') == '$'){
+            setFactor(factor*1.5);
+            setCurr('$');
+          }
+          
+  
+    })
 
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
@@ -24,32 +41,19 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
     }
     return stars;
   };
-const [factor, setFactor] = useState(1);
-const [curr, setCurr] = useState('€');
 
-  useEffect(()=>{
   
-    console.log(localStorage.getItem('currency'));
-    if (localStorage.getItem('currency') == '£'){
-          setFactor(factor*2);
-          setCurr('£');
+     const discount = (discount:number,price:number) =>{
+      if (localStorage.getItem('currency') == '£'){
+          price = price*20;
         }
 
       if (localStorage.getItem('currency') == '$'){
-          setFactor(factor*1.5);
-          setCurr('$');
+          price = price*1.5;
         }
-        
-
-  })
-  
-   const discount =(discount:number,price:number) =>{
-
-     
-    
-        if((discount == 0) || price == 0){
+      if((discount == 0) || price == 0){
       return <h1 className=" text-violet-400 text-4xl  ">
-                {price*factor} {curr}
+                {price} {localStorage.getItem('currency')}
               </h1>
 
     }
@@ -60,8 +64,9 @@ const [curr, setCurr] = useState('€');
       <div className=" text-violet-400 text-4xl  line-through">{price}</div>
       <div className="text-black3 text-4xl  ">.</div>
       <div className=" text-violet-400 text-4xl  ">
-                    {price *factor* (100-discount)/100} {curr}</div>
+                    {price * (100-discount)/100} {localStorage.getItem('currency')}</div>
       </div>
+
       )
     }
     }
@@ -101,7 +106,7 @@ const [curr, setCurr] = useState('€');
             </div>
             {/* //div el kalam eswd */}
             <div className="bg-black3 flex flex-col  gap-2 my-2">
-              {course?.Course_Trainee?.length} enrolled students
+              {course?.Course_Trainee} enrolled students
               <div className="text-white flex flex-row">
                 Taught by
                 <div className="text-black3">.</div>

@@ -24,6 +24,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   const [curr, setCurr] = useState('€');
 
   useEffect(() => {
+    console.log(course.name)
     setIsCorporate(localStorage.getItem("isCorp"))
     if (localStorage.getItem('currency') == '£'){
           setFactor(factor*2);
@@ -171,11 +172,11 @@ const enroll = (isCorporate:string) => {
           <div className="bg-bc flex flex-col  gap-3 my-2">
             <div>{course?.Course_Description}</div>
             <div className="flex flex-row">
-              {course.Course_Users} enrolled students, taught by{" "}
+              {course?.Course_Trainee} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
 
-              <div onClick={()=>{ localStorage.setItem('course_instructor', course.Course_Instructor.Instructor_ID)}}>
-              <Link href="user/instructor">
+              <div onClick={()=>{ localStorage.setItem('course_instructor', course?.Course_Instructor?.Instructor_ID)}}>
+              <Link href="instructor">
 
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
@@ -286,11 +287,13 @@ const enroll = (isCorporate:string) => {
                 {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
                     <div key={index}>
+                      <Link href={video?.Video_Link}>
                       <img
                         className=" w-36  "
                         src="/images/pausedvideo.png"
-                        alt="No image yet 😅"
+                        alt="No image yet "
                       />
+                  </Link>
 
                       <div className="text-l">{video?.Video_Description}</div>
                       <div className="text-l">{video?.Video_Length} mins</div>
@@ -303,7 +306,7 @@ const enroll = (isCorporate:string) => {
         })}
       </div>
         {/* exams of course */}
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+        {/* <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
       <div className="flex flex-row justify-between items-center">
         <div className="text-white font-bold text-2xl mx-2">Exams </div>
        
@@ -317,11 +320,11 @@ const enroll = (isCorporate:string) => {
                       <div className="items-center justify-center flex flex-col text-l">
                        Exam {item?.Exam_ID}
                       </div>
-                       {/* <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div> */}
+                       <div className="text-l">{item?.Exam_Question_ID?.length} Questions</div>
                       </div>
               )})}
         </div>
-        </div>
+        </div> */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
         <div className="text-white font-bold text-2xl mx-2">Reviews</div>
 

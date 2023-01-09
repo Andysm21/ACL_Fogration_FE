@@ -201,7 +201,7 @@ const [type, setType ]= useState("");
           <div className="bg-bc flex flex-col  gap-3 my-2">
             <div>{course?.Course_Description}</div>
             <div className="flex flex-row">
-              {course?.Course_Trainee?.length} enrolled students, taught by{" "}
+              {course?.Course_Trainee} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
               <Link href="/instructor/instructor">
                 {/* // 23deli el link */}
@@ -302,11 +302,13 @@ const [type, setType ]= useState("");
                 {subtitle?.Subtitle_Video?.map((video, index) => {
                   return (
                     <div key={index}>
+                      <Link href={video?.Video_Link}>
                       <img
-                        className=" w-36 "
+                        className=" w-36  "
                         src="/images/pausedvideo.png"
-                        alt="No image yet 😅"
+                        alt="No image yet "
                       />
+                  </Link>
                       <div className="text-l">{video?.Video_Description}</div>
                       <div className="text-l">{video?.Video_Length} mins</div>
                     </div>
@@ -318,7 +320,7 @@ const [type, setType ]= useState("");
           );
         })}
       </div>
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+        {/* <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
       <div className="flex flex-row justify-between items-center">
         <div className="text-white font-bold text-2xl mx-2">Exams </div>
        
@@ -336,7 +338,7 @@ const [type, setType ]= useState("");
             })}
         </div>
         
-      </div>
+      </div> */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
         <div className="text-white font-bold text-2xl mx-2">Reviews</div>
 

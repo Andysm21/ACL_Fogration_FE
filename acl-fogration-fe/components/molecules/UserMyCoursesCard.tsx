@@ -215,11 +215,17 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
     }
   }
 
-  const discount =(discount:number,price:number) =>{
-    if(isCorporate == "false"){
-        if((discount == 0) || price == 0){
-      return <h1 className=" text-violet-400 text-4xl ">
-                {price*factor} {curr}
+     const discount = (discount:number,price:number) =>{
+      if (localStorage.getItem('currency') == '£'){
+          price = price*20;
+        }
+
+      if (localStorage.getItem('currency') == '$'){
+          price = price*1.5;
+        }
+      if((discount == 0) || price == 0){
+      return <h1 className=" text-violet-400 text-4xl  ">
+                {price} {localStorage.getItem('currency')}
               </h1>
 
     }
@@ -227,18 +233,15 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
       
       return(
       <div className="flex flex-row">
-      <div className=" text-violet-400 text-4xl line-through">{price}</div>
+      <div className=" text-violet-400 text-4xl  line-through">{price}</div>
       <div className="text-black3 text-4xl  ">.</div>
       <div className=" text-violet-400 text-4xl  ">
-                    {price *factor* (100-discount)/100} {curr}</div>
+                    {price * (100-discount)/100} {localStorage.getItem('currency')}</div>
       </div>
+
       )
     }
-    }else{
-      return (<div>
-        
-      </div>)
-    }}
+  }
 
    function DiscountDuration(duration : number,discount : number ,price : number){
          if(isCorporate == "true"){
@@ -284,7 +287,7 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
             </div>
             {/* //div el kalam eswd */}
             <div className="bg-black3 flex flex-col  gap-2 my-2">
-              {course?.Course_Trainee.length} enrolled students
+              {course?.Course_Trainee} enrolled students
               <div className="text-white flex flex-row">
                 Taught by
                 <div onClick={()=>{

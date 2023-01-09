@@ -29,7 +29,7 @@ const NavGuest = () => {
           />
         </div>
          {/* <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-bc px-5 shadow-lg"> */}
-        <div className=" grid grid-cols-3 gap-12 relative top-0 left-0 right-0 ">
+        {/* <div className=" grid grid-cols-3 gap-12 relative top-0 left-0 right-0 ">
           <Link href="/guest/guestcourses">
             <h1 className="cursor-pointer border-b-lightgrey  text-lg font-light  text-white hover:border-b hover:text-gray-300">
               Courses
@@ -45,7 +45,7 @@ const NavGuest = () => {
               Pricing
             </h1>
           </Link>
-        </div>
+        </div> */}
 
       <div className="flex flex-row items-center">
 

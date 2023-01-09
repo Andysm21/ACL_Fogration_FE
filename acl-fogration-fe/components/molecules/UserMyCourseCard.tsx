@@ -134,6 +134,7 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
   const router = useRouter();
   var flag;
 
+  var [courseRating, setcourseRating] = useState(course?.Course_Rating);
   const [starsnum, setStarsnum] = useState(0);
 
   function handleSubmit (x) {
@@ -142,6 +143,7 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
     axios.post('http://localhost:8000/RatingCourse', {ID: localStorage.getItem('CourseID'), Rating: x})
   
     .then((response) => {
+      setcourseRating(response.data);
     }).catch((error) => console.log(error))
     //console.log(data);
   };
@@ -149,14 +151,17 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
     console.log(course)
-  })
+  },[courseRating])
 
   if (courses.length === 0) {
     
     return <div className="text-center "> No courses</div>;
   }
   const stars = (rating: number) => {
-
+  
+    if(rating == undefined){
+      rating = course?.Course_Rating;
+    }
     let stars = [];
     for (let i = 0; i < rating; i++) {
       stars.push(
@@ -291,13 +296,13 @@ const refund = (isCorporate: string) => {
           {/* //div el title bel rating */}
           <div className="flex flex-col text-3xl">
             <div className="Font-bold  text-white">{course?.Course_Title}</div>
-            <div className="flex flex-row  ">{stars(course?.Course_Rating)}</div>
+            <div className="flex flex-row  ">{stars(courseRating)}</div>
           </div>
           {/* //div el kalam eswd */}
           <div className="bg-bc flex flex-col  gap-3 my-2">
             <div>{course?.Course_Description}</div>
             <div className="flex flex-row">
-              {course?.Course_Trainee?.length} enrolled students, taught by{" "}
+              {course?.Course_Trainee} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
 
               <div onClick={()=>{ localStorage.setItem('course_instructor', course.Course_Instructor.Instructor_ID)}}>
@@ -415,11 +420,13 @@ const refund = (isCorporate: string) => {
                 {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
                     <div key={index}>
+                     <Link href={video?.Video_Link}>
                       <img
-                        className="w-36"
+                        className=" w-36  "
                         src="/images/pausedvideo.png"
-                        alt="No image yet 😅"
+                        alt="No image yet "
                       />
+                  </Link>
                       <div className="text-l">{video?.Video_Description}</div>
                       <div className="text-l">{video?.Video_Length} mins</div>
                     </div>

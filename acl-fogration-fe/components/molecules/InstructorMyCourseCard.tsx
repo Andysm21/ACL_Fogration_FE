@@ -208,7 +208,7 @@ const [factor, setFactor] = useState(1);
           <div className="bg-bc flex flex-col  gap-3 my-2">
             <div>{course?.Course_Description}</div>
             <div className="flex flex-row">
-              {course?.Course_Trainee?.length} enrolled students, taught by{" "}
+              {course?.Course_Trainee} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
               <Link href="/user/instructor">
                 {/* // 23deli el link */}
@@ -315,11 +315,13 @@ const [factor, setFactor] = useState(1);
                 {subtitle?.Subtitle_Video?.map((video, index) => {
                   return (
                     <div key={index}>
+                      <Link href={video?.Video_Link}>
                       <img
-                        className=" w-36 "
+                        className=" w-36  "
                         src="/images/pausedvideo.png"
-                        alt="No image yet 😅"
+                        alt="No image yet "
                       />
+                  </Link>
                       <div className="text-l">{video?.Video_Description}</div>
                       <div className="text-l">{video?.Video_Length} mins</div>
                     </div>
