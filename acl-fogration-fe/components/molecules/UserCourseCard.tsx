@@ -136,6 +136,7 @@ const enroll = (isCorporate:string) => {
         Enroll Now
       </button>
       <Payment isOpen={open} handleClose={handleClose} />
+
       </div>
     )
   } else {
