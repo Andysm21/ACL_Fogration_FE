@@ -14,9 +14,12 @@ import axios from "axios";
 import { CountrySelector } from "./Selector";
 import React from "react";
 import ReportCourse from "./ReportCourse";
+import { Router } from "react-router";
+import { useRouter } from "next/router";
 
 
 const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
+  const router = useRouter();
   const [courseID,setcourseID]=useState("") 
   var courseRate = course.Course_Rating;
   const Course_What_You_Will_Learn =["Learn new algorithms","Learn more about data structures and algorithms"]
@@ -137,8 +140,12 @@ const [type, setType ]= useState("");
     }).then((response) => {
       console.log(Number(localStorage.getItem("CourseID")))
       console.log("done")
+      router.reload();
     }).catch((error) => console.log(error))
   }
+
+
+
 
 const [factor, setFactor] = useState(1);
   const [curr, setCurr] = useState('€');
@@ -289,7 +296,9 @@ const [factor, setFactor] = useState(1);
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-4">
         <h1 className="text-white font-bold text-2xl mx-2">Course Content</h1>
-        <a href="/instructor/createsubtitle">
+        <a href="/instructor/createsubtitle" onClick={()=>{
+          localStorage.setItem("CourseID",course.Course_ID)
+        }}>
         <div className="text-white text-l bg-bc  h-24 rounded-md cursor-pointer items-center justify-center flex border border-gray-300 mx-2">Add Subtitle</div>
         </a>
         {course?.Course_Subtitle?.map((subtitle, index) => {
@@ -307,7 +316,13 @@ const [factor, setFactor] = useState(1);
               </div>
               <div className="flex flex-row gap-3 w-[100%] ">
                 <div className="flex flex-col items-center justify-center">
-                <BsPlayBtn size={110} className="text-white cursor-pointer" onClick={handleClickAddVideo} />
+                <BsPlayBtn size={110} className="text-white cursor-pointer" onClick={()=>{
+                  console.log("HIII")
+                  console.log(subtitle?.Subtitle_ID)
+                   localStorage.setItem("subtitle_id",subtitle?.Subtitle_ID)
+                   setOpenAddVideo(true);
+                }} />
+                
                 <AddVideo isOpen={openAddVideo} handleClose={handleCloseAddVideo}/>
                 <div>Add Video</div>
                 </div>

@@ -20,6 +20,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
+import { useRouter } from "next/router";
 
 interface Props {
   handleClose: () => void;
@@ -49,15 +50,31 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
     const handleLink = (event: React.ChangeEvent<HTMLInputElement>) => {
       setLink(event.target.value);
     };
-    const [description, setDescription] = React.useState("");
-    const handleDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setDescription(event.target.value);
-    };
+    // const [description, setDescription] = React.useState("");
+    // const handleDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //   setDescription(event.target.value);
+    // };
     var status = '';
 
     const handleSubmit = () => {
     }
+    const router = useRouter();
 
+  //here
+  const UploadVideo = () => {
+    axios.post("http://localhost:8000/upload_video",{
+      link:link,
+      subtitle: Number(localStorage.getItem("subtitle_id")),
+      description:title,
+      length:10,
+
+    }).then((response) => {
+      // console.log(Number(localStorage.getItem("CourseID")))
+      console.log(response.data)
+      router.reload();
+      console.log("done")
+    }).catch((error) => console.log(error))
+  }
   return (
     <div>
       <Dialog
@@ -97,7 +114,7 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
                   placeholder="Link"
                   onChange={handleLink}
                 />
-                <input
+                {/* <input
                 className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                   required
                   id="outlined-basic"
@@ -105,7 +122,7 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
                   // variant="outlined"
                   placeholder="Description"
                   onChange={handleDescription}
-                />
+                /> */}
                 </div>
                  
                
@@ -124,6 +141,7 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
           <Button
           className="text-violet-400"
             onClick={() => {
+              UploadVideo();
               handleSubmit();
               handleClose();
             }}

@@ -84,6 +84,7 @@ const Filter: React.FC<Props> = ({ handleClose, isOpen }) => {
         keepMounted
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
+        className="flex justify-center"
       >
         <DialogTitle className="bg-bc text-white" id="responsive-dialog-title">
           {"Filter"}
@@ -105,7 +106,6 @@ const Filter: React.FC<Props> = ({ handleClose, isOpen }) => {
                     placeholder="Subject"
                     onChange={handleSubject}
                   />
-
                   <input
                     className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                     id="outlined-basic"

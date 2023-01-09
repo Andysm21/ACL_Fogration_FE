@@ -16,7 +16,7 @@ const instructor: NextPage = () => {
     console.log("Heyyy");
     getInstructor();
     console.log(personArray);
-  }, [personArray])
+  }, )
 
   function getInstructor(){
     axios.post("http://localhost:8000/instructorAccount", {Instructor_ID: Number(localStorage.getItem("course_instructor"))}).then((response) => {

@@ -10,7 +10,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import axios from 'axios';
 
 import {
   useMediaQuery,
@@ -21,6 +21,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
+import { Router } from "@mui/icons-material";
 
 interface Props {
   handleClose: () => void;
@@ -68,6 +69,13 @@ const FollowUp: React.FC<Props> = ({ handleClose, isOpen }) => {
   };
 
   const handleSubmit = () => {
+
+    axios.post('http://localhost:8000/setFollowUp',
+    {ID: localStorage.getItem('user_id'), courseTitle: localStorage.getItem('courseTitle'), User_Type: localStorage.getItem('Type'), followUpDescription: description})
+    .then((response) => {
+      
+    }).catch((error) => console.log(error))
+
     console.log("submit");
     const data = {
       title,
@@ -76,6 +84,8 @@ const FollowUp: React.FC<Props> = ({ handleClose, isOpen }) => {
       description,
     };
     console.log(data);
+
+    
   };
 
 //   const [menu, setMenu] = React.useState(false);

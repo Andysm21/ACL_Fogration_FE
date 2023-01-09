@@ -36,7 +36,7 @@ const handleChangeP = event => {
 };
 
   const [biography, setbiography] = React.useState(instructor.Instructor_Biography);
-  const handlebiography = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlebiography = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
   setbiography(event.target.value);
 };
 
@@ -229,9 +229,8 @@ const handleSubmitUserEmail = () => {
               {/* biography */}
               <div className="flex flex-col gap-2">
                 <div>Biography</div>
-                <textarea
-                  type="text"
-                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60 h-72  border-white rounded-md"
+                <textarea               
+                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52 h-72  border-white rounded-md"
                   defaultValue={instructor.Instructor_Biography}
                   onChange={handlebiography}
                 />

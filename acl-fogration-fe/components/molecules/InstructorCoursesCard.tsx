@@ -84,6 +84,11 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
   return (
     <div className="grid grid-cols-2 text-white bg-bc gap-4">
       {courses.map((course,index) => (
+                      console.log("Start"),
+                      console.log(course),
+              console.log(course?.Course_Discount),
+              console.log(course?.Course_Price),
+              console.log("end"),
         <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 ">
           {/* //div el title bel kalam */}
           <div className="flex flex-col">
