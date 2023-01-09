@@ -47,39 +47,45 @@ const CourseCreation = () => {
   const createSub = () =>{
   localStorage.setItem("subtitle" + "Number", `${subtitleNumber}`);
         localStorage.setItem("subtitle" + subtitleNumber + "Name", subtitleName);
-        localStorage.setItem("video" +  "Number", `${videoNumber}`);
-        localStorage.setItem("video" + videoNumber + "Title", videoTitle);
-        localStorage.setItem("video" + videoNumber + "Link", videoLink);
-        localStorage.setItem("video" + videoNumber + "Description", videoDescription); 
-
-         console.log(
-          "subtitle" +  "Number",
-          localStorage.getItem("subtitle" + "Number")
-        );
-        console.log(
-          "subtitle" + subtitleNumber + "Name",
-          localStorage.getItem("subtitle" + subtitleNumber + "Name")
-        );
-       console.log(
-         "video" +  "Number",
-         localStorage.getItem("video" +  "Number")
-       );
-       console.log(
-            "video" + videoNumber + "Title",
-            localStorage.getItem("video" + videoNumber + "Title")
-            );
-       console.log(
-         "video" + videoNumber + "Link",
-         localStorage.getItem("video" + videoNumber + "Link")
-       );
-       console.log(
-         "video" + videoNumber + "Description",
-         localStorage.getItem("video" + videoNumber + "Description")
-       );
+        // localStorage.setItem("video" +  "Number", `${videoNumber}`);
+        // localStorage.setItem("video" + videoNumber + "Title", videoTitle);
+        // localStorage.setItem("video" + videoNumber + "Link", videoLink);
+        // localStorage.setItem("video" + videoNumber + "Description", videoDescription); 
+        axios.post("http://localhost:8000/createSubtitle",{
+          Subtitle_Course_ID:Number(localStorage.getItem("CourseID")),
+          Subtitle:subtitleName
+          }).then((response) => {
+          console.log(response.data)
+          console.log("done")
+        }).catch((error) => console.log(error))
+      //    console.log(
+      //     "subtitle" +  "Number",
+      //     localStorage.getItem("subtitle" + "Number")
+      //   );
+      //   console.log(
+      //     "subtitle" + subtitleNumber + "Name",
+      //     localStorage.getItem("subtitle" + subtitleNumber + "Name")
+      //   );
+      //  console.log(
+      //    "video" +  "Number",
+      //    localStorage.getItem("video" +  "Number")
+      //  );
+      //  console.log(
+      //       "video" + videoNumber + "Title",
+      //       localStorage.getItem("video" + videoNumber + "Title")
+      //       );
+      //  console.log(
+      //    "video" + videoNumber + "Link",
+      //    localStorage.getItem("video" + videoNumber + "Link")
+      //  );
+      //  console.log(
+      //    "video" + videoNumber + "Description",
+      //    localStorage.getItem("video" + videoNumber + "Description")
+      //  );
         
-        // setCourseID(1);
-        setVideoNumber(1);
-        setSubtitleNumber(1);
+      //   // setCourseID(1);
+      //   setVideoNumber(1);
+      //   setSubtitleNumber(1);
 
   }
 
@@ -94,10 +100,10 @@ const CourseCreation = () => {
         // localStorage.setItem("coursePreviewVideo", coursePreviewVideo);
         localStorage.setItem("subtitle" + "Number", `${subtitleNumber}`);
         localStorage.setItem("subtitle" + subtitleNumber + "Name", subtitleName);
-        localStorage.setItem("video" +  "Number", `${videoNumber}`);
-        localStorage.setItem("video" + videoNumber + "Title", videoTitle);
-        localStorage.setItem("video" + videoNumber + "Link", videoLink);
-        localStorage.setItem("video" + videoNumber + "Description", videoDescription); 
+        // localStorage.setItem("video" +  "Number", `${videoNumber}`);
+        // localStorage.setItem("video" + videoNumber + "Title", videoTitle);
+        // localStorage.setItem("video" + videoNumber + "Link", videoLink);
+        // localStorage.setItem("video" + videoNumber + "Description", videoDescription); 
 
         // console.log(
         //   "course" + "ID",
@@ -127,34 +133,34 @@ const CourseCreation = () => {
         //    "coursePreviewVideo",
         //    localStorage.getItem("course" + coursePreviewVideo + "PreviewVideo")
         //  );
-        console.log(
-          "subtitle" +  "Number",
-          localStorage.getItem("subtitle" + "Number")
-        );
-        console.log(
-          "subtitle" + subtitleNumber + "Name",
-          localStorage.getItem("subtitle" + subtitleNumber + "Name")
-        );
-       console.log(
-         "video" +  "Number",
-         localStorage.getItem("video" +  "Number")
-       );
-       console.log(
-            "video" + videoNumber + "Title",
-            localStorage.getItem("video" + videoNumber + "Title")
-            );
-       console.log(
-         "video" + videoNumber + "Link",
-         localStorage.getItem("video" + videoNumber + "Link")
-       );
-       console.log(
-         "video" + videoNumber + "Description",
-         localStorage.getItem("video" + videoNumber + "Description")
-       );
+      //   console.log(
+      //     "subtitle" +  "Number",
+      //     localStorage.getItem("subtitle" + "Number")
+      //   );
+      //   console.log(
+      //     "subtitle" + subtitleNumber + "Name",
+      //     localStorage.getItem("subtitle" + subtitleNumber + "Name")
+      //   );
+      //  console.log(
+      //    "video" +  "Number",
+      //    localStorage.getItem("video" +  "Number")
+      //  );
+      //  console.log(
+      //       "video" + videoNumber + "Title",
+      //       localStorage.getItem("video" + videoNumber + "Title")
+      //       );
+      //  console.log(
+      //    "video" + videoNumber + "Link",
+      //    localStorage.getItem("video" + videoNumber + "Link")
+      //  );
+      //  console.log(
+      //    "video" + videoNumber + "Description",
+      //    localStorage.getItem("video" + videoNumber + "Description")
+      //  );
         
-        // setCourseID(1);
-        setVideoNumber(1);
-        setSubtitleNumber(1);
+      //   // setCourseID(1);
+      //   setVideoNumber(1);
+      //   setSubtitleNumber(1);
 
     }
     // const [i, setI] = useState(1);
@@ -308,61 +314,30 @@ const CourseCreation = () => {
       </div> */}
       
       <div className="bg-bc p-2 m-2 rounded-lg flex flex-col w-2/3 justify-between">
-        <div className="mx-2 text-l">Subtitle Number</div>
+        {/* <div className="mx-2 text-l">Subtitle Number</div>
         <input
           value={subtitleNumber}
           disabled
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onClick={handleSubtitleNumber}
-        />
+        /> */}
         <div className="mx-2 text-l">Subtitle Name</div>
         <input
           placeholder="Introduction"
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleSubtitleName}
         />
-        <div className="mx-2 text-l">Video Number</div>
-        <input
-          value={videoNumber}
-          disabled
-          className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
-          onChange={handleVideoNumber}
-        />
-        <div className="mx-2 text-l">Video Title</div>
-        <input
-        
-          defaultValue={videoTitle}
-          placeholder="Fogr"
-          className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
-          onChange={handleVideoTitle}
-        />
-        <div className="mx-2 text-l">Video Link</div>
-        <input
-        
-          defaultValue={videoLink}
-          placeholder="https://www.youtube.com/watch?v=xxxxxxxxxxx"
-          className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
-          onChange={handleVideoLink}
-        />
-
-        <div className="mx-2 text-l">Video Description</div>
-        <textarea
-          defaultValue={videoDescription}
-          placeholder="This is a video about the topic of....."
-          className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
-          onChange={handleVideoDescription}
-        />
         <div className="flex flex-col  ">
-          <div className="flex flex-row justify-between">
-            <button
+          <div className="flex flex-row justify-center">
+            {/* <button
               className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-72"
               onClick={addVideo}
             >
               Add video
-            </button>
+            </button> */}
             <Link href="/instructor/viewmycourse">
             <button
-              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-72"
+              className="mx-2 my-2  justify-center bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-72"
               onClick={createSub}
             >
               Create subtitle
@@ -372,13 +347,13 @@ const CourseCreation = () => {
 
          
            
-            <div className="flex  justify-end  items-center flex-row gap-2 cursor-pointer">
+            {/* <div className="flex  justify-end  items-center flex-row gap-2 cursor-pointer">
                 <BsPlusSquare className="text-gray-400" size={20} />
               <div onClick={addSubtitle} className=" text-gray-400 ">
                 Create another subtitle
               </div>
               
-            </div>
+            </div> */}
        
         </div>
       </div>

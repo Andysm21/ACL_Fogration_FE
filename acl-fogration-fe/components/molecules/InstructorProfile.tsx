@@ -231,7 +231,7 @@ const handleSubmitUserEmail = () => {
                 <div>Biography</div>
                 <input
                   type="text"
-                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52 h-72  border-white rounded-md"
+                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52 h-72  border-white rounded-md "
                   defaultValue={instructor.Instructor_Biography}
                   onChange={handlebiography}
                 />
