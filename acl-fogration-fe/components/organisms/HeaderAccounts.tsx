@@ -59,7 +59,7 @@ const HeaderAccounts = ({
   };
 
   return (
-    <div className="flex w-full items-center justify-between bg-black2 py-2 px-4">
+    <div className="flex w-full items-center justify-between bg-black2 py-2 px-5">
       <div className="flex items-center">
         <div className="">
           <input

@@ -53,7 +53,7 @@ const HeaderInstructorCourses = ({
   };
 
   return (
-    <div className="flex flex-row w-full items-center justify-between bg-black2 py-2  px-4">
+    <div className="flex flex-row w-full items-center justify-between bg-black2 py-2  px-5">
       <div className="flex items-center gap-4">
         <div className="flex items-center">
           <div className="">

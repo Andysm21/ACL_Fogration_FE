@@ -456,18 +456,18 @@ const refund = (isCorporate: string) => {
       </Typography>
         </div>
         </div>
-         <div className="flex flex-row items-center ">
+         <div className="flex flex-row ">
             {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
               console.log(item?.Exam_ID)
 console.log(item?.Exam_Grade),console.log("Fo2eyaaaa")
               return(
-              <div key={index}  className="flex flex-col items-start " onClick={()=>{
+              <div key={index}  className="flex flex-col items-center " onClick={()=>{
                 localStorage.setItem("CurrentExamID",item?.Exam_ID);
                 console.log("HERE")
                 console.log(localStorage.getItem("CurrentExamID"))
                 console.log(localStorage.getItem("user_id"))
                 console.log(localStorage.getItem("CourseID"))
-                var type ;
+                var type;
                 var userid= Number(localStorage.getItem("user_id"));
               
                 if(localStorage.getItem("Type")=="Corp"){
