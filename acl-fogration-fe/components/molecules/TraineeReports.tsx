@@ -69,7 +69,7 @@ const discount =(discount:number,price:number) =>{
 
  
   return (
-    <div className="grid grid-cols-1 text-white  bg-bc gap-4 h-screen">
+    <div className="grid grid-cols-2 text-white  bg-bc gap-4 h-screen">
       {/* {problems.map((problem,index) => ( */}
         {/* <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 "> */}
         <div className="flex gap-4 flex-row-1 bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 h-20">
