@@ -178,27 +178,27 @@ const handleSubmitUserEmail = () => {
             <div className="flex flex-row justify-between">
               <div className="bg-black3 rounded-md flex flex-col gap-4 ">
                 {/* <div className="text-white text-l">Username</div>
-          <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-52  border-white rounded-md "
+          <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-60  border-white rounded-md "
           defaultValue= {instructor.Instructor_username} onChange = {handleUsername}/>  */}
                 <div className="text-l"> First Name </div>
                 <input
-                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
                   defaultValue={instructor.Instructor_FirstName}
                   onChange={handleFirstName}
                 />
                 <div className="text-l">Last Name </div>
                 <input
-                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
                   defaultValue={instructor.Instructor_LastName}
                   onChange={handleLastName}
                 />
                 {/* <div className="text-l">Email </div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
           defaultValue= {instructor.Instructor_Email} onChange = {handleEmail}/>  */}
 
                 <div className="text-l">Gender </div>
                 <input
-                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
                   defaultValue={instructor.Instructor_Gender}
                   onChange={handleGender}
                 />
@@ -206,12 +206,12 @@ const handleSubmitUserEmail = () => {
               <div className="text-l">Owed money</div>
               <input
                 readOnly
-                className=" bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
+                className=" bg-black3  text-white p-1 text-l  border-2 w-60  border-gray-600 rounded-md"
                 value={157}
               />
 
                 <div className="text-l">Country </div>
-                <div className="text-black w-52">
+                <div className="text-black w-60">
                   <CountrySelector
                     id={"countries"}
                     ref={myRef}
@@ -229,9 +229,9 @@ const handleSubmitUserEmail = () => {
               {/* biography */}
               <div className="flex flex-col gap-2">
                 <div>Biography</div>
-                <input
+                <textarea
                   type="text"
-                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52 h-72  border-white rounded-md"
+                  className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60 h-72  border-white rounded-md"
                   defaultValue={instructor.Instructor_Biography}
                   onChange={handlebiography}
                 />
@@ -261,13 +261,13 @@ const handleSubmitUserEmail = () => {
 
               <div className="text-l">Username</div>
               <input
-                className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+                className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
                 defaultValue={instructor.Instructor_username}
                 onChange={handleUsername}
               />
               <div className="text-l">Email</div>
               <input
-                className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+                className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
                 defaultValue={instructor.Instructor_Email}
                 onChange={handleEmail}
               />
@@ -284,20 +284,20 @@ const handleSubmitUserEmail = () => {
               <div className="text-l">Old password </div>
               <input
                 readOnly
-                className=" bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
+                className=" bg-black3  text-white p-1 text-l  border-2 w-60  border-gray-600 rounded-md"
                 value={instructor.Instructor_Password}
               />
               <div className="text-l">New password </div>
               <input
                 type="password"
-                className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+                className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
                 defaultValue=""
                 onChange={handleChangeP}
               />
               <div className="text-l">Re-enter new password </div>
               <input
                 type="password"
-                className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+                className="enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
                 defaultValue=""
                 onChange={handleChangeP1}
               />
@@ -319,7 +319,7 @@ const handleSubmitUserEmail = () => {
             {instructor.Instructor_Reviews?.map((review, index) => (
               <div
                 key={index}
-                className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52"
+                className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-60"
               >
                 {review}
               </div>

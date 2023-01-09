@@ -244,24 +244,24 @@ let User_Balance = 10;
           <div className="text-white font-bold text-l">User Information</div>
             <div className="bg-black3 rounded-md flex flex-col gap-4 " >
            {/* <div className="text-white text-l">Username</div>
-          <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-52  border-white rounded-md "
+          <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l border-2 w-60  border-white rounded-md "
           defaultValue= {user.User_UserName} />
           */}
            <div className="text-l"> First Name </div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
           defaultValue= {user.User_FirstName} 
          onChange={handleFirstName}/> 
           <div className="text-l">Last Name </div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
           defaultValue= {user.User_LastName}   onChange={handleLastName}
          /> 
          
           <div className="text-l">Gender </div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
           defaultValue= {user.User_Gender}  onChange={handleGender}
          /> 
         <div className="text-l">Country of birth </div>
-        <div className="text-black w-52">
+        <div className="text-black w-44">
           <CountrySelector
           id={'countries'}
           ref={myRef}
@@ -283,11 +283,11 @@ let User_Balance = 10;
           <div className="text-white font-bold text-l">Account Information</div>
         
           <div className="text-l">Username</div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
           defaultValue= {user.User_UserName} onChange={handleUsername}
          /> 
          <div className="text-l">Email</div>
-           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
           defaultValue={user.User_Email } onChange={handleEmail}
          /> 
           <button className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded border border-violet-400" onClick={handleSubmitUserEmail}>
@@ -302,15 +302,15 @@ let User_Balance = 10;
           <div className="text-white font-bold text-l">Update password</div>
         
           <div className="text-l">Old password </div>
-           <input readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-52  border-gray-600 rounded-md"
+           <input readOnly className = " bg-black3  text-white p-1 text-l  border-2 w-60  border-gray-600 rounded-md"
           value= {user.User_Password} 
          /> 
          <div className="text-l">New password </div>
-           <input type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+           <input type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
           defaultValue= ''  
          onChange={handleChangeP1}/> 
          <div className="text-l">Re-enter new password </div>
-           <input  type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+           <input  type="password"  className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-60  border-white rounded-md"
           defaultValue= ''
         onChange={handleChangeP} /> 
           <button className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded border border-violet-400"onClick={changePassword}>
