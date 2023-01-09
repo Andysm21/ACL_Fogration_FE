@@ -85,9 +85,8 @@ const Filter: React.FC<Props> = ({ handleClose, isOpen }) => {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle 
-        className="bg-bc text-white"
-        id="responsive-dialog-title">{"Filter"}
+        <DialogTitle className="bg-bc text-white" id="responsive-dialog-title">
+          {"Filter"}
         </DialogTitle>
         <DialogContent className="bg-bc text-white">
           <DialogContentText className="grid gap-y-8 gap-x-3">
@@ -116,9 +115,8 @@ const Filter: React.FC<Props> = ({ handleClose, isOpen }) => {
                     onChange={handleRating}
                   />
                   <div className="flex flex-row gap-2 ">
-
-                                        <input
-className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
+                    <input
+                      className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                       id="outlined-basic"
                       // label="Min Price"
                       // variant="outlined"
@@ -127,18 +125,14 @@ className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                     />
 
                     <input
-className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
+                      className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                       id="outlined-basic"
                       // label="Max Price"
                       // variant="outlined"
                       placeholder="Max Price"
                       onChange={handleMaxPrice}
                     />
-
-                    
-
                   </div>
-
                 </div>
               </FormControl>
             </div>
@@ -146,13 +140,11 @@ className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
           </DialogContentText>
         </DialogContent>
         <DialogActions className="bg-bc">
-          <Button 
-          className="text-violet-400"
-          autoFocus onClick={handleClose}>
+          <Button className="text-violet-400" autoFocus onClick={handleClose}>
             Cancel
           </Button>
           <Button
-          className="text-violet-400"
+            className="text-violet-400"
             onClick={() => {
               handleSubmit();
               handleClose();
