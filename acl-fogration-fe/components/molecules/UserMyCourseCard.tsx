@@ -446,13 +446,13 @@ const refund = (isCorporate: string) => {
        thickness={7}
        determinate 
         variant="outlined"
-        value={90}
+        value={course.Course_Progress}
         >
          
         </LinearProgress>
          <Typography className="text-white text-l"
       >
-       90%
+       {course.Course_Progress}%
       </Typography>
         </div>
         </div>
