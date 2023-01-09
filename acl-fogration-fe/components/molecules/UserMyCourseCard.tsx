@@ -441,18 +441,18 @@ const refund = (isCorporate: string) => {
       <div className="flex flex-row items-center">
         <div className="text-white font-bold text-2xl mx-2">Exams </div>
         <div className="flex flex-row ">
-         <LinearProgress
+        <LinearProgress
        className="w-72 bg-black2  text-gray-300 m-2 "
        thickness={7}
        determinate 
         variant="outlined"
-        value={90}
+        value={course.Course_Progress}
         >
          
         </LinearProgress>
          <Typography className="text-white text-l"
       >
-       90%
+       {course.Course_Progress}%
       </Typography>
         </div>
         </div>
