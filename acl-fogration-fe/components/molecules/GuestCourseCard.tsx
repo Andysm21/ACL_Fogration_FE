@@ -13,8 +13,8 @@ const Course_What_You_Will_Learn =[
   "Learn about new algorithms"]
  
 const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
-//    const [factor, setFactor] = useState(1);
-//   const [curr, setCurr] = useState('€');
+   const [factor, setFactor] = useState(1);
+  const [curr, setCurr] = useState('€');
 
 // useEffect(()=>{
   
@@ -31,39 +31,49 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
         
 
 //   })
-//       const discount = (discount:number,price:number) =>{
-      
-      
-//       if((discount == 0) || price == 0){
-//     return <h1 className=" text-violet-400 text-4xl">
-//                 {price*factor}{curr}
-//               </h1>
+     const discount = (discount: number, price: number, duration: number) => {
+       if (Currency == "£") {
+         price = price * 20;
+       }
 
-//     }
-//     else{ 
-      
-//       return(
-//       <div className="flex flex-row">
-//       <div className=" text-violet-400 text-4xl line-through">{price}</div>
-//       <div className="text-bc text-4xl ">. </div>
-//       <div className=" text-violet-400 text-4xl">
-//                     {price* factor * (100-discount)/100}{curr}</div>
-//       </div>
-
-//       )
-//     }
-//     }
-
-
-// function DiscountDuration(duration : number,discount : number ,price : number){
-  
-//       if(duration == 0 || discount == 0 || price == 0){
-//         return <div></div>
-//       }
-//         else{
-//          return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
-//         }
-//   }
+       if (Currency == "$") {
+         price = price * 1.5;
+       }
+       if (discount == 0 || price == 0 || duration == 0) {
+         return (
+           <h1 className=" text-violet-400 text-4xl  ">
+             {price} {Currency}
+           </h1>
+         );
+       } else {
+         return (
+           <div className="flex flex-row">
+             <div className=" text-violet-400 text-4xl  line-through">
+               {price}
+             </div>
+             <div className="text-black3 text-4xl  ">.</div>
+             <div className=" text-violet-400 text-4xl  ">
+               {(price * (100 - discount)) / 100}{" "}
+               {Currency}
+             </div>
+           </div>
+         );
+       }
+     };
+     function DiscountDuration(
+       duration: number,
+       discount: number,
+       price: number
+     ) {
+       if (duration == 0 || discount == 0 || price == 0) {
+         return <div></div>;
+       } else
+         return (
+           <p className=" text-violet-400 text-light text-sm">
+             Discount available for {duration} days
+           </p>
+         );
+     }
  // console.log(course);
   // if (courses.length === 0) {
   //   return <div className="text-center ">No courses</div>;
@@ -80,8 +90,9 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
       Course_Hours: NaN,
       Course_Country: '',
       Course_Discount: NaN,
-      Course_Title: '',
-      Course_Discount_Duration: NaN,
+        Course_Title: '',
+      
+  Course_Discount_Duration: NaN,
       Course_Subtitle: [],
       Course_Trainee: [],
       Course_Review: [],
@@ -89,7 +100,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
       Course_Exam: [''],
       Course_What_You_Will_Learn: [],    })
 
-
+  const [Currency, setCurrency] = useState('');
       
    
   const stars = (rating: number) => {
@@ -103,44 +114,6 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
     }
     return stars;
   }
-
-  const discount = (discount: number, price: number, duration: number) => {
-    if (localStorage.getItem("currency") == "£") {
-      price = price * 20;
-    }
-
-    if (localStorage.getItem("currency") == "$") {
-      price = price * 1.5;
-    }
-    if (discount == 0 || price == 0 || duration == 0) {
-      return (
-        <h1 className=" text-violet-400 text-4xl  ">
-          {price} {localStorage.getItem("currency")}
-        </h1>
-      );
-    } else {
-      return (
-        <div className="flex flex-row">
-          <div className=" text-violet-400 text-4xl  line-through">{price}</div>
-          <div className="text-black3 text-4xl  ">.</div>
-          <div className=" text-violet-400 text-4xl  ">
-            {(price * (100 - discount)) / 100}{" "}
-            {localStorage.getItem("currency")}
-          </div>
-        </div>
-      );
-    }
-  };
-  function DiscountDuration(duration: number, discount: number, price: number) {
-    if (duration == 0 || discount == 0 || price == 0) {
-      return <div></div>;
-    } else
-      return (
-        <p className=" text-violet-400 text-light text-sm">
-          Discount available for {duration} days
-        </p>
-      );
-  }
   
 useEffect(()=>{
   Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
@@ -148,7 +121,7 @@ useEffect(()=>{
     course=response.data
     setSavedCourseData(response.data)
   }).catch((error) => console.log(error))
-
+  setCurrency(localStorage.getItem('currency'));
 })
 
 
@@ -207,9 +180,9 @@ useEffect(()=>{
               <h1 className=" text-violet-400 text-4xl">
                 {" "}
                 {discount(
-                  course.Course_Discount,
-                  course.Course_Price,
-                  course.Course_Discount_Duration
+                  SavedCourseData?.Course_Discount,
+                  SavedCourseData?.Course_Price,
+                  SavedCourseData?.Course_Discount_Duration
                 )}
               </h1>
 
