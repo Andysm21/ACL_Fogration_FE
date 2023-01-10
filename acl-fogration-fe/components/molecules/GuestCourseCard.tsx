@@ -16,21 +16,6 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
    const [factor, setFactor] = useState(1);
   const [curr, setCurr] = useState('€');
 
-// useEffect(()=>{
-  
-//     console.log(localStorage.getItem('currency'));
-//     if (localStorage.getItem('currency') == '£'){
-//           setFactor(factor*2);
-//           setCurr('£');
-//         }
-
-//       if (localStorage.getItem('currency') == '$'){
-//           setFactor(factor*1.5);
-//           setCurr('$');
-//         }
-        
-
-//   })
      const discount = (discount: number, price: number, duration: number) => {
        if (Currency == "£") {
          price = price * 20;

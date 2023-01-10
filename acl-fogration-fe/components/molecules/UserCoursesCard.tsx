@@ -7,46 +7,8 @@ import RequestAccess from "./RequestAccess";
 
  
 const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
-      var [SavedCourseData,setSavedCourseData]=useState({
-      Course_ID: NaN,
-      Course_Subject: '',
-      Course_Description: '',
-      Course_Price: NaN,
-      Course_Rating: NaN,
-      Course_Instructor: {
-        Instructor_FirstName: '',
-      },
-      Course_Hours: NaN,
-      Course_Country: '',
-      Course_Discount: NaN,
-      Course_Title: '',
-      Course_Discount_Duration: NaN,
-      Course_Subtitle: [],
-      Course_Trainee: [],
-      Course_Review: [],
-      Course_Rate: [''],
-      Course_Exam: [''],
-      Course_What_You_Will_Learn: [],    })
+
   const [isCorporate, setIsCorporate]= useState("false");
-
-const [factor, setFactor] = useState(1);
-const [curr, setCurr] = useState('€');
-
-  useEffect(() => {
-    setIsCorporate(localStorage.getItem("isCorp"))
-    if (localStorage.getItem('currency') == '£'){
-          setFactor(factor*2);
-          setCurr('£');
-        }
-
-      if (localStorage.getItem('currency') == '$'){
-          setFactor(factor*1.5);
-          setCurr('$');
-        }
-        
-
-
-  })
 
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -65,42 +27,51 @@ const [curr, setCurr] = useState('€');
       return 
     }
   }
-  const discount = (discount: number, price: number, duration: number) => {
-    if (localStorage.getItem("currency") == "£") {
-      price = price * 20;
+     const discount = (discount:number,price:number,duration:number) =>{
+
+      if (isCorporate == "true"){
+        return
+      }
+      else{
+      if (localStorage.getItem('currency') == '£'){
+          price = price*20;
+        }
+
+      if (localStorage.getItem('currency') == '$'){
+          price = price*1.5;
+        }
+      if((discount == 0) || price == 0 || duration == 0){
+      return <h1 className=" text-violet-400 text-4xl  ">
+                {price}{localStorage.getItem('currency')}
+              </h1>
+
     }
 
-    if (localStorage.getItem("currency") == "$") {
-      price = price * 1.5;
+    else{ 
+      
+      return(
+      <div className="flex flex-row">
+      <div className=" text-violet-400 text-4xl  line-through">{price}</div>
+      <div className="text-black3 text-4xl  ">.</div>
+      <div className=" text-violet-400 text-4xl  ">
+                    {price * (100-discount)/100}{localStorage.getItem('currency')}</div>
+      </div>
+
+      )
     }
-    if (discount == 0 || price == 0 || duration == 0) {
-      return (
-        <h1 className=" text-violet-400 text-4xl  ">
-          {price} {localStorage.getItem("currency")}
-        </h1>
-      );
-    } else {
-      return (
-        <div className="flex flex-row">
-          <div className=" text-violet-400 text-4xl  line-through">{price}</div>
-          <div className="text-black3 text-4xl  ">.</div>
-          <div className=" text-violet-400 text-4xl  ">
-            {(price * (100 - discount)) / 100}{" "}
-            {localStorage.getItem("currency")}
-          </div>
-        </div>
-      );
     }
-  };
-  function DiscountDuration(duration: number, discount: number, price: number) {
-    if (duration == 0 || discount == 0 || price == 0) {
-      return <div></div>;
-    } else
-      return (
-        <p className=" text-violet-400 text-light text-sm">
-          Discount available for {duration} days
-        </p>
-      );
+    }
+     function DiscountDuration(duration : number,discount : number ,price : number){
+      if(isCorporate == "true"){
+      return <div></div>                                                                    
+    }
+    else{
+      if(duration == 0 || discount == 0 || price == 0){
+        return <div></div>
+      }
+        else
+         return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
+  }
   }
 
   if (courses.length === 0) {
@@ -195,18 +166,8 @@ const enroll = (isCorporate:string) => {
                 <BsGlobe2 />
                 {course?.Course_Country}
               </div>
-              <h1 className=" text-violet-400 text-4xl  ">
-{discount(
-                  course.Course_Discount,
-                  course.Course_Price,
-                  course.Course_Discount_Duration
-                )}
-              </h1>
-{DiscountDuration(
-              SavedCourseData?.Course_Discount_Duration,
-              SavedCourseData?.Course_Discount,
-              SavedCourseData?.Course_Price
-            )}
+             {discount(course.Course_Discount,course.Course_Price,course.Course_Discount_Duration)}
+              {DiscountDuration(course.Course_Discount_Duration,course.Course_Discount,course.Course_Price)}
               {/* {price(isCorporate)} */}
 
             </div>
