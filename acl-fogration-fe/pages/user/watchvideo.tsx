@@ -5,9 +5,10 @@ import {MdFileDownload} from "react-icons/md"
 import { useEffect, useState } from "react";
 import YoutubeEmbed from '../../components/organisms/YoutubeEmbed';
 import axios from "axios";
+import FileDownload from 'js-file-download';
+
 import { course } from "../../interfaces";
 
- 
 
 
 const watchvideo:React.FC<{ course }> = ({ course }) => {
@@ -83,17 +84,12 @@ const [VideoDesc,setVideo]=useState("")
 
     axios.post("http://localhost:8000/downloadNotes", {
       notes:notes
-    }).then((res)=>{
-      console.log(res)
+    },{responseType:'blob'}).then((res)=>{
+    FileDownload(res.data,'Notes.pdf')
     }).catch((error) => console.log(error))
 
-   /* axios.post('http://localhost:8000/downloadNotes', {responseType: 'blob'}).then(response => {
-    fs.writeFile('/temp/my.pdf', response.data, (err) => {
-        if (err) throw err;
-        console.log('The file has been saved!');
-    });
-});*/
-}
+  }
+
 useEffect(() => {
   setLink(localStorage.getItem("videoLink"));
   // console.log(link)
@@ -102,8 +98,6 @@ useEffect(() => {
   
 
  });
-
-
 
 
   return (
