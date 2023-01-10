@@ -21,18 +21,13 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
+import axios from "axios";
 
 interface Props {
   handleClose: () => void;
   isOpen: boolean;
 }
 
-const facilities = [
-  { label: "Camera", id: 1 },
-  { label: "Projector", id: 2 },
-  { label: "Microphone", id: 3 },
-  { label: "TV", id: 4 },
-];
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -77,6 +72,18 @@ const CourseRefund: React.FC<Props> = ({ handleClose, isOpen }) => {
     };
     console.log(data);
   };
+
+  function requestRefund(){
+    axios.post("http://localhost:8000/requestRefund",
+    {
+      ID:localStorage.getItem("user_id"),
+      courseID:localStorage.getItem("CourseID"),
+    }).then((response)=>{
+      console.log(response.data)
+    }).catch((error)=>{
+      console.error(error)
+    })
+  }
 
 //   const [menu, setMenu] = React.useState(false);
 //   const handleMenu = () => {
@@ -154,6 +161,7 @@ const handleChangeType = (event) => {
           <Button
           className="text-violet-400"
             onClick={() => {
+              requestRefund();
               handleSubmit();
               handleClose();
             }}
