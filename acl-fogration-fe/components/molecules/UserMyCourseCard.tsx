@@ -420,7 +420,18 @@ const refund = (isCorporate: string) => {
                 {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
                     <div key={index}>
-                     <Link href={video?.Video_Link}>
+                     <Link  onClick={()=>{
+                      var VideoLink="https://www.youtube.com/embed/";
+                      var x = video?.Video_Link;
+                      x=x.split("=");
+                      x=x[1];
+                      x=VideoLink+x;
+                      console.log(VideoLink)
+                      console.log(2)
+                      localStorage.setItem("videoLink",x);
+                      localStorage.setItem("videoID",video?.Video_ID);
+                      router.push("/user/watchvideo")
+                     }}>
                       <img
                         className=" w-36  "
                         src="/images/pausedvideo.png"
