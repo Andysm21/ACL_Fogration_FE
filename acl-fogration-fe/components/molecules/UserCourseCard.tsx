@@ -87,6 +87,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
     const [starsnum, setStarsnum] = useState(0);
 
      const discount = (discount: number, price: number, duration: number) => {
+      if (isCorporate == "false"){
        if (Currency == "£") {
          price = price * 20;
        }
@@ -114,12 +115,18 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
            </div>
          );
        }
+     }
+
+     else{
+      return <div></div>
+     }
      };
      function DiscountDuration(
        duration: number,
        discount: number,
        price: number
      ) {
+      if (isCorporate == "false"){
        if (duration == 0 || discount == 0 || price == 0) {
          return <div></div>;
        } else
@@ -128,6 +135,9 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
              Discount available for {duration} days
            </p>
          );
+         }
+         else{
+          return <div></div>
      }
 
   const [Currency, setCurrency] = useState('');
@@ -249,9 +259,9 @@ const enroll = (isCorporate:string) => {
               <h1 className=" text-violet-400 text-4xl">
                 {" "}
                 {discount(
-                  SavedCourseData?.Course_Discount,
-                  SavedCourseData?.Course_Price,
-                  SavedCourseData?.Course_Discount_Duration
+                  course?.Course_Discount,
+                  course?.Course_Price,
+                  course?.Course_Discount_Duration
                 )}
               </h1>
               
@@ -266,9 +276,9 @@ const enroll = (isCorporate:string) => {
               </div> */}
           </div>
             {DiscountDuration(
-              SavedCourseData?.Course_Discount_Duration,
-              SavedCourseData?.Course_Discount,
-              SavedCourseData?.Course_Price
+              course?.Course_Discount_Duration,
+              course?.Course_Discount,
+              course?.Course_Price
             )}
 
           </div>

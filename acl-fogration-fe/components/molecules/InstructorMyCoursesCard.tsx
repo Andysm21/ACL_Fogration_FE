@@ -8,24 +8,7 @@ import { BsGlobe2, BsPlayBtnFill, BsPlusCircle, BsPlusSquare } from "react-icons
 
 const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
   const [courseID,setcourseID]=useState("") 
-  const [factor, setFactor] = useState(1);
-  const [curr, setCurr] = useState('€');
-  
-    useEffect(()=>{
-      console.log(courses)
-      console.log(localStorage.getItem('currency'));
-      if (localStorage.getItem('currency') == '£'){
-            setFactor(factor*2);
-            setCurr('£');
-          }
-  
-        if (localStorage.getItem('currency') == '$'){
-            setFactor(factor*1.5);
-            setCurr('$');
-          }
-          
-  
-    })
+
 
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
@@ -53,7 +36,7 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
         }
       if((discount == 0) || price == 0 || duration == 0){
       return <h1 className=" text-violet-400 text-4xl  ">
-                {price} {localStorage.getItem('currency')}
+                {price}{localStorage.getItem('currency')}
               </h1>
 
     }
@@ -64,7 +47,7 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
       <div className=" text-violet-400 text-4xl  line-through">{price}</div>
       <div className="text-black3 text-4xl  ">.</div>
       <div className=" text-violet-400 text-4xl  ">
-                    {price * (100-discount)/100} {localStorage.getItem('currency')}</div>
+                    {price * (100-discount)/100}{localStorage.getItem('currency')}</div>
       </div>
 
       )

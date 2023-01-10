@@ -236,6 +236,7 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
   }
 
   const discount = (discount: number, price: number, duration: number) => {
+    if (isCorporate == "false"){
     if (localStorage.getItem("currency") == "£") {
       price = price * 20;
     }
@@ -261,8 +262,14 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
         </div>
       );
     }
+  }
+
+  else {
+    return <div></div>
+  }
   };
   function DiscountDuration(duration: number, discount: number, price: number) {
+    if (isCorporate == "false"){
     if (duration == 0 || discount == 0 || price == 0) {
       return <div></div>;
     } else
@@ -271,6 +278,11 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
           Discount available for {duration} days
         </p>
       );
+  }
+
+  else {
+    return <div></div>
+  }
   }
  
   if (courses?.length === 0) {
@@ -328,16 +340,16 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
               </div>
               <h1 className=" text-violet-400 text-4xl ">
 {discount(
-                  course.Course_Discount,
-                  course.Course_Price,
-                  course.Course_Discount_Duration
+                  course?.Course_Discount,
+                  course?.Course_Price,
+                  course?.Course_Discount_Duration
                 )}
               </h1>
 
 {DiscountDuration(
-              SavedCourseData?.Course_Discount_Duration,
-              SavedCourseData?.Course_Discount,
-              SavedCourseData?.Course_Price
+              course?.Course_Discount_Duration,
+              course?.Course_Discount,
+              course?.Course_Price
             )}
             </div>
           </div>

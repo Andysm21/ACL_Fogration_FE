@@ -13,8 +13,6 @@ const Course_What_You_Will_Learn =[
   "Learn about new algorithms"]
  
 const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
-   const [factor, setFactor] = useState(1);
-  const [curr, setCurr] = useState('€');
 
      const discount = (discount: number, price: number, duration: number) => {
        if (Currency == "£") {
@@ -59,10 +57,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
            </p>
          );
      }
- // console.log(course);
-  // if (courses.length === 0) {
-  //   return <div className="text-center ">No courses</div>;
-  // }
+
     var [SavedCourseData,setSavedCourseData]=useState({
       Course_ID: NaN,
       Course_Subject: '',
@@ -163,11 +158,10 @@ useEffect(()=>{
               $${SavedCourseData?.Course_Price}
             </h1> */}
               <h1 className=" text-violet-400 text-4xl">
-                {" "}
                 {discount(
-                  SavedCourseData?.Course_Discount,
-                  SavedCourseData?.Course_Price,
-                  SavedCourseData?.Course_Discount_Duration
+                  course?.Course_Discount,
+                  course?.Course_Price,
+                  course?.Course_Discount_Duration
                 )}
               </h1>
 
@@ -179,9 +173,9 @@ useEffect(()=>{
               </Link>
             </div>
             {DiscountDuration(
-              SavedCourseData?.Course_Discount_Duration,
-              SavedCourseData?.Course_Discount,
-              SavedCourseData?.Course_Price
+              course?.Course_Discount_Duration,
+              course?.Course_Discount,
+              course?.Course_Price
             )}
           </div>
         </div>
