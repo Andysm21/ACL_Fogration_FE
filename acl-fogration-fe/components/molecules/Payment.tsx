@@ -60,6 +60,7 @@ function getBalance(){
   }
 
   function getPrice(){
+    console.log(localStorage.getItem("CourseID"))
     axios.post("http://localhost:8000/getCoursePrice", {
     ID : localStorage.getItem("CourseID")
   }).then((res)=>{
