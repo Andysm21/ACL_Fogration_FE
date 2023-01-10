@@ -25,7 +25,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
        if (discount == 0 || price == 0 || duration == 0) {
          return (
            <h1 className=" text-violet-400 text-4xl  ">
-             {price} {Currency}
+             {price}{Currency}
            </h1>
          );
        } else {
@@ -36,8 +36,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
              </div>
              <div className="text-black3 text-4xl  ">.</div>
              <div className=" text-violet-400 text-4xl  ">
-               {(price * (100 - discount)) / 100}{" "}
-               {Currency}
+               {(price * (100 - discount)) / 100}{Currency}
              </div>
            </div>
          );

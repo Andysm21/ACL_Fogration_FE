@@ -1,9 +1,6 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
-
-
-
 import { useEffect, useState } from "react";
 import {courses} from '../../interfaces'
 const GuestCourses:React.FC<{ courses }> = ({courses }) => {

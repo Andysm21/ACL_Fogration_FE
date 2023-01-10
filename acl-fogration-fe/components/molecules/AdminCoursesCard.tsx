@@ -1,8 +1,7 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill, BsPlusCircle } from "react-icons/bs";
-import { useState } from "react";
-import { CountrySelector } from "./Selector";
+import { useEffect, useState } from "react";
 
 
 const AdminCoursesCard: React.FC<{courses}>= ({courses}) => {
@@ -24,38 +23,39 @@ const AdminCoursesCard: React.FC<{courses}>= ({courses}) => {
     return stars;
   };
   
-  // const discount =(discount:number,price:number) =>{
+       const discount = (discount:number,price:number,duration:number) =>{
+      if (localStorage.getItem('currency') == '£'){
+          price = price*20;
+        }
 
-  //     if (localStorage.getItem('currency') == '£'){
-  //         price = price*20;
-  //       }
+      if (localStorage.getItem('currency') == '$'){
+          price = price*1.5;
+        }
+      if((discount == 0) || price == 0 || duration == 0){
+      return <h1 className=" text-violet-400 text-4xl  ">
+                {price}{localStorage.getItem('currency')}
+              </h1>
 
-  //     if (localStorage.getItem('currency') == '$'){
-  //         price = price*1.5;
-  //       }
-    
-  //     if(discount == 0){
-  //     return <div className="">{price} $$</div>
-  
-  //   }
-  //   else{ 
+    }
+    else{ 
+      
+      return(
+      <div className="flex flex-row">
+      <div className=" text-violet-400 text-4xl  line-through">{price}</div>
+      <div className="text-black3 text-4xl  ">.</div>
+      <div className=" text-violet-400 text-4xl  ">
+                    {price * (100-discount)/100}{localStorage.getItem('currency')}</div>
+      </div>
 
-    
-  //     return(
-  //     // <div className="">{price} {localStorage.getItem('currency')}</div>
-  //     <div className="flex flex-row gap-2">
-  //     <div className="line-through">{price} </div>
-  //      <div className="">{(price) * ((100-discount)/100)} {localStorage.getItem('currency')}</div>
-  //      </div>
-  //     )
-    
-  //   }
-  
-  // }
-
-  function DiscountDuration(Course_Discount_Duration){
-         return  <p className=" text-violet-400">Discount available for {Course_Discount_Duration} days</p>
-
+      )
+    }
+    }
+     function DiscountDuration(duration : number,discount : number ,price : number){
+      if(duration == 0 || discount == 0 || price == 0){
+        return <div></div>
+      }
+        else
+         return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
   }
   return (
     <div className="grid grid-cols-2 text-white bg-bc gap-4">
@@ -65,7 +65,7 @@ const AdminCoursesCard: React.FC<{courses}>= ({courses}) => {
           <div className="flex flex-col">
             {/* //div el title bel rating */}
             <div className="flex flex-col text-3xl">
-              <div className="Font-bold  text-white">{course.Course_Title}</div>
+              <div className="text-white">{course.Course_Title}</div>
               <div className="flex flex-row  ">
                 {stars(course.Course_Rating)}
               </div>
@@ -88,10 +88,8 @@ const AdminCoursesCard: React.FC<{courses}>= ({courses}) => {
                 <BsGlobe2 />
                 {course.Course_Country}
               </div>
-              <h1 className=" text-violet-400 text-4xl font-bold ">
-                {/* {discount(course?.Course_Discount, course?.Course_Price)} */}
-              </h1>
-              {/* {DiscountDuration(course?.Course_Discount_Duration)} */}
+{discount(course.Course_Discount,course.Course_Price,course.Course_Discount_Duration)}
+              {DiscountDuration(course.Course_Discount_Duration,course.Course_Discount,course.Course_Price)}
             </div>
           </div>
           {/* //div el video bel se3r wel button */}
@@ -107,9 +105,9 @@ const AdminCoursesCard: React.FC<{courses}>= ({courses}) => {
             </div>
             {/* //h1 el se3r */}
             <div className="flex flex-row justify-between my-2">
-              <Link href="admin/course">
+              <Link href="/admin/course">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-80" onClick={()=>{
+                <button className="bg-gradient-to-r from-purple to-babyblue text-white border border-violet-400 py-2 px-4 rounded w-80" onClick={()=>{
                   setcourseID(course?.Course_ID)
                   localStorage.removeItem('CourseID')
                   localStorage.setItem('CourseID', course.Course_ID)

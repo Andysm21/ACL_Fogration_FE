@@ -141,28 +141,6 @@ const [type, setType ]= useState("");
       router.reload();
     }).catch((error) => console.log(error))
   }
-
-
-
-
-const [factor, setFactor] = useState(1);
-  const [curr, setCurr] = useState('€');
-
-  useEffect(()=>{
-  
-    console.log(localStorage.getItem('currency'));
-    if (localStorage.getItem('currency') == '£'){
-          setFactor(factor*2);
-          setCurr('£');
-        }
-
-      if (localStorage.getItem('currency') == '$'){
-          setFactor(factor*1.5);
-          setCurr('$');
-        }
-        
-
-  })
   
      const discount = (discount: number, price: number, duration: number) => {
        if (Currency == "£") {
@@ -175,7 +153,7 @@ const [factor, setFactor] = useState(1);
        if (discount == 0 || price == 0 || duration == 0) {
          return (
            <h1 className=" text-violet-400 text-4xl  ">
-             {price} {Currency}
+             {price}{Currency}
            </h1>
          );
        } else {
@@ -186,8 +164,7 @@ const [factor, setFactor] = useState(1);
              </div>
              <div className="text-black3 text-4xl  ">.</div>
              <div className=" text-violet-400 text-4xl  ">
-               {(price * (100 - discount)) / 100}{" "}
-               {Currency}
+               {(price * (100 - discount)) / 100}{Currency}
              </div>
            </div>
          );
