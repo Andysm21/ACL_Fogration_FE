@@ -19,6 +19,7 @@ const InstructorProfile: React.FC<{ instructor }> = ({ instructor }) => {
   const Insrating = React.useState(instructor.Instructor_Ratings);
 const [password1,setPassword1]=useState('')
 const [password,setPassword]=useState('')
+const [money,setMoney]=useState(0)
 const handleChangeP1 = event => {
   setPassword1(event.target.value);
     };
@@ -110,12 +111,24 @@ const handleSubmitUserEmail = () => {
    }).catch((error) => console.log(error))
   }
 }
+function getMoney(){
+  axios.post("http://localhost:8000/getMoneyOwed",{
+      id:instructor.Instructor_ID
+    }
+   ).then((response) => {
+     console.log(response)
+     setMoney(response.data.Money)
+   }).catch((error) => console.log(error))
+}
 // useEffect(()=>{
 //   //localStorage.removeItem("Type")
 //     // localStorage.setItem("ID","1")
 //   // setId(localStorage.getItem("ID"));
 // });
 // console.log(ID);
+useEffect(()=>{
+  getMoney()
+});
   const [country, setCountry] = useState('DE');
 
   var status = '';
@@ -207,7 +220,7 @@ const handleSubmitUserEmail = () => {
               <input
                 readOnly
                 className=" bg-black3  text-white p-1 text-l  border-2 w-60  border-gray-600 rounded-md"
-                value={157}
+                value={money}
               />
 
                 <div className="text-l">Country </div>
