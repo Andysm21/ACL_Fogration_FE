@@ -112,7 +112,12 @@ const enroll = (isCorporate:string,CID)  => {
     <div>
       <button
         className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded w-36 border border-violet-400"
-        onClick={handleClickOpen}
+        onClick={()=>{
+          localStorage.setItem("RequestedCID",CID?.Course_ID)
+          console.log(localStorage.getItem("RequestedCID"))
+          console.log("Helloooo")
+      setOpen(true);
+        }}
       >
         Enroll Now
       </button>

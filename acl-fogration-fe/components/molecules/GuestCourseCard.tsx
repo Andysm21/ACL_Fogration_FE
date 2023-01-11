@@ -87,7 +87,8 @@ function DiscountDuration(duration : number,discount : number ,price : number){
       Course_Review: [],
       Course_Rate: [''],
       Course_Exam: [''],
-      Course_What_You_Will_Learn: [],    })
+      Course_What_You_Will_Learn: [],
+     })
 
 
       
@@ -203,7 +204,7 @@ useEffect(()=>{
           <div className="flex flex-col border-black1 text-white bg-black2 m-2 px-2 w-52 h-20 rounded-md justify-between items-center py-2">
             <BsPlayBtnFill size={30} />
             <div className="  justify-center items-end">
-              {SavedCourseData?.Course_Hours} hours of video
+              ~{SavedCourseData?.Course_Hours} hours of video
             </div>
           </div>
 
