@@ -39,6 +39,8 @@ const viewmycourse: NextPage = () => {
    console.log(courseArray)
  }, []);
   
+
+ 
   return (
     <div className="bg-bc h-screen">
       <Head>
