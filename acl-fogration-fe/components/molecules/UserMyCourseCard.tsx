@@ -138,7 +138,7 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
   const [starsnum, setStarsnum] = useState(0);
 
   function handleSubmit (x) {
-    console.log(x);
+    // console.log(x);
     setStarsnum(x); 
     axios.post('http://localhost:8000/RatingCourse', {ID: localStorage.getItem('CourseID'), Rating: x})
   
@@ -150,7 +150,7 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
 
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
-    console.log(course)
+    // console.log(course)
   },[courseRating])
 
   if (courses.length === 0) {
@@ -426,8 +426,8 @@ const refund = (isCorporate: string) => {
                       x=x.split("=");
                       x=x[1];
                       x=VideoLink+x;
-                      console.log(VideoLink)
-                      console.log(2)
+                      // console.log(VideoLink)
+                      // console.log(2)
                       localStorage.setItem("videoLink",x);
                       localStorage.setItem("videoID",video?.Video_ID);
                       router.push("/user/watchvideo")
@@ -469,15 +469,15 @@ const refund = (isCorporate: string) => {
         </div>
          <div className="flex flex-row ">
             {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
-              console.log(item?.Exam_ID)
-console.log(item?.Exam_Grade),console.log("Fo2eyaaaa")
+              // console.log(item?.Exam_ID)
+              console.log("Alooo"),
+              console.log( course?.Course_Exam)
+              console.log(item?.Exam_Grade)
               return(
               <div key={index}  className="flex flex-col items-center " onClick={()=>{
                 localStorage.setItem("CurrentExamID",item?.Exam_ID);
-                console.log("HERE")
-                console.log(localStorage.getItem("CurrentExamID"))
-                console.log(localStorage.getItem("user_id"))
-                console.log(localStorage.getItem("CourseID"))
+                
+                
                 var type;
                 var userid= Number(localStorage.getItem("user_id"));
               

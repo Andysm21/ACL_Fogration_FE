@@ -73,7 +73,7 @@ function getBalance(){
 
     const handleSubmit = () => {
       console.log("submit");
-      var courseID = localStorage.getItem('CourseID')
+      var courseID = Number(localStorage.getItem("RequestedCID"))
       var type;
       if(localStorage.getItem("Type")=="User"){
         type=1;
