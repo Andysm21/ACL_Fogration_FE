@@ -86,7 +86,7 @@ console.log("WENT TO RETAKE")
 }).catch((error) => console.log(error))
   
 }
-var flag = false;
+var flag = true;
 function getScore (){ 
    var type ;
   var userid= Number(localStorage.getItem("user_id"));
@@ -104,7 +104,7 @@ function getScore (){
     Type:type,
   }).then((response) => {
     console.log(response.data)
-    SetGrade(response.data.Grade);
+    SetGrade(Math.ceil(response.data.Grade));
     SetQ(response.data.Model.length);
     SetQCA(response.data.TotalRight);
     SetProgress(response.data.Progress);
@@ -136,13 +136,19 @@ const finished = (Progress : Number) =>{
   }).catch((error) => console.log(error))
    
       return (
-      <button onClick = {download} className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded  w-72" >
-        Download Certificate
-      </button>
+      //   <div className="flex flex-row gap-2 justify-center">
+      // <button onClick = {download} className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded  w-72" >
+      //   Download Certificate
+      // </button>
+      // <button className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded  w-72">Recive certificate by Email</button>
+      // </div>
+      <div className="flex justify-center text-white"> <Link href="" onClick={download} className="text-violet-400 underline" >Download Certificate </Link>  
+      <div className="text-bc">.</div> or <div className="text-bc">.</div> 
+      <Link  className="text-violet-400 underline" href="" onClick={receiveEmail}>  Get Certificate By Email</Link></div>
     )
 }
 }
-
+const receiveEmail = () =>{}
 const download = () =>{
   console.log("Cirteficate Downloaded");
   axios.get("http://localhost:8000/downloadCertificate",{responseType:'blob'}).then((res)=>{
@@ -184,13 +190,13 @@ var final = false;
             <button className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded w-72">
               Show Correct Answers
             </button>
-            </Link>
-            {finished(Progress)}
-            
+            </Link> 
           </div>
+         
           <div className="text-white text-center font-light"> 
             *By showing correct answers you will not be able to retake exam
           </div>
+           {finished(Progress)}
         </div>
       </Layout>
     </div>
