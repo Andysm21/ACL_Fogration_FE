@@ -49,7 +49,6 @@ const HeaderUserCourses = ({
     else{
       localStorage.setItem("popularCourses","false")
     }
-    console.log(localStorage.getItem("popularCourses"))
   };
     const handleSubmit = () => {
     console.log("submit");

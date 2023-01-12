@@ -60,6 +60,7 @@ function getBalance(){
   }
 
   function getPrice(){
+    console.log(localStorage.getItem("CourseID"))
     axios.post("http://localhost:8000/getCoursePrice", {
     ID : localStorage.getItem("CourseID")
   }).then((res)=>{
@@ -72,7 +73,7 @@ function getBalance(){
 
     const handleSubmit = () => {
       console.log("submit");
-      var courseID = localStorage.getItem('CourseID')
+      var courseID = Number(localStorage.getItem("RequestedCID"))
       var type;
       if(localStorage.getItem("Type")=="User"){
         type=1;

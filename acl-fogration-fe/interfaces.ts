@@ -24,6 +24,14 @@ export interface Requests {
   User_Company: string;
 }
 
+export interface RefReq {
+  User_ID: number;
+  User_FirstName:string,
+  Course_ID: number;
+  Request_status: string;
+  Refund_Amount: number;
+}
+
 export interface exam {
   Exam_ID: number;
   Exam_Question_ID: questions[];

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Layout from '../../components/templates/Layout'
 import axios from 'axios';
+import FileDownload from 'js-file-download';
 
 // let Question_Correct_Answers = 5;
 // let Questions = 15;
@@ -25,9 +26,11 @@ const score = () => {
   const[grade,SetGrade]=useState(0);
   const[Question_Correct_Answers,SetQCA]=useState(0);
   const[Questions,SetQ]=useState(0);
+  const[Progress,SetProgress]=useState(0);
+  const[CourseID,SetCourseID]=useState(0);
 
-  const text = (final:boolean) => {
-    if(final == true){
+  const text = (Progress:Number) => {
+    if(Progress == 100){
       return (<div className="text-violet-400 text-7xl text-center ">
         Congratulations! You finished the course
       </div>
@@ -83,6 +86,7 @@ console.log("WENT TO RETAKE")
 }).catch((error) => console.log(error))
   
 }
+var flag = false;
 function getScore (){ 
    var type ;
   var userid= Number(localStorage.getItem("user_id"));
@@ -102,7 +106,9 @@ function getScore (){
     console.log(response.data)
     SetGrade(response.data.Grade);
     SetQ(response.data.Model.length);
-    SetQCA(response.data.TotalRight)
+    SetQCA(response.data.TotalRight);
+    SetProgress(response.data.Progress);
+    SetCourseID(response.data.Course_ID)
 }).catch((error) => console.log(error))
 }
 useEffect(() => {
@@ -110,26 +116,47 @@ useEffect(() => {
   // console.log(Exam)
 })
 
-const finished = (final : boolean) =>{
-  if (final == true)
+const finished = (Progress : Number) =>{
+  var type ;
+  if (Progress == 100){ 
+      if(localStorage.getItem("Type")=="Corp"){
+        type=2;
+      }
+      else if(localStorage.getItem("Type")=="User"){
+        type=1;
+      }
+    axios.post("http://localhost:8000/sendCertificate",
+    {
+      userid:Number(localStorage.getItem("user_id")),
+      courseId:CourseID,
+      Type:type,
+    }).then((response) => {
+      console.log(response.data)
+     
+  }).catch((error) => console.log(error))
+   
       return (
       <button onClick = {download} className="bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded  w-72" >
-        Download Cirtificate
+        Download Certificate
       </button>
     )
+}
 }
 
 const download = () =>{
   console.log("Cirteficate Downloaded");
+  axios.get("http://localhost:8000/downloadCertificate",{responseType:'blob'}).then((res)=>{
+  FileDownload(res.data,'Certificate.pdf')
+  }).catch((error) => console.log(error))
 }
-var final = true;
+var final = false;
   return (
   
     <div>
      
       <Layout>
         <div className="bg-bc h-screen w-full flex flex-col justify-center gap-1">
-          {text(final)}
+          {text(Progress)}
           <div className="text-white text-center  text-3xl flex flex-row items-center justify-center">
             You have answered <div className="text-bc">.</div>
             <div className="text-violet-400"> {Question_Correct_Answers}</div>
@@ -158,7 +185,7 @@ var final = true;
               Show Correct Answers
             </button>
             </Link>
-            {finished(final)}
+            {finished(Progress)}
             
           </div>
           <div className="text-white text-center font-light"> 

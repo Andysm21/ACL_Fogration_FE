@@ -40,10 +40,10 @@ const [curr, setCurr] = useState('€');
 
   const viewPrice =(price:number)=>{
     if(isCorporate == "false"){
-      return price   
+      return <div className="text-white"> {price}   </div>
     }
     else{
-      return 
+      return <div></div>
     }
   }
      const discount = (discount:number,price:number) =>{
@@ -112,7 +112,12 @@ const enroll = (isCorporate:string,CID)  => {
     <div>
       <button
         className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded w-36 border border-violet-400"
-        onClick={handleClickOpen}
+        onClick={()=>{
+          localStorage.setItem("RequestedCID",CID?.Course_ID)
+          console.log(localStorage.getItem("RequestedCID"))
+          console.log("Helloooo")
+      setOpen(true);
+        }}
       >
         Enroll Now
       </button>
@@ -189,7 +194,10 @@ const enroll = (isCorporate:string,CID)  => {
                 {course?.Course_Country}
               </div>
               <h1 className=" text-violet-400 text-4xl  ">
-              {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
+                {course?.Course_Price}
+
+                {/* {viewPrice(course?.Course_Price)} {localStorage.getItem('currency')} */}
+              {/* {discount(course?.Course_Discount,viewPrice(course?.Course_Price))} */}
               {DiscountDuration(course?.Course_Discount_Duration, course?.Course_Discount, course?.Course_Price)}
               {/* {price(isCorporate)} */}
               </h1>
