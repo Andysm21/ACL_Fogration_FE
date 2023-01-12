@@ -108,7 +108,7 @@ function getPopularCourses(){
 
 
 useEffect(()=>{
-
+  console.log(localStorage.getItem("currency"))
 if(localStorage.getItem("popularCourses")=="false"){
 if(localStorage.getItem("isCorp")=="false"){
   if(localStorage.getItem("Subject")==""){

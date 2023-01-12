@@ -194,7 +194,7 @@ const enroll = (isCorporate:string,CID)  => {
                 {course?.Course_Country}
               </div>
               <h1 className=" text-violet-400 text-4xl  ">
-                {course?.Course_Price}
+                {course?.Course_Price} {curr}
 
                 {/* {viewPrice(course?.Course_Price)} {localStorage.getItem('currency')} */}
               {/* {discount(course?.Course_Discount,viewPrice(course?.Course_Price))} */}
