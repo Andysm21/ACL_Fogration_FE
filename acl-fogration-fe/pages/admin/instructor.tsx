@@ -1,5 +1,5 @@
 import React from "react";
-import ViewInstructor from "../../components/molecules/ViewInstructor";
+import AdminViewInstructor from "../../components/molecules/AdminViewInstructor";
 import Layout from "../../components/templates/Layout";
 const person = {
   _id: {
@@ -76,7 +76,7 @@ const instructor: React.FC<{ user }> = ({ user }) => {
   return (
     <div className="bg-bc h-screen">
       <Layout>
-        <ViewInstructor user={person} />
+        <AdminViewInstructor user={person} />
       </Layout>
     </div>
   );

@@ -16,7 +16,6 @@ const guestcourses: NextPage = () => {
   function getCourses(){
      axios.get("http://localhost:8000/viewCoursesALL"
     ).then((response) => {
-      console.log("Hello")
       console.log(response.data)
       setCourseArray(response.data)
     }).catch((error) => console.log(error))
@@ -60,19 +59,48 @@ function getCoursesFilterRating(){
    setCourseArray(response.data)
  }).catch((error) => console.log(error))
 }
+function getCoursesSearch(){
+  axios.post("http://localhost:8000/Search",{
+    searchR: localStorage.getItem("Search")
+  }
+ ).then((response) => {
+   //console.log("Function:")
+   // console.log(localStorage.getItem("Search"))
+   // console.log("response data:")
+   if(response.data == "")
+    setCourseArray([])
+   else
+    setCourseArray(response.data)
 
+ }).catch((error) => console.log(error))
+}
 useEffect(()=>{
   if(localStorage.getItem("Subject")==""){
+    
     if(localStorage.getItem("Rating")==""){
       if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+
+        if(localStorage.getItem("Search")=='' || localStorage.getItem("Search")==""){
+
          getCourses()
+         localStorage.setItem("Search","")
+
+        //  console.log("Hi")
+        }
+        else{
+          getCoursesSearch();
+        }
       }
       else{
         getCoursesFilterPrice()
+        localStorage.setItem("Search","")
+
       }
     }
     else{
         getCoursesFilterRating()
+        localStorage.setItem("Search","")
+
     }
 }
 else{
@@ -85,6 +113,10 @@ else{
     getCoursesFilterSubjectandRating()
   }
 }
+// localStorage.removeItem("Course")
+// localStorage.setItem("Course",CourseArray[0]?.Course_ID+"")
+// console.log(localStorage.getItem("Course"))
+
 })
 
 

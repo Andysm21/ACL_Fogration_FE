@@ -11,10 +11,10 @@ const UsersCard: React.FC<{ users }> = ({ users }) => {
   })
   const detailsLink = ()=>{
     if(type=="Instructor"){
-      return "Instructor"
+      return "instructor"
       }
   else{
-      return "User"
+      return "user"
   }
   }
   
@@ -23,31 +23,29 @@ const UsersCard: React.FC<{ users }> = ({ users }) => {
   }
 
   return (
-    <div className="grid grid-cols-2 place-items-center bg-bc gap-4">
+    <div className="bg-bc h-screen">
+    <div className="grid grid-cols-2 text-white  bg-bc gap-4">
       {users.map((person) => (
         <div
           key={person.User_Name}
-          className=" border-2 m-2 border-bc flex  w-full flex-col rounded-lg bg-black2 items-start gap-8 justify-start p-4 text-center text-white shadow-lg"
+className="flex gap-4 flex-row-1 bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 h-20"
         >
-          <div className="flex flex-row gap-2">
-            <CgProfile size={80} />
-            <div className="flex flex-col items-center justify-center ">
-              <div className="font-bold text-2xl">{person.User_Name} </div>
-              <div className="font-light text-md">{person.User_Role} </div>
-            </div>
-          </div>
-          <div className="text-l"> Address: {person.User_Address}</div>
-          <div className="text-l"> City: {person.User_City}</div>
+
+              <div className="texl-l">Name: {person.User_Name} </div>
+              <div className="text-l">Role: {person.User_Role} </div>
           <div className="text-l">Country: {person.User_Country}</div>
+          <div className="text-l"> City: {person.User_City}</div>
+          <div className="text-l"> Address: {person.User_Address}</div>
           <div className="flex flex-row gap-2">
             <Link href={detailsLink()}>
-              <button className="bg-gradient-to-r px-4 py-2 rounded-md from-purple to-babyblue text-white hover:font-bold">
+              <button                 className="bg-gradient-to-r from-purple to-babyblue text-white py-3 px-4 rounded w-36 border border-violet-400">
                 More Details
               </button>
             </Link>
           </div>
         </div>
       ))}
+    </div>
     </div>
   );
 };

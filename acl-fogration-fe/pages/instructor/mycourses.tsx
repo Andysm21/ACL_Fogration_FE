@@ -21,10 +21,10 @@ const mycourses: NextPage = () => {
   var [courseArray,setCourseArray]=useState([]);
   function getCourses(){
      axios.post("http://localhost:8000/viewMyCoursesInstructor",{
-      Instructor_ID: Number(localStorage.getItem("InstID"))
+      Instructor_ID: Number(localStorage.getItem("user_id"))
      }
     ).then((response) => {
-      console.log(Number(localStorage.getItem("InstID")))
+      console.log(Number(localStorage.getItem("user_id")))
 
       setCourseArray(response.data)
     }).catch((error) => console.log(error))
@@ -32,7 +32,7 @@ const mycourses: NextPage = () => {
 
   function getCoursesFilterPrice(){
     axios.post("http://localhost:8000/filterPriceInst",{
-     Instructor_ID: Number(localStorage.getItem("InstID")),
+     Instructor_ID: Number(localStorage.getItem("user_id")),
      FilterPrice1: Number(localStorage.getItem("MinPrice")),
      FilterPrice2:Number(localStorage.getItem("MaxPrice"))
     }
@@ -43,17 +43,20 @@ const mycourses: NextPage = () => {
 
  function getCoursesFilterSubject(){
   axios.post("http://localhost:8000/filterSubjectInst",{
-   Instructor_ID: Number(localStorage.getItem("InstID")),
+   Instructor_ID: Number(localStorage.getItem("user_id")),
    FilterSubject: localStorage.getItem("Subject"),
   }
  ).then((response) => {
+   //console.log(Number(localStorage.getItem("InstID")))
+   //console.log(Number(localStorage.getItem("Subject")))
+   //console.log(localStorage.getItem("H1"))
    setCourseArray(response.data)
  }).catch((error) => console.log(error))
 }
 
 function getCoursesFilterSubjectandPrice(){
   axios.post("http://localhost:8000/filterPriceAndSubjectInst",{
-   Instructor_ID: Number(localStorage.getItem("InstID")),
+   Instructor_ID: Number(localStorage.getItem("user_id")),
    FilterPrice1: Number(localStorage.getItem("MinPrice")),
    FilterPrice2:Number(localStorage.getItem("MaxPrice")),
    FilterSubject: localStorage.getItem("Subject")
@@ -63,28 +66,51 @@ function getCoursesFilterSubjectandPrice(){
  }).catch((error) => console.log(error))
 }
 
+function getCoursesSearch(){
+  axios.post("http://localhost:8000/searchmycourses",{
+   id: Number(localStorage.getItem("user_id")),
+   searchR: localStorage.getItem("Search")
+  }
+ ).then((response) => {
+  // console.log("Function:")
+  // console.log(localStorage.getItem("Search"))
+  // console.log("response data:")
+   if(response.data == "")
+    setCourseArray([])
+   else{
+    setCourseArray(response.data)
+    console.log(response.data)
+   }
+    
+
+ }).catch((error) => console.log(error))
+}
 
 useEffect(()=>{
+ // console.log("useEffect:")
+ // console.log(localStorage.getItem("Search"))
   if(localStorage.getItem("Subject")==""){
-    if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
-         getCourses()
-          localStorage.setItem("InstID","2")
-    }
-    else{
-      getCoursesFilterPrice()
-        localStorage.setItem("InstID","2")
-    }
-}
-else{
-  if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
-    getCoursesFilterSubject()
-    localStorage.setItem("InstID","2")
-}
+      if(localStorage.getItem("MaxPrice")=="" && localStorage.getItem("MinPrice")==""){
+         if(localStorage.getItem("Search")=='' || localStorage.getItem("Search")==""){
+          getCourses()
+         }
+         else{
+         // console.log("useEffect:")
+         // console.log(localStorage.getItem("Search"))
+          getCoursesSearch();
+         } 
+      }
+      else{
+        getCoursesFilterPrice()
+      }
+  }
+  else if(localStorage.getItem("MaxPrice")== "" && localStorage.getItem("MinPrice")==""){
+      getCoursesFilterSubject()
+  }
   else{
     getCoursesFilterSubjectandPrice()
-    localStorage.setItem("InstID","2")
   }
-}
+
 })
 
   return (

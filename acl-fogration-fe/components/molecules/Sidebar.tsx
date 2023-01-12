@@ -14,7 +14,7 @@ const Sidebar: React.FC<Props> = ({ links }) => {
   const router = useRouter();
 
   return (
-    <div className="fixed z-30 flex  h-[calc(100vh-64px)] w-[15%] flex-col justify-start bg-white pb-3 text-left   text-black shadow-lg">
+    <div className="fixed z-0 flex  h-[calc(100vh-64px)] w-[15%] flex-col justify-start bg-white pb-3 text-left   text-black shadow-lg">
       {links.map((link, index) => (
         <Link href={link.href} passHref key={index} legacyBehavior>
           <a

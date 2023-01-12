@@ -221,6 +221,9 @@ const IndividualUserProfile: React.FC<{ user }> = ({ user }) => {
 
        {/* hena 7oty ay 7aga 3aiza tezawediha odam heya m3 kol eli fo2 zy el reviews fel instructor */}
 
+
+      
+      
       </div>
     </div>
   );

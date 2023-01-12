@@ -11,6 +11,7 @@ export interface subtitle {
 }
 export interface video {
   Video_ID: number;
+  Video_Title: string;
   Video_Link: string;
   Video_Subtitle: string;
   Video_Description: string;
@@ -42,7 +43,7 @@ export interface course {
   Course_Description: string;
   Course_Price: number;
   Course_Rating: number;
-  Course_Instructor: number;
+  Course_Instructor: instructor;
   Course_Hours: number;
   Course_Country: string;
   Course_Discount: number;
@@ -57,15 +58,16 @@ export interface course {
 export interface user {
 
   User_ID: number;
-  User_Name: string;
+  User_UserName: string;
+  User_FirstName: string;
+  User_LastName: string;
   User_Email: string;
   User_Password: string;
-  User_Role: string;
   User_Country: string;
-  User_City: string;
-  User_Address: string;
-  User_Phone: string;
+  User_Gender: string;
+  User_Wallet: number;
   User_Courses: course[];
+  User_Corporate: string;
   User_isCorporate: boolean;
 };
 export interface instructor {

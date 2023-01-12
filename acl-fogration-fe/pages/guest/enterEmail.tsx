@@ -8,9 +8,6 @@ function enterEmail() {
   const router = useRouter();
   const [value, setValue] = React.useState<Date | null>();
 
-  const handleChange1 = (newValue: Date | null) => {
-    setValue(newValue);
-  };
 
   const[email,setEmail]= React.useState("")
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,9 +19,11 @@ function enterEmail() {
   function handleSubmit (){
     axios.post("http://localhost:8000/forgotPassword",{Email:email}).then((response)=>{
       console.log(response.data)
-    })
+    }).catch((error) => console.log(error))
+
 
   }
+  
   return (
     <div>
       <NavGuest />

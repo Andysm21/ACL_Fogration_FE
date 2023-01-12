@@ -18,7 +18,7 @@ const profile = () => {
 const [instructor,setPerson]=useState([])
 function getInstProf(){
   axios.post("http://localhost:8000/instructorProfile",{
-    Instructor_ID:2
+    Instructor_ID:Number(localStorage.getItem("user_id"))
   }
  ).then((response) => {
    setPerson(response.data)
@@ -34,7 +34,7 @@ useEffect(()=>{
     <div>
         <Layout>
         <div>
-            <InstructorProfile instructor={instructor} />
+            <InstructorProfile instructor={instructor}/>
 
             {/* <IndividualUserProfile user={person}/> */}
             {/* <CorporateUserProfile user={person}/> */}

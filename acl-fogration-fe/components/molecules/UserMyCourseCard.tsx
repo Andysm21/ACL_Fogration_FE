@@ -1,9 +1,16 @@
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { Button, Link } from "@mui/material";
+import { AiFillFilePdf, AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { Button, Link, Typography } from "@mui/material";
+import LinearProgress from '@mui/joy/LinearProgress';
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import ReportCourse from "./ReportCourse";
+import React from "react";
+import CourseRefund from "./CourseRefund";
+import { useRouter } from "next/router";
+import Axios from 'axios';
+
 const courses = [
   {
     _id: {
@@ -125,10 +132,57 @@ const courses = [
 ];
 
 const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
+      var [SavedCourseData,setSavedCourseData]=useState({
+      Course_ID: NaN,
+      Course_Subject: '',
+      Course_Description: '',
+      Course_Price: NaN,
+      Course_Rating: NaN,
+      Course_Instructor: {
+        Instructor_FirstName: '',
+      },
+      Course_Hours: NaN,
+      Course_Country: '',
+      Course_Discount: NaN,
+      Course_Title: '',
+      Course_Discount_Duration: NaN,
+      Course_Subtitle: [],
+      Course_Trainee: [],
+      Course_Review: [],
+      Course_Rate: [''],
+      Course_Exam: [''],
+      Course_What_You_Will_Learn: [],    })
+  const router = useRouter();
+  var flag;
+
+  var [courseRating, setcourseRating] = useState(course?.Course_Rating);
+  const [starsnum, setStarsnum] = useState(0);
+
+  function handleSubmit (x) {
+    console.log(x);
+    setStarsnum(x); 
+    axios.post('http://localhost:8000/RatingCourse', {ID: localStorage.getItem('CourseID'), Rating: x})
+  
+    .then((response) => {
+      setcourseRating(response.data);
+    }).catch((error) => console.log(error))
+    //console.log(data);
+  };
+
+  useEffect(() => {
+    setIsCorporate(localStorage.getItem("isCorp"))
+    console.log(course)
+  },[courseRating])
+
   if (courses.length === 0) {
+    
     return <div className="text-center "> No courses</div>;
   }
   const stars = (rating: number) => {
+  
+    if(rating == undefined){
+      rating = course?.Course_Rating;
+    }
     let stars = [];
     for (let i = 0; i < rating; i++) {
       stars.push(
@@ -140,39 +194,186 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
     return stars;
   };
 
-  const [starsnum, setStarsnum] = useState(0);
+    const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+    const [open2, setOpen2] = React.useState(false);
+
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
+
+const What_You_Will_Learn = [
+      "How to use React",
+      "How to use Redux",
+      "How to use Material UI",
+    ];
+
+
+  const [isCorporate, setIsCorporate]= useState("false");
+
+  const viewPrice =(price:number)=>{
+    if(isCorporate == "false"){
+      return  price   
+    }
+    else{
+      return 
+    }
+  }
+     const discount = (discount: number, price: number, duration: number) => {
+      if (isCorporate == "false"){
+       if (Currency == "£") {
+         price = price * 20;
+       }
+
+       if (Currency == "$") {
+         price = price * 1.5;
+       }
+       if (discount == 0 || price == 0 || duration == 0) {
+         return (
+           <h1 className=" text-violet-400 text-4xl  ">
+             {price}{Currency}
+           </h1>
+         );
+       } else {
+         return (
+           <div className="flex flex-row">
+             <div className=" text-violet-400 text-4xl  line-through">
+               {price}
+             </div>
+             <div className="text-black3 text-4xl  ">.</div>
+             <div className=" text-violet-400 text-4xl  ">
+               {(price * (100 - discount)) / 100}{Currency}
+             </div>
+           </div>
+         );
+       }
+     }
+
+     else{
+      return <div></div>
+     }
+     };
+     function DiscountDuration(
+       duration: number,
+       discount: number,
+       price: number
+     ) {
+      if (isCorporate == "false"){
+       if (duration == 0 || discount == 0 || price == 0) {
+         return <div></div>;
+       } else
+         return (
+           <p className=" text-violet-400 text-light text-sm">
+             Discount available for {duration} days
+           </p>
+         );
+         }
+         else{
+          return <div></div>
+     }
+    }
+
+
+  const [Currency, setCurrency] = useState('');
+
+      var [SavedCourseData,setSavedCourseData]=useState({
+      Course_ID: NaN,
+      Course_Subject: '',
+      Course_Description: '',
+      Course_Price: NaN,
+      Course_Rating: NaN,
+      Course_Instructor: {
+        Instructor_FirstName: '',
+      },
+      Course_Hours: NaN,
+      Course_Country: '',
+      Course_Discount: NaN,
+        Course_Title: '',
+      
+  Course_Discount_Duration: NaN,
+      Course_Subtitle: [],
+      Course_Trainee: [],
+      Course_Review: [],
+      Course_Rate: [''],
+      Course_Exam: [''],
+      Course_What_You_Will_Learn: [],    })
+
+  useEffect(()=>{
+  Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
+  ).then((response) => {
+    course=response.data
+    setSavedCourseData(response.data)
+  }).catch((error) => console.log(error))
+  setCurrency(localStorage.getItem('currency'));
+})
+
+const refund = (isCorporate: string) => {
+    if (isCorporate == "false") {
+      return (
+        <div>
+          <button className="" onClick={handleClickOpen2}>
+            <div className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-96 border border-violet-400">
+              Refund
+            </div>
+          </button>
+
+          <CourseRefund isOpen={open2} handleClose={handleClose2} />
+        </div>
+      );
+    }
+  };
+
   return (
+    
     <div
-      key={course.Course_ID}
+      key={course?.Course_ID}
       className=" flex flex-col bg-bc w-75% shadow-lg text-white"
     >
+      
       {/* //div el eswd */}
       <div className="flex flex-row bg-bc justify-between mx-6 my-4">
         {/* //div el title bel kalam */}
         <div className="flex flex-col">
           {/* //div el title bel rating */}
           <div className="flex flex-col text-3xl">
-            <div className="Font-bold  text-white">{course.Course_Title}</div>
-            <div className="flex flex-row  ">{stars(course.Course_Rating)}</div>
+            <div className="Font-bold  text-white">{course?.Course_Title}</div>
+            <div className="flex flex-row  ">{stars(courseRating)}</div>
           </div>
           {/* //div el kalam eswd */}
           <div className="bg-bc flex flex-col  gap-3 my-2">
-            <div>{course.Course_Description}</div>
+            <div>{course?.Course_Description}</div>
             <div className="flex flex-row">
-              {course.Course_Trainee.length} enrolled students, taught by{" "}
+              {course?.Course_Trainee} enrolled students, taught by{" "}
               <div className="text-bc">.</div>
-              <Link href="/[{course.Course_Instructor}]">
+
+              <div onClick={()=>{ localStorage.setItem('course_instructor', course.Course_Instructor.Instructor_ID)}}>
+              <Link href="instructor" >
+               
+
                 {/* // 23deli el link */}
                 <div className="text-violet-400">
-                  {course.Course_Instructor}
+                {course?.Course_Instructor?.Instructor_FirstName}
                 </div>
               </Link>
+              </div>
             </div>
 
             {/* /*div el country*/}
             <div className="flex flex-row gap-1 items-center">
               <BsGlobe2 />
-              {course.Course_Country}
+              {course?.Course_Country}
             </div>
           </div>
         </div>
@@ -185,17 +386,23 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
             </Link>
           </div>
           {/* //h1 el se3r */}
+          <div className="flex flex-col">
           <div className="flex flex-row justify-between my-2">
-            <h1 className=" text-violet-400 text-4xl font-bold ">
-              $${course.Course_Price}
-            </h1>
-
-                                    <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
-                <div onClick={() => {setStarsnum(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                 <div onClick={() => {setStarsnum(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
-                  <div onClick={() => {setStarsnum(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+            
+            <h1 className=" text-violet-400 text-4xl ">
+{discount(
+                  course.Course_Discount,
+                  course.Course_Price,
+                  course.Course_Discount_Duration
+                )}
+              </h1>
+           
+                 <div className="flex flex-row justify-start items-center gap-1  text-violet-400">
+                <div onClick={() => {setStarsnum(1),handleSubmit(1);}}> { starsnum >=1 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                 <div onClick={() => {setStarsnum(2), handleSubmit(2);}}> { starsnum >=2 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(3), handleSubmit(3);}}> { starsnum >=3 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(4), handleSubmit(4);}}> { starsnum >=4 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
+                  <div onClick={() => {setStarsnum(5), handleSubmit(5);}}> { starsnum >=5 ? <AiFillStar size={30}/> : <AiOutlineStar size={30}/> }</div>
                   {/*  save the rating in the user  */}
 
                 
@@ -203,17 +410,25 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
 
 
           </div>
+
+{DiscountDuration(
+              SavedCourseData?.Course_Discount_Duration,
+              SavedCourseData?.Course_Discount,
+              SavedCourseData?.Course_Price
+            )}
+</div>
         </div>
       </div>
       {/* //div el abyad */}
       <div className="">
+        
         {/* //what you will learn */}
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-          <div className="text-white font-bold text-l">What you will learn</div>
-          <div className="flex flex-col gap-1">
+       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
+          <div className="text-white font-bold text-2xl mx-2">What you will learn</div>
+          <div className="flex flex-col gap-1 mx-2">
             {/* //m7taga 23melha grid */}
-            {course.Course_What_You_Will_Learn.map((item) => (
-              <div className="flex flex-row gap-1 text-white items-center">
+            {What_You_Will_Learn?.map((item,index) => (
+              <div key={index} className="flex flex-row gap-1 text-white items-center">
                 <TiTick />
                 <div className="text-white">{item}</div>
               </div>
@@ -224,7 +439,7 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
       {/*  div de m7taga tet7at ta7t */}
       {/* //This course includes  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <div className="text-white font-bold text-l mx-2">
+        <div className="text-white font-bold text-2xl mx-2">
           This course includes
         </div>
         <div className="flex flex-row">
@@ -232,7 +447,7 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
           <div className="flex flex-col border-black1 text-white bg-black2 m-2 px-2 w-52 h-20 rounded-md justify-between items-center py-2">
             <BsPlayBtnFill size={30} />
             <div className="  justify-center items-end">
-              {course.Course_Hours} hours of video
+              {course?.Course_Hours} hours of video
             </div>
           </div>
 
@@ -247,33 +462,34 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
         </div>
       </div>
       {/* //Course content  */}
-      <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
-        <h1 className="text-white font-bold text-3xl ">Course Content</h1>
-        {course.Course_Subtitle.map((subtitle) => {
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-4">
+        <h1 className="text-white font-bold text-2xl mx-2">Course Content</h1>
+        {course?.Course_Subtitle?.map((subtitle,index) => {
           return (
-            <div>
+<div key={index}  className="bg-bc p-2 rounded-md mx-2">
               <div className="flex flex-col gap-2 ">
                 <div className="flex flex-row gap-2 justify-between">
-                  <div className="text-xl font-bold">
+                  <div className="text-l font-bold">
                     {subtitle.Subtitle_Name}
                   </div>
-                  <div className="text-l flex items-end ">
-                    Total Time: {subtitle.Subtitle_Hours} mins
+                  <div className="text-l flex">
+                    Total Time: {subtitle?.Subtitle_Hours} mins
                   </div>
                 </div>
               </div>
-              <div className="flex flex-row gap-2 w-[100%] ">
-                {subtitle.Subtitle_Video.map((video) => {
+              <div className="flex flex-row gap-3 w-[100%] ">
+                {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
-                    <div>
+                    <div key={index}>
+                     <Link href={video?.Video_Link}>
                       <img
-                        className="flex-shrink-0  "
+                        className=" w-36  "
                         src="/images/pausedvideo.png"
-                        alt="No image yet 😅"
+                        alt="No image yet "
                       />
-
-                      <div className="text-l">{video.Video_Description}</div>
-                      <div className="text-l">{video.Video_Length} mins</div>
+                  </Link>
+                      <div className="text-l">{video?.Video_Description}</div>
+                      <div className="text-l">{video?.Video_Length} mins</div>
                     </div>
                   );
                 })}
@@ -282,6 +498,107 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
           );
         })}
       </div>
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+      <div className="flex flex-row items-center">
+        <div className="text-white font-bold text-2xl mx-2">Exams </div>
+        <div className="flex flex-row ">
+         <LinearProgress
+       className="w-72 bg-black2  text-gray-300 m-2 "
+       thickness={7}
+       determinate 
+        variant="outlined"
+        value={90}
+        >
+         
+        </LinearProgress>
+         <Typography className="text-white text-l"
+      >
+       90%
+      </Typography>
+        </div>
+        </div>
+         <div className="flex flex-row ">
+            {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
+              console.log(item?.Exam_ID)
+console.log(item?.Exam_Grade),console.log("Fo2eyaaaa")
+              return(
+              <div key={index}  className="flex flex-col items-center " onClick={()=>{
+                localStorage.setItem("CurrentExamID",item?.Exam_ID);
+                console.log("HERE")
+                console.log(localStorage.getItem("CurrentExamID"))
+                console.log(localStorage.getItem("user_id"))
+                console.log(localStorage.getItem("CourseID"))
+                var type;
+                var userid= Number(localStorage.getItem("user_id"));
+              
+                if(localStorage.getItem("Type")=="Corp"){
+                  type=2;
+                }
+                else if(localStorage.getItem("Type")=="User"){
+                  type=1;
+                }
+              
+                  axios.post("http://localhost:8000/createStudentTakeExam",
+                  {
+                    StudentTookExam_Student_ID:userid,
+                    StudentTookExam_Exam_ID:Number(localStorage.getItem("CurrentExamID")),
+                    StudentTookExam_Type:type,
+              
+                  }).then((response) => {
+                    if(response.data==false)
+                    {
+                      console.log("StudentTookExamCreated")
+
+                      router.push('/user/solveexam')
+
+                    }
+                  else
+                  {
+                    console.log("You already took the exam")
+
+                  }
+                }).catch((error) =>console.log("ERROR"))
+
+
+              }}>                      <AiFillFilePdf size={100}/>
+                      <div className="items-center justify-center flex flex-col">
+<div className="items-center justify-center flex flex-col text-l">
+                       Exam {item?.Exam_ID}
+                      </div>
+                        <div className="text-l"> {item?.Exam_Grade} %</div>
+                      </div>
+                    </div>
+              )
+            })}
+        </div>
+      </div>
+      <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
+        <div className="text-white font-bold text-2xl mx-2">Reviews</div>
+
+        <div className="flex flex-row gap-2 mx-2">
+            {course?.Course_Review && course?.Course_Review?.map((review,index) => {return (
+                <div key={index} className="flex bg-gradient-to-l from-gray-700 to-black2 text-white p-6 rounded-md w-52">
+                  {review}</div>    
+            )})}
+          </div>
+        </div> 
+
+
+        <div className= "rounded-md m-6 flex flex-col justify-center w-96 gap-1">
+
+ 
+            <button className=""
+            onClick={handleClickOpen}>
+                <div className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-[100%] border border-violet-400">Report an issue</div>
+
+
+            </button>
+            <ReportCourse isOpen={open} handleClose={handleClose} />
+
+
+            {refund(isCorporate)}
+
+          </div>
     </div>
   );
 };

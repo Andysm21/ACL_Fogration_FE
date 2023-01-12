@@ -84,9 +84,12 @@ const Filter: React.FC<Props> = ({ handleClose, isOpen }) => {
         keepMounted
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
+        className="flex justify-center"
       >
-        <DialogTitle id="responsive-dialog-title">{"Filter"}</DialogTitle>
-        <DialogContent className="">
+        <DialogTitle className="bg-bc text-white" id="responsive-dialog-title">
+          {"Filter"}
+        </DialogTitle>
+        <DialogContent className="bg-bc text-white">
           <DialogContentText className="grid gap-y-8 gap-x-3">
             <div className="items flex w-full items-end justify-center m-2 ">
               <FormControl
@@ -95,50 +98,53 @@ const Filter: React.FC<Props> = ({ handleClose, isOpen }) => {
                 className="m-2 gap-4 w-full"
               >
                 <div className="grid grid-column gap-y-4 w-96 m-2 ">
-                  <TextField
+                  <input
+                    className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                     id="outlined-basic"
-                    label="Subject"
-                    variant="outlined"
+                    // label="Subject"
+                    // variant="outlined"
+                    placeholder="Subject"
                     onChange={handleSubject}
                   />
-
-                  <TextField
+                  <input
+                    className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                     id="outlined-basic"
-                    label="Rating (1 - 5)"
-                    variant="outlined"
+                    // label="Rating (1 - 5)"
+                    // variant="outlined"
+                    placeholder="Rating (1 - 5)"
                     onChange={handleRating}
                   />
-                  <div className="flex flex-row gap-2">
-
-                                        <TextField
+                  <div className="flex flex-row gap-2 ">
+                    <input
+                      className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                       id="outlined-basic"
-                      label="Min Price"
-                      variant="outlined"
+                      // label="Min Price"
+                      // variant="outlined"
+                      placeholder="Min Price"
                       onChange={handleMinPrice}
                     />
 
-                    <TextField
+                    <input
+                      className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                       id="outlined-basic"
-                      label="Max Price"
-                      variant="outlined"
+                      // label="Max Price"
+                      // variant="outlined"
+                      placeholder="Max Price"
                       onChange={handleMaxPrice}
                     />
-
-                    
-
                   </div>
-
                 </div>
               </FormControl>
             </div>
             {/* <div className="items flex w-full items-end justify-center m-2 "></div> */}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+        <DialogActions className="bg-bc">
+          <Button className="text-violet-400" autoFocus onClick={handleClose}>
             Cancel
           </Button>
           <Button
+            className="text-violet-400"
             onClick={() => {
               handleSubmit();
               handleClose();

@@ -15,7 +15,7 @@ const HeaderInstructorMyCourses = ({
   count,
 }: any) => {
   const [open, setOpen] = React.useState(false);
-    const [open2, setOpen2] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,21 +38,22 @@ const HeaderInstructorMyCourses = ({
           setFilterDiv(!filterDiv);
         }
 
-              const [search, setSearch] = React.useState("");
+      const [search, setSearch] = React.useState("");
       const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value);
       };
 
-      const handleSubmit = () => {
+    const handleSubmit = () => {
     console.log("submit");
     const data = {
       search
     };
-    console.log(data);
+    localStorage.setItem("Search",data.search)
+    console.log(data.search);
   };
 
   return (
-    <div className="flex flex-row w-full items-center justify-between bg-black2 py-2  px-4">
+    <div className="flex flex-row w-full items-center justify-between bg-black2 py-2  px-5">
       <div className="flex items-center gap-4">
         <div className="flex items-center">
           <div className="">
@@ -79,7 +80,7 @@ const HeaderInstructorMyCourses = ({
         <Filter isOpen={open2} handleClose={handleClose2} />
       </div>
 
-      <div>
+      {/* <div>
         <button
           className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey"
           onClick={handleClickOpen}
@@ -88,7 +89,7 @@ const HeaderInstructorMyCourses = ({
         </button>
 
         <AddCourse isOpen={open} handleClose={handleClose} />
-      </div>
+      </div> */}
     </div>
   );
 };

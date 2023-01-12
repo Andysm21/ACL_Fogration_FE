@@ -48,11 +48,12 @@ const HeaderUserCourses = ({
     const data = {
       search
     };
+    localStorage.setItem("Search",data.search)
     console.log(data);
   };
 
   return (
-    <div className="flex flex-row w-full items-center justify-between bg-black2 py-2  px-4">
+    <div className="flex flex-row w-full items-center justify-between bg-black2 py-2  px-5">
       <div className="flex items-center gap-4">
         <div className="flex items-center">
           <div className="">
@@ -77,6 +78,15 @@ const HeaderUserCourses = ({
         </button>
 
         <Filter isOpen={open2} handleClose={handleClose2} />
+      </div>
+
+      <div>
+        <button
+          className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey"
+          // onClick={""}
+        >
+          Popular courses
+        </button>
       </div>
 
 
