@@ -39,10 +39,10 @@ const [curr, setCurr] = useState('€');
 
   const viewPrice =(price:number)=>{
     if(isCorporate == "false"){
-      return price   
+      return <div className="text-white"> {price}   </div>
     }
     else{
-      return 
+      return <div></div>
     }
   }
      const discount = (discount:number,price:number) =>{
@@ -177,7 +177,10 @@ const enroll = (isCorporate:string) => {
                 {course?.Course_Country}
               </div>
               <h1 className=" text-violet-400 text-4xl  ">
-              {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
+                {course?.Course_Price}
+
+                {/* {viewPrice(course?.Course_Price)} {localStorage.getItem('currency')} */}
+              {/* {discount(course?.Course_Discount,viewPrice(course?.Course_Price))} */}
               {DiscountDuration(course?.Course_Discount_Duration, course?.Course_Discount, course?.Course_Price)}
               {/* {price(isCorporate)} */}
               </h1>
