@@ -4,11 +4,8 @@ import { BsFillPlayBtnFill, BsGlobe2, BsPlayBtn, BsPlayBtnFill } from "react-ico
 import { TiTick } from "react-icons/ti";
 import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
-
 import AddVideo from "./AddVideo";
-
 import {TbPlayerPlay} from "react-icons/tb"
-
 import { course } from "../../interfaces";
 import axios from "axios";
 import { CountrySelector } from "./Selector";
@@ -16,6 +13,7 @@ import React from "react";
 import ReportCourse from "./ReportCourse";
 import { Router } from "react-router";
 import { useRouter } from "next/router";
+import Axios from 'axios'
 import AddSubtitle from "./AddSubtitle";
 
 
@@ -150,60 +148,83 @@ const [type, setType ]= useState("");
       router.reload();
     }).catch((error) => console.log(error))
   }
-
-
-
-
-const [factor, setFactor] = useState(1);
-  const [curr, setCurr] = useState('€');
-
-  useEffect(()=>{
   
-    console.log(localStorage.getItem('currency'));
-    if (localStorage.getItem('currency') == '£'){
-          setFactor(factor*2);
-          setCurr('£');
-        }
+     const discount = (discount: number, price: number, duration: number) => {
+       if (Currency == "£") {
+         price = price * 20;
+       }
 
-      if (localStorage.getItem('currency') == '$'){
-          setFactor(factor*1.5);
-          setCurr('$');
-        }
-        
+       if (Currency == "$") {
+         price = price * 1.5;
+       }
+       if (discount == 0 || price == 0 || duration == 0) {
+         return (
+           <h1 className=" text-violet-400 text-4xl  ">
+             {price}{Currency}
+           </h1>
+         );
+       } else {
+         return (
+           <div className="flex flex-row">
+             <div className=" text-violet-400 text-4xl  line-through">
+               {price}
+             </div>
+             <div className="text-black3 text-4xl  ">.</div>
+             <div className=" text-violet-400 text-4xl  ">
+               {(price * (100 - discount)) / 100}{Currency}
+             </div>
+           </div>
+         );
+       }
+     };
+     function DiscountDuration(
+       duration: number,
+       discount: number,
+       price: number
+     ) {
+       if (duration == 0 || discount == 0 || price == 0) {
+         return <div></div>;
+       } else
+         return (
+           <p className=" text-violet-400 text-light text-sm">
+             Discount available for {duration} days
+           </p>
+         );
+     }
 
-  })
-  
-   const discount =(discount:number,price:number) =>{
-
-     
-    
-        if((discount == 0) || price == 0){
-      return <h1 className=" text-violet-400 text-4xl">
-                {price*factor} {curr}
-              </h1>
-
-    }
-    else{ 
+    var [SavedCourseData,setSavedCourseData]=useState({
+      Course_ID: NaN,
+      Course_Subject: '',
+      Course_Description: '',
+      Course_Price: NaN,
+      Course_Rating: NaN,
+      Course_Instructor: {
+        Instructor_FirstName: '',
+      },
+      Course_Hours: NaN,
+      Course_Country: '',
+      Course_Discount: NaN,
+        Course_Title: '',
       
-      return(
-      <div className="flex flex-row">
-      <div className=" text-violet-400 text-4xl  line-through">{price}</div>
-      <div className="text-black3 text-4xl  ">.</div>
-      <div className=" text-violet-400 text-4xl  ">
-                    {price *factor* (100-discount)/100} {curr}</div>
-      </div>
-      )
-    }
-    }
+  Course_Discount_Duration: NaN,
+      Course_Subtitle: [],
+      Course_Trainee: [],
+      Course_Review: [],
+      Course_Rate: [''],
+      Course_Exam: [''],
+      Course_What_You_Will_Learn: [],    })
 
-      function DiscountDuration(duration : number,discount : number ,price : number){
-      if(duration == 0 || discount == 0 || price == 0){
-        return <div></div>
-      }
-        else{
-         return  <p className=" text-violet-400">Discount available for {duration} days</p>
-    }
-  }
+  const [Currency, setCurrency] = useState('');
+  
+useEffect(()=>{
+  Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
+  ).then((response) => {
+    course=response.data
+    setSavedCourseData(response.data)
+  }).catch((error) => console.log(error))
+  setCurrency(localStorage.getItem('currency'));
+})
+
   return (
     <div
       key={course?.Course_ID}
@@ -249,10 +270,20 @@ const [factor, setFactor] = useState(1);
           </div>
           {/* //h1 el se3r */}
           <div className="flex flex-col justify-between my-2">
-            <h1 className=" text-violet-400 text-4xl ">
-              {discount(course?.Course_Discount, course?.Course_Price)} 
-            </h1>
-            {DiscountDuration(course?.Course_Discount_Duration,course?.Course_Discount,course?.Course_Price)}
+            
+<h1 className=" text-violet-400 text-4xl">
+                {discount(
+                  course?.Course_Discount,
+                  course?.Course_Price,
+                  course?.Course_Discount_Duration
+                )}
+              </h1>
+            {DiscountDuration(
+              course?.Course_Discount_Duration,
+              course?.Course_Discount,
+              course?.Course_Price
+            )}
+
           </div>
         </div>
       </div>

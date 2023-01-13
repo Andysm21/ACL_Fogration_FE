@@ -8,24 +8,7 @@ import { BsGlobe2, BsPlayBtnFill, BsPlusCircle, BsPlusSquare } from "react-icons
 
 const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
   const [courseID,setcourseID]=useState("") 
-  const [factor, setFactor] = useState(1);
-  const [curr, setCurr] = useState('€');
-  
-    useEffect(()=>{
-      console.log(courses)
-      console.log(localStorage.getItem('currency'));
-      if (localStorage.getItem('currency') == '£'){
-            setFactor(factor*2);
-            setCurr('£');
-          }
-  
-        if (localStorage.getItem('currency') == '$'){
-            setFactor(factor*1.5);
-            setCurr('$');
-          }
-          
-  
-    })
+
 
   if (courses.length === 0) {
     return <div className="text-center "> No courses</div>;
@@ -43,7 +26,7 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
   };
 
   
-     const discount = (discount:number,price:number) =>{
+ const discount = (discount:number,price:number,duration:number) =>{
       if (localStorage.getItem('currency') == '£'){
           price = price*20;
         }
@@ -51,9 +34,9 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
       if (localStorage.getItem('currency') == '$'){
           price = price*1.5;
         }
-      if((discount == 0) || price == 0){
+      if((discount == 0) || price == 0 || duration == 0){
       return <h1 className=" text-violet-400 text-4xl  ">
-                {price} {localStorage.getItem('currency')}
+                {price}{localStorage.getItem('currency')}
               </h1>
 
     }
@@ -64,37 +47,33 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
       <div className=" text-violet-400 text-4xl  line-through">{price}</div>
       <div className="text-black3 text-4xl  ">.</div>
       <div className=" text-violet-400 text-4xl  ">
-                    {price * (100-discount)/100} {localStorage.getItem('currency')}</div>
+                    {price * (100-discount)/100}{localStorage.getItem('currency')}</div>
       </div>
 
       )
     }
     }
-
-      function DiscountDuration(duration : number,discount : number ,price : number){
+     function DiscountDuration(duration : number,discount : number ,price : number){
       if(duration == 0 || discount == 0 || price == 0){
         return <div></div>
       }
-        else{
+        else
          return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
-    }
   }
-
-
-
-
 
   return (
     <div className="grid grid-cols-2 text-white  bg-bc gap-4">
-
       <div className="flex gap-4 bg-black3 justify-center items-center mx-6 my-4 rounded-lg py-3 px-4">
-          <Link href="/instructor/createcourse">
-          <BsPlusCircle size={100} color="white"/>
-          </Link>
-          </div>
+        <Link href="/instructor/createcourse">
+          <BsPlusCircle size={100} color="white" />
+        </Link>
+      </div>
 
-      {courses?.map((course,index) => (
-        <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 ">
+      {courses?.map((course, index) => (
+        <div
+          key={index}
+          className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 "
+        >
           {/* //div el title bel kalam */}
           <div className="flex flex-col">
             {/* //div el title bel rating */}
@@ -123,9 +102,17 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
                 {course?.Course_Country}
               </div>
               <h1 className="text-violet-400 text-4xl ">
-                {discount(course?.Course_Discount, course?.Course_Price)}
+                {discount(
+                  course.Course_Discount,
+                  course.Course_Price,
+                  course.Course_Discount_Duration
+                )}
               </h1>
-              {DiscountDuration(course?.Course_Discount_Duration, course?.Course_Discount, course?.Course_Price)}
+              {DiscountDuration(
+                course.Course_Discount_Duration,
+                course.Course_Discount,
+                course.Course_Price
+              )}
             </div>
           </div>
           {/* //div el video bel se3r wel button */}
@@ -143,19 +130,20 @@ const InstructorMyCoursesCard :React.FC<{courses}> = ({courses}) => {
             <div className="flex flex-row justify-between my-2">
               <Link href="viewmycourse">
                 {/* //link button to enroll */}
-                <button className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-80 border border-violet-400" onClick={()=>{
-                  setcourseID(course?.Course_ID)
-                  localStorage.removeItem('CourseID')
-                  localStorage.setItem('CourseID', course?.Course_ID)
-                  console.log(course?.Course_ID)
-                  console.log("HELLO")
-                  console.log(localStorage.getItem('CourseID'))
-
-                }}>
+                <button
+                  className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-80 border border-violet-400"
+                  onClick={() => {
+                    setcourseID(course?.Course_ID);
+                    localStorage.removeItem("CourseID");
+                    localStorage.setItem("CourseID", course?.Course_ID);
+                    console.log(course?.Course_ID);
+                    console.log("HELLO");
+                    console.log(localStorage.getItem("CourseID"));
+                  }}
+                >
                   View Course
                 </button>
               </Link>
-
             </div>
           </div>
         </div>

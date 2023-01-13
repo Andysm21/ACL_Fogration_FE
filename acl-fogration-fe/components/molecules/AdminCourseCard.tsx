@@ -6,7 +6,7 @@ import { TbCertificate } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import React from "react";
 import ReportCourse from "./ReportCourse";
-
+import Axios from 'axios'
   
 
 const Course_What_You_Will_Learn =["Learn new algorithms","Learn more  abour data structures and algorithms"]
@@ -40,8 +40,6 @@ const [open2, setOpen2] = React.useState(false);
     setOpen2(false);
   };
 
- 
-
  const viewGrade = (grade:string) => {
     if(type=="Admin"){
             return <div></div>
@@ -51,28 +49,81 @@ const [open2, setOpen2] = React.useState(false);
         }
  }
 
- const discount =(discount:number,price:number) =>{
-    
-      if(discount == 0){
-      return <div className="">{price} $$</div>
-  
-    }
-    else{ 
-      return(
-      <div className="flex flex-row gap-2">
-      <div className="line-through">{price} </div>
-       <div className="">{(price) * ((100-discount)/100)}$$</div>
-       </div>
-      )
-    
-    }
-  
-  }
+      const discount = (discount: number, price: number, duration: number) => {
+       if (Currency == "£") {
+         price = price * 20;
+       }
 
-  function DiscountDuration(){
-         return  <p className=" text-violet-400">Discount available for {course.Course_Discount_Duration} days</p>
+       if (Currency == "$") {
+         price = price * 1.5;
+       }
+       if (discount == 0 || price == 0 || duration == 0) {
+         return (
+           <h1 className=" text-violet-400 text-4xl  ">
+             {price}{Currency}
+           </h1>
+         );
+       } else {
+         return (
+           <div className="flex flex-row">
+             <div className=" text-violet-400 text-4xl  line-through">
+               {price}
+             </div>
+             <div className="text-black3 text-4xl  ">.</div>
+             <div className=" text-violet-400 text-4xl  ">
+               {(price * (100 - discount)) / 100}{Currency}
+             </div>
+           </div>
+         );
+       }
+     };
+     function DiscountDuration(
+       duration: number,
+       discount: number,
+       price: number
+     ) {
+       if (duration == 0 || discount == 0 || price == 0) {
+         return <div></div>;
+       } else
+         return (
+           <p className=" text-violet-400 text-light text-sm">
+             Discount available for {duration} days
+           </p>
+         );
+     }
 
-  }
+    var [SavedCourseData,setSavedCourseData]=useState({
+      Course_ID: NaN,
+      Course_Subject: '',
+      Course_Description: '',
+      Course_Price: NaN,
+      Course_Rating: NaN,
+      Course_Instructor: {
+        Instructor_FirstName: '',
+      },
+      Course_Hours: NaN,
+      Course_Country: '',
+      Course_Discount: NaN,
+        Course_Title: '',
+      
+  Course_Discount_Duration: NaN,
+      Course_Subtitle: [],
+      Course_Trainee: [],
+      Course_Review: [],
+      Course_Rate: [''],
+      Course_Exam: [''],
+      Course_What_You_Will_Learn: [],    })
+
+  const [Currency, setCurrency] = useState('');
+  
+useEffect(()=>{
+  Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
+  ).then((response) => {
+    course=response.data
+    setSavedCourseData(response.data)
+  }).catch((error) => console.log(error))
+  setCurrency(localStorage.getItem('currency'));
+})
 
   return (
     <div
@@ -121,10 +172,18 @@ const [open2, setOpen2] = React.useState(false);
           </div>
           {/* //h1 el se3r */}
           <div className="flex flex-col justify-between my-2">
-            <h1 className=" text-violet-400 text-4xl font-bold ">
-              {discount(course?.Course_Discount, course?.Course_Price)}
-            </h1>
-            {DiscountDuration()}
+              <h1 className=" text-violet-400 text-4xl">
+                {discount(
+                  course?.Course_Discount,
+                  course?.Course_Price,
+                  course?.Course_Discount_Duration
+                )}
+              </h1>
+                {DiscountDuration(
+              course?.Course_Discount_Duration,
+              course?.Course_Discount,
+              course?.Course_Price
+            )}
           </div>
         </div>
       </div>

@@ -8,27 +8,10 @@ import { CurrencyBitcoinSharp } from "@mui/icons-material";
 
  
 const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
-  const [isCorporate, setIsCorporate]= useState("false");
-
-const [factor, setFactor] = useState(1);
-const [curr, setCurr] = useState('€');
-
-  useEffect(() => {
-    setIsCorporate(localStorage.getItem("isCorp"))
-    if (localStorage.getItem('currency') == '£'){
-          setFactor(factor*2);
-          setCurr('£');
-        }
-
-      if (localStorage.getItem('currency') == '$'){
-          setFactor(factor*1.5);
-          setCurr('$');
-        }
-        console.log(localStorage.getItem("isCorp"))
 
 
+  const [isCorporate, setIsCorporate]= useState("true");
 
-  })
 
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -47,38 +30,57 @@ const [curr, setCurr] = useState('€');
       return <div></div>
     }
   }
-const discount = (discount:number,price:number) =>{
-      if(isCorporate == "true"){
-        return
-      }
-      else{
-        if (localStorage.getItem('currency') == '£'){
-          price = price*20;
-        }
 
-      if (localStorage.getItem('currency') == '$'){
-          price = price*1.5;
-        }
-      if((discount == 0) || price == 0){
-      return <h1 className=" text-violet-400 text-4xl  ">
-                {price} {localStorage.getItem('currency')}
-              </h1>
-
+  const discount = (discount: number, price: number, duration: number) => {
+    if (isCorporate == "false"){
+    if (localStorage.getItem("currency") == "£") {
+      price = price * 20;
     }
-    else{ 
-      
-      return(
-      <div className="flex flex-row">
-      <div className=" text-violet-400 text-4xl  line-through">{price}</div>
-      <div className="text-black3 text-4xl  ">.</div>
-      <div className=" text-violet-400 text-4xl  ">
-                    {price * (100-discount)/100} {localStorage.getItem('currency')}</div>
-      </div>
 
-      )
-       }
-      }
-     }
+    if (localStorage.getItem("currency") == "$") {
+      price = price * 1.5;
+    }
+    if (discount == 0 || price == 0 || duration == 0) {
+      return (
+        <h1 className=" text-violet-400 text-4xl  ">
+          {price}{localStorage.getItem("currency")}
+        </h1>
+      );
+    } else {
+      return (
+        <div className="flex flex-row">
+          <div className=" text-violet-400 text-4xl  line-through">{price}</div>
+          <div className="text-black3 text-4xl  ">.</div>
+          <div className=" text-violet-400 text-4xl  ">
+            {(price * (100 - discount)) / 100}{localStorage.getItem("currency")}
+          </div>
+        </div>
+      );
+    }
+  }
+
+
+  else {
+    return <div></div>
+  }
+  };
+  function DiscountDuration(duration: number, discount: number, price: number) {
+    if (isCorporate == "false"){
+    if (duration == 0 || discount == 0 || price == 0) {
+      return <div></div>;
+    } else
+      return (
+        <p className=" text-violet-400 text-light text-sm">
+          Discount available for {duration} days
+        </p>
+      );
+  }
+
+  else {
+    return <div></div>
+  }
+  }
+
 
   if (courses.length === 0) {
     return <div className="text-center text-white"> No courses</div>;
@@ -94,20 +96,8 @@ const discount = (discount:number,price:number) =>{
     }
     return stars;
   };
-      function DiscountDuration(duration : number,discount : number ,price : number){
-         if(isCorporate == "true"){
-      return <div></div>                                                                    
-    }else{
-      if(duration == 0 || discount == 0 || price == 0){
-        return <div></div>
-      }
-        else{
-         return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
-    }
-  }
-  }
+
 const enroll = (isCorporate:string,CID)  => {
- 
   if (isCorporate == "false") {
     return(
     <div>
@@ -147,9 +137,25 @@ const enroll = (isCorporate:string,CID)  => {
 };
 
 
-// const price = (isCorporate:string) => {
+// const price = (isCorporate:string,price:number,discountpercentage:number,duration:number) => {
 //   if (isCorporate == "false"){
-//      {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
+//     return (
+//       <div>
+//    <h1 className=" text-violet-400 text-4xl ">
+//         {discount(
+//                   discountpercentage,
+//                   price,
+//                   duration
+//                 )}
+//               </h1>
+
+// {DiscountDuration(
+//              duration,
+//               discountpercentage,
+//               price
+//             )}
+//           </div>
+//     )
 //   }
 
 //   else{
@@ -194,14 +200,21 @@ const enroll = (isCorporate:string,CID)  => {
                 <BsGlobe2 />
                 {course?.Course_Country}
               </div>
-              <h1 className=" text-violet-400 text-4xl  ">
-                {viewPrice(course?.Course_Price)}
 
-                {/* {viewPrice(course?.Course_Price)} {localStorage.getItem('currency')} */}
-              {/* {discount(course?.Course_Discount,viewPrice(course?.Course_Price))} */}
-              {DiscountDuration(course?.Course_Discount_Duration, course?.Course_Discount, course?.Course_Price)}
-              {/* {price(isCorporate)} */}
+<h1 className=" text-violet-400 text-4xl ">
+{discount(
+                  course?.Course_Discount,
+                  course?.Course_Price,
+                  course?.Course_Discount_Duration
+                )}
               </h1>
+
+{DiscountDuration(
+              course?.Course_Discount_Duration,
+              course?.Course_Discount,
+              course?.Course_Price
+            )}
+
             </div>
           </div>
           {/* //div el video bel se3r wel button */}

@@ -38,48 +38,43 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
     return stars;
   };
 
-
- 
   
-     const discount = (discount: number, price: number) => {
-       if (localStorage.getItem("currency") == "£") {
-         price = price * 20;
-       }
-
-       if (localStorage.getItem("currency") == "$") {
-         price = price * 1.5;
-       }
-       if (discount == 0 || price == 0) {
-         return (
-           <h1 className=" text-violet-400 text-4xl  ">
-             {price} {localStorage.getItem("currency")}
-           </h1>
-         );
-       } else {
-         return (
-           <div className="flex flex-row">
-             <div className=" text-violet-400 text-4xl  line-through">
-               {price}
-             </div>
-             <div className="text-black3 text-4xl  ">.</div>
-             <div className=" text-violet-400 text-4xl  ">
-               {(price * (100 - discount)) / 100}{" "}
-               {localStorage.getItem("currency")}
-             </div>
-           </div>
-         );
-       }
-     };
-
-      function DiscountDuration(duration : number,discount : number ,price : number){
-      if(duration == 0 || discount == 0 || price == 0){
-        return <div></div>
-      }
-        else{
-         return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
+ const discount = (discount: number, price: number, duration: number) => {
+    if (localStorage.getItem("currency") == "£") {
+      price = price * 20;
     }
-  }
 
+    if (localStorage.getItem("currency") == "$") {
+      price = price * 1.5;
+    }
+    if (discount == 0 || price == 0 || duration == 0) {
+      return (
+        <h1 className=" text-violet-400 text-4xl  ">
+          {price}{localStorage.getItem("currency")}
+        </h1>
+      );
+    } else {
+      return (
+        <div className="flex flex-row">
+          <div className=" text-violet-400 text-4xl  line-through">{price}</div>
+          <div className="text-black3 text-4xl  ">.</div>
+          <div className=" text-violet-400 text-4xl  ">
+            {(price * (100 - discount)) / 100}{localStorage.getItem("currency")}
+          </div>
+        </div>
+      );
+    }
+  };
+  function DiscountDuration(duration: number, discount: number, price: number) {
+    if (duration == 0 || discount == 0 || price == 0) {
+      return <div></div>;
+    } else
+      return (
+        <p className=" text-violet-400 text-light text-sm">
+          Discount available for {duration} days
+        </p>
+      );
+  }
 
   return (
     <div className="grid grid-cols-2 text-white bg-bc gap-4">
@@ -119,11 +114,10 @@ const InstructorCoursesCard: React.FC<{courses}>= ({courses}) => {
               </div>
 
               <h1 className=" text-violet-400 text-4xl ">
-                {discount(course?.Course_Discount, course?.Course_Price)}
-
-
+             {discount(course.Course_Discount,course.Course_Price,course.Course_Discount_Duration)}
               </h1>
-              {DiscountDuration(course?.Course_Discount_Duration, course?.Course_Discount, course?.Course_Price)}
+              {DiscountDuration(course.Course_Discount_Duration,course.Course_Discount,course.Course_Price)}
+
             </div>
           </div>
           {/* //div el video bel se3r wel button */}
