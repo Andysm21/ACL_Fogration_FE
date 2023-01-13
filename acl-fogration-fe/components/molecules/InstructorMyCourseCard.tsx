@@ -16,6 +16,7 @@ import React from "react";
 import ReportCourse from "./ReportCourse";
 import { Router } from "react-router";
 import { useRouter } from "next/router";
+import AddSubtitle from "./AddSubtitle";
 
 
 const InstructorMyCourseCard: React.FC<{ course }> = ({ course }) => {
@@ -72,7 +73,13 @@ const [open2, setOpen2] = React.useState(false);
     setOpen2(false);
   };
 
-
+const [openAddSubtitle, setOpenAddSubtitle] = React.useState(false);
+const handleClickAddSubtitle = () => {
+  setOpenAddSubtitle(true);
+}
+const handleCloseAddSubtitle = () => {
+  setOpenAddSubtitle(false);
+}
   const [updatedDiscount, setUpdatedDiscount] = useState(course?.Course_Discount);
   const handleUpdatedDiscount = (event) => {
     setUpdatedDiscount(event.target.value);
@@ -243,7 +250,7 @@ const [factor, setFactor] = useState(1);
           {/* //h1 el se3r */}
           <div className="flex flex-col justify-between my-2">
             <h1 className=" text-violet-400 text-4xl ">
-              {discount(course?.Course_Discount, course?.Course_Price)}
+              {discount(course?.Course_Discount, course?.Course_Price)} 
             </h1>
             {DiscountDuration(course?.Course_Discount_Duration,course?.Course_Discount,course?.Course_Price)}
           </div>
@@ -296,12 +303,9 @@ const [factor, setFactor] = useState(1);
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-4">
         <h1 className="text-white font-bold text-2xl mx-2">Course Content</h1>
-        <a href="/instructor/createsubtitle" onClick={()=>{
-          localStorage.setItem("CourseID",course.Course_ID)
-        }}>
-        <div className="text-white text-l bg-bc  h-24 rounded-md cursor-pointer items-center justify-center flex border border-gray-300 mx-2">Add Subtitle</div>
-        </a>
-        {course?.Course_Subtitle?.map((subtitle, index) => {
+        <div onClick={handleClickAddSubtitle} className="text-white text-l bg-bc  h-24 rounded-md cursor-pointer items-center justify-center flex border border-gray-300 mx-2">Add Subtitle</div>
+        <AddSubtitle isOpen={openAddSubtitle} handleClose={handleCloseAddSubtitle} length={course?.Course_Subtitle?.length} />
+        {course?.Course_Subtitle?.map((subtitle,index) => {
           return (
             <div key={index}  className="bg-bc p-2 rounded-md mx-2">
               <div className="flex flex-col gap-2 ">
@@ -318,21 +322,20 @@ const [factor, setFactor] = useState(1);
                 <div className="flex flex-col items-center justify-center">
                 <BsPlayBtn size={110} className="text-white cursor-pointer" onClick={()=>{
                   console.log("HIII")
-                  console.log(subtitle?.Subtitle_ID)
+                  console.log("Length " + subtitle?.Subtitle_Video.length)
                    localStorage.setItem("subtitle_id",subtitle?.Subtitle_ID)
                    setOpenAddVideo(true);
                 }} />
-                
-                <AddVideo isOpen={openAddVideo} handleClose={handleCloseAddVideo}/>
+                <AddVideo isOpen={openAddVideo} handleClose={handleCloseAddVideo} num={subtitle?.Subtitle_Video.length}/>
                 <div>Add Video</div>
                 </div>
-                <div className="">
+                <div className="flex flex-row gap-2">
                 {subtitle?.Subtitle_Video?.map((video, index) => {
                   return (
                     <div key={index}>
                       <Link href={video?.Video_Link}>
                       <img
-                        className=" w-36  "
+                        className="w-36"
                         src="/images/pausedvideo.png"
                         alt="No image yet "
                       />
@@ -351,7 +354,6 @@ const [factor, setFactor] = useState(1);
         <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
       <div className="flex flex-row justify-between items-center">
         <div className="text-white font-bold text-2xl mx-2">Exams </div>
-       
         </div>
          <div className="flex flex-row items-center ">
             {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
