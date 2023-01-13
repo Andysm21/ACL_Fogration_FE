@@ -6,6 +6,7 @@ import Layout from '../../components/templates/Layout'
 import {TiTick} from 'react-icons/ti'
 import {ImCross} from 'react-icons/im'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 let Question_Correct_Answers = 9;
 let Questions = 15;
 let grade = 'B';
@@ -117,6 +118,28 @@ const correctanswers = () => {
     fetchExam();
     // console.log(Exam)
   })
+  const router = useRouter();
+
+  var authBool=false;
+ function Auth(){
+   localStorage.clear();
+   localStorage.setItem("Login","false");
+   localStorage.setItem("Type","");
+   router.push("/guest/login");
+
+ }
+ const[Type,setType] = useState("User");
+ useEffect(()=>{
+  if(authBool==true){
+    Auth();
+  }
+  else{
+    setType(localStorage.getItem("Type"));}});
+  if(Type!="User" && Type!="Corp"){
+    authBool=true;
+   }
+ else{
+ 
   return (
     <div>
       <Layout>
@@ -195,5 +218,5 @@ const correctanswers = () => {
     </div>
   );
 }
-
+}
 export default correctanswers;

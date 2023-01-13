@@ -4,6 +4,7 @@ import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 import  Axios  from "axios";
 import AdminCourseCard from "../../components/molecules/AdminCourseCard";
+import { useRouter } from "next/router";
 
 
 const course: NextPage = () => {
@@ -30,7 +31,28 @@ const course: NextPage = () => {
    getCourses();
   }, []);
 
+  const router = useRouter();
+ var authBool=false;
+ function Auth(){
+   localStorage.clear();
+   localStorage.setItem("Login","false");
+   localStorage.setItem("Type","");
+   router.push("/guest/login");
 
+ }
+ const[Type,setType] = useState("Admin");
+
+ useEffect(()=>{
+  if(authBool==true){
+    Auth();
+  }
+  else{
+    setType(localStorage.getItem("Type"));}});
+  if(Type!="Admin"){
+    authBool=true;
+   }
+ else{
+ 
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -47,4 +69,5 @@ const course: NextPage = () => {
     </div>
   );
 };
+}
 export default course;

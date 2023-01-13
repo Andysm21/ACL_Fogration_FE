@@ -6,8 +6,14 @@ import router from 'next/router';
 
 
 const CourseCreation = () => {
-    const addVideo = () => {
 
+  const [createCourseStyle,setCreateCourseStyle] = useState("mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded  border border-violet-400");
+  const [addVideoStyle,setAddVideoStyle] = useState("mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded w-72 ");
+  const [addSubtitleStyle,setAddSubtitleStyle] = useState("mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded w-72 ");
+  const [enableVideo,setEnableVideo] = useState(true);
+  const [enableCreateCourse,setEnableCreateCourse] = useState(false);
+  const [enableSubtitle,setEnableSubtitle] = useState(true);
+    const addVideo = () => {
     axios.post("http://localhost:8000/createVideo",
     {title: videoTitle, link: videoLink,
     subtitle: localStorage.getItem("subtitle_id"), description: videoDescription}
@@ -18,7 +24,7 @@ const CourseCreation = () => {
 
 
      localStorage.setItem("video" +  "Number", `${videoNumber}`);
-          localStorage.setItem("video" + videoNumber + "Title", videoLink);
+     localStorage.setItem("video" + videoNumber + "Title", videoLink);
 
      localStorage.setItem("video" + videoNumber + "Link", videoLink);
      localStorage.setItem("video" + videoNumber + "Description", videoDescription); 
@@ -33,7 +39,9 @@ const CourseCreation = () => {
         setVideoNumber(videoNumber + 1);
         setVideoTitle("");
         setVideoLink("");
-        setVideoDescription("");    
+        setVideoDescription("");   
+        setAddSubtitleStyle("mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400");
+        setEnableSubtitle(false); 
 
      }
   const addSubtitle = () => {
@@ -65,6 +73,10 @@ const CourseCreation = () => {
       setVideoLink("");
       setVideoDescription("");
     console.log(subtitleNumber);
+    setAddVideoStyle("mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400");
+    setAddSubtitleStyle("mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded w-72 ");
+    setEnableSubtitle(true);
+    setEnableVideo(false);
 
   };
 
@@ -78,10 +90,16 @@ const CourseCreation = () => {
       console.log(response.data);
       localStorage.setItem("course_id", response.data);
  }).catch((error) => console.log(error))
-  courseCreated = true;
-  createCourseButton();
+
+  setAddSubtitleStyle("mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400");
+  setCreateCourseStyle("mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded ");
+  setEnableSubtitle(false);
+  setEnableCreateCourse(true);
+  
+  // createCourseButton();
   //router.reload();
-  }
+
+  }  
 
   
     const gotoexam = () => {
@@ -93,10 +111,10 @@ const CourseCreation = () => {
         console.log(response.data);
         localStorage.setItem("exam_id", response.data);
       }).catch((error) => console.log(error))
-      courseCreated = true;
+    
 
 
-    createCourseButton();
+    // createCourseButton();
     //router.reload();
 
         // localStorage.setItem("course" +  "ID", `${courseID}`);
@@ -244,21 +262,21 @@ const CourseCreation = () => {
        setVideoDescription(event.target.value);
        // console.log(questionName)
     }; 
-    let  courseCreated = false;
-    const createCourseButton = () =>{
-      if(courseCreated){
-        {console.log(courseCreated)}
-        return <button className="mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded" >Create Course</button>
-      }
-      else{
-        return  <button
-              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400"
-              onClick={createCourse}
-            >
-             Create course
-            </button>
-      }
-    }
+    // let  courseCreated = false;
+    // const createCourseButton = () =>{
+    //   if(courseCreated){
+    //     {console.log(courseCreated)}
+    //     return <button className="mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded" >Create Course</button>
+    //   }
+    //   else{
+    //     return  <button
+    //           className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400"
+    //           onClick={createCourse}
+    //         >
+    //          Create course
+    //         </button>
+    //   }
+    // }
     
   return (
     <div className=" p-2 m-2 rounded-lg flex flex-row w-11/12 justify-between">
@@ -304,14 +322,15 @@ const CourseCreation = () => {
           className="mx-2 enabled:hover:border-gray-600  border-bc bg-black3  text-white p-1 text-l  border-2   rounded-md h-12"
           onChange={handleCoursePreviewVideo}
         />
-        {/* <button
-              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded "
+        <button
+              className={createCourseStyle}
               onClick={createCourse}
+              disabled={enableCreateCourse}
             >
              Create course
-            </button> */}
+            </button>
             
-            {createCourseButton()}
+            {/* {createCourseButton()} */}
       </div>
       
       <div className="bg-bc p-2 m-2 rounded-lg flex flex-col w-2/3 justify-between">
@@ -360,13 +379,15 @@ const CourseCreation = () => {
         <div className="flex flex-col  ">
           <div className="flex flex-row">
             <button
-              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400"
-              onClick={addVideo}
+              className={addVideoStyle}
+              onClick={addVideo} 
+              disabled={enableVideo}
             >
               Add video
             </button>
             <button
-              className="mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400"
+              className={addSubtitleStyle}  
+              disabled={enableSubtitle}
               onClick={addSubtitle}
             >
               Add subtitle

@@ -1,9 +1,6 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button, Link } from "@mui/material";
 import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
-
-
-
 import { useEffect, useState } from "react";
 import {courses} from '../../interfaces'
 const GuestCourses:React.FC<{ courses }> = ({courses }) => {
@@ -38,7 +35,7 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
         }
       if((discount == 0) || price == 0 || duration == 0){
       return <h1 className=" text-violet-400 text-4xl  ">
-                {price} {localStorage.getItem('currency')}
+                {price}{localStorage.getItem('currency')}
               </h1>
 
     }
@@ -49,7 +46,7 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
       <div className=" text-violet-400 text-4xl  line-through">{price}</div>
       <div className="text-black3 text-4xl  ">.</div>
       <div className=" text-violet-400 text-4xl  ">
-                    {price * (100-discount)/100} {localStorage.getItem('currency')}</div>
+                    {price * (100-discount)/100}{localStorage.getItem('currency')}</div>
       </div>
 
       )

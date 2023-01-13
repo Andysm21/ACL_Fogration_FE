@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../components/templates/Layout'
 import RefundRequests from '../../components/molecules/RefundRequests';
 import axios from 'axios'
+import { useRouter } from 'next/router';
 
 
 
@@ -25,8 +26,27 @@ function refunds(){
 useEffect(() => {
   refunds();
 })
+const router = useRouter();
+var authBool=false;
+function Auth(){
+  localStorage.clear();
+  localStorage.setItem("Login","false");
+  localStorage.setItem("Type","");
+  router.push("/guest/login");
+
+}
+const[Type,setType] = useState("Admin");
 useEffect(()=>{
-})
+ if(authBool==true){
+   Auth();
+ }
+ else{
+   setType(localStorage.getItem("Type"));}});
+ if(Type!="Admin"){
+   authBool=true;
+  }
+else{
+
   return (
     <div>
         <Layout>
@@ -38,4 +58,5 @@ useEffect(()=>{
   )
 }
 
+}
 export default refunds;

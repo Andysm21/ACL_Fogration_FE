@@ -5,6 +5,7 @@ import Layout from "../../components/templates/Layout";
 import UserMyCoursesCard from "../../components/molecules/UserMyCoursesCard";
 import HeaderUserMyCourses from "../../components/organisms/HeaderUserMyCourses";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const courses = [
   {
@@ -215,6 +216,27 @@ else{
 })
 
 
+const router = useRouter();
+
+var authBool=false;
+function Auth(){
+ localStorage.clear();
+ localStorage.setItem("Login","false");
+ localStorage.setItem("Type","");
+ router.push("/guest/login");
+
+}
+const[Type,setType] = useState("User");
+useEffect(()=>{
+if(authBool==true){
+  Auth();
+}
+else{
+  setType(localStorage.getItem("Type"));}});
+if(Type!="User" && Type!="Corp"){
+  authBool=true;
+ }
+else{
 
 
   return (
@@ -235,5 +257,6 @@ else{
     </div>
   );
 };
+}
 
 export default mycourses;

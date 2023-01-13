@@ -4,6 +4,7 @@ import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 import InstructorCourseCard from "../../components/molecules/InstructorCourseCard";
 import  Axios  from "axios";
+import { useRouter } from "next/router";
 
 
 const viewcourse: NextPage = () => {
@@ -30,7 +31,27 @@ const viewcourse: NextPage = () => {
    getCourses();
   }, []);
 
-
+  const router = useRouter();
+  var authBool=false;
+  function Auth(){
+    localStorage.clear();
+    localStorage.setItem("Login","false");
+    localStorage.setItem("Type","");
+    router.push("/guest/login");
+ 
+  }
+  const[Type,setType] = useState("Instructor");
+  useEffect(()=>{
+   if(authBool==true){
+     Auth();
+   }
+   else{
+     setType(localStorage.getItem("Type"));}});
+   if(Type!="Instructor"){
+     authBool=true;
+    }
+  else{
+  
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -47,4 +68,5 @@ const viewcourse: NextPage = () => {
     </div>
   );
 };
+}
 export default viewcourse;
