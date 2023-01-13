@@ -1,4 +1,5 @@
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import ViewUser from "../../components/molecules/ViewUser";
 import Layout from "../../components/templates/Layout";
 
@@ -192,6 +193,28 @@ import Layout from "../../components/templates/Layout";
 
 // };
 const user: React.FC<{ user }> = ({ user }) => {
+
+  const router = useRouter();
+  var authBool=false;
+  function Auth(){
+    localStorage.clear();
+    localStorage.setItem("Login","false");
+    localStorage.setItem("Type","");
+    router.push("/guest/login");
+ 
+  }
+  const[Type,setType] = useState("Admin");
+  useEffect(()=>{
+   if(authBool==true){
+     Auth();
+   }
+   else{
+     setType(localStorage.getItem("Type"));}});
+   if(Type!="Admin"){
+     authBool=true;
+    }
+  else{
+  
   return (
     <div className="bg-bc h-screen">
       <Layout>
@@ -200,5 +223,5 @@ const user: React.FC<{ user }> = ({ user }) => {
     </div>
   );
 };
-
+}
 export default user;

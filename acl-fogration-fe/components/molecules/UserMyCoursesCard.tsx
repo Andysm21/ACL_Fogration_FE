@@ -314,9 +314,10 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
                 <BsGlobe2 />
                 {course?.Course_Country}
               </div>
-              
-              {discount(course.Course_Discount,viewPrice(course.Course_Price))}
-              
+
+              {discount(course.Course_Discount,viewPrice(course.Course_Price))}{curr}
+             
+
               {DiscountDuration(course.Course_Discount_Duration,course.Course_Discount,viewPrice(course.Course_Price))}
             </div>
           </div>

@@ -8,6 +8,7 @@ import axios from "axios";
 import FileDownload from 'js-file-download';
 
 import { course } from "../../interfaces";
+import { useRouter } from 'next/router';
 
 
 
@@ -99,6 +100,27 @@ useEffect(() => {
 
  });
 
+ const router = useRouter();
+
+ var authBool=false;
+function Auth(){
+  localStorage.clear();
+  localStorage.setItem("Login","false");
+  localStorage.setItem("Type","");
+  router.push("/guest/login");
+
+}
+const[Type,setType] = useState("User");
+useEffect(()=>{
+ if(authBool==true){
+   Auth();
+ }
+ else{
+   setType(localStorage.getItem("Type"));}});
+ if(Type!="User" && Type!="Corp"){
+   authBool=true;
+  }
+else{
 
   return (
     <div>
@@ -154,5 +176,5 @@ useEffect(() => {
     </div>
   )
 }
-
+}
 export default watchvideo

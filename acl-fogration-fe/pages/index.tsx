@@ -1,3 +1,4 @@
+
 // import React from "react";
 // import type { GetServerSideProps, NextPage } from "next";
 // import Head from "next/head";
@@ -14,6 +15,7 @@
 //       </Head>
 
 //      <Nav links={[]} />
+
    
 
 //         <div className="flex flex-col justify-start items-start bg-white opacity-50  h-[calc(100vh-64px)] w-1/2">

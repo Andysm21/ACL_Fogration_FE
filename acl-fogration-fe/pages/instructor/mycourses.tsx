@@ -7,6 +7,7 @@ import InstructorCoursesCard from "../../components/molecules/InstructorCoursesC
 import InstructorMyCoursesCard from "../../components/molecules/InstructorMyCoursesCard";
 import axios from 'axios'
 import Fiter from "../../components/molecules/Filter";
+import { useRouter } from "next/router";
 
 // interface Props {
 //   data: {
@@ -112,7 +113,27 @@ useEffect(()=>{
   }
 
 })
+const router = useRouter();
+ var authBool=false;
+ function Auth(){
+   localStorage.clear();
+   localStorage.setItem("Login","false");
+   localStorage.setItem("Type","");
+   router.push("/guest/login");
 
+ }
+ const[Type,setType] = useState("Instructor");
+ useEffect(()=>{
+  if(authBool==true){
+    Auth();
+  }
+  else{
+    setType(localStorage.getItem("Type"));}});
+  if(Type!="Instructor"){
+    authBool=true;
+   }
+ else{
+ 
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -131,5 +152,5 @@ useEffect(()=>{
     </div>
   );
 };
-
+}
 export default mycourses;
