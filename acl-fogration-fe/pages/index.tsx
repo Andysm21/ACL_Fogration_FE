@@ -1,10 +1,16 @@
-import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../components/templates/Layout";
 import Nav from "../components/atoms/Nav";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
 const home: NextPage = () => {
+  const router = useRouter();
+     
+  useEffect(() => {
+    router.push("/guest/login")
+  });
   return (
     <div className="flex flex-col bg-[url('/images/bgacl.jpeg')] w-full h-screen bg-cover">
       <Head>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Layout from '../../components/templates/Layout'
 import axios from 'axios';
 import FileDownload from 'js-file-download';
+import { useRouter } from 'next/router';
 
 // let Question_Correct_Answers = 5;
 // let Questions = 15;
@@ -150,6 +151,29 @@ const download = () =>{
   }).catch((error) => console.log(error))
 }
 var final = false;
+
+const router = useRouter();
+
+var authBool=false;
+function Auth(){
+ localStorage.clear();
+ localStorage.setItem("Login","false");
+ localStorage.setItem("Type","");
+ router.push("/guest/login");
+
+}
+const[Type,setType] = useState("User");
+useEffect(()=>{
+if(authBool==true){
+  Auth();
+}
+else{
+  setType(localStorage.getItem("Type"));}});
+if(Type!="User" && Type!="Corp"){
+  authBool=true;
+ }
+else{
+
   return (
   
     <div>
@@ -197,5 +221,5 @@ var final = false;
     
   );  
 }
-
-export default score
+}
+export default score;

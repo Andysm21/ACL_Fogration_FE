@@ -5,15 +5,16 @@ import Head from "next/head";
 import UserCoursesCard from "../../components/molecules/UserCoursesCard";
 import HeaderUserCourses from "../../components/organisms/HeaderUserCourses";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 
 const courses: NextPage = () => {
   var [CourseArray,setCourseArray]=useState([]);
   const [isCorporate, setIsCorporate]= useState("false");
 
-  useEffect(() => {
-    setIsCorporate(localStorage.getItem("isCorp"))
-  })
+  // useEffect(() => {
+  //   setIsCorporate(localStorage.getItem("isCorp"))
+  // })
 
   
 
@@ -109,6 +110,7 @@ function getPopularCourses(){
 
 useEffect(()=>{
   console.log(localStorage.getItem("currency"))
+  // console.log(localStorage)
 if(localStorage.getItem("popularCourses")=="false"){
 if(localStorage.getItem("isCorp")=="false"){
   if(localStorage.getItem("Subject")==""){
@@ -192,6 +194,27 @@ else{
 
 })
 
+const router = useRouter();
+
+var authBool=false;
+function Auth(){
+ localStorage.clear();
+ localStorage.setItem("Login","false");
+ localStorage.setItem("Type","");
+ router.push("/guest/login");
+
+}
+const[Type,setType] = useState("User");
+useEffect(()=>{
+if(authBool==true){
+  Auth();
+}
+else{
+  setType(localStorage.getItem("Type"));}});
+if(Type!="User" && Type!="Corp"){
+  authBool=true;
+ }
+else{
 
   return (
     <div className="bg-bc h-screen">
@@ -212,5 +235,5 @@ else{
 };
 
 
-
+}
 export default courses;

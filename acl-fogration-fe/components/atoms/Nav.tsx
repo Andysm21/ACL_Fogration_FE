@@ -24,40 +24,42 @@ const Nav: React.FC<Props> = ({ links }) => {
   const [name, setName] = useState("");
 
   function Logout(){
-    localStorage.removeItem('CourseID');
+    router.push("/guest/login")
+    localStorage.clear();
+    localStorage.setItem("Login","false");
+    localStorage.setItem("Type","");
 
-localStorage.removeItem("subtitle_id");
- localStorage.removeItem("user_id");
-localStorage.removeItem("isCorp")
-localStorage.removeItem("course_id");
-localStorage.removeItem("ID")
- localStorage.removeItem("exam_id");
-  localStorage.removeItem("SignUpError")
+// localStorage.removeItem("subtitle_id");
+//  localStorage.removeItem("user_id");
+// localStorage.removeItem("isCorp")
+// localStorage.removeItem("course_id");
+//   localStorage.removeItem("SignUpError")
 
- localStorage.removeItem("courseTitle");
- localStorage.removeItem("courseSubject");
- localStorage.removeItem("courseDescription");
- localStorage.removeItem("coursePrice");
- localStorage.removeItem("courseCountry");
- localStorage.removeItem("coursePreviewVideo");
+//  localStorage.removeItem("courseTitle");
+//  localStorage.removeItem("courseSubject");
+//  localStorage.removeItem("courseDescription");
+//  localStorage.removeItem("coursePrice");
+//  localStorage.removeItem("courseCountry");
+//  localStorage.removeItem("coursePreviewVideo");
 
- localStorage.removeItem("Subject")
-    localStorage.removeItem("Rating")
-    localStorage.removeItem("MaxPrice")
-    localStorage.removeItem("MinPrice")
-
-localStorage.removeItem("Course");
+//  localStorage.removeItem("Subject")
+//     localStorage.removeItem("Rating")
+//     localStorage.removeItem("MaxPrice")
+//     localStorage.removeItem("MinPrice")
+// // 
+// localStorage.removeItem("Course");
 
 
 
 
-localStorage.removeItem('course_instructor');
- localStorage.removeItem("CurrentExamID");
+// localStorage.removeItem('course_instructor');
+//  localStorage.removeItem("CurrentExamID");
 
-   localStorage.removeItem("Type");
-localStorage.removeItem("Search");
+//    localStorage.removeItem("Type");
+// localStorage.removeItem("Search");
 
-console.log(localStorage.getItem("Type"))
+// console.log(localStorage.getItem("Type"))
+
   }
 
   function login(){
@@ -145,12 +147,10 @@ console.log(localStorage.getItem("Type"))
           Hello, {name}{" "}
         </h1>
 
-        <Link href="/guest/login">
           <button className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey"
           onClick={Logout}>
             Logout
           </button>
-        </Link>
       </div>
     </div>
   );

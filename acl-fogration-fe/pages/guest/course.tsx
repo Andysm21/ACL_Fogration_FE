@@ -15,7 +15,9 @@ const course: NextPage = () => {
  function getCourses(){
 
     // Axios.post("http://localhost:8000/viewCourse",{id:Number(localStorage.getItem("CourseIIDD"))}
-        Axios.post(`http://localhost:8000/viewCourse/${2}`
+    var x = Number(localStorage.getItem("CourseID"));
+
+        Axios.post(`http://localhost:8000/viewCourse/${x}`
 
    ).then((response) => {
      setCourseArray(response.data[0])

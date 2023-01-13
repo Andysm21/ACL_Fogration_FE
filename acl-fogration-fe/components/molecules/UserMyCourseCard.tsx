@@ -386,7 +386,7 @@ const refund = (isCorporate: string) => {
           <div className="flex flex-col border-black1 text-white bg-black2 m-2 px-2 w-52 h-20 rounded-md justify-between items-center py-2">
             <BsPlayBtnFill size={30} />
             <div className="  justify-center items-end">
-              {course?.Course_Hours} hours of video
+              ~{course?.Course_Hours} hours of video
             </div>
           </div>
 
