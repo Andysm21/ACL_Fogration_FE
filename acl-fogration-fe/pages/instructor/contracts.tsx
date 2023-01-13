@@ -1,20 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useState from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../../components/templates/Layout";
 import  Axios  from "axios";
+import { useRouter } from "next/router";
 
 
 
 const contracts: NextPage = () => {
+  var Type="Instructor";
+
   function contract(){
     Axios.put("http://localhost:8000/agreementContract",{id:Number(localStorage.getItem("user_id")) , Instructor_Agreement: true})
     .then((response) => {
     
    }).catch((error) => console.log(error))
  }
+ const router = useRouter();
+ var authBool=false;
+ function Auth(){
+   localStorage.clear();
+   localStorage.setItem("Login","false");
+   localStorage.setItem("Type","");
+   router.push("/guest/login");
+
+ }
+ useEffect(()=>{
+  if(authBool==true){
+    Auth();
+  }
+  else{
+  Type=localStorage.getItem("Type");}});
+  if(Type!="Instructor"){
+    authBool=true;
+   }
+ else{
+  
   return (
     <div className="bg-bc h-screen">
       <Head>
@@ -104,4 +127,5 @@ Any claim related to our Website shall be governed by the laws of INSERT STATE
   );
 };
 
+}
 export default contracts;

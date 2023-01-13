@@ -1,195 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type {  NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 import HeaderAdminCourses from "../../components/organisms/HeaderAdminCourses";
 import AdminCoursesCard from "../../components/molecules/AdminCoursesCard";
-const coursesArray = [
-  {
-    _id: {
-      $oid: "636820e12887948f062b493e",
-    },
-    Course_ID: 4,
-    Course_Title: "Computer ",
-    Course_Subject: "Computer Science",
-    Course_Description: "Data Structures and Algorithms",
-    Course_Price: 0,
-    Course_Rating: 5,
-    Course_Instructor: "Malak",
-    Course_Hours: 5,
-    Course_Country: "Egypt",
-    Course_Discount: 10,
-    Course_Discount_Duration: 5,
-    Course_Subtitle: ["S1", "S2"],
-    Course_Trainee: ["Ahmed"],
-    Course_Review: ["Very Good Course"],
-    Course_Rate: ["null"],
-    Course_Exam: ["null"],
-  },
-  {
-    _id: {
-      $oid: "636820e12887948f062b493e",
-    },
-    Course_ID: 4,
-    Course_Title: "Fogration",
-    Course_Subject: "Computer Science",
-    Course_Description: "Data Structures and Algorithms",
-    Course_Price: 0,
-    Course_Rating: 5,
-    Course_Instructor: "Malak",
-    Course_Hours: 5,
-    Course_Country: "Egypt",
-    Course_Discount: 10,
-    Course_Discount_Duration: 5,
-    Course_Subtitle: ["S1", "S2"],
-    Course_Trainee: ["Ahmed"],
-    Course_Review: ["Very Good Course"],
-    Course_Rate: ["null"],
-    Course_Exam: ["null"],
-  },
+import axios from "axios";
+import { useRouter } from "next/router";
 
-  {
-    _id: {
-      $oid: "636820e12887948f062b493e",
-    },
-    Course_ID: 4,
-    Course_Title: "asda",
-    Course_Subject: "Computer Science",
-    Course_Description: "Data Structures and Algorithms",
-    Course_Price: 0,
-    Course_Rating: 5,
-    Course_Instructor: "Malak",
-    Course_Hours: 5,
-    Course_Country: "Egypt",
-    Course_Discount: 10,
-    Course_Discount_Duration: 5,
-    Course_Subtitle: ["S1", "S2"],
-    Course_Trainee: ["Ahmed"],
-    Course_Review: ["Very Good Course"],
-    Course_Rate: ["null"],
-    Course_Exam: ["null"],
-  },
-];
-
-const course = {
-  _id: {
-    $oid: "636820e12887948f062b493e",
-  },
-  Course_ID: 4,
-  Course_Title: "Data structures & Algorithms",
-  Course_Subject: "Computer Science",
-  Course_Description:
-    "Learn A-Z everything about Python, from the basics, to advanced topics like Python GUI, Python Data Analysis, and more!",
-  Course_Price: 0,
-  Course_Rating: 5,
-  Course_Instructor: "Malak",
-  Course_Hours: 5,
-  Course_Country: "Egypt",
-  Course_Discount: 10,
-  Course_Discount_Duration: 5,
-  Course_Subtitle: [
-    {
-      Subtitle_ID: 1,
-      Subtitle_Name: "S1",
-      Subtitle_Course_ID: "1",
-      Subtitle_Video: [
-        {
-          Video_ID: 1,
-          Video_Link:
-            "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-          Video_Subtitle: "S1",
-          Video_Description: "Introduction",
-          Video_Length: 10,
-        },
-        {
-          Video_ID: 1,
-          Video_Link:
-            "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-          Video_Subtitle: "S1",
-          Video_Description: "Introduction",
-          Video_Length: 10,
-        },
-        {
-          Video_ID: 1,
-          Video_Link:
-            "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-          Video_Subtitle: "S1",
-          Video_Description: "Introduction",
-          Video_Length: 10,
-        },
-        {
-          Video_ID: 1,
-          Video_Link:
-            "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-          Video_Subtitle: "S1",
-          Video_Description: "Introduction",
-          Video_Length: 10,
-        },
-        {
-          Video_ID: 1,
-          Video_Link:
-            "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-          Video_Subtitle: "S1",
-          Video_Description: "Introduction",
-          Video_Length: 10,
-        },
-        {
-          Video_ID: 1,
-          Video_Link:
-            "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-          Video_Subtitle: "S1",
-          Video_Description: "Introduction",
-          Video_Length: 10,
-        },
-      ],
-      Subtitle_Hours: "10",
-    },
-    {
-      Subtitle_ID: 2,
-      Subtitle_Name: "S2",
-      Subtitle_Course_ID: "1",
-      Subtitle_Video: [
-        {
-          Video_ID: 1,
-          Video_Link:
-            "https://www.youtube.com/watch?v=Q8TXgCzxEnw&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&index=2",
-          Video_Subtitle: "S1",
-          Video_Description: "Introduction",
-          Video_Length: 10,
-        },
-      ],
-      Subtitle_Hours: "10",
-    },
-  ],
-  Course_Trainee: [{ Trainee_ID: 1, Trainee_Name: "Ahmed" }],
-  Course_Review: ["Very Good Course"],
-  Course_Rate: ["zeft"],
-  Course_Exam: [
-    {
-      Exam_ID: "1",
-      Exam_Question_ID: [
-        {
-          Question_ID: "1",
-          Question_Name: "Ex 1",
-          Question_choices: ["a", "b", "c", "d"],
-          Question_Correct_Answers: "a b d c",
-          Question_Grade: "A",
-        },
-      ],
-      Exam_Grade: "A",
-      Exam_Instructor_ID: "123",
-      Exam_Course_ID: "4",
-    },
-  ],
-  Course_What_You_Will_Learn: [
-    "Learn how to use the most popular data structures",
-    "Learn how to use the most popular algorithms",
-    "Learn how to use the most popular data structures",
-  ],
-};
 
 
 const courses: NextPage = () => {
+  var [coursesArray,setCourseArray]=useState([]);
+
+  function getCourses(){
+    axios.get("http://localhost:8000/viewCoursesALL"
+   ).then((response) => {
+     setCourseArray(response.data)
+     // console.log(response.data)
+
+   }).catch((error) => console.log(error))
+ }
+ function getCoursesSearch(){
+  axios.post("http://localhost:8000/Search",{
+    searchR: localStorage.getItem("Search")
+  }
+ ).then((response) => {
+   //console.log("Function:")
+   // console.log(localStorage.getItem("Search"))
+   // console.log("response data:")
+   if(response.data == "")
+    setCourseArray([])
+   else
+    setCourseArray(response.data)
+
+ }).catch((error) => console.log(error))
+}
+
+useEffect(()=>{
+  // console.log(localStorage.getItem("Subject"))  
+        if(localStorage.getItem("Search")=='' || localStorage.getItem("Search")==""){
+
+         getCourses()
+         localStorage.setItem("Search","")
+
+        //  console.log("Hi")
+        }
+        else{
+          getCoursesSearch();
+        
+
+    }
+})
+const router = useRouter();
+var authBool=false;
+function Auth(){
+  localStorage.clear();
+  localStorage.setItem("Login","false");
+  localStorage.setItem("Type","");
+  router.push("/guest/login");
+
+}
+const[Type,setType] = useState("Admin");
+useEffect(()=>{
+ if(authBool==true){
+   Auth();
+ }
+ else{
+   setType(localStorage.getItem("Type"));}});
+ if(Type!="Admin"){
+   authBool=true;
+  }
+else{
 
   return (
     <div className="bg-bc h-screen">
@@ -208,5 +89,6 @@ const courses: NextPage = () => {
     </div>
   );
 };
+}
 
 export default courses;

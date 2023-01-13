@@ -235,6 +235,7 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
     }
   }
 
+
   const discount = (discount: number, price: number, duration: number) => {
     if (isCorporate == "false"){
     if (localStorage.getItem("currency") == "£") {
@@ -261,12 +262,13 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
         </div>
       );
     }
-  }
-
+   }
   else {
     return <div></div>
   }
   };
+    
+    
   function DiscountDuration(duration: number, discount: number, price: number) {
     if (isCorporate == "false"){
     if (duration == 0 || discount == 0 || price == 0) {
@@ -337,6 +339,7 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
                 <BsGlobe2 />
                 {course?.Course_Country}
               </div>
+              
               <h1 className=" text-violet-400 text-4xl ">
 {discount(
                   course?.Course_Discount,
@@ -350,6 +353,7 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
               course?.Course_Discount,
               course?.Course_Price
             )}
+
             </div>
           </div>
           {/* //div el video bel se3r wel button */}

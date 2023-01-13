@@ -25,6 +25,7 @@ import { useRouter } from "next/router";
 interface Props {
   handleClose: () => void;
   isOpen: boolean;
+  num: number;
 }
 
 
@@ -37,7 +38,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
+  const AddVideo: React.FC<Props> = ({ handleClose, isOpen , num }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -50,10 +51,7 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
     const handleLink = (event: React.ChangeEvent<HTMLInputElement>) => {
       setLink(event.target.value);
     };
-    // const [description, setDescription] = React.useState("");
-    // const handleDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //   setDescription(event.target.value);
-    // };
+   
     var status = '';
 
     const handleSubmit = () => {
@@ -75,6 +73,7 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
       console.log("done")
     }).catch((error) => console.log(error))
   }
+  
   return (
     <div>
       <Dialog
@@ -96,7 +95,18 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
                 sx={{ width: "100%" }}
                 className="m-2 gap-4 w-full"
               >
-                <div className="grid grid-column gap-y-4 w-96 m-2 ">
+                <div className="grid grid-column gap-y-2 w-96 m-2 ">
+                  <div className="text-white">Number</div>
+                   <input
+                className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
+                    required
+                    id="outlined-basic"
+                    placeholder="Number"
+                    defaultValue={num+1}
+                    disabled
+                    
+                />
+                <div className="text-white">Title</div>
                 <input
                 className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                     required
@@ -104,7 +114,7 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
                     placeholder="Title"
                     onChange={handleTitle}
                 />
-
+                 <div className="text-white">Link</div>
                 <input
                 className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                   required
@@ -114,22 +124,9 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
                   placeholder="Link"
                   onChange={handleLink}
                 />
-                {/* <input
-                className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
-                  required
-                  id="outlined-basic"
-                  // label="Password"
-                  // variant="outlined"
-                  placeholder="Description"
-                  onChange={handleDescription}
-                /> */}
                 </div>
-                 
-               
-                
               </FormControl>
             </div>
-
           </DialogContentText>
         </DialogContent>
         <DialogActions className="bg-bc">
@@ -146,8 +143,7 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
               handleClose();
             }}
             autoFocus
-          >
-            Add
+          > Add
           </Button>
         </DialogActions>
       </Dialog>

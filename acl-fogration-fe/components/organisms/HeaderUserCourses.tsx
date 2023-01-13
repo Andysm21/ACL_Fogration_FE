@@ -38,12 +38,19 @@ const HeaderUserCourses = ({
           setFilterDiv(!filterDiv);
         }
 
-              const [search, setSearch] = React.useState("");
-      const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const [search, setSearch] = React.useState("");
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value);
       };
-
-      const handleSubmit = () => {
+  const handlePopularCourses =() => {
+    if(localStorage.getItem("popularCourses")=="false"){
+       localStorage.setItem("popularCourses","true")
+    }
+    else{
+      localStorage.setItem("popularCourses","false")
+    }
+  };
+    const handleSubmit = () => {
     console.log("submit");
     const data = {
       search
@@ -83,7 +90,7 @@ const HeaderUserCourses = ({
       <div>
         <button
           className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey"
-          // onClick={""}
+          onClick={handlePopularCourses}
         >
           Popular courses
         </button>

@@ -11,6 +11,7 @@ import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { useEffect, useMemo, useState } from "react";
 import {
   useMediaQuery,
   Dialog,
@@ -45,44 +46,56 @@ const Transition = React.forwardRef(function Transition(
 const Payment: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  
+  const [balance, setBalance] = useState(0);
+  const [price, setPrice] = useState(0);
 
-  const [username, setUsername] = React.useState("");
-    const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setUsername(event.target.value);
-    };
+function getBalance(){
+    axios.post("http://localhost:8000/balance", {
+    ID : localStorage.getItem("user_id")
+  }).then((res)=>{
+     setBalance(res.data)
+    console.log(balance);
+  }).catch((error) => console.log(error))
+  }
 
-    const [password, setPassword] = React.useState("");
-    const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setPassword(event.target.value);
-    };
-    var status = '';
+  function getPrice(){
+    console.log(localStorage.getItem("CourseID"))
+    axios.post("http://localhost:8000/getCoursePrice", {
+    ID : localStorage.getItem("CourseID")
+  }).then((res)=>{
+     setPrice(res.data)
+    console.log(price);
+  }).catch((error) => console.log(error))
+  }
+  
+
 
     const handleSubmit = () => {
       console.log("submit");
-      const data = {
-        username,
-        password,
-      };
-      axios.post('http://localhost:8000/createAdmin',{
-        Admin_Username:username,
-        Admin_Password:password,
-    }).then(response => {
-      if(response.data == "1"){
-        status = "Username field should not be empty";
+      var courseID = Number(localStorage.getItem("RequestedCID"))
+      var type;
+      if(localStorage.getItem("Type")=="User"){
+        type=1;
       }
-      else if(response.data == "2"){
-        status = "Password field should not be empty";
+      else{
+        type=2;
       }
-      else if(response.data == "3"){
-        status = "Choose another username.";
+      axios.post("http://localhost:8000/enrollAndPayCourse",{
+        StudentTakeCourse_CourseID: courseID,
+        StudentTakeCourse_StudentID: localStorage.getItem("user_id"),
+        StudentTakeCourse_Type:type
+
       }
-      else if(response.data == "4"){
-        status = "Created a new Instructor.";
-      }
-      console.log(status)
-    })
-      console.log(data);
+     ).then((response) => {
+       console.log(response)
+     }).catch((error) => console.log(error))
+      
     };
+    useEffect(() => {
+      getBalance();
+      getPrice();
+    }, []);
 
   return (
     <div>
@@ -110,21 +123,21 @@ const Payment: React.FC<Props> = ({ handleClose, isOpen }) => {
             <div className="text-l text-white">Course price (€)
            <input readOnly className = " h-12 bg-black3  text-white p-1 text-l  border-2  w-full  border-gray-600 rounded-md"
         //   value= {discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
-        value={10}
+        value={price}
          />
          </div>
 
          <div className="text-l text-white">Current balance (€)
            <input readOnly className = "h-12 bg-black3  text-white p-1 text-l  border-2 w-full  border-gray-600 rounded-md"
         //   value= {user.User_Balance}
-        value={15}
+        value= {balance}
          />
          </div>
 
          <div className="text-l text-white">New balance (€)
            <input readOnly className = "h-12 bg-black3  text-white p-1 text-l  border-2 w-full  border-gray-600 rounded-md"
         //   value= {user.User_Balance - discount(course?.Course_Discount,viewPrice(course?.Course_Price))}
-        value={15-10}
+        value={balance-price}
          />
          </div>
                 </div>

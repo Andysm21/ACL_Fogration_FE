@@ -4,11 +4,14 @@ import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import React, { useEffect, useState } from "react";
 import Payment from "./Payment";
 import RequestAccess from "./RequestAccess";
+import { CurrencyBitcoinSharp } from "@mui/icons-material";
 
  
 const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
 
+
   const [isCorporate, setIsCorporate]= useState("true");
+
 
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -21,12 +24,13 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
 
   const viewPrice =(price:number)=>{
     if(isCorporate == "false"){
-      return price   
+      return <div className="text-violet-400 text-4xl "> {price} {curr}</div>
     }
     else{
-      return 
+      return <div></div>
     }
   }
+
   const discount = (discount: number, price: number, duration: number) => {
     if (isCorporate == "false"){
     if (localStorage.getItem("currency") == "£") {
@@ -55,6 +59,7 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
     }
   }
 
+
   else {
     return <div></div>
   }
@@ -76,6 +81,7 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
   }
   }
 
+
   if (courses.length === 0) {
     return <div className="text-center text-white"> No courses</div>;
   }
@@ -90,14 +96,19 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
     }
     return stars;
   };
- 
-const enroll = (isCorporate:string) => {
+
+const enroll = (isCorporate:string,CID)  => {
   if (isCorporate == "false") {
     return(
     <div>
       <button
         className="bg-gradient-to-r from-purple to-babyblue text-white  py-2 px-4 rounded w-36 border border-violet-400"
-        onClick={handleClickOpen}
+        onClick={()=>{
+          localStorage.setItem("RequestedCID",CID?.Course_ID)
+          console.log(localStorage.getItem("RequestedCID"))
+          console.log("Helloooo")
+      setOpen(true);
+        }}
       >
         Enroll Now
       </button>
@@ -105,11 +116,16 @@ const enroll = (isCorporate:string) => {
       </div>
     )
   } else {
+    console.log(CID)
     return (
     <div>
       <button
         className="bg-gradient-to-r from-purple to-babyblue text-white text-s  py-2 px-4 rounded w-36 border border-violet-400"
-        onClick={handleClickOpen}
+        onClick={()=>{
+          localStorage.setItem("RequestedCID",CID?.Course_ID)
+          console.log(localStorage.getItem("RequestedCID"))
+      setOpen(true);
+        }}
       >
         Request
       </button>
@@ -184,6 +200,7 @@ const enroll = (isCorporate:string) => {
                 <BsGlobe2 />
                 {course?.Course_Country}
               </div>
+
 <h1 className=" text-violet-400 text-4xl ">
 {discount(
                   course?.Course_Discount,
@@ -235,7 +252,7 @@ const enroll = (isCorporate:string) => {
               </button>
                 <Payment isOpen={open} handleClose={handleClose} />
               </div> */}
-              {enroll(localStorage.getItem("isCorp"))}
+              {enroll(localStorage.getItem("isCorp"),course)}
             </div>
           </div>
         </div>

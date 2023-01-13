@@ -21,6 +21,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
+import axios from "axios";
 
 interface Props {
   handleClose: () => void;
@@ -88,6 +89,18 @@ const handleChangeType = (event) => {
   setType(event.target.value);
 };
 
+const RequestAccess = () => {
+  axios.post("http://localhost:8000/requestAccess",{
+    User_ID:Number(localStorage.getItem("user_id")),
+    Course_ID: Number(localStorage.getItem("RequestedCID")),
+
+  }).then((response) => {
+    // console.log(Number(localStorage.getItem("CourseID")))
+    console.log(response.data)
+    console.log("done")
+  }).catch((error) => console.log(error))
+}
+
   return (
     <div className="">
       <Dialog
@@ -142,6 +155,7 @@ const handleChangeType = (event) => {
           <Button
           className="text-violet-400"
             onClick={() => {
+              RequestAccess();
               handleSubmit();
               handleClose();
             }}

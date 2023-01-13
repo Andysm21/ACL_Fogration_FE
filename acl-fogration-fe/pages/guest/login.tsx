@@ -23,7 +23,6 @@ import Axios  from "axios";
 
 function Login() {
 const router = useRouter();
-
   // let navigate = useNavigate(); 
 
   // const router = useRouter();
@@ -43,8 +42,10 @@ const router = useRouter();
     console.log(Password)
         };
 
-   function handleLogin(){
-     Axios.post("http://localhost:8000/login", {Uname:Username,Pass:Password},
+   async function handleLogin(){
+    console.log(Username,Password)
+    // localStorage.clear();
+     await Axios.post("http://localhost:8000/login", {Uname:Username,Pass:Password}
  
    ).then((response) => {
     localStorage.setItem("Search","");
@@ -135,7 +136,15 @@ const router = useRouter();
 
   useEffect(()=>{
     // setError(localStorage.getItem("SignUpError"))
-  },[])
+    if(localStorage.getItem("Login")=="false"){
+      localStorage.setItem("Login", "true");
+      localStorage.setItem("Type","");
+      router.reload();
+    }
+    console.log(localStorage)
+    console.log("hi")
+  })
+
   return (
     <div>
       <NavGuestLogin />

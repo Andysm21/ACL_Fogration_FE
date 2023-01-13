@@ -12,12 +12,15 @@ interface Props {
   //   label: string;
   // }[];
 }
+const handleClick = () => {
+  localStorage.setItem("popularCourses","false")
+};
 
 const userlinks = [
   // { href: '/meetings', label: 'Dashboard' },
   { href: "/user", label: "Dashboard" },
   { href: "/user/profile", label: "Profile" },
-  { href: "/user/courses", label: "Courses" },
+  { href: "/user/courses", label: "Courses" , onclick:{handleClick}},
   { href: "/user/mycourses", label: "My Courses" },
   { href: "/user/wallet", label: "Wallet" },
   { href: "/user/reports", label: "Reports" },
@@ -29,7 +32,7 @@ const instructorlinks = [
   // { href: '/car-system', label: 'Dashboard' },
   { href: "/instructor", label: "Dashboard" },
   { href: "/instructor/profile", label: "Profile" },
-  { href: "/instructor/courses", label: "Courses" },
+  { href: "/instructor/courses", label: "Courses", },
   { href: "/instructor/mycourses", label: "My Courses" },
   { href: "/instructor/reports", label: "Reports"},
 ];
@@ -53,6 +56,8 @@ const guestlinks = [
   { href: "/register", label: "Register" },
   
 ]
+
+
 
 const tabs:
   | {

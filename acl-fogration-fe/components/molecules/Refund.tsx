@@ -21,6 +21,9 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
+import axios from "axios";
+import { Router } from "@mui/icons-material";
+import { useRouter } from "next/router";
 
 interface Props {
   handleClose: () => void;
@@ -42,7 +45,7 @@ const Transition = React.forwardRef(function Transition(
 ) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
-
+ 
 const Refund: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -87,6 +90,22 @@ const [Type,setType]= React.useState("");
 const handleChangeType = (event) => {
   setType(event.target.value);
 };
+const router = useRouter();
+
+function Approve(){
+  axios.post("http://localhost:8000/refundWallet",{
+    ID:Number(localStorage.getItem("ReqUserID")),
+    courseID:(localStorage.getItem("ReqCourseID")),
+
+  }
+ ).then((response) => {
+  console.log(response.data)
+  router.reload();
+  // router.push("admin/corporateRequests");
+ }).catch((error) => console.log(error))
+
+}
+
 
   return (
     <div className="">
@@ -142,6 +161,7 @@ const handleChangeType = (event) => {
           <Button
           className="text-violet-400"
             onClick={() => {
+              Approve();
               handleSubmit();
               handleClose();
             }}

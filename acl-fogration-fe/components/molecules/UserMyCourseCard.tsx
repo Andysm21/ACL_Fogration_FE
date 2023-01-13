@@ -159,7 +159,7 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
   const [starsnum, setStarsnum] = useState(0);
 
   function handleSubmit (x) {
-    console.log(x);
+    // console.log(x);
     setStarsnum(x); 
     axios.post('http://localhost:8000/RatingCourse', {ID: localStorage.getItem('CourseID'), Rating: x})
   
@@ -171,7 +171,7 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
 
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
-    console.log(course)
+    // console.log(course)
   },[courseRating])
 
   if (courses.length === 0) {
@@ -447,7 +447,7 @@ const refund = (isCorporate: string) => {
           <div className="flex flex-col border-black1 text-white bg-black2 m-2 px-2 w-52 h-20 rounded-md justify-between items-center py-2">
             <BsPlayBtnFill size={30} />
             <div className="  justify-center items-end">
-              {course?.Course_Hours} hours of video
+              ~{course?.Course_Hours} hours of video
             </div>
           </div>
 
@@ -481,7 +481,18 @@ const refund = (isCorporate: string) => {
                 {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
                     <div key={index}>
-                     <Link href={video?.Video_Link}>
+                     <Link  onClick={()=>{
+                      var VideoLink="https://www.youtube.com/embed/";
+                      var x = video?.Video_Link;
+                      x=x.split("=");
+                      x=x[1];
+                      x=VideoLink+x;
+                      // console.log(VideoLink)
+                      // console.log(2)
+                      localStorage.setItem("videoLink",x);
+                      localStorage.setItem("videoID",video?.Video_ID);
+                      router.push("/user/watchvideo")
+                     }}>
                       <img
                         className=" w-36  "
                         src="/images/pausedvideo.png"
@@ -502,32 +513,32 @@ const refund = (isCorporate: string) => {
       <div className="flex flex-row items-center">
         <div className="text-white font-bold text-2xl mx-2">Exams </div>
         <div className="flex flex-row ">
-         <LinearProgress
+        <LinearProgress
        className="w-72 bg-black2  text-gray-300 m-2 "
        thickness={7}
        determinate 
         variant="outlined"
-        value={90}
+        value={course.Course_Progress}
         >
          
         </LinearProgress>
          <Typography className="text-white text-l"
       >
-       90%
+       {course.Course_Progress}%
       </Typography>
         </div>
         </div>
          <div className="flex flex-row ">
             {course?.Course_Exam && course?.Course_Exam.map((item,index) => {
-              console.log(item?.Exam_ID)
-console.log(item?.Exam_Grade),console.log("Fo2eyaaaa")
+              // console.log(item?.Exam_ID)
+              console.log("Alooo"),
+              console.log( course?.Course_Exam)
+              console.log(item?.Exam_Grade)
               return(
               <div key={index}  className="flex flex-col items-center " onClick={()=>{
                 localStorage.setItem("CurrentExamID",item?.Exam_ID);
-                console.log("HERE")
-                console.log(localStorage.getItem("CurrentExamID"))
-                console.log(localStorage.getItem("user_id"))
-                console.log(localStorage.getItem("CourseID"))
+                
+                
                 var type;
                 var userid= Number(localStorage.getItem("user_id"));
               

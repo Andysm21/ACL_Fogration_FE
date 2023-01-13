@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../components/templates/Layout'
 import TraineeReports from '../../components/molecules/TraineeReports';
 import axios from 'axios'
+import { useRouter } from 'next/router';
 
 
 
@@ -31,6 +32,27 @@ useEffect(() => {
 })
 useEffect(()=>{
 })
+const router = useRouter();
+ var authBool=false;
+ function Auth(){
+   localStorage.clear();
+   localStorage.setItem("Login","false");
+   localStorage.setItem("Type","");
+   router.push("/guest/login");
+
+ }
+ const[Type,setType] = useState("Instructor");
+ useEffect(()=>{
+  if(authBool==true){
+    Auth();
+  }
+  else{
+    setType(localStorage.getItem("Type"));}});
+  if(Type!="Instructor"){
+    authBool=true;
+   }
+ else{
+ 
   return (
     <div>
         <Layout>
@@ -41,5 +63,5 @@ useEffect(()=>{
     </div>
   )
 }
-
+}
 export default reports;

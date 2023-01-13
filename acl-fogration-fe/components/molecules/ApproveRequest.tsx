@@ -21,6 +21,8 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 interface Props {
   handleClose: () => void;
@@ -42,7 +44,7 @@ const Transition = React.forwardRef(function Transition(
 ) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
-
+ 
 const ApproveRequest: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -56,6 +58,7 @@ const ApproveRequest: React.FC<Props> = ({ handleClose, isOpen }) => {
   const handleSubtitles = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSubtitles(event.target.value);
   };
+const router = useRouter();
 
   const [price, setPrice] = React.useState("");
   const handlePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,6 +86,17 @@ const ApproveRequest: React.FC<Props> = ({ handleClose, isOpen }) => {
 //     setMenu(!menu);
 //     };
 
+function Approve(){
+  axios.post("http://localhost:8000/grantAccess",{
+    userId:Number(localStorage.getItem("ReqUserID")),
+    Course_ID:(localStorage.getItem("ReqCourseTitle")),
+  }
+ ).then((response) => {
+  console.log(response.data)
+  // router.push("admin/corporateRequests");
+ }).catch((error) => console.log(error))
+
+}
 const [Type,setType]= React.useState("");
 const handleChangeType = (event) => {
   setType(event.target.value);
@@ -142,6 +156,7 @@ const handleChangeType = (event) => {
           <Button
           className="text-violet-400"
             onClick={() => {
+              Approve();
               handleSubmit();
               handleClose();
             }}

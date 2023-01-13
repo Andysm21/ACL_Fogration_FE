@@ -15,7 +15,7 @@ const TraineeReports:React.FC<{problems}> = ({problems}) => {
 
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
-    localStorage.setItem("courseTitle", problems?.Course_Title);
+   
     setOpen(true);
 
   };
@@ -69,31 +69,38 @@ const discount =(discount:number,price:number) =>{
 
  
   return (
-    <div className="grid grid-cols-2 text-white  bg-bc gap-4 h-screen">
-      {/* {problems.map((problem,index) => ( */}
-        {/* <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 "> */}
-        <div className="flex gap-4 flex-row-1 bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 h-20">
-            <div className="text-l">Course title: {problems?.Course_Title}</div>
+    <div className="bg-bc h-screen">
+    <div className="grid grid-cols-2 text-white  bg-bc gap-4 ">
+       {problems?.map((problem,index) => ( 
+            <div key={index} className="flex gap-4 flex-row bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4">
+               <div className="flex gap-4 flex-row-1 bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 h-20">
+          
+          
+          <div className="text-l">Course title: {problem?.Course_Title}</div>
 
-          <div className="text-l">Type: {problems?.Problem_Type}</div>
+          <div className="text-l">Type: {problem?.Problem_Type}</div>
 
-          <div className="text-l">Status: {problems?.Problem_Status}</div>
+          <div className="text-l">Status: {problem?.Problem_Status}</div>
 
-          <div className="text-l">Report ID: {problems?.Problem_ID}</div>
+          <div className="text-l">Report ID: {problem?.Problem_ID}</div>
 
-          <div className="text-l">Report Description: {problems?.Problem_Description}</div>
+          {/*<div className="text-l">Report Description: {problem?.Problem_Description}</div>*/}
 
-          <div className="text-l">Report Follow UP: {problems?.Follow_UP_Description}</div>
+          {/*<div className="text-l">Report Follow UP: {problem?.Follow_UP_Description}</div>*/}
+          
           <div>
               <button 
                 className="bg-gradient-to-r from-purple to-babyblue text-white py-3 px-4 rounded w-36 border border-violet-400"
-                onClick={handleClickOpen}>
+                onClick={() => {localStorage.setItem("courseTitle", problem?.Course_Title),handleClickOpen()}}>
                 Follow-up
               </button>
                 <FollowUp isOpen={open} handleClose={handleClose} />
               </div>
+        
         </div>
-    {/*   ))} */}
+        </div>
+     ))}
+    </div>
     </div>
   );
 };
