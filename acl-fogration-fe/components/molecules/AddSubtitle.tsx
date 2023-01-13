@@ -25,7 +25,7 @@ import { useRouter } from "next/router";
 interface Props {
   handleClose: () => void;
   isOpen: boolean;
-  num: number;
+  length: number;
 }
 
 
@@ -38,20 +38,23 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-  const AddVideo: React.FC<Props> = ({ handleClose, isOpen , num }) => {
+const AddVideo: React.FC<Props> = ({ handleClose, isOpen ,length }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const [title, setTitle] = React.useState("");
-    const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setTitle(event.target.value);
+  const [number, setNumber] = React.useState("");
+    const handleNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setNumber(event.target.value);
     };
 
-    const [link, setLink] = React.useState("");
-    const handleLink = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setLink(event.target.value);
+    const [subtitleName, setSubtitleName] = React.useState("");
+    const handleSubtitleName = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSubtitleName(event.target.value);
     };
-   
+    // const [description, setDescription] = React.useState("");
+    // const handleDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //   setDescription(event.target.value);
+    // };
     var status = '';
 
     const handleSubmit = () => {
@@ -59,21 +62,17 @@ const Transition = React.forwardRef(function Transition(
     const router = useRouter();
 
   //here
-  const UploadVideo = () => {
-    axios.post("http://localhost:8000/upload_video",{
-      link:link,
-      subtitle: Number(localStorage.getItem("subtitle_id")),
-      description:title,
-      length:10,
-
-    }).then((response) => {
-      // console.log(Number(localStorage.getItem("CourseID")))
-      console.log(response.data)
-      router.reload();
-      console.log("done")
-    }).catch((error) => console.log(error))
+  const createSub = () =>{
+ 
+        axios.post("http://localhost:8000/createSubtitle",{
+          Subtitle_Course_ID:Number(localStorage.getItem("CourseID")),
+          Subtitle:subtitleName
+          }).then((response) => {
+          console.log(response.data)
+          console.log("done")
+        }).catch((error) => console.log(error))
   }
-  
+  const subtitleNumber = 1
   return (
     <div>
       <Dialog
@@ -86,7 +85,7 @@ const Transition = React.forwardRef(function Transition(
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle className="bg-bc text-white"
-        id="responsive-dialog-title">{"Add Video"}</DialogTitle>
+        id="responsive-dialog-title">{"Add Subtitle"}</DialogTitle>
         <DialogContent className="bg-bc">
           <DialogContentText className="grid gap-y-8 gap-x-3">
             <div className="flex flex-column">
@@ -96,37 +95,30 @@ const Transition = React.forwardRef(function Transition(
                 className="m-2 gap-4 w-full"
               >
                 <div className="grid grid-column gap-y-2 w-96 m-2 ">
-                  <div className="text-white">Number</div>
-                   <input
-                className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
-                    required
-                    id="outlined-basic"
-                    placeholder="Number"
-                    defaultValue={num+1}
-                    disabled
-                    
-                />
-                <div className="text-white">Title</div>
+                <div className="text-white">Number</div>
                 <input
                 className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                     required
                     id="outlined-basic"
-                    placeholder="Title"
-                    onChange={handleTitle}
+                    placeholder="Number"
+                    defaultValue={length+1}
+                    disabled
                 />
-                 <div className="text-white">Link</div>
+                <div className="text-white">Name</div>
                 <input
                 className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
                   required
                   id="outlined-basic"
                   // label="Password"
                   // variant="outlined"
-                  placeholder="Link"
-                  onChange={handleLink}
+                  placeholder="Name"
+                  onChange={handleSubtitleName}
                 />
+                
                 </div>
               </FormControl>
             </div>
+
           </DialogContentText>
         </DialogContent>
         <DialogActions className="bg-bc">
@@ -138,12 +130,13 @@ const Transition = React.forwardRef(function Transition(
           <Button
           className="text-violet-400"
             onClick={() => {
-              UploadVideo();
+              createSub();
               handleSubmit();
               handleClose();
             }}
             autoFocus
-          > Add
+          >
+            Add
           </Button>
         </DialogActions>
       </Dialog>
