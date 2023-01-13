@@ -22,14 +22,6 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
     setOpen(false);
   };
 
-  const viewPrice =(price:number)=>{
-    if(isCorporate == "false"){
-      return <div className="text-violet-400 text-4xl "> {price} {curr}</div>
-    }
-    else{
-      return <div></div>
-    }
-  }
 
   const discount = (discount: number, price: number, duration: number) => {
     if (isCorporate == "false"){
