@@ -4,6 +4,7 @@ import { BsGlobe2, BsPlayBtnFill } from "react-icons/bs";
 import React, { useEffect, useState } from "react";
 import Payment from "./Payment";
 import RequestAccess from "./RequestAccess";
+import { CurrencyBitcoinSharp } from "@mui/icons-material";
 
  
 const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
@@ -40,13 +41,13 @@ const [curr, setCurr] = useState('€');
 
   const viewPrice =(price:number)=>{
     if(isCorporate == "false"){
-      return <div className="text-white"> {price}   </div>
+      return <div className="text-violet-400 text-4xl "> {price} {curr}</div>
     }
     else{
       return <div></div>
     }
   }
-     const discount = (discount:number,price:number) =>{
+const discount = (discount:number,price:number) =>{
       if(isCorporate == "true"){
         return
       }
@@ -194,7 +195,7 @@ const enroll = (isCorporate:string,CID)  => {
                 {course?.Course_Country}
               </div>
               <h1 className=" text-violet-400 text-4xl  ">
-                {course?.Course_Price}
+                {viewPrice(course?.Course_Price)}
 
                 {/* {viewPrice(course?.Course_Price)} {localStorage.getItem('currency')} */}
               {/* {discount(course?.Course_Discount,viewPrice(course?.Course_Price))} */}

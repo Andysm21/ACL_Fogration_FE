@@ -5,6 +5,7 @@ import Layout from '../../components/templates/Layout'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { formControlClasses } from '@mui/joy'
+import { useRouter } from 'next/router'
 
 const Exams = {
     Exam_ID:1,
@@ -136,6 +137,28 @@ useEffect(() => {
   SetEID(Number(localStorage.getItem("CurrentExamID")));
   // console.log(Exam)
 })
+const router = useRouter();
+
+var authBool=false;
+function Auth(){
+ localStorage.clear();
+ localStorage.setItem("Login","false");
+ localStorage.setItem("Type","");
+ router.push("/guest/login");
+
+}
+const[Type,setType] = useState("User");
+useEffect(()=>{
+if(authBool==true){
+  Auth();
+}
+else{
+  setType(localStorage.getItem("Type"));}});
+if(Type!="User" && Type!="Corp"){
+  authBool=true;
+ }
+else{
+
   return (
     <div>
       <Layout>
@@ -198,5 +221,5 @@ useEffect(() => {
     </div>
   );
 }
-
-export default solveexam
+}
+export default solveexam;

@@ -3,6 +3,7 @@ import Layout from '../../components/templates/Layout'
 import CorporateRequests from '../../components/molecules/CorporateRequests';
 import axios from 'axios'
 import { Requests } from "../../interfaces";
+import { useRouter } from 'next/router';
 
 
 
@@ -30,6 +31,27 @@ useEffect(() => {
 })
 useEffect(()=>{
 })
+const router = useRouter();
+var authBool=false;
+function Auth(){
+  localStorage.clear();
+  localStorage.setItem("Login","false");
+  localStorage.setItem("Type","");
+  router.push("/guest/login");
+
+}
+const[Type,setType] = useState("Admin");
+useEffect(()=>{
+ if(authBool==true){
+   Auth();
+ }
+ else{
+   setType(localStorage.getItem("Type"));}});
+ if(Type!="Admin"){
+   authBool=true;
+  }
+else{
+
   return (
     <div>
         <Layout>
@@ -40,5 +62,5 @@ useEffect(()=>{
     </div>
   )
 }
-
+}
 export default corporateRequests;
