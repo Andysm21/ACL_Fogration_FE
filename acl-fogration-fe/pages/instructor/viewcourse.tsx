@@ -12,7 +12,7 @@ const viewcourse: NextPage = () => {
   var [courseArray,setCourseArray]=useState([]);
 
   function getCourses(){
- 
+    console.log("I am here view course")
      // Axios.post("http://localhost:8000/viewCourse",{id:Number(localStorage.getItem("CourseIIDD"))}
       var x = Number(localStorage.getItem("CourseID"));
 
