@@ -59,18 +59,20 @@ const Transition = React.forwardRef(function Transition(
     const router = useRouter();
 
   //here
-  const UploadVideo = () => {
-    axios.post("http://localhost:8000/upload_video",{
+  async function UploadVideo ()  {
+    console.log("abl await")
+    await axios.post("http://localhost:8000/upload_video",{
       link:link,
-      subtitle: (localStorage.getItem("subtitle_id")),
+      subtitle: Number(localStorage.getItem("subtitle_id")),
       description:title,
       length:10,
 
     }).then((response) => {
       // console.log(Number(localStorage.getItem("CourseID")))
       console.log(response.data)
-      router.reload();
       console.log("done")
+      router.reload();
+      
     }).catch((error) => console.log(error))
     console.log("heeloos" + localStorage.getItem("subtitle_id"))
   }
