@@ -9,7 +9,6 @@ import Payment from "./Payment";
 import React from "react";
 import RequestAccess from "./RequestAccess";
 import ReportCourse from "./ReportCourse";
-import Axios from 'axios'
 
 
 const  What_You_Will_Learn= [
@@ -19,29 +18,25 @@ const  What_You_Will_Learn= [
     ];
  
 const UserCourseCard: React.FC<{ course }> = ({ course }) => {
-      var [SavedCourseData,setSavedCourseData]=useState({
-      Course_ID: NaN,
-      Course_Subject: '',
-      Course_Description: '',
-      Course_Price: NaN,
-      Course_Rating: NaN,
-      Course_Instructor: {
-        Instructor_FirstName: '',
-      },
-      Course_Hours: NaN,
-      Course_Country: '',
-      Course_Discount: NaN,
-      Course_Title: '',
-      Course_Discount_Duration: NaN,
-      Course_Subtitle: [],
-      Course_Trainee: [],
-      Course_Review: [],
-      Course_Rate: [''],
-      Course_Exam: [''],
-      Course_What_You_Will_Learn: [],    })
-  const [isCorporate, setIsCorporate]= useState("true");
-  
+  const [isCorporate, setIsCorporate]= useState("false");
 
+  const [factor, setFactor] = useState(1);
+  const [curr, setCurr] = useState('€');
+
+  useEffect(() => {
+    console.log(course.name)
+    setIsCorporate(localStorage.getItem("isCorp"))
+    if (localStorage.getItem('currency') == '£'){
+          setFactor(factor*2);
+          setCurr('£');
+        }
+
+      if (localStorage.getItem('currency') == '$'){
+          setFactor(factor*1.5);
+          setCurr('$');
+        }
+        
+  })
 
     const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -64,8 +59,8 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   };
 
     const viewPrice =(price:number)=>{
-    if(isCorporate== "false"){
-      return price   
+    if(isCorporate == "false"){
+      return  price   
     }
     else{
       return 
@@ -88,92 +83,47 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   };
     const [starsnum, setStarsnum] = useState(0);
 
-     const discount = (discount: number, price: number, duration: number) => {
-      if (isCorporate == "false"){
-       if (Currency == "£") {
-         price = price * 20;
-       }
+  const discount =(discount:number,price:number) =>{
+    if(isCorporate == "false"){
 
-       if (Currency == "$") {
-         price = price * 1.5;
-       }
-       if (discount == 0 || price == 0 || duration == 0) {
-         return (
-           <h1 className=" text-violet-400 text-4xl  ">
-             {price}{Currency}
-           </h1>
-         );
-       } else {
-         return (
-           <div className="flex flex-row">
-             <div className=" text-violet-400 text-4xl  line-through">
-               {price}
-             </div>
-             <div className="text-black3 text-4xl  ">.</div>
-             <div className=" text-violet-400 text-4xl  ">
-               {(price * (100 - discount)) / 100}{Currency}
-             </div>
-           </div>
-         );
-       }
-     }
+        if((discount == 0) || price == 0){
+      return <h1 className=" text-violet-400 text-4xl  ">
+                {price*factor}{curr}
+              </h1>
 
-     else{
-      return <div></div>
-     }
-     };
-     function DiscountDuration(
-       duration: number,
-       discount: number,
-       price: number
-     ) {
-      if (isCorporate == "false"){
-       if (duration == 0 || discount == 0 || price == 0) {
-         return <div></div>;
-       } else
-         return (
-           <p className=" text-violet-400 text-light text-sm">
-             Discount available for {duration} days
-           </p>
-         );
-         }
-         else{
-          return <div></div>
-     }
     }
-
-  const [Currency, setCurrency] = useState('');
-
-      var [SavedCourseData,setSavedCourseData]=useState({
-      Course_ID: NaN,
-      Course_Subject: '',
-      Course_Description: '',
-      Course_Price: NaN,
-      Course_Rating: NaN,
-      Course_Instructor: {
-        Instructor_FirstName: '',
-      },
-      Course_Hours: NaN,
-      Course_Country: '',
-      Course_Discount: NaN,
-        Course_Title: '',
+    else{ 
       
-  Course_Discount_Duration: NaN,
-      Course_Subtitle: [],
-      Course_Trainee: [],
-      Course_Review: [],
-      Course_Rate: [''],
-      Course_Exam: [''],
-      Course_What_You_Will_Learn: [],    })
-  useEffect(()=>{
-    setIsCorporate(localStorage.getItem("isCorp"));
-  Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
-  ).then((response) => {
-    course=response.data
-    setSavedCourseData(response.data)
-  }).catch((error) => console.log(error))
-  setCurrency(localStorage.getItem('currency'));
-})
+      return(
+
+      <div className="flex flex-row">
+      <div className=" text-violet-400 text-4xl line-through">{price}</div>
+      <div className="text-black3 text-4xl ">.</div>
+      <div className=" text-violet-400 text-4xl  ">
+                    {price *factor* (100-discount)/100}{curr}</div>
+      </div>
+
+      )
+    }
+    }else{
+      return (<div>
+        
+      </div>)
+    }}
+
+  
+ function DiscountDuration(duration : number,discount : number ,price : number){
+         if(isCorporate == "true"){
+      return <div></div>                                                                    
+    }else{
+      if(duration == 0 || discount == 0 || price == 0){
+        return <div></div>
+      }
+        else{
+         return  <p className=" text-violet-400 text-light text-sm">Discount available for {duration} days</p>
+    }
+  }
+  }
   
 const enroll = (isCorporate:string) => {
   if (isCorporate == "false") {
@@ -259,13 +209,8 @@ const enroll = (isCorporate:string) => {
               $${course.Course_Price}
             </h1> } */}
           
-              <h1 className=" text-violet-400 text-4xl">
-                {discount(
-                  course?.Course_Discount,
-                  course?.Course_Price,
-                  course?.Course_Discount_Duration
-                )}
-              </h1>
+             <h1 className=" text-violet-400 text-4xl ">
+               {discount(course?.Course_Discount,viewPrice(course?.Course_Price))} </h1>
               
               {enroll(isCorporate)}
             { /* <div>
@@ -277,11 +222,7 @@ const enroll = (isCorporate:string) => {
                 <Payment isOpen={open} handleClose={handleClose} />
               </div> */}
           </div>
-            {DiscountDuration(
-              course?.Course_Discount_Duration,
-              course?.Course_Discount,
-              course?.Course_Price
-            )}
+           {DiscountDuration(course?.Course_Discount_Duration,course?.Course_Discount,viewPrice(course?.Course_Price))}
 
           </div>
         </div>
@@ -313,7 +254,7 @@ const enroll = (isCorporate:string) => {
           <div className="flex flex-col border-black1 text-white bg-black2 m-2 px-2 w-52 h-20 rounded-md justify-between items-center py-2">
             <BsPlayBtnFill size={30} />
             <div className="  justify-center items-end">
-              ~{course?.Course_Hours} hours of video
+              {course?.Course_Hours} hours of video
             </div>
           </div>
 
@@ -406,7 +347,7 @@ const enroll = (isCorporate:string) => {
 
             </button>
             <ReportCourse isOpen={open2} handleClose={handleClose2} />
-            </div>
+</div>
       
           </div>
 
