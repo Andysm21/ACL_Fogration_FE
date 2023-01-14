@@ -232,7 +232,7 @@ useEffect(()=>{
         </div>
       </div>
       {/* //Course content  */}
-      <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
+      {/* <div className="bg-black3 rounded-md m-6 flex flex-col p-2">
         <h1 className="text-white font-bold text-l ">Course Content</h1>
         {course?.Course_Subtitle?.map((subtitle, index) => {
           return (
@@ -262,6 +262,44 @@ useEffect(()=>{
                     </div>
                   );
                 })}
+              </div>
+            </div>
+          );
+        })}
+      </div> */}
+       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-4">
+        <h1 className="text-white font-bold text-2xl mx-2">Course Content</h1>
+        {course?.Course_Subtitle?.map((subtitle, index) => {
+          return (
+            <div key={index}  className="bg-bc p-2 rounded-md mx-2">
+              <div className="flex flex-col gap-2 ">
+                <div className="flex flex-row gap-2 justify-between">
+                  <div className="text-l font-bold  ">
+                    {subtitle?.Subtitle_Name}
+                  </div>
+                  <div className="text-l flex ">
+                    Total Time: {subtitle?.Subtitle_Hours} mins
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-row gap-3 w-[100%] ">
+                <div className="flex flex-row gap-2">
+                {subtitle?.Subtitle_Video?.map((video, index) => {
+                  return (
+                    <div key={index}>
+                      <Link href={video?.Video_Link}>
+                      <img
+                        className=" w-36  "
+                        src="/images/pausedvideo.png"
+                        alt="No image yet "
+                      />
+                  </Link>
+                      <div className="text-l">{video?.Video_Description}</div>
+                      <div className="text-l">{video?.Video_Length} mins</div>
+                    </div>
+                  );
+                })}
+                </div>
               </div>
             </div>
           );

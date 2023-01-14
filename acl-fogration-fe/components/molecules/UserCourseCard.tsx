@@ -330,9 +330,11 @@ const enroll = (isCorporate:string) => {
       {/* //Course content  */}
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-4">
         <h1 className="text-white font-bold text-2xl mx-2">Course Content</h1>
+        <div className="flex flex-row">
+        
         {course?.Course_Subtitle && course?.Course_Subtitle.map((subtitle,index) => {
           return (
-            <div key={index}  className="bg-bc p-2 rounded-md mx-2">
+            <div key={index}  className="bg-bc p-2 rounded-md mx-2 ">
               <div className="flex flex-col gap-2 ">
                 <div className="flex flex-row gap-2 justify-between">
                   <div className="text-l font-bold">
@@ -343,7 +345,8 @@ const enroll = (isCorporate:string) => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-row gap-3 w-[100%] ">
+              
+              {/* <div className="flex flex-row gap-3 w-[100%] ">
                 {subtitle?.Subtitle_Video?.map((video,index) => {
                   return (
                     <div key={index}>
@@ -360,10 +363,12 @@ const enroll = (isCorporate:string) => {
                     </div>
                   );
                 })}
-              </div>
+              </div> */}
             </div>
+            
           );
         })}
+        </div>
       </div>
         {/* exams of course */}
         {/* <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-1">
