@@ -139,6 +139,13 @@ const router = useRouter();
     if(localStorage.getItem("Login")=="false"){
       localStorage.setItem("Login", "true");
       localStorage.setItem("Type","");
+      localStorage.setItem("Search","");
+      localStorage.setItem("Type","");
+
+      localStorage.setItem("Subject","")
+      localStorage.setItem("Rating","")
+      localStorage.setItem("MaxPrice","")
+      localStorage.setItem("MinPrice","")
       router.reload();
     }
     console.log(localStorage)

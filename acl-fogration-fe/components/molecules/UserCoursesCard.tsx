@@ -24,7 +24,7 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
 
 
   const discount = (discount: number, price: number, duration: number) => {
-    if (isCorporate == "false"){
+    if (localStorage.getItem("isCorp") == "false"){
     if (localStorage.getItem("currency") == "£") {
       price = price * 20;
     }
@@ -41,7 +41,7 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
     } else {
       return (
         <div className="flex flex-row">
-          <div className=" text-violet-400 text-4xl  line-through">{price}</div>
+          <div className=" text-violet-400 text-4xl line-through">{price}</div>
           <div className="text-black3 text-4xl  ">.</div>
           <div className=" text-violet-400 text-4xl  ">
             {(price * (100 - discount)) / 100}{localStorage.getItem("currency")}
@@ -57,7 +57,7 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
   }
   };
   function DiscountDuration(duration: number, discount: number, price: number) {
-    if (isCorporate == "false"){
+    if (localStorage.getItem("isCorp") == "false"){
     if (duration == 0 || discount == 0 || price == 0) {
       return <div></div>;
     } else
@@ -90,7 +90,7 @@ const UserCoursesCard:React.FC<{courses}> = ({courses}) => {
   };
 
 const enroll = (isCorporate:string,CID)  => {
-  if (isCorporate == "false") {
+  if (localStorage.getItem("isCorp") == "false") {
     return(
     <div>
       <button

@@ -96,7 +96,7 @@ const GuestCourseCard: React.FC<{ course }> = ({ course }) => {
   }
   
 useEffect(()=>{
-  Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
+  Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("CourseID")}`, 
   ).then((response) => {
     course=response.data
     setSavedCourseData(response.data)
@@ -159,9 +159,9 @@ useEffect(()=>{
             </h1> */}
               <h1 className=" text-violet-400 text-4xl">
                 {discount(
-                  course?.Course_Discount,
-                  course?.Course_Price,
-                  course?.Course_Discount_Duration
+                  SavedCourseData?.Course_Discount,
+                  SavedCourseData?.Course_Price,
+                  SavedCourseData?.Course_Discount_Duration
                 )}
               </h1>
 
@@ -173,9 +173,9 @@ useEffect(()=>{
               </Link>
             </div>
             {DiscountDuration(
-              course?.Course_Discount_Duration,
-              course?.Course_Discount,
-              course?.Course_Price
+              SavedCourseData?.Course_Discount_Duration,
+              SavedCourseData?.Course_Discount,
+              SavedCourseData?.Course_Price
             )}
           </div>
         </div>

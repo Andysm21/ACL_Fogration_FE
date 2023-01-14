@@ -188,26 +188,7 @@ const isCorporate = true;
 //   ],
 // };
 const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
-      var [SavedCourseData,setSavedCourseData]=useState({
-      Course_ID: NaN,
-      Course_Subject: '',
-      Course_Description: '',
-      Course_Price: NaN,
-      Course_Rating: NaN,
-      Course_Instructor: {
-        Instructor_FirstName: '',
-      },
-      Course_Hours: NaN,
-      Course_Country: '',
-      Course_Discount: NaN,
-      Course_Title: '',
-      Course_Discount_Duration: NaN,
-      Course_Subtitle: [],
-      Course_Trainee: [],
-      Course_Review: [],
-      Course_Rate: [''],
-      Course_Exam: [''],
-      Course_What_You_Will_Learn: [],    })
+     
     const [isCorporate, setIsCorporate]= useState("false");
     const [factor, setFactor] = useState(1);
     const [curr, setCurr] = useState('€');
@@ -374,6 +355,7 @@ const UserMyCoursesCard:React.FC<{ courses }> = ({courses }) => {
                 <button className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-80 border border-violet-400" onClick={()=>{
                   localStorage.removeItem('CourseID')
                   localStorage.setItem('CourseID', course?.Course_ID)
+                  console.log(course);
               
                 }}>
                   View Course

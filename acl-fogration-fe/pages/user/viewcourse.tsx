@@ -11,11 +11,11 @@ import { useRouter } from "next/router";
 const viewcourse: NextPage = () => {
   var [courseArray,setCourseArray] = useState([]);
 
-  function getCourses(){
+  function getCourses(x:number){
  
     // Axios.post("http://localhost:8000/viewCourse",{id:Number(localStorage.getItem("CourseIIDD"))}
-     var x = Number(localStorage.getItem("CourseID"));
-
+    // var x = Number(localStorage.getItem("CourseID"));
+console.log("Fel Function",x)
         axios.post(`http://localhost:8000/viewCourse/${x}`
 
    ).then((response) => {
@@ -23,10 +23,13 @@ const viewcourse: NextPage = () => {
      setCourseArray(response.data)
      console.log(response.data)
      console.log(courseArray)
-   }).catch((error) => console.log(error))
+   }).catch((error) => console.log("HEna"))
  }
 
- useEffect(() =>{getCourses()},[]);
+ useEffect(() =>{
+  var z = Number(localStorage.getItem("CourseID"));
+  console.log(z)
+  getCourses(z)});
  const router = useRouter();
 
  var authBool=false;

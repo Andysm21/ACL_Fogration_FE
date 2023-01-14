@@ -9,7 +9,7 @@ import ReportCourse from "./ReportCourse";
 import React from "react";
 import CourseRefund from "./CourseRefund";
 import { useRouter } from "next/router";
-import Axios from 'axios';
+import axios from 'axios';
 
 const courses = [
   {
@@ -132,26 +132,7 @@ const courses = [
 ];
 
 const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
-      var [SavedCourseData,setSavedCourseData]=useState({
-      Course_ID: NaN,
-      Course_Subject: '',
-      Course_Description: '',
-      Course_Price: NaN,
-      Course_Rating: NaN,
-      Course_Instructor: {
-        Instructor_FirstName: '',
-      },
-      Course_Hours: NaN,
-      Course_Country: '',
-      Course_Discount: NaN,
-      Course_Title: '',
-      Course_Discount_Duration: NaN,
-      Course_Subtitle: [],
-      Course_Trainee: [],
-      Course_Review: [],
-      Course_Rate: [''],
-      Course_Exam: [''],
-      Course_What_You_Will_Learn: [],    })
+      
   const router = useRouter();
   var flag;
 
@@ -171,7 +152,8 @@ const UserMyCourseCard: React.FC<{ course }> = ({ course }) => {
 
   useEffect(() => {
     setIsCorporate(localStorage.getItem("isCorp"))
-    // console.log(course)
+    
+    console.log(course)
   },[courseRating])
 
   if (courses.length === 0) {
@@ -272,7 +254,7 @@ const What_You_Will_Learn = [
      ) {
       if (isCorporate == "false"){
        if (duration == 0 || discount == 0 || price == 0) {
-         return <div></div>;
+         return <div></div>
        } else
          return (
            <p className=" text-violet-400 text-light text-sm">
@@ -311,7 +293,7 @@ const What_You_Will_Learn = [
       Course_What_You_Will_Learn: [],    })
 
   useEffect(()=>{
-  Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
+  axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
   ).then((response) => {
     course=response.data
     setSavedCourseData(response.data)
@@ -319,7 +301,8 @@ const What_You_Will_Learn = [
   setCurrency(localStorage.getItem('currency'));
 })
 
-const refund = (isCorporate: string) => {
+const refund = (isCorporate: string,progress:number) => {
+  if(progress < 50){
     if (isCorporate == "false") {
       return (
         <div>
@@ -333,6 +316,10 @@ const refund = (isCorporate: string) => {
         </div>
       );
     }
+  }else{
+    return <div></div>
+  }
+  
   };
 
   return (
@@ -390,7 +377,7 @@ const refund = (isCorporate: string) => {
           <div className="flex flex-row justify-between my-2">
             
             <h1 className=" text-violet-400 text-4xl ">
-{discount(
+      {discount(
                   course.Course_Discount,
                   course.Course_Price,
                   course.Course_Discount_Duration
@@ -412,10 +399,10 @@ const refund = (isCorporate: string) => {
           </div>
 
 {DiscountDuration(
-              SavedCourseData?.Course_Discount_Duration,
-              SavedCourseData?.Course_Discount,
-              SavedCourseData?.Course_Price
-            )}
+              course?.Course_Discount_Duration,
+              course?.Course_Discount,
+              course?.Course_Price
+            )}  
 </div>
         </div>
       </div>
@@ -598,16 +585,15 @@ const refund = (isCorporate: string) => {
         <div className= "rounded-md m-6 flex flex-col justify-center w-96 gap-1">
 
  
-            <button className=""
+            <button className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-[100%] border border-violet-400"
             onClick={handleClickOpen}>
-                <div className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-[100%] border border-violet-400">Report an issue</div>
-
-
+            Report an issue
             </button>
             <ReportCourse isOpen={open} handleClose={handleClose} />
 
 
-            {refund(isCorporate)}
+            {refund(isCorporate,course.Course_Progress)}
+            {/* {refundProgress(course.Course_Progress,isCorporate)} */}
 
           </div>
     </div>

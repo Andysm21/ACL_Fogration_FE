@@ -10,9 +10,12 @@ const CourseCreation = () => {
   const [createCourseStyle,setCreateCourseStyle] = useState("mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded  border border-violet-400");
   const [addVideoStyle,setAddVideoStyle] = useState("mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded w-72 ");
   const [addSubtitleStyle,setAddSubtitleStyle] = useState("mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded w-72 ");
+  const [createExamArrow,setCreateExamArrow] = useState("text-gray-400");
   const [enableVideo,setEnableVideo] = useState(true);
+  const [enableCreateExam,setEnableCreateExam] = useState(false);
   const [enableCreateCourse,setEnableCreateCourse] = useState(false);
   const [enableSubtitle,setEnableSubtitle] = useState(true);
+  
     const addVideo = () => {
     axios.post("http://localhost:8000/createVideo",
     {title: videoTitle, link: videoLink,
@@ -40,8 +43,8 @@ const CourseCreation = () => {
         setVideoTitle("");
         setVideoLink("");
         setVideoDescription("");   
-        setAddSubtitleStyle("mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400");
-        setEnableSubtitle(false); 
+        // setAddSubtitleStyle("mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400");
+        // setEnableSubtitle(false); 
 
      }
   const addSubtitle = () => {
@@ -73,10 +76,10 @@ const CourseCreation = () => {
       setVideoLink("");
       setVideoDescription("");
     console.log(subtitleNumber);
-    setAddVideoStyle("mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400");
-    setAddSubtitleStyle("mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded w-72 ");
-    setEnableSubtitle(true);
-    setEnableVideo(false);
+    // setAddVideoStyle("mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400");
+    // setAddSubtitleStyle("mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded w-72 ");
+    // setEnableSubtitle(true);
+    // setEnableVideo(false);
 
   };
 
@@ -92,8 +95,12 @@ const CourseCreation = () => {
  }).catch((error) => console.log(error))
 
   setAddSubtitleStyle("mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400");
+  setAddVideoStyle("mx-2 my-2 bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded w-72 border border-violet-400");
   setCreateCourseStyle("mx-2 my-2 bg-gray-500 text-white py-2 px-4 rounded ");
+  setCreateExamArrow("text-violet-400");
   setEnableSubtitle(false);
+  setEnableVideo(false);
+  setEnableCreateExam(false);
   setEnableCreateCourse(true);
   
   // createCourseButton();
@@ -397,10 +404,10 @@ const CourseCreation = () => {
           <Link href="/instructor/createexam" className="">
            
             <div className="flex  justify-end  items-center flex-row ">
-              <div onClick={gotoexam} className=" text-violet-400 ">
+              <div onClick={gotoexam} className={createExamArrow}>
                 Create an exam for the course
               </div>
-              <AiOutlineArrowRight className="text-violet-400" size={20} />
+              <AiOutlineArrowRight className={createExamArrow} size={20} />
             </div>
           </Link>
         </div>

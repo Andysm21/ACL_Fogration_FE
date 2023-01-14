@@ -25,7 +25,7 @@ import { useRouter } from "next/router";
 interface Props {
   handleClose: () => void;
   isOpen: boolean;
-  num: number;
+
 }
 
 
@@ -38,7 +38,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-  const AddVideo: React.FC<Props> = ({ handleClose, isOpen , num }) => {
+  const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -59,8 +59,9 @@ const Transition = React.forwardRef(function Transition(
     const router = useRouter();
 
   //here
-  const UploadVideo = () => {
-    axios.post("http://localhost:8000/upload_video",{
+  async function UploadVideo ()  {
+    console.log("abl await")
+    await axios.post("http://localhost:8000/upload_video",{
       link:link,
       subtitle: Number(localStorage.getItem("subtitle_id")),
       description:title,
@@ -69,9 +70,11 @@ const Transition = React.forwardRef(function Transition(
     }).then((response) => {
       // console.log(Number(localStorage.getItem("CourseID")))
       console.log(response.data)
-      router.reload();
       console.log("done")
+      router.reload();
+      
     }).catch((error) => console.log(error))
+    console.log("heeloos" + localStorage.getItem("subtitle_id"))
   }
   
   return (
@@ -96,16 +99,7 @@ const Transition = React.forwardRef(function Transition(
                 className="m-2 gap-4 w-full"
               >
                 <div className="grid grid-column gap-y-2 w-96 m-2 ">
-                  <div className="text-white">Number</div>
-                   <input
-                className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
-                    required
-                    id="outlined-basic"
-                    placeholder="Number"
-                    defaultValue={num+1}
-                    disabled
-                    
-                />
+                  
                 <div className="text-white">Title</div>
                 <input
                 className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"

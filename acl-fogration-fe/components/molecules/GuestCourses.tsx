@@ -114,7 +114,7 @@ const GuestCourses:React.FC<{ courses }> = ({courses }) => {
               <Link href="/guest/course">
                 {/* //link button to enroll */}
                 <button className="bg-gradient-to-r from-purple to-babyblue text-white border border-violet-400 py-2 px-4 rounded w-80" onClick={()=>{
-                  localStorage.setItem("Course",course?.Course_ID+"")
+                  localStorage.setItem("CourseID",course?.Course_ID+"")
                   // console.log(localStorage.getItem("CourseIIDD"))
                   }}>
                   View Course

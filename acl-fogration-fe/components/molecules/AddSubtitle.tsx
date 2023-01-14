@@ -25,7 +25,7 @@ import { useRouter } from "next/router";
 interface Props {
   handleClose: () => void;
   isOpen: boolean;
-  length: number;
+  
 }
 
 
@@ -38,7 +38,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const AddVideo: React.FC<Props> = ({ handleClose, isOpen ,length }) => {
+const AddVideo: React.FC<Props> = ({ handleClose, isOpen }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -63,14 +63,15 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen ,length }) => {
 
   //here
   const createSub = () =>{
- 
         axios.post("http://localhost:8000/createSubtitle",{
           Subtitle_Course_ID:Number(localStorage.getItem("CourseID")),
           Subtitle:subtitleName
           }).then((response) => {
           console.log(response.data)
           console.log("done")
+
         }).catch((error) => console.log(error))
+        console.log("b3d el error" + localStorage.getItem("CourseID"))
   }
   const subtitleNumber = 1
   return (
@@ -95,15 +96,7 @@ const AddVideo: React.FC<Props> = ({ handleClose, isOpen ,length }) => {
                 className="m-2 gap-4 w-full"
               >
                 <div className="grid grid-column gap-y-2 w-96 m-2 ">
-                <div className="text-white">Number</div>
-                <input
-                className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"
-                    required
-                    id="outlined-basic"
-                    placeholder="Number"
-                    defaultValue={length+1}
-                    disabled
-                />
+               
                 <div className="text-white">Name</div>
                 <input
                 className="text-white rounded-md h-16 px-3 border-2 border-gray-300 bg-gray-800"

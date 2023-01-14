@@ -335,7 +335,7 @@ useEffect(()=>{
       <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-4">
         <h1 className="text-white font-bold text-2xl mx-2">Course Content</h1>
         <div onClick={handleClickAddSubtitle} className="text-white text-l bg-bc  h-24 rounded-md cursor-pointer items-center justify-center flex border border-gray-300 mx-2">Add Subtitle</div>
-        <AddSubtitle isOpen={openAddSubtitle} handleClose={handleCloseAddSubtitle} length={course?.Course_Subtitle?.length} />
+        <AddSubtitle isOpen={openAddSubtitle} handleClose={handleCloseAddSubtitle}  />
         {course?.Course_Subtitle?.map((subtitle,index) => {
           return (
             <div key={index}  className="bg-bc p-2 rounded-md mx-2">
@@ -357,7 +357,7 @@ useEffect(()=>{
                    localStorage.setItem("subtitle_id",subtitle?.Subtitle_ID)
                    setOpenAddVideo(true);
                 }} />
-                <AddVideo isOpen={openAddVideo} handleClose={handleCloseAddVideo} num={subtitle?.Subtitle_Video.length}/>
+                <AddVideo isOpen={openAddVideo} handleClose={handleCloseAddVideo} />
                 <div>Add Video</div>
                 </div>
                 <div className="flex flex-row gap-2">

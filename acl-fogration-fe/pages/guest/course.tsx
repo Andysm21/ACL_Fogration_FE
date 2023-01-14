@@ -12,10 +12,9 @@ import Axios from 'axios'
 const course: NextPage = () => {
  var [courseArray,setCourseArray]=useState([]);
 
- function getCourses(){
+ function getCourses(x:Number){
 
     // Axios.post("http://localhost:8000/viewCourse",{id:Number(localStorage.getItem("CourseIIDD"))}
-    var x = Number(localStorage.getItem("CourseID"));
 
         Axios.post(`http://localhost:8000/viewCourse/${x}`
 
@@ -29,8 +28,10 @@ const course: NextPage = () => {
   
  useEffect(() => {
   // if(localStorage.getItem("Course")!=undefined){
-  getCourses();
-}, []);
+   var x = Number(localStorage.getItem("CourseID"));
+
+  getCourses(x);
+});
 
   return (
     <div className="bg-bc h-screen">
