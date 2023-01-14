@@ -64,7 +64,7 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
   };
 
     const viewPrice =(price:number)=>{
-    if(isCorporate == "false"){
+    if(isCorporate== "false"){
       return price   
     }
     else{
@@ -165,8 +165,8 @@ const UserCourseCard: React.FC<{ course }> = ({ course }) => {
       Course_Rate: [''],
       Course_Exam: [''],
       Course_What_You_Will_Learn: [],    })
-
   useEffect(()=>{
+    setIsCorporate(localStorage.getItem("isCorp"));
   Axios.post(`http://localhost:8000/viewCourse/${localStorage.getItem("Course")}`, 
   ).then((response) => {
     course=response.data
@@ -406,7 +406,7 @@ const enroll = (isCorporate:string) => {
 
             </button>
             <ReportCourse isOpen={open2} handleClose={handleClose2} />
-</div>
+            </div>
       
           </div>
 
