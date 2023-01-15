@@ -4,6 +4,12 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 
 [Photo](https://drive.google.com/file/d/1jYoXZhymvYZEc_5OCOYDGO-12GimmrN6/view?usp=sharing)
 
+<img
+  src="[/path/to/img.jpg](https://drive.google.com/file/d/1jYoXZhymvYZEc_5OCOYDGO-12GimmrN6/view?usp=sharing)"
+  alt="Alt text"
+  title="Optional title"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
+
 ## Table of Contents
 
 - [Motivation](#Motivation)
