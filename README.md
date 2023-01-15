@@ -275,7 +275,47 @@ ACL_Fogration_FE
 
 ## Code Examples
 
-### Change forgotten Password 
+### receiving an email to change a forgotten password
+
+```node
+router.post("/forgotPassword", async (req, res) => {
+	try {
+		//const x= req.body.Instructor_ID  
+    const email = req.body.Email
+    if(!(await instructor.findOne({Instructor_Email:email}))){
+      if(!(await individualUser.findOne({individualUser_Email:email}))){
+        if(!(await corporateUser.findOne({CorporateUser_Email:email}))){
+          return res
+				.status(409)
+				.send({ message: "User with given email does not exist!" });
+    }
+    else {
+      const url = `http://localhost:3000/guest/corpPasswordReset/`;
+      await sendEmail(email, "Password Reset", url);
+    }
+  }
+    else{
+      const url = `http://localhost:3000/guest/userPasswordReset/`;
+      await sendEmail(email, "Password Reset", url);
+    }
+
+  }
+    else{
+    const url = `http://localhost:3000/guest/instructorPasswordReset/`;
+		await sendEmail(email, "Password Reset", url);
+    }
+
+		res
+			.status(200)
+			.send({ message: "Password reset link sent to your email account" });
+	} catch (error) {
+		res.status(500).send({ message: "Internal Server Error" });
+	}
+});
+
+```
+
+### Changing the forgotten Password after receiving the email
 
 ```node
  router.post("/changeForgetPassword", async (req, res) => {
@@ -304,6 +344,58 @@ else if(await (await corporateUser.find({CorporateUser_UserName: username}).sele
 });
 ```
 
+
+### Users Card
+
+```TSX
+const UsersCard: React.FC<{ users }> = ({ users }) => {
+  const [type,setType] = useState("");
+  useEffect(()=>{
+    // localStorage.setItem("Type","CorporateUser")
+    setType(localStorage.getItem("Type"));
+  })
+  const detailsLink = ()=>{
+    if(type=="Instructor"){
+      return "instructor"
+      }
+  else{
+      return "user"
+  }
+  }
+  
+  if (users.length === 0) {
+    return <div className="text-center text-xl text-black1 "> No users</div>;
+  }
+
+  return (
+    <div className="bg-bc h-screen">
+    <div className="grid grid-cols-2 text-white  bg-bc gap-4">
+      {users.map((person) => (
+        <div
+          key={person.User_Name}
+className="flex gap-4 flex-row-1 bg-black3 justify-between mx-6 my-4 rounded-lg py-3 px-4 h-20"
+        >
+
+              <div className="texl-l">Name: {person.User_Name} </div>
+              <div className="text-l">Role: {person.User_Role} </div>
+          <div className="text-l">Country: {person.User_Country}</div>
+          <div className="text-l"> City: {person.User_City}</div>
+          <div className="text-l"> Address: {person.User_Address}</div>
+          <div className="flex flex-row gap-2">
+            <Link href={detailsLink()}>
+              <button                 className="bg-gradient-to-r from-purple to-babyblue text-white py-3 px-4 rounded w-36 border border-violet-400">
+                More Details
+              </button>
+            </Link>
+          </div>
+        </div>
+      ))}
+    </div>
+    </div>
+  );
+};
+
+``` 
 ## Authors 
 1. [Salma Sleem](https://github.com/salmasleem)
 2. [Nour Shehab]
