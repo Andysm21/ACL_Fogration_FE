@@ -5,11 +5,11 @@ courses online which is given by certified instructors.
 
 
 ## Technologies:  
-1. [React] (https://reactjs.org/)
-2. [Node.js] (https://nodejs.org/en/)
-3. [Typescript] (https://www.typescriptlang.org/)
-4. [MongoDB] (https://www.mongodb.com/)
-5. [Axios] (https://axios-http.com/)
+1. [React](https://reactjs.org/)
+2. [Node.js](https://nodejs.org/en/)
+3. [Typescript](https://www.typescriptlang.org/)
+4. [MongoDB](https://www.mongodb.com/)
+5. [Axios](https://axios-http.com/)
 
 
 #Backend Structure
@@ -54,7 +54,7 @@ ACL_FOGRATION_BE/
 
 ## Authors 
 1. [Salma Sleem](https://github.com/salmasleem)
-2. [Nour Shehab](https://github.com/rolasameh)
+2. [Nour Shehab]
 3. [Hana Pasha]
 4. [Andrew Shehata]
 5. [Malak ElKhashab]
