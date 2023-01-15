@@ -275,7 +275,7 @@ ACL_Fogration_FE
 
 ## Code Examples
 
-### Change Password
+### Change forgotten Password 
 
 ```node
  router.post("/changeForgetPassword", async (req, res) => {
