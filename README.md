@@ -6,9 +6,9 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 - [Motivation](#Motivation)
 - [Technologies](#Technologies)
 - [Screenshots](#Screenshots)
-- [Project Structure](#project_structure)
+- [Project Structure](#project-structure)
 - [Code Examples](#code-examples) 
-- [How to use?](#how_to_use)
+- [How to use?](#how-to-use)
 - [Contributing](#Contributing)
 - [License](#License)
 
