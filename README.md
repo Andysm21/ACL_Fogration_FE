@@ -454,18 +454,25 @@ const router = useRouter();
 ```
 
 ## How to Use?
-#### 1. Download the [backend code](https://github.com/Andysm21/ACL_Fogration_BE) 
+#### 1. Download this code in addition to the [backend code](https://github.com/Andysm21/ACL_Fogration_BE) 
 
 #### 2. Run both frontend and backend codes simultaneously
 ---> For frontend run using 
-```Batchfile
+```txs
 	ACL_Fogration_FE\acl-fogration-fe> npm run dev
 ```
 
 ---> For backend run using 
-```Batchfile
+```txs
 	ACL_Fogration_BE\src> node app.js
 ```
+
+#### 3. If not automatically redirected to the default page then you will write in your browser http://localhost:3000/
+
+#### 4. Now, you have different options either you will become a trainee by signing up or if you want to take a look on the admin side view or the instructor these are possible usernames and passwords for testing.
+
+First Header | Second Header———— | ————-Content from cell 1 | Content from cell 2Content in the first column | Content in the second column
+Result:
 
 ## Authors 
 1. [Salma Sleem](https://github.com/salmasleem)
