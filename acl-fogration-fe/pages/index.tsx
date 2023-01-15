@@ -34,8 +34,8 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import NavGuestLogin from "../components/atoms/NavGuestLogin";
+import {FaRegNewspaper} from "react-icons/fa"
 // import { useNavigate } from "react-router-dom";
 
 import {
@@ -46,6 +46,8 @@ import {
   RadioGroup,
 } from "@mui/material";
 import Axios  from "axios";
+import { BsGithub, BsPersonFill } from "react-icons/bs";
+import Link from "next/link";
 
 function Home() {
 const router = useRouter();
@@ -165,49 +167,43 @@ const router = useRouter();
   return (
     <div>
       <NavGuestLogin />
-      <div className="flex items-center justify-between px-60  bg-[url('/images/projbg.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
-        {/* div for the form */}
-          <h1 className="text-white text-xl">Not registered yet? Don't miss the chance and
-          <Link href="/guest/signup" className="px-1 text-violet-400 cursor-pointer hover:border-b hover:text-violet-300">
-          register
-          </Link>
-          now!</h1>
+      <div className="flex items-center justify-between px-60  bg-bc w-screen h-screen bg-cover bg-no-repeat">
+      
+        </div>
+        <div className="bg-gray-300 flex flex-row justify-evenly p-4 ">
+          <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
+            <FaRegNewspaper size={100} className="text-white m-10"/>
+            <h1 className="text-white text-2xl p-2"> 1000+ Courses </h1>
+          </div>
+          <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
+              <BsPersonFill size={100} className="text-white m-10"/>       
+              <h1 className="text-white text-2xl p-2"> 100+ Instructors </h1>
 
-        <div className="  flex flex-col items-center justify-start rounded-lg bg-black3 py-6 px-4">
+          </div>
+          <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
+            ljlj
+          </div>
+          
+        </div>
+        <div className="flex items-center justify-center  bg-bc w-screen  bg-cover text-gray-200 p-2 flex-col">
+          <div className="flex flex-row gap-4">
+          <Link href="" className="text-gray-300 hover:underline" >About us</Link>
+          <Link href="" className="text-gray-300 hover:underline" >FAQ</Link>
+           <Link href="" className="text-gray-300 hover:underline" >Privacy policy</Link>
+           <Link href="" className="text-gray-300 hover:underline" >Terms of service</Link>
 
-          <div className="flex flex-col items-center justify-center gap-2">
-            <input
-              className="bg-bc rounded-md p-3 w-72 text-white"
-              id="username"
-              placeholder="Username"
-              type="text"
-              onChange={handleChangeU}
-            />
-            <input
-              className="bg-bc rounded-md p-3 w-72 text-white"
-              id="password"
-              placeholder="Password"
-              type="password"
-              onChange={handleChangeP}
-            />
 
-            {/* adding password input */}
-            {/* <InputField id="password" placeholder="Password" type="password" /> */}
-            {/* adding login button */}
-              <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white" onClick={handleLogin}>
-                Login
-              </button>
-            <div className="flex flex-col items-center justify-center underline text-violet-400 ">
-              <Link
-                href="/guest/enterEmail"
-              >
-                Forgot password?
-              </Link>
-            </div>
-            <div className="flex justify-center w-72 rounded-lg  p-2 text-red-700  hover:text-red-700" >{error}</div>
+          </div>
+          <div className="border-t border-gray-500 w-11/12">
+          </div>
+          <div className="flex flex-row  justify-between w-full items-center p-2">
+          <h1 className="text-sm">
+             @2022 Fogration Development Team.All Rights Reserved
+          </h1>
+          <BsGithub size={30} className="text-white"/>
           </div>
         </div>
-      </div>
+       
     </div>
   
   );
