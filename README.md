@@ -8,7 +8,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 - [Screenshots](#Screenshots)
 - [Project Structure](#project_structure)
 - [Code Examples](#Code_Examples) 
-- [How to use?](#How_to_Use?)
+- [How to use?](#How_to_use?)
 - [Contributing](#Contributing)
 - [License](#License)
 
@@ -28,7 +28,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 
 
 
-## Project Structure 
+## project_structure
 
 #### 1. Backend Structure
 
@@ -471,7 +471,7 @@ const router = useRouter();
 
 ```
 
-## How to Use?
+## How_to_use?
 #### Download this code in addition to the [backend code](https://github.com/Andysm21/ACL_Fogration_BE) 
 
 #### before running make sure to install any missing tools
