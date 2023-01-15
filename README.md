@@ -542,6 +542,10 @@ If you interested to be part of this project, kindly check [contributing.md](htt
 
 ## *License* 
 
+[MIT](https://github.com/Andysm21/ACL_Fogration_FE/blob/main/LICENSE.txt) 
+
+Copyright (c) 2023 Fogration Courses
+
 ## *Authors*
 
 1. [Salma Sleem](https://github.com/salmasleem)
