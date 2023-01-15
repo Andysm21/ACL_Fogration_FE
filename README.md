@@ -2,7 +2,7 @@
 The purpose of ths website, is to create a complete Online Learning System. An Online Learning System which is a web application through which users can enroll to pre-recorded courses online which is given by certified instructors. The content is delivered through videos and assessment for each course is done through online mcq exams. The website abide by a flexible learning solution where users self-pace their learnings and can start by any chapter in the course they want but still the website sort the recommended chapters order. This allows the user to tailor their learning program based on their time and need. 
 
 
- <img src = "acl-fogration-fe/public/images/Admin%20add%20instructor.JPG">
+ 
 
 
 
@@ -30,6 +30,25 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 5. [Axios](https://axios-http.com/)
 
 ## Screenshots 
+
+### Admin Add Instructor
+
+<img src = "acl-fogration-fe/public/images/Admin%20add%20instructor.JPG">
+
+### Courses
+
+<img src = "acl-fogration-fe/public/images/Courses%20Page.JPG">
+
+### Create Course 
+
+<img src = "acl-fogration-fe/public/images/Create%20course.JPG">
+
+### Instructor Profile
+
+<img src = "acl-fogration-fe/public/images/Instructor.JPG">
+
+### My Course 
+<img src = "acl-fogration-fe/public/images/mycourse.JPG">
 
 
 
