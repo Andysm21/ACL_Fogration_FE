@@ -471,7 +471,7 @@ const router = useRouter();
 
 #### 4. Now, you have different options either you will become a trainee by signing up or if you want to take a look on the admin side view or the instructor these are possible usernames and passwords for testing.
 
-```tsx
+
 | User Type | username | password |
 | ------------ | ------------- |
 | Admin  | Admin1  | Admin1 |
@@ -479,7 +479,7 @@ const router = useRouter();
 | Corporate user | Corp1 | Corp1 |
 | Individual user | Ind1 | Ind1 |
 
-```
+
 
 ## Authors 
 1. [Salma Sleem](https://github.com/salmasleem)
