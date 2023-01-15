@@ -279,7 +279,7 @@ ACL_Fogration_FE
 
 ### I) View course with progress and exam grade
 
-```
+```node
 router.post("/viewMyCourse/:id", async (req, res) => {
   var id = req.params.id;
   var userId = req.body.UserID
