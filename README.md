@@ -7,7 +7,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 - [Technologies](#Technologies)
 - [Screenshots](#Screenshots)
 - [Project Structure](#project_structure)
-- [Code Examples](#Code_Examples) 
+- [Code Examples](#Code%20Examples) 
 - [How to use?](#How_to_use?)
 - [Contributing](#Contributing)
 - [License](#License)
@@ -291,7 +291,7 @@ ACL_Fogration_FE
 ```
 </details>
 
-## Code_Examples
+## Code Examples
 
 ### receiving an email to change a forgotten password
 
