@@ -275,138 +275,33 @@ ACL_Fogration_FE
 
 ## Code Examples
 
-### 1. Backend
-
-### I) View course with progress and exam grade
+### Change Password
 
 ```node
-router.post("/viewMyCourse/:id", async (req, res) => {
-  var id = req.params.id;
-  var userId = req.body.UserID
-  var type = req.body.type
-  var hours=0;
-  if(req.params.id=="null"){ 
-    console.log("Moshkela")
-  }
-  else{
-  var courseID;
-  var progress;
-  await (await StudentTakeCourse.find({StudentTakeCourse_StudentID:userId,StudentTakeCourse_Type:type,StudentTakeCourse_CourseID:id})).map((ex) => 
-  {
-    progress =ex.StudentTakeCourse_Progress;
-  }
-  ) 
-
-  const courses = await course.find({Course_ID:Number(id) },'-_id');
-
-  var {Course_Subtitle} = courses[0];
-  var subtitle = []
-  var videos = []
-  for(let i = 0; i < Course_Subtitle.length; i++)
-  {
-    var tempVideo = [];
-    subtitleTemp = await Subtitle.find({Subtitle_ID: Course_Subtitle[i]},'-_id');
-    var {Subtitle_Video} = subtitleTemp[0];
-    
-    for(let j = 0; j < Subtitle_Video.length; j++){
-    
-      var videosTemp= await Video.find({Video_ID: Subtitle_Video[j]},'-_id');
-      hours=hours+Number(videosTemp[0].Video_Length);
-
-      const Videos = {
-          Video_ID: videosTemp[0].Video_ID,
-          Video_Link: videosTemp[0].Video_Link,
-          Video_Subtitle: videosTemp[0].Video_Subtitle,
-          Video_Description: videosTemp[0].Video_Description,
-          Video_Length: videosTemp[0].Video_Length
-      }
-      tempVideo[j] = Videos;
-      
-    }
-    videos[i] = tempVideo;
-    const subtitleObj = {
-      Subtitle_ID: subtitleTemp[0].Subtitle_ID,
-      Subtitle_Name: subtitleTemp[0].Subtitle_Name,
-      Subtitle_Course_ID: subtitleTemp[0].Subtitle_Name,
-      Subtitle_Video: videos[i],
-      Subtitle_Hours: subtitleTemp[0].Subtitle_Hours
-    }
-    subtitle[i] = subtitleObj;
-  }
-  
-  var exams = courses[0].Course_Exam;
-
-  var ExamObj = [];
-  var grade =0;
-  for(let i = 0; i < exams.length; i++){
-    var x = await StudentTookexam.find({StudentTookExam_Student_ID:userId,StudentTookExam_Type:type,StudentTookExam_Exam_ID:exams[i]});
-    if(x.length > 0){
-    await (await StudentTookexam.find({StudentTookExam_Student_ID:userId,StudentTookExam_Type:type,StudentTookExam_Exam_ID:exams[i]})).map((ex) => 
+ router.post("/changeForgetPassword", async (req, res) => {
+    const pass= req.body.Password
+    const username=req.body.username
+    if(await (await instructor.find({Instructor_username: username}).select('Instructor_username')).length > 0)
     {
-      grade =ex.StudentTookExam_Grades;
+      await instructor.findOneAndUpdate({Instructor_username: username},{Instructor_Password: pass})
     }
-    ) 
-  }
+    //Choose another username.
+else if(await (await Admin.find({Admin_Username: username}).select('Admin_Username')).length > 0){
+    await Admin.findOneAndUpdate({Admin_Username: username},{Admin_Password: pass})
+   }
+else if(await (await corporateUser.find({CorporateUser_UserName: username}).select('CorporateUser_UserName')).length > 0){
+  await corporateUser.findOneAndUpdate({CorporateUser_UserName: username},{CorporateUser_Password: pass})
+    }
+  else if(await (await individualUser.find({individualUser_UserName: username}).select('individual_Username')).length > 0)
+    {
+      await individualUser.findOneAndUpdate({individualUser_UserName: username},{individualUser_Password: pass})
+  }       
   else{
-    grade=0;
-  }
-    const ExamTemp = await Exam.find({Exam_ID: exams[i]},'-_id');
-
-    var QuestionObj = [];
-    for(let j = 0; j< ExamTemp[0].Exam_Question_ID.length; j++){
-      var qq = await Question.find({Question_ID: ExamTemp[0].Exam_Question_ID[j]},'-_id -createdAt -updatedAt -__v');
-      // console.log(qq)
-      qq = qq[0];
-      const tempQ = {
-          Question_ID: qq.Question_ID,
-          Question_Name: qq.Question_Name,
-          Question_choices: qq.Question_choices,
-          Question_Correct_Answers: qq.Question_Correct_Answers,
-          Question_Grade: qq.Question_Grade,
-
-      }
-      
-      QuestionObj.push(tempQ);
-
+    res.send("wrong username");
+    
     }
 
-   
-    const exam = {
-      Exam_ID: ExamTemp[0].Exam_ID,
-      Exam_Question_ID: QuestionObj,
-      Exam_Grade: ExamTemp[0].Exam_Grade,
-      Exam_Instructor_ID: ExamTemp[0].Exam_Instructor_ID,
-      Exam_Course_ID: ExamTemp[0].Exam_Course_ID,
-      Exam_Grade:grade,
-    }
-    ExamObj.push(exam)
-  }
-  
-  var instructor = await Instructor.findOne({Instructor_ID: courses[0].Course_Instructor}).select('-id -createdAt -updatedAt -_v')
-  const CourseT = {
-    Course_ID: courses[0].Course_ID,
-    Course_Title: courses[0].Course_Title,
-    Course_Subject: courses[0].Course_Subject,
-    Course_Description: courses[0].Course_Description,
-    Course_Price: courses[0].Course_Price,
-    Course_Rating: courses[0].Course_Rating,
-    Course_Instructor: instructor,
-    Course_Country: courses[0].Course_Country,
-    Course_Discount: courses[0].Course_Discount,
-    Course_Discount_Duration: courses[0].Course_Discount_Duration,
-    Course_Subtitle: subtitle,
-    Course_Trainee: courses[0].Course_Trainee.length,
-    Course_Review: courses[0].Course_Review,
-    Course_Rate: courses[0].Course_Rate,
-    Course_Exam: ExamObj,
-    Course_Progress:progress,
-    Course_Hours:Math.floor(hours/60)
-
-  };
-res.send(CourseT)
-  }
-})
-
+});
 ```
 
 ## Authors 
