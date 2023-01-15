@@ -1,7 +1,7 @@
 # Fogration Courses
 The purpose of ths website, is to create a complete Online Learning System. An Online Learning System which is a web application through which users can enroll to pre-recorded courses online which is given by certified instructors. The content is delivered through videos and assessment for each course is done through online mcq exams. The website abide by a flexible learning solution where users self-pace their learnings and can start by any chapter in the course they want but still the website sort the recommended chapters order. This allows the user to tailor their learning program based on their time and need. 
 
-## Table of Contents
+## *Table of Contents*
 
 - [Motivation](#Motivation)
 - [Technologies](#Technologies)
@@ -12,7 +12,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 - [Contributing](#Contributing)
 - [License](#License)
 
-## Motivation
+## *Motivation*
 
 *This project was created as a part of Advanced Computer Lab course. The objectives for this course were:*
 
@@ -21,7 +21,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 3. Learn to research and master the use of the MERN Stack.
 4. Learn how to work together as a team on GitHub.
 
-## Technologies
+## *Technologies*
 
 1. [React](https://reactjs.org/)
 2. [Node.js](https://nodejs.org/en/)
@@ -29,7 +29,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 4. [MongoDB](https://www.mongodb.com/)
 5. [Axios](https://axios-http.com/)
 
-## Screenshots 
+## *Screenshots* 
 
 ### Admin Add Instructor
 
@@ -60,7 +60,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 </details>
 
 
-## Project structure
+## *Project structure*
 
 #### 1. Backend Structure
 
@@ -323,7 +323,7 @@ ACL_Fogration_FE
 ```
 </details>
 
-## Code Examples
+## *Code Examples*
 
 ### receiving an email to change a forgotten password
 
@@ -503,7 +503,7 @@ const router = useRouter();
 
 ```
 
-## How to use?
+## *How to use?*
 #### *Download this code in addition to the [backend code](https://github.com/Andysm21/ACL_Fogration_BE)*
 
 #### *before running make sure to install any missing tools*
@@ -537,11 +537,12 @@ const router = useRouter();
 | Corporate user | Corp1 | Corp1 |
 | Individual user | Ind1 | Ind1 |
 
-## Contributing
+## *Contributing*
 
-## License 
+## *License* 
 
-## Authors 
+## *Authors*
+
 1. [Salma Sleem](https://github.com/salmasleem)
 2. [Nour Shehab](https://github.com/NourShehab)
 3. [Hana Pasha](https://github.com/HanaPasha)
