@@ -1,11 +1,6 @@
 # Fogration Courses
 The purpose of ths website, is to create a complete Online Learning System. An Online Learning System which is a web application through which users can enroll to pre-recorded courses online which is given by certified instructors. The content is delivered through videos and assessment for each course is done through online mcq exams. The website abide by a flexible learning solution where users self-pace their learnings and can start by any chapter in the course they want but still the website sort the recommended chapters order. This allows the user to tailor their learning program based on their time and need. 
 
-
- 
-
-
-
 ## Table of Contents
 
 - [Motivation](#Motivation)
@@ -17,9 +12,15 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 - [Contributing](#Contributing)
 - [License](#License)
 
-
-
 ## Motivation
+
+### This project was created as a part of Advanced Computer Lab course. The objectives for this course where
+
+• Learn how to properly use the Agile Methodology to plan out a project and develop the software.
+• Learn the process of following a given set of System Requirements to develop a software.
+• Learn to research and master the use of the MERN Stack.
+• Learn how to work together as a team on GitHub.
+
 
 ## Technologies
 
