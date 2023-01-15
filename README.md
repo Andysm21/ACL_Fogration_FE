@@ -471,8 +471,10 @@ const router = useRouter();
 
 #### 4. Now, you have different options either you will become a trainee by signing up or if you want to take a look on the admin side view or the instructor these are possible usernames and passwords for testing.
 
-First Header | Second Header———— | ————-Content from cell 1 | Content from cell 2Content in the first column | Content in the second column
-Result:
+| First Header | Second Header |
+| ------------ | ------------- |
+|Content cell  | Content cell  | 
+
 
 ## Authors 
 1. [Salma Sleem](https://github.com/salmasleem)
