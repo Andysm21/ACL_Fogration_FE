@@ -32,21 +32,28 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 ## Screenshots 
 
 ### Admin Add Instructor
+
 <details>
+	
 <img src = "acl-fogration-fe/public/images/Admin%20add%20instructor.JPG">
+	
 </details>
+
 ### Courses 
 <details>
 <img src = "acl-fogration-fe/public/images/Courses%20Page.JPG">
 </details>
+
 ### Create Course 
 <details>
 <img src = "acl-fogration-fe/public/images/Create%20course.JPG">
 </details>
+
 ### Instructor Profile
 <details>
 <img src = "acl-fogration-fe/public/images/Instructor.JPG">
 </details>
+
 ### My Course 
 <details>
 <img src = "acl-fogration-fe/public/images/mycourse.JPG">
