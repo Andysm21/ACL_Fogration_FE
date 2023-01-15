@@ -1,7 +1,5 @@
 # Fogration Courses
-The theme of the website, is to create a complete Online Learning System. An Online Learning System which is a web application through which users can enroll to pre-recorded
-courses online which is given by certified instructors. 
-
+The purpose of ths website, is to create a complete Online Learning System. An Online Learning System which is a web application through which users can enroll to pre-recorded courses online which is given by certified instructors. The content is delivered through videos and assessment for each course is done through online mcq exams. The website abide by a flexible learning solution where users self-pace their learnings and can start by any chapter in the course they want but still the website sort the recommended chapters order. This allows the user to tailor their learning program based on their time and need. 
 
 
 ## Technologies:  
@@ -12,7 +10,8 @@ courses online which is given by certified instructors.
 5. [Axios](https://axios-http.com/)
 
 
-## Backend Structure
+## Project Structure 
+### 1. Backend Structure
 
 <details>
     
@@ -50,6 +49,46 @@ ACL_FOGRATION_BE/
 ```
 </details>
 
+### 2. FrontEnd Structure
+
+
+<details>
+    
+```bash
+   ProjectTree.theme
+    
+acl-_fogration-fe/
+├── components
+│   ├── accounts.js
+│   ├── courses.js
+│   ├── exams.js
+│   ├── instructor.js
+│   └── ..............
+├── pages
+│   ├── accountsRouter.js
+│   ├── courseRouter.js
+│   ├── instructorRouter.js
+│   └── ............
+├── 
+│   ├── Administrator.js
+│   ├── CorporateUser.js
+│   ├── CorpRequest.js
+│   ├── Course.js
+│   ├── Exam.js
+│   ├── Instructor.js
+│   ├── IndividualUser.js
+│   ├── Problem.js
+│   ├── Question.js
+│   ├── RefundRequest.js
+│   ├── StudentTakeCourse.js
+│   ├── StudentTookExam.js
+│   ├── Subtitle.js
+│   ├── Video.js
+│   └── .....................
+ 
+
+```
+</details>
 
 
 ## Authors 
