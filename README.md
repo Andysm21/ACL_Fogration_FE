@@ -1,13 +1,31 @@
 # Fogration Courses
 The purpose of ths website, is to create a complete Online Learning System. An Online Learning System which is a web application through which users can enroll to pre-recorded courses online which is given by certified instructors. The content is delivered through videos and assessment for each course is done through online mcq exams. The website abide by a flexible learning solution where users self-pace their learnings and can start by any chapter in the course they want but still the website sort the recommended chapters order. This allows the user to tailor their learning program based on their time and need. 
 
+## Table of Contents
 
-## Technologies:  
+- [Motivation](#Motivation)
+- [Technologies](#Technologies)
+- [Screenshots](#Screenshots)
+- [Project Structure](#Project Structure)
+- [Code Examples](#Code Examples)
+- [How to use?](#How to Use?)
+- [Contributing](#Contributing)
+- [License](#License)
+
+
+
+## Motivation
+
+## Technologies
+
 1. [React](https://reactjs.org/)
 2. [Node.js](https://nodejs.org/en/)
 3. [Typescript](https://www.typescriptlang.org/)
 4. [MongoDB](https://www.mongodb.com/)
 5. [Axios](https://axios-http.com/)
+
+## Screenshots 
+
 
 
 ## Project Structure 
@@ -487,7 +505,9 @@ const router = useRouter();
 | Corporate user | Corp1 | Corp1 |
 | Individual user | Ind1 | Ind1 |
 
+## Contributing
 
+## License 
 
 ## Authors 
 1. [Salma Sleem](https://github.com/salmasleem)
