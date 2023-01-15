@@ -17,9 +17,6 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 <details>
     
 ```bash
-# ACL_Fogration_BE
-
-```
 ACL_Fogration_BE
 ├─ .env
 ├─ client_secret.json
