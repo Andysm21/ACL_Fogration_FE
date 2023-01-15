@@ -16,12 +16,10 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 
 ### This project was created as a part of Advanced Computer Lab course. The objectives for this course where
 
-1Learn how to properly use the Agile Methodology to plan out a project and develop the software.
-2Learn the process of following a given set of System Requirements to develop a software.
-3Learn to research and master the use of the MERN Stack.
-4Learn how to work together as a team on GitHub.
-5
-
+1. Learn how to properly use the Agile Methodology to plan out a project and develop the software.
+2. Learn the process of following a given set of System Requirements to develop a software.
+3. Learn to research and master the use of the MERN Stack.
+4. Learn how to work together as a team on GitHub.
 
 ## Technologies
 
