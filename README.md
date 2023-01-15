@@ -531,7 +531,7 @@ const router = useRouter();
 
 
 | User Type | username | password |
-| ------------ | ------------- |------------- |
+| :---: | :---: | :---: |
 | `Admin` | Admin1  | Admin1 |
 | `Instructor` | Inst2 | Inst2 |
 | `Corporate user` | Corp1 | Corp1 |
