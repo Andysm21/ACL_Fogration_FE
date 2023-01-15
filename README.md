@@ -12,7 +12,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 
 ## Project Structure 
 
-#### Backend Structure
+#### 1. Backend Structure
 
 <details>
     
@@ -61,7 +61,7 @@ ACL_Fogration_BE
 ```
 </details>
 
-#### FrontEnd Structure
+#### 2. Frontend Structure
 
 <details>
 
@@ -452,6 +452,21 @@ const router = useRouter();
 }
 
 ```
+
+## How to Use?
+#### 1. Download the [backend code](https://github.com/Andysm21/ACL_Fogration_BE) 
+
+#### 2. Run both frontend and backend codes simultaneously
+---> For frontend run using 
+```Batchfile
+	ACL_Fogration_FE\acl-fogration-fe> npm run dev
+```
+
+---> For backend run using 
+```Batchfile
+	ACL_Fogration_BE\src> node app.js
+```
+
 ## Authors 
 1. [Salma Sleem](https://github.com/salmasleem)
 2. [Nour Shehab]
