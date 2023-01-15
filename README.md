@@ -2,13 +2,9 @@
 The purpose of ths website, is to create a complete Online Learning System. An Online Learning System which is a web application through which users can enroll to pre-recorded courses online which is given by certified instructors. The content is delivered through videos and assessment for each course is done through online mcq exams. The website abide by a flexible learning solution where users self-pace their learnings and can start by any chapter in the course they want but still the website sort the recommended chapters order. This allows the user to tailor their learning program based on their time and need. 
 
 
-[Photo](https://drive.google.com/file/d/1jYoXZhymvYZEc_5OCOYDGO-12GimmrN6/view?usp=sharing)
+![My Remote Image](https://drive.google.com/file/d/1jYoXZhymvYZEc_5OCOYDGO-12GimmrN6/view?usp=sharing)
 
-<img
-  src="https://drive.google.com/file/d/1jYoXZhymvYZEc_5OCOYDGO-12GimmrN6/view?usp=sharing"
-  alt="Alt text"
-  title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-width: 300px">
+
 
 ## Table of Contents
 
