@@ -12,7 +12,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 
 ## Project Structure 
 
-### 1. Backend Structure
+#### Backend Structure
 
 <details>
     
@@ -61,7 +61,7 @@ ACL_Fogration_BE
 ```
 </details>
 
-### 2. FrontEnd Structure
+#### FrontEnd Structure
 
 <details>
 
