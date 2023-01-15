@@ -491,9 +491,9 @@ const router = useRouter();
 
 ## Authors 
 1. [Salma Sleem](https://github.com/salmasleem)
-2. [Nour Shehab]
-3. [Hana Pasha]
-4. [Andrew Shehata]
-5. [Malak ElKhashab]
-6. [Yahya Essam]
+2. [Nour Shehab](https://github.com/NourShehab)
+3. [Hana Pasha](https://github.com/HanaPasha)
+4. [Andrew Shehata](https://github.com/Andysm21)
+5. [Malak ElKhashab](https://github.com/malakel-khashab)
+6. [Yahya Essam](https://github.com/yahyae07)
 
