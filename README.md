@@ -538,6 +538,7 @@ const router = useRouter();
 | Individual user | Ind1 | Ind1 |
 
 ## *Contributing*
+If you interested to be part of this project, kindly check [contributing.md[(https://github.com/Andysm21/ACL_Fogration_FE/blob/main/contributing.md) to know how can you contribute in this project. 
 
 ## *License* 
 
