@@ -16,6 +16,7 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
+import { BsGithub } from "react-icons/bs";
 
 
 function Signup() {
@@ -99,16 +100,20 @@ var status='';
 
 
   return (
-    <div>
+    <div >
       <NavGuestLogin />
-      <div className="flex items-center justify-between px-60 bg-[url('/images/projbg.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
+      <div className="flex flex-row items-center  justify-evenly w-full h-[725px]  bg-bc ">
         {/* div for the form */}
+        <span className="flex flex-col justify-start">
+        <h1 className="text-violet-400 text-5xl font-bold">
 
-        <h1 className="text-white text-xl">Already have an account?
-          <Link href="/guest/login" className="px-1 text-violet-400 cursor-pointer hover:border-b hover:text-violet-300">
-          login
-          </Link>
-          now!</h1>
+          We are happy to have you here! 
+
+        </h1>
+        <h1 className="text-white text-4xl font-bold">
+          Please fill in the form to create your account.
+        </h1>
+        </span>
 
         <div className="flex flex-col items-center justify-start rounded-lg bg-black3 py-6 px-4">
           <div className="flex flex-col items-center justify-start gap-2">
@@ -158,11 +163,14 @@ var status='';
             <div className="flex flex-col py-2 px-2 justify-start items-start">
               {/* adding gender radiobuttons */}
               <FormControl className="flex flex-col items-start justify-start text-white">
-               
+                <FormLabel
+                  className="text-white"
+                  id="demo-radio-buttons-group-label"
+                >
                   <span className="text-white">
                   Gender
                   </span>
-               
+                </FormLabel>
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="male"
@@ -205,6 +213,26 @@ var status='';
           </div>
         </div>
       </div>
+       <div className="flex items-center bg-bc  bg-cover text-gray-200 flex-col px-6 ">
+         
+          <div className="border-t border-gray-500 w-11/12">
+          </div>
+          <div className="flex flex-row  justify-between w-full items-center">
+          <h1 className="text-sm ">
+             @2022 Fogration Team.All Rights Reserved
+          </h1>
+           <div className="flex flex-row gap-2 ">
+          <Link href="" className="text-gray-300 hover:underline" >About us</Link>
+          <Link href="/guest/policies" className="text-gray-300 hover:underline" >Payment</Link>
+           <Link href="/guest/policies" className="text-gray-300 hover:underline" >Refund policy</Link>
+           <Link href="/guest/policies" className="text-gray-300 hover:underline" >Terms of service</Link>
+          </div>
+
+          <Link href="https://github.com/Andysm21/ACL_Fogration_FE/blob/main/README.md">
+          <BsGithub size={30}  className="text-white hover:cursor-pointer"/>
+          </Link>
+          </div>
+        </div>
     </div>
   );
 }
