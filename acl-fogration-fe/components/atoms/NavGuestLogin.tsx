@@ -19,7 +19,7 @@ const NavGuestLogin = () => {
           <h1 className="text-violet-400 text-4xl font-bold ">Fogr</h1>
           <h1 className="text-white  text-4xl font-bold">-ation</h1>
           </div>
-
+        <span className=" text-white text-2xl">Check our <Link className="text-violet-400" href="/guest/guestcourses">courses</Link> </span>
           <div className="flex flex-row justify-center gap-2">
 
             <Link href="/guest/signup">
