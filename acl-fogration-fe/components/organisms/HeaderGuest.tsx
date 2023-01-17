@@ -65,7 +65,7 @@ const HeaderGuest = ({
             />
           </div>
           <div onClick={handleSubmit}>
-            <SearchIcon />
+            <SearchIcon className="hover:cursor-pointer"/>
           </div>
         </div>
 
