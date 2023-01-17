@@ -18,7 +18,7 @@ const handleClick = () => {
 
 const userlinks = [
   // { href: '/meetings', label: 'Dashboard' },
-  { href: "/user", label: "Dashboard" },
+  { href: "/user", label: "Home" },
   { href: "/user/profile", label: "Profile" },
   { href: "/user/courses", label: "Courses" , onclick:{handleClick}},
   { href: "/user/mycourses", label: "My Courses" },
@@ -30,7 +30,7 @@ const userlinks = [
 
 const instructorlinks = [
   // { href: '/car-system', label: 'Dashboard' },
-  { href: "/instructor", label: "Dashboard" },
+  { href: "/instructor", label: "Home" },
   { href: "/instructor/profile", label: "Profile" },
   { href: "/instructor/courses", label: "Courses", },
   { href: "/instructor/mycourses", label: "My Courses" },
@@ -39,7 +39,7 @@ const instructorlinks = [
 
 const adminlinks = [
   // { href: '/car-system', label: 'Dashboard' },
-  { href: "/admin", label: "Dashboard" },
+  { href: "/admin", label: "Home" },
   { href: "/admin/accounts", label: "Accounts" },
   { href: "/admin/courses", label: "Courses" },
   { href: "/admin/reports", label: "Reports" },
