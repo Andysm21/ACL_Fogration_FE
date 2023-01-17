@@ -211,16 +211,18 @@ const data ={
         </div>
         <div className="bg-bc flex flex-row justify-evenly p-7 ">
           <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
-            <FaRegNewspaper size={100} className="text-white m-10"/>
+            <Link href="/guest/guestcourses">
+            <FaRegNewspaper size={100} className="text-white m-10 hover:animate-bounce"/>
             <h1 className="text-white text-2xl p-2"> 1000+ Courses </h1>
+            </Link>
           </div>
           <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
-              <BsPersonFill size={100} className="text-white m-10"/>       
+              <BsPersonFill size={100} className="text-white m-10 hover:animate-bounce"/>       
               <h1 className="text-white text-2xl p-2"> 100+ Instructors </h1>
 
           </div>
           <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
-          <FaGlobeAfrica size={100}className="text-white m-10 "/>
+          <FaGlobeAfrica size={100}className="text-white m-10 hover:animate-bounce "/>
           <h1 className="text-white text-2xl p-2">Available in 20 countries</h1>
         
            {/* <div className="">

@@ -51,19 +51,83 @@ const randomInt = (min, max) =>
 
 let User_Balance = balance;
 useEffect(() => {
-  getBalance()
+  getBalance();
+  handleSubmit();
+  
 }, []);
 
 const handleBalance = event => {
   setAmount(event.target.value);
-    };
   
+    };
+
+const [topupStyle,setTopupStyle] = useState("bg-gray-400 text-white py-2 px-4 rounded") ;
+const [cardHolder,setCardHolder] = useState("");
+const [enableTopUp,setEnableTopUp] = useState(true);
+const [expiryDate,setExpiryDate] = useState("");
+const [cardNumber,setCardNumber] = useState("");
+
+const [cvv,setCvv] = useState("");
+const handleExpiryDate = event =>{
+  setExpiryDate(event.target.value);
+   if(cardHolder.length > -1 && expiryDate.length > 0 && cardNumber.length > 0 && cvv.length > 0){
+    setTopupStyle("bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400");
+    setEnableTopUp(false);
+  }  
+}
+const handleCardNumber = event =>{
+  setCardNumber(event.target.value);
+   if(cardHolder.length > -1 && expiryDate.length > 0 && cardNumber.length > 0 && cvv.length > 0){
+    setTopupStyle("bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400");
+    setEnableTopUp(false);
+  }  
+}
+const handleCvv = event =>{
+  setCvv(event.target.value);
+   if(cardHolder.length > -1 && expiryDate.length > 0 && cardNumber.length > 0 && cvv.length > 0){
+    setTopupStyle("bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400");
+    setEnableTopUp(false);
+  }  
+}
+
+const handleCardHolder = event => {
+  setCardHolder(event.target.value);
+    if(cardHolder.length > -1 && expiryDate.length > 0 && cardNumber.length > 0 && cvv.length > 0){
+    setTopupStyle("bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400");
+    setEnableTopUp(false);
+  }  
+};
+
+const [topupStyle2,setTopupStyle2] = useState("bg-gray-400 text-white py-2 px-4 rounded") ;
+const [voucherCode,setVoucherCode] = useState("");
+const [enableTopUp2,setEnableTopUp2] = useState(true);
+const handleVoucherCode = event => {
+  setVoucherCode(event.target.value);
+  if(voucherCode.length > -1){
+    setTopupStyle2("bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400");
+    setEnableTopUp2(false);
+  }    
+};
+
+
+
+
+// function handleEnableTopUp () {
+//   if(cardHolder == ""){
+//     setEnableTopUp(true);
+//     setTopupStyle("bg-gray-400 text-white py-2 px-4 rounded");
+//   }
+//   else{
+//     setEnableTopUp(false);
+//     setTopupStyle("bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400");
+//   }
+// }
   return (
     <div
       key={user.User_ID}
       className=" border-2 border-bc flex flex-col-2 bg-black2 w-75% h-screen shadow-lg text-white "
     >
-          <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 h-[70%] w-1/2">
+          <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 h-[83%] w-1/2">
           <div className="text-white font-bold text-l py-2">Top up using a voucher code</div>
         
           <div className="text-l">Current balance (€)</div>
@@ -79,23 +143,23 @@ const handleBalance = event => {
 
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
            
-        //  onChange={handleBalance}
+          onChange={handleVoucherCode}
          /> 
           
                 </div>
-<div className="py-18">
-                <div className="py-2">How does it work?</div>
-                <div className="py-2 bg-black2 h-full flex items-center">Fill in the given code and you will get a random top-up from 1 to 10, as simple as that!</div>
+            <div className="py-18">
+                {/* <div className="py-2">How does it work?</div> */}
+                <div className="py-2 bg-black2 p-2 rounded-md flex flex-col items-start"> <div className="py-2 text-xl">How does it work?</div>Fill in the given code and you will get a random top-up from 1 to 10, as simple as that!</div>
                 <div className="py-2 my-6 flex flex-col">
-                    <button className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400" onClick={changeBalanceRandom}>
+                  <button className={topupStyle2} onClick={changeBalanceRandom} disabled={enableTopUp2}>
                   Top-up
                 </button>
                 </div>
-</div>
+        </div>
 
         </div>
 
-        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 h-[70%] w-1/2">
+        <div className="bg-black3 rounded-md m-6 flex flex-col p-2 gap-2 h-[83%] w-1/2">
           <div className="text-white font-bold text-l py-1.5">Top up using a credit card</div>
         
           <div className="text-l">Current balance (€)</div>
@@ -113,21 +177,27 @@ const handleBalance = event => {
          </div>
 
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-        //  onChange={handleBalance}
+            onChange={handleCardHolder}
          /> 
 
+       <div className="text-l gap-2">Card Number
+         </div>
+
+           <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
+          onChange={handleCardNumber}
+         />
          <div className="text-l gap-2">Expiry date
          </div>
 
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-        //  onChange={handleBalance}
+          onChange={handleExpiryDate}
          /> 
 
          <div className="text-l gap-2">CVV
          </div>
 
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
-        //  onChange={handleBalance}
+          onChange={handleCvv}
          /> 
 
          <div className="text-l gap-2">Required amount (€)
@@ -136,12 +206,10 @@ const handleBalance = event => {
            <input className = "enabled:hover:border-bc bg-black3  text-white p-1 text-l  border-2 w-52  border-white rounded-md"
          onChange={handleBalance}
          /> 
-
-         
-          <button className="bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400" onClick={changeBalance}>
+          <button className={topupStyle} onClick={changeBalance} disabled={enableTopUp}>
                   Top-up
                 </button>
-                </div>
+          </div>
 
         </div>
     </div>

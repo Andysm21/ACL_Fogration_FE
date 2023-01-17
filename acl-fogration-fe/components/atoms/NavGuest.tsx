@@ -14,8 +14,6 @@ const NavGuest = () => {
   return (
     <div className="fixed z-40 flex h-16 w-full flex-row items-center justify-between bg-bc shadow-lg px-5">
         {/* <img className="w-16 " src="/Images/fogration-blue.png " alt="siteLogo" /> */}
-      
-   
         <div>
           <CountrySelector
             id={"countries"}
@@ -51,14 +49,15 @@ const NavGuest = () => {
         </div> */}
 
       <div className="flex flex-row items-center gap-2">
-        <Link href="/guest/signup">
-            <button className=" bg-gradient-to-r border-violet-400 border from-purple to-babyblue rounded-md  px-4 py-2 text-white  w-24 ">Sign up</button>
-           </Link>
-        <Link href="/guest/login">
+       <Link href="/guest/login">
           <button className=" rounded-md border border-white px-4 py-2 text-white  hover:bg-white hover:text-darkgrey w-24 flex justify-items-center justify-center">
             Login
           </button>
         </Link>
+        <Link href="/guest/signup">
+            <button className=" bg-gradient-to-r border-violet-400 border from-purple to-babyblue rounded-md  px-4 py-2 text-white  w-24 ">Sign up</button>
+           </Link>
+        
       </div>
       </div>
    
