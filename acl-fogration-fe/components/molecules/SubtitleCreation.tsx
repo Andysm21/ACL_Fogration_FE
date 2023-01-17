@@ -85,7 +85,7 @@ const CourseCreation = () => {
       
             <Link href="/instructor/viewmycourse">
             <button
-              className="mx-2 my-2  justify-center bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-72"
+              className="mx-2 my-2 border border-violet-400 justify-center bg-gradient-to-r from-purple to-babyblue text-white font-bold py-2 px-4 rounded w-72"
               onClick={createSub}
             >
               Create subtitle
