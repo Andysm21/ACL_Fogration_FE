@@ -21,7 +21,7 @@ const NavGuestLogin = () => {
           </div>
 
           <div className="flex flex-row justify-center gap-2">
-            <button className=" bg-gradient-to-r from-purple to-babyblue rounded-md border border-violet-400 px-4 py-2 text-white  w-24 ">Sign up</button>
+            <button className=" bg-gradient-to-r from-purple to-babyblue rounded-md  px-4 py-2 text-white  w-24 ">Sign up</button>
             <button className=" rounded-md border border-white px-4 py-2 text-white   w-24 ">Login</button>
           </div>
     </div>

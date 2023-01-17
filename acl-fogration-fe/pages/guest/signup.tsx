@@ -101,7 +101,7 @@ var status='';
   return (
     <div>
       <NavGuestLogin />
-      <div className="flex items-center justify-end justify-between px-60 bg-[url('/images/projbg.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
+      <div className="flex items-center justify-between px-60 bg-[url('/images/projbg.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
         {/* div for the form */}
 
         <h1 className="text-white text-xl">Already have an account?
@@ -158,12 +158,11 @@ var status='';
             <div className="flex flex-col py-2 px-2 justify-start items-start">
               {/* adding gender radiobuttons */}
               <FormControl className="flex flex-col items-start justify-start text-white">
-                <FormLabel
-                  className="text-white"
-                  id="demo-radio-buttons-group-label"
-                >
+               
+                  <span className="text-white">
                   Gender
-                </FormLabel>
+                  </span>
+               
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="male"
