@@ -149,7 +149,19 @@ const finished = (Progress : Number) =>{
     )
 }
 }
-const receiveEmail = () =>{}
+const receiveEmail = () =>{
+  var type ;
+  var userId= Number(localStorage.getItem("user_id"));
+
+  if(localStorage.getItem("Type")=="Corp"){
+    type=2;
+  }
+  else if(localStorage.getItem("Type")=="User"){
+    type=1;
+  }
+  axios.post("http://localhost:8000/sendCertificate",{courseId:CourseID,userid:userId,Type:type}).then((res)=>{
+  }).catch((error) => console.log(error))
+}
 const download = () =>{
   console.log("Cirteficate Downloaded");
   axios.get("http://localhost:8000/downloadCertificate",{responseType:'blob'}).then((res)=>{
