@@ -165,9 +165,9 @@ const router = useRouter();
           now!</h1> */}
           <span className="flex flex-col font-">
           <h1 className="text-violet-400 text-6xl">
-            Welcome Back !
+            Welcome Back!
           </h1>
-          <h1 className="text-white text-5xl">Let's get back to work</h1>
+          <h1 className="text-white text-5xl">Lets get back to work</h1>
           </span>
 
         <div className="  flex flex-col items-center justify-start rounded-lg bg-black3 py-6 px-4">
