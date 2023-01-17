@@ -84,7 +84,7 @@ const handleCardNumber = event =>{
 }
 const handleCvv = event =>{
   setCvv(event.target.value);
-   if(cardHolder.length > -1 && expiryDate.length > 0 && cardNumber.length > 0 && cvv.length > 0){
+   if(cardHolder.length > 0 && expiryDate.length > 0 && cardNumber.length > 0 && cvv.length > 0){
     setTopupStyle("bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400");
     setEnableTopUp(false);
   }  
@@ -92,7 +92,7 @@ const handleCvv = event =>{
 
 const handleCardHolder = event => {
   setCardHolder(event.target.value);
-    if(cardHolder.length > -1 && expiryDate.length > 0 && cardNumber.length > 0 && cvv.length > 0){
+    if(cardHolder.length > 0 && expiryDate.length > 0 && cardNumber.length > 0 && cvv.length > 0){
     setTopupStyle("bg-gradient-to-r from-purple to-babyblue text-white py-2 px-4 rounded border border-violet-400");
     setEnableTopUp(false);
   }  
