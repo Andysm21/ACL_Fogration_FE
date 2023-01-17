@@ -285,7 +285,30 @@ const dashboard: NextPage = () => {
     </div>
      </div>
       </Layout>
+      <div className="flex items-center bg-bc  bg-cover text-gray-200 flex-col px-6 ">
+         
+          <div className="border-t border-gray-500 w-11/12">
+          </div>
+          <div className="flex flex-row  justify-between w-full items-center">
+          <h1 className="text-sm ">
+             @2022 Fogration Team.All Rights Reserved
+          </h1>
+           <div className="flex flex-row gap-2 ">
+          <Link href="" className="text-gray-300 hover:underline" >About us</Link>
+          <Link href="/guest/policies" className="text-gray-300 hover:underline" >Payment</Link>
+           <Link href="/guest/policies" className="text-gray-300 hover:underline" >Refund policy</Link>
+           <Link href="/guest/policies" className="text-gray-300 hover:underline" >Terms of service</Link>
+          </div>
+
+          <Link href="https://github.com/Andysm21/ACL_Fogration_FE/blob/main/README.md">
+          <BsGithub size={30}  className="text-white hover:cursor-pointer"/>
+          </Link>
+          </div>
+        </div>
+      
     </div>
+
+   
   );
 };
 }
