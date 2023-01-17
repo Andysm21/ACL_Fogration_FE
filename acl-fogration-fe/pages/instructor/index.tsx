@@ -3,8 +3,149 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 import { useRouter } from "next/router";
+import {Chart, ArcElement} from 'chart.js'
+import LinearProgress from '@mui/joy/LinearProgress';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Checkbox from '@mui/material/Checkbox';
+import { Box, CircularProgress, CircularProgressProps, Typography } from "@mui/material";
+import { pink,purple } from "@mui/material/colors";
+import Link from "next/link";
+import { BsGithub } from "react-icons/bs";
+Chart.register(ArcElement);
 
+function CircularProgressWithLabel(
+  props: CircularProgressProps & { value: number },
+) {
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress variant="determinate" {...props} size={100}/>
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+         
+          
+          
+        }}
+      >
+        <Typography
+          variant="caption"
+          component="div"
+          color="white"
+        >{`${Math.round(props.value)}%`}</Typography>
+      </Box>
+    </Box>
+  );
+}
 const dashboard: NextPage = () => {
+  const [checked, setChecked] = React.useState([0]);
+
+  const handleToggle = (value: number) => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    setChecked(newChecked);
+  };
+  const courses = [
+    {
+      id: 1,
+      name: "Introduction to Python",
+      progress : 79,
+      highest:"Hana Pasha",
+      highestScore:99,
+      exams: [
+        {
+          id: 1,
+          name: "Exam 1",
+          highest:"Andrew Ashraf ",
+          progress: 90,
+        },
+        {
+          id: 2,
+          name: "Exam 2",
+          highest:"Hana Pasha",
+          progress: 98,
+        },
+        {
+          id: 3,
+          name: "Exam 3",
+          highest:"Ahmed Youssef",
+          progress: 99,
+        },
+        {
+          id: 4,
+          name: "Exam 4",
+          highest:"Youssef Nabil",
+          progress: 99,
+        },
+        {
+          id: 5,
+          name: "Exam 5",
+          highest:"Yahya Essam",
+          progress: 89,
+        },
+        
+      ],}
+      ,
+    {
+      id: 2,
+      name: "Introduction to Java",
+      progress : 87,
+      highest:"Yahya Essam",
+      highestScore:98,
+      exams: [
+        {
+          id: 1,
+          name: "Exam 1",
+          highest:"Ahmed Youssef",
+          progress: 89,
+        },
+        {
+          id: 2,
+          name: "Exam 2",
+          highest:"Youssef Nabil",
+          progress: 87,
+        },
+        {
+          id: 3,
+          name: "Exam 3",
+          highest:"Yahya Essam",
+          progress: 98,
+        },
+        {
+          id: 4,
+          name: "Exam 4",
+          highest:"Andrew Ashraf ",
+          progress: 100,
+        },
+        {
+          id: 5,
+          name: "Exam 5",
+          highest:"Malak ElKhashab",
+          progress: 100,
+        },
+       
+      ],
+    }
+    ]
+
+  
   const headers = ["Song", "Artist", "Year"];
   const router = useRouter();
   var authBool=false;
@@ -36,7 +177,113 @@ const dashboard: NextPage = () => {
       </Head>
 
       <Layout>
-        <div></div>
+        <div className="flex flex-col">
+          <div className=" p-2 m-5  rounded-md flex flex-col gap-2">
+
+            <div className="flex flex-row gap-2">
+              {courses.map((course,index) => (
+                <div key={index} className="bg-black3 flex justify-start items-start flex-col rounded-lg p-2 w-72 m-2">
+                  <p className="text-white text-xl">{course.name}</p>
+                  {/* {
+                    course.progress==100?
+                    <p className="text-white text-xl">Completed</p>
+                    :
+                    <p className="text-white text-xl">In progress</p>
+
+                  } */}
+                  <div className="text-white ">Average course score</div>
+                  <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-52 p-5">
+                    <CircularProgressWithLabel variant="determinate" color="secondary" value={course.progress} />
+                  </div>
+                  <div className="text-white ">Average Score</div>
+                  
+                  <div>
+                    {
+                      (course.exams).map((exam,index)=>(
+                        <div key={index} className="bg-black3 flex justify-start items-start flex-col rounded-lg ">
+                          <p className="text-white">{exam.name}</p>
+                          
+                          <div className="flex flex-row ">
+                        <LinearProgress
+                      className=" bg-black2 w-24 text-white m-2 "
+                      thickness={7}
+                      determinate 
+                        variant="outlined"
+                        value={exam.progress}
+                        >
+                        
+                        </LinearProgress>
+                        <Typography className="text-white text-sm"
+                      >
+                      {exam.progress}%
+                      </Typography>
+                        </div>
+                        </div>))
+                    }
+                 
+                  </div>
+                  <div className="text-white my-4">
+                    <p>Top Student</p>
+                      <p className="mx-2"> {course.highest}</p>
+                        <div className="flex flex-row ">
+                        <LinearProgress
+                      className=" bg-black2 w-24 text-white m-2 "
+                      thickness={7}
+                      determinate 
+                        variant="outlined"
+                        value={course.highestScore}
+                        >
+                        
+                        </LinearProgress>
+                        <Typography className="text-white text-sm"
+                      >
+                      {course.highestScore}%
+                      </Typography>
+                        </div>
+                    </div>
+                </div>
+              ))}
+
+<List  className="bg-black3 rounded-md p-2 m-2" sx={{ width: '100%', maxWidth: 360, bgcolor: '' } }>
+  <p className="text-white text-xl">To-do list</p>
+      {[0, 1, 2, 3].map((value) => {
+        const labelId = `checkbox-list-label-${value}`;
+
+        return (
+         
+          <ListItem
+            key={value}
+            className="text-white bg-black3 rounded-md"
+           
+            disablePadding
+          >
+           
+            <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
+              <ListItemIcon>
+                <Checkbox
+                  edge="start"
+                  checked={checked.indexOf(value) !== -1}
+                  tabIndex={-1}
+                  disableRipple
+                  inputProps={{ 'aria-labelledby': labelId }}
+                  color="default"
+                  
+                />
+              </ListItemIcon>
+              <ListItemText id={labelId} primary={`Upload course video ${value + 1}`} />
+
+            </ListItemButton>
+          </ListItem>
+        );
+      })}
+    </List>
+
+          </div>
+          <div>
+
+          </div>
+    </div>
+     </div>
       </Layout>
     </div>
   );

@@ -3,7 +3,6 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Layout from "../../components/templates/Layout";
 import { useRouter } from "next/router";
-import { Doughnut } from "react-chartjs-2";
 import {Chart, ArcElement} from 'chart.js'
 import LinearProgress from '@mui/joy/LinearProgress';
 import List from '@mui/material/List';
@@ -12,11 +11,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import CommentIcon from '@mui/icons-material/Comment';
+
 
 import { Box, CircularProgress, CircularProgressProps, Typography } from "@mui/material";
-import { pink } from "@mui/material/colors";
+import { pink,purple } from "@mui/material/colors";
 import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
 Chart.register(ArcElement);
@@ -185,7 +183,7 @@ const dashboard: NextPage = () => {
                   <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-52 p-5">
                     <CircularProgressWithLabel variant="determinate" color="secondary" value={course.progress} />
                   </div>
-                  <div className="text-white ">Grades</div>
+                  <div className="text-white ">Scores</div>
                   
                   <div>
                     {
@@ -216,6 +214,7 @@ const dashboard: NextPage = () => {
               ))}
 
 <List  className="bg-black3 rounded-md p-2 m-2" sx={{ width: '100%', maxWidth: 360, bgcolor: '' } }>
+  <p className="text-white text-xl">To-do list</p>
       {[0, 1, 2, 3].map((value) => {
         const labelId = `checkbox-list-label-${value}`;
 
