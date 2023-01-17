@@ -34,10 +34,11 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import NavGuestLogin from "../components/atoms/NavGuestLogin";
-// import { useNavigate } from "react-router-dom";
-
+import {FaGlobeAfrica, FaRegNewspaper} from "react-icons/fa"
+import {Doughnut} from 'react-chartjs-2';
+import {Chart, ArcElement} from 'chart.js'
+Chart.register(ArcElement);
 import {
   FormControl,
   FormControlLabel,
@@ -46,6 +47,9 @@ import {
   RadioGroup,
 } from "@mui/material";
 import Axios  from "axios";
+import { BsGithub, BsPersonFill } from "react-icons/bs";
+import Link from "next/link";
+import {SiBmw, SiTesla} from "react-icons/si";
 
 function Home() {
 const router = useRouter();
@@ -162,52 +166,84 @@ const router = useRouter();
   useEffect(()=>{
     // setError(localStorage.getItem("SignUpError"))
   },[])
+const data ={
+  labels:['Users','Instructors','Corporates','Admins'],
+  datasets:[
+    {
+      label:'Users',
+      data:[100,50,20,10],
+      backgroundColor:[
+        'rgba(159, 90, 253,1)',
+        'rgba(165, 55, 253, 1)',
+        'rgba(241, 231, 254,1 )', 
+        'rgba(102, 51, 153, 1)',
+        'rgba(191, 85, 236, 1)',
+        
+      ]
+    }
+
+  ]
+}
+
   return (
     <div>
       <NavGuestLogin />
-      <div className="flex items-center justify-between px-60  bg-[url('/images/projbg.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
-        {/* div for the form */}
-          <h1 className="text-white text-xl">Not registered yet? Don't miss the chance and
-          <Link href="/guest/signup" className="px-1 text-violet-400 cursor-pointer hover:border-b hover:text-violet-300">
-          register
-          </Link>
-          now!</h1>
+      <div className="flex flex-col items-center justify-center px-60  bg-bc w-screen h-[600px] bg-cover bg-no-repeat">
+          <h1 className="text-white text-7xl font-bold"> Learn Anything </h1>
+          <h1 className="text-white text-7xl font-bold"> Anytime, Anywhere </h1>
+            <div className="flex flex-col justify-center items-center text-violet-400 ">
+              {/* <Link href="/guest/signup" className="underline text-violet-400 text-2xl font-bold"> Start Learning Now </Link> */}
+                <h1 className="text-2xl">Tailor your learning experience with our wide range of courses </h1>
+                <Link href="/guest/signup" className="text-xl underline hover:cursor-pointer ">Register Now</Link>
+                 </div>                           
+        </div>
+        <div className="bg-bc flex flex-row justify-evenly p-7 ">
+          <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
+            <FaRegNewspaper size={100} className="text-white m-10"/>
+            <h1 className="text-white text-2xl p-2"> 1000+ Courses </h1>
+          </div>
+          <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
+              <BsPersonFill size={100} className="text-white m-10"/>       
+              <h1 className="text-white text-2xl p-2"> 100+ Instructors </h1>
 
-        <div className="  flex flex-col items-center justify-start rounded-lg bg-black3 py-6 px-4">
-
-          <div className="flex flex-col items-center justify-center gap-2">
-            <input
-              className="bg-bc rounded-md p-3 w-72 text-white"
-              id="username"
-              placeholder="Username"
-              type="text"
-              onChange={handleChangeU}
-            />
-            <input
-              className="bg-bc rounded-md p-3 w-72 text-white"
-              id="password"
-              placeholder="Password"
-              type="password"
-              onChange={handleChangeP}
-            />
-
-            {/* adding password input */}
-            {/* <InputField id="password" placeholder="Password" type="password" /> */}
-            {/* adding login button */}
-              <button className="w-72 rounded-lg bg-gradient-to-r to-babyblue from-purple p-2 text-white hover:bg-matisse hover:text-white" onClick={handleLogin}>
-                Login
-              </button>
-            <div className="flex flex-col items-center justify-center underline text-violet-400 ">
-              <Link
-                href="/guest/enterEmail"
-              >
-                Forgot password?
-              </Link>
+          </div>
+          <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
+          <FaGlobeAfrica size={100}className="text-white m-10 "/>
+          <h1 className="text-white text-2xl p-2">Available in 20 countries</h1>
+        
+           {/* <div className="">
+            <SiBmw className="text-white" size={30}/>
+            <SiTesla className="text-white" size={30}/>
             </div>
-            <div className="flex justify-center w-72 rounded-lg  p-2 text-red-700  hover:text-red-700" >{error}</div>
+            <h1>Trusted by 400+ organizations</h1> */}
+
+          </div>
+           {/* <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
+          <Doughnut data={data}/>
+            
+          </div> */}
+        </div>
+        <div className="flex items-center bg-bc  bg-cover text-gray-200 flex-col px-6 ">
+         
+          <div className="border-t border-gray-500 w-11/12">
+          </div>
+          <div className="flex flex-row  justify-between w-full items-center">
+          <h1 className="text-sm ">
+             @2022 Fogration Team.All Rights Reserved
+          </h1>
+           <div className="flex flex-row gap-2 ">
+          <Link href="" className="text-gray-300 hover:underline" >About us</Link>
+          <Link href="/guest/policies" className="text-gray-300 hover:underline" >Payment</Link>
+           <Link href="/guest/policies" className="text-gray-300 hover:underline" >Refund policy</Link>
+           <Link href="/guest/policies" className="text-gray-300 hover:underline" >Terms of service</Link>
+          </div>
+
+          <Link href="https://github.com/Andysm21/ACL_Fogration_FE/blob/main/README.md">
+          <BsGithub size={30}  className="text-white hover:cursor-pointer"/>
+          </Link>
           </div>
         </div>
-      </div>
+       
     </div>
   
   );
