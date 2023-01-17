@@ -104,13 +104,13 @@ var status='';
       <NavGuestLogin />
       <div className="flex flex-row items-center  justify-evenly w-full h-[725px]  bg-bc ">
         {/* div for the form */}
-        <span className="flex flex-col justify-start">
-        <h1 className="text-violet-400 text-5xl font-bold">
+        <span className="flex flex-col justify-start font-">
+        <h1 className="text-violet-400 text-5xl ">
 
           We are happy to have you here! 
 
         </h1>
-        <h1 className="text-white text-4xl font-bold">
+        <h1 className="text-white text-4xl ">
           Please fill in the form to create your account.
         </h1>
         </span>

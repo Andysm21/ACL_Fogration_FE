@@ -20,6 +20,7 @@ import {
   RadioGroup,
 } from "@mui/material";
 import Axios  from "axios";
+import { BsGithub } from "react-icons/bs";
 
 function Login() {
 const router = useRouter();
@@ -155,13 +156,19 @@ const router = useRouter();
   return (
     <div>
       <NavGuestLogin />
-      <div className="flex items-center justify-between px-60  bg-[url('/images/projbg.jpeg')] w-screen h-screen bg-cover bg-no-repeat">
+      <div className="flex items-center justify-between px-60  bg-bc w-full h-[695px] bg-cover bg-no-repeat">
         {/* div for the form */}
-          <h1 className="text-white text-xl">Not registered yet? Don't miss the chance and
+          {/* <h1 className="text-white text-xl">Not registered yet? Don't miss the chance and
           <Link href="/guest/signup" className="px-1 text-violet-400 cursor-pointer hover:border-b hover:text-violet-300">
           register
           </Link>
-          now!</h1>
+          now!</h1> */}
+          <span className="flex flex-col font-">
+          <h1 className="text-violet-400 text-6xl">
+            Welcome Back !
+          </h1>
+          <h1 className="text-white text-5xl">Let's get back to work</h1>
+          </span>
 
         <div className="  flex flex-col items-center justify-start rounded-lg bg-black3 py-6 px-4">
 
@@ -198,6 +205,26 @@ const router = useRouter();
           </div>
         </div>
       </div>
+      <div className="flex items-center bg-bc  bg-cover text-gray-200 flex-col px-6 ">
+         
+          <div className="border-t border-gray-500 w-11/12">
+          </div>
+          <div className="flex flex-row  justify-between w-full items-center">
+          <h1 className="text-sm ">
+             @2022 Fogration Team.All Rights Reserved
+          </h1>
+           <div className="flex flex-row gap-2 ">
+          <Link href="" className="text-gray-300 hover:underline" >About us</Link>
+          <Link href="/guest/policies" className="text-gray-300 hover:underline" >Payment</Link>
+           <Link href="/guest/policies" className="text-gray-300 hover:underline" >Refund policy</Link>
+           <Link href="/guest/policies" className="text-gray-300 hover:underline" >Terms of service</Link>
+          </div>
+
+          <Link href="https://github.com/Andysm21/ACL_Fogration_FE/blob/main/README.md">
+          <BsGithub size={30}  className="text-white hover:cursor-pointer"/>
+          </Link>
+          </div>
+        </div>
     </div>
   
   );
