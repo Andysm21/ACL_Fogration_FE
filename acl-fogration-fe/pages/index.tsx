@@ -217,12 +217,15 @@ const data ={
             </Link>
           </div>
           <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
+            <Link href="/construction">
               <BsPersonFill size={100} className="text-white m-10 hover:animate-bounce"/>       
               <h1 className="text-white text-2xl p-2"> 100+ Instructors </h1>
-
+            </Link>
           </div>
+          <Link href="/construction">
           <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
-          <FaGlobeAfrica size={100}className="text-white m-10 hover:animate-bounce "/>
+            
+          <FaGlobeAfrica size={100}className="text-white m-10 hover:animate-bounce text-center "/>
           <h1 className="text-white text-2xl p-2">Available in 20 countries</h1>
         
            {/* <div className="">
@@ -232,6 +235,7 @@ const data ={
             <h1>Trusted by 400+ organizations</h1> */}
 
           </div>
+          </Link>
            {/* <div className="bg-black3 flex justify-center items-center flex-col rounded-lg w-72">
           <Doughnut data={data}/>
             
@@ -246,7 +250,7 @@ const data ={
              @2022 Fogration Team.All Rights Reserved
           </h1>
            <div className="flex flex-row gap-2 ">
-          <Link href="" className="text-gray-300 hover:underline" >About us</Link>
+          <Link href="/construction" className="text-gray-300 hover:underline" >About us</Link>
           <Link href="/guest/policies" className="text-gray-300 hover:underline" >Payment</Link>
            <Link href="/guest/policies" className="text-gray-300 hover:underline" >Refund policy</Link>
            <Link href="/guest/policies" className="text-gray-300 hover:underline" >Terms of service</Link>
