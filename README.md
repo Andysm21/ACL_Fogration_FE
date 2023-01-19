@@ -573,11 +573,10 @@ If you interested to be part of this project, kindly check [contributing.md](htt
 Copyright (c) 2023 Fogration Courses
 
 ## *Authors*
-
-1. [Salma Sleem](https://github.com/salmasleem)
-2. [Nour Shehab](https://github.com/NourShehab)
-3. [Hana Pasha](https://github.com/HanaPasha)
-4. [Andrew Shehata](https://github.com/Andysm21)
-5. [Malak ElKhashab](https://github.com/malakel-khashab)
+1. [Andrew Shehata](https://github.com/Andysm21)
+2. [Malak ElKhashab](https://github.com/malakel-khashab)
+3. [Salma Sleem](https://github.com/salmasleem)
+4. [Nour Shehab](https://github.com/NourShehab)
+5. [Hana Pasha](https://github.com/HanaPasha)
 6. [Yahya Essam](https://github.com/yahyae07)
 
