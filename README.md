@@ -35,7 +35,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 
 <details>
 	
-<img src = "acl-fogration-fe/public/images/Home%20Page.JPG">
+<img src = "acl-fogration-fe/public/images/Home%20Page.PNG">
 
 </details>
 
@@ -43,7 +43,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 
 <details>
 	
-<img src = "acl-fogration-fe/public/images/Signup.JPG">
+<img src = "acl-fogration-fe/public/images/Signup.PNG">
 
 </details>
 
@@ -51,7 +51,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 
 <details>
 	
-<img src = "acl-fogration-fe/public/images/Dashboard.JPG">
+<img src = "acl-fogration-fe/public/images/Dashboard.PNG">
 
 </details>
 
@@ -62,7 +62,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 
 ### Watch Video
 <details>
-<img src = "acl-fogration-fe/public/images/Watch%20Video.JPG">
+<img src = "acl-fogration-fe/public/images/Watch%20Video.PNG">
 </details>
 
 ### Create Course 
@@ -72,7 +72,7 @@ The purpose of ths website, is to create a complete Online Learning System. An O
 
 ### Exam Score
 <details>
-<img src = "acl-fogration-fe/public/images/Score.JPG">
+<img src = "acl-fogration-fe/public/images/Score.PNG">
 </details>
 
 ### Instructor Profile
